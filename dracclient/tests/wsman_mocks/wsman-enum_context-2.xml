@@ -1,0 +1,22 @@
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+            xmlns:wsen="http://schemas.xmlsoap.org/ws/2004/09/enumeration"
+            xmlns:n1="http://FooResource"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.xmlsoap.org/ws/2004/09/enumeration/PullResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:89ec4d7c-2005-1005-8003-fd0aa2bdb228</wsa:RelatesTo>
+    <wsa:MessageID>uuid:bac57212-2009-1009-8097-fcc71555dbe0</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <wsen:PullResponse>
+      <wsen:EnumerationContext>enum-context-uuid</wsen:EnumerationContext>
+      <wsen:Items>
+        <n1:FooResource>
+          <n1:InstanceID>1</n1:InstanceID>
+        </n1:FooResource>
+      </wsen:Items>
+    </wsen:PullResponse>
+  </s:Body>
+</s:Envelope>

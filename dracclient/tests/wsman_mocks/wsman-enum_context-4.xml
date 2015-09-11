@@ -1,0 +1,21 @@
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+            xmlns:wsen="http://schemas.xmlsoap.org/ws/2004/09/enumeration"
+            xmlns:n1="http://BarResource">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.xmlsoap.org/ws/2004/09/enumeration/PullResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:8b0bcd65-2005-1005-8026-fd0aa2bdb228</wsa:RelatesTo>
+    <wsa:MessageID>uuid:bbe513cd-2009-1009-80ba-fcc71555dbe0</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <wsen:PullResponse>
+      <wsen:Items>
+        <n1:BazResource>
+          <n1:InstanceID>4</n1:InstanceID>
+        </n1:BazResource>
+      </wsen:Items>
+      <wsen:EndOfSequence/>
+    </wsen:PullResponse>
+  </s:Body>
+</s:Envelope>

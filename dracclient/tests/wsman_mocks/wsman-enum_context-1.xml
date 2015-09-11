@@ -1,0 +1,15 @@
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+            xmlns:wsen="http://schemas.xmlsoap.org/ws/2004/09/enumeration">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.xmlsoap.org/ws/2004/09/enumeration/EnumerateResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:89afbea0-2005-1005-8002-fd0aa2bdb228</wsa:RelatesTo>
+    <wsa:MessageID>uuid:babd467b-2009-1009-8096-fcc71555dbe0</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <wsen:EnumerateResponse>
+      <wsen:EnumerationContext>enum-context-uuid</wsen:EnumerationContext>
+    </wsen:EnumerateResponse>
+  </s:Body>
+</s:Envelope>
