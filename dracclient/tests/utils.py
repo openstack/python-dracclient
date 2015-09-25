@@ -13,6 +13,8 @@
 
 import os
 
+from dracclient.resources import uris
+
 FAKE_ENDPOINT = {
     'host': '1.2.3.4',
     'port': '443',
@@ -39,4 +41,21 @@ WSManEnumerations = {
         load_wsman_xml('wsman-enum_context-3'),
         load_wsman_xml('wsman-enum_context-4'),
     ]
+}
+
+BIOSEnumerations = {
+    uris.DCIM_ComputerSystem: {
+        'ok': load_wsman_xml('computer_system-enum-ok')
+    },
+}
+
+BIOSInvocations = {
+    uris.DCIM_ComputerSystem: {
+        'RequestStateChange': {
+            'ok': load_wsman_xml(
+                'computer_system-invoke-request_state_change-ok'),
+            'error': load_wsman_xml(
+                'computer_system-invoke-request_state_change-error'),
+        },
+    },
 }

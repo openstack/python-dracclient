@@ -1,0 +1,15 @@
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+            xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_ComputerSystem">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_ComputerSystem/RequestStateChangeResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:11302b44-1ca6-1ca6-8002-fd0aa2bdb228</wsa:RelatesTo>
+    <wsa:MessageID>uuid:4244f4ca-1caa-1caa-8004-fcc71555dbe0</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <n1:RequestStateChange_OUTPUT>
+      <n1:ReturnValue>0</n1:ReturnValue>
+    </n1:RequestStateChange_OUTPUT>
+  </s:Body>
+</s:Envelope>

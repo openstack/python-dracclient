@@ -21,8 +21,26 @@ class BaseClientException(Exception):
         super(BaseClientException, self).__init__(message)
 
 
+class DRACRequestFailed(BaseClientException):
+    pass
+
+
+class DRACOperationFailed(DRACRequestFailed):
+    msg_fmt = ('DRAC operation failed. Messages: %(drac_messages)s')
+
+
+class DRACUnexpectedReturnValue(DRACRequestFailed):
+    msg_fmt = ('DRAC operation yielded return value %(actual_return_value)s '
+               'that is neither error nor the expected '
+               '%(expected_return_value)s')
+
+
+class InvalidParameterValue(BaseClientException):
+    msg_fmt = '%(reason)s'
+
+
 class WSManRequestFailure(BaseClientException):
-    msg_fmt = ('WSMan request failed.')
+    msg_fmt = ('WSMan request failed')
 
 
 class WSManInvalidResponse(BaseClientException):
