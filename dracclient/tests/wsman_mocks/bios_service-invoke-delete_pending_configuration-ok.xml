@@ -1,0 +1,15 @@
+<s:Envelope xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_BIOSService" xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_BIOSService/DeletePendingConfigurationResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:33b4948b-79e6-42ff-8670-19fbb25702c8</wsa:RelatesTo>
+    <wsa:MessageID>uuid:d578f646-2189-1189-8ebe-a36fc6fe83b0</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <n1:DeletePendingConfiguration_OUTPUT>
+      <n1:Message>The command was successful.</n1:Message>
+      <n1:MessageID>BIOS001</n1:MessageID>
+      <n1:ReturnValue>0</n1:ReturnValue>
+    </n1:DeletePendingConfiguration_OUTPUT>
+  </s:Body>
+</s:Envelope>

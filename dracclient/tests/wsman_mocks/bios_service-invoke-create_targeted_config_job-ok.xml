@@ -1,0 +1,28 @@
+<s:Envelope xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_BIOSService"
+            xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+            xmlns:wsman="http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_BIOSService/CreateTargetedConfigJobResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:fc2fdae5-6ac2-4338-9b2e-e69b813af829</wsa:RelatesTo>
+    <wsa:MessageID>uuid:d7d89957-2189-1189-8ec0-a36fc6fe83b0</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <n1:CreateTargetedConfigJob_OUTPUT>
+      <n1:Job>
+        <wsa:EndpointReference>
+          <wsa:Address>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:Address>
+          <wsa:ReferenceParameters>
+            <wsman:ResourceURI>http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_LifecycleJob</wsman:ResourceURI>
+            <wsman:SelectorSet>
+              <wsman:Selector Name="InstanceID">JID_442507917525</wsman:Selector>
+              <wsman:Selector Name="__cimnamespace">root/dcim</wsman:Selector>
+            </wsman:SelectorSet>
+          </wsa:ReferenceParameters>
+        </wsa:EndpointReference>
+      </n1:Job>
+      <n1:ReturnValue>4096</n1:ReturnValue>
+    </n1:CreateTargetedConfigJob_OUTPUT>
+  </s:Body>
+</s:Envelope>

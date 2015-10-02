@@ -59,3 +59,27 @@ BIOSInvocations = {
         },
     },
 }
+
+JobEnumerations = {
+    uris.DCIM_LifecycleJob: {
+        'ok': load_wsman_xml('lifecycle_job-enum-ok'),
+        'not_found': load_wsman_xml('lifecycle_job-enum-not_found'),
+    },
+}
+
+JobInvocations = {
+    uris.DCIM_BIOSService: {
+        'CreateTargetedConfigJob': {
+            'ok': load_wsman_xml(
+                'bios_service-invoke-create_targeted_config_job-ok'),
+            'error': load_wsman_xml(
+                'bios_service-invoke-create_targeted_config_job-error'),
+        },
+        'DeletePendingConfiguration': {
+            'ok': load_wsman_xml(
+                'bios_service-invoke-delete_pending_configuration-ok'),
+            'error': load_wsman_xml(
+                'bios_service-invoke-delete_pending_configuration-error'),
+        },
+    }
+}

@@ -1,0 +1,17 @@
+<s:Envelope xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_BIOSService"
+            xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_BIOSService/DeletePendingConfigurationResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:6bd49922-f63b-44d9-abf7-b902f08ec932</wsa:RelatesTo>
+    <wsa:MessageID>uuid:87a16ea4-2189-1189-8eb5-a36fc6fe83b0</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <n1:DeletePendingConfiguration_OUTPUT>
+      <n1:Message>Configuration job already created, pending data cannot be deleted</n1:Message>
+      <n1:MessageID>BIOS011</n1:MessageID>
+      <n1:ReturnValue>2</n1:ReturnValue>
+    </n1:DeletePendingConfiguration_OUTPUT>
+  </s:Body>
+</s:Envelope>

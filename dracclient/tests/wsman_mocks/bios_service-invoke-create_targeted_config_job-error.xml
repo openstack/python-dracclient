@@ -1,0 +1,17 @@
+<s:Envelope xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_BIOSService"
+            xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_BIOSService/CreateTargetedConfigJobResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:80cf5e1b-b109-4ef5-87c8-5b03ce6ba117</wsa:RelatesTo>
+    <wsa:MessageID>uuid:e57fa514-2189-1189-8ec1-a36fc6fe83b0</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <n1:CreateTargetedConfigJob_OUTPUT>
+      <n1:Message>Configuration job already created, cannot create another config job on specified target until existing job is completed or is cancelled</n1:Message>
+      <n1:MessageID>BIOS007</n1:MessageID>
+      <n1:ReturnValue>2</n1:ReturnValue>
+    </n1:CreateTargetedConfigJob_OUTPUT>
+  </s:Body>
+</s:Envelope>

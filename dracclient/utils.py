@@ -40,3 +40,9 @@ def find_xml(doc, item, namespace, find_all=False):
     if find_all:
         return doc.findall(query)
     return doc.find(query)
+
+
+def get_wsman_resource_attr(doc, resource_uri, attr_name):
+    """Find an attribute of a resource in an ElementTree object"""
+
+    return find_xml(doc, attr_name, resource_uri).text.strip()
