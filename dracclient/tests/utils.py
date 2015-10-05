@@ -47,6 +47,13 @@ BIOSEnumerations = {
     uris.DCIM_ComputerSystem: {
         'ok': load_wsman_xml('computer_system-enum-ok')
     },
+    uris.DCIM_BootConfigSetting: {
+        'ok': load_wsman_xml('boot_config_setting-enum-ok')
+    },
+    uris.DCIM_BootSourceSetting: {
+        'ok': load_wsman_xml('boot_source_setting-enum-ok'),
+        'ok-11g': load_wsman_xml('boot_source_setting-enum-ok-11g')
+    }
 }
 
 BIOSInvocations = {
@@ -58,6 +65,16 @@ BIOSInvocations = {
                 'computer_system-invoke-request_state_change-error'),
         },
     },
+    uris.DCIM_BootConfigSetting: {
+        'ChangeBootOrderByInstanceID': {
+            'ok': load_wsman_xml(
+                'boot_config_setting-invoke-change_boot_order_by_instance_id-'
+                'ok'),
+            'error': load_wsman_xml(
+                'boot_config_setting-invoke-change_boot_order_by_instance_id-'
+                'error'),
+        }
+    }
 }
 
 JobEnumerations = {
@@ -82,4 +99,10 @@ JobInvocations = {
                 'bios_service-invoke-delete_pending_configuration-error'),
         },
     }
+}
+
+LifecycleControllerEnumerations = {
+    uris.DCIM_SystemView: {
+        'ok': load_wsman_xml('system_view-enum-ok')
+    },
 }

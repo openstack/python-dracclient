@@ -20,6 +20,8 @@ import logging
 from dracclient import exceptions
 from dracclient.resources import bios
 from dracclient.resources import job
+from dracclient.resources import lifecycle_controller
+from dracclient.resources import uris
 from dracclient import utils
 from dracclient import wsman
 
@@ -28,6 +30,8 @@ LOG = logging.getLogger(__name__)
 
 class DRACClient(object):
     """Client for managing DRAC nodes"""
+
+    BIOS_DEVICE_FQDD = 'BIOS.Setup.1-1'
 
     def __init__(self, host, username, password, port=443, path='/wsman',
                  protocol='https'):
@@ -44,6 +48,7 @@ class DRACClient(object):
                                   protocol)
         self._job_mgmt = job.JobManagement(self.client)
         self._power_mgmt = bios.PowerManagement(self.client)
+        self._boot_mgmt = bios.BootManagement(self.client)
 
     def get_power_state(self):
         """Returns the current power state of the node
@@ -70,6 +75,46 @@ class DRACClient(object):
         :raises: InvalidParameterValue on invalid target power state
         """
         self._power_mgmt.set_power_state(target_state)
+
+    def list_boot_modes(self):
+        """Returns the list of boot modes
+
+        :returns: list of BootMode objects
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        """
+        return self._boot_mgmt.list_boot_modes()
+
+    def list_boot_devices(self):
+        """Returns the list of boot devices
+
+        :returns: a dictionary with the boot modes and the list of associated
+                  BootDevice objects, ordered by the pending_assigned_sequence
+                  property
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        """
+        return self._boot_mgmt.list_boot_devices()
+
+    def change_boot_device_order(self, boot_mode, boot_device_list):
+        """Changes the boot device sequence for a boot mode
+
+        :param boot_mode: boot mode for which the boot device list is to be
+                          changed
+        :param boot_device_list: a list of boot device ids in an order
+                                 representing the desired boot sequence
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        """
+        return self._boot_mgmt.change_boot_device_order(boot_mode,
+                                                        boot_device_list)
 
     def list_jobs(self, only_unfinished=False):
         """Returns a list of jobs from the job queue
@@ -162,6 +207,47 @@ class DRACClient(object):
         self._job_mgmt.delete_pending_config(
             resource_uri, cim_creation_class_name, cim_name, target,
             cim_system_creation_class_name, cim_system_name)
+
+    def commit_pending_bios_changes(self):
+        """Applies all pending changes on the BIOS by creating a config job
+
+        :returns: id of the created job
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        """
+        return self._job_mgmt.create_config_job(
+            resource_uri=uris.DCIM_BIOSService,
+            cim_creation_class_name='DCIM_BIOSService',
+            cim_name='DCIM:BIOSService', target=self.BIOS_DEVICE_FQDD)
+
+    def abandon_pending_bios_changes(self):
+        """Deletes all pending changes on the BIOS
+
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        """
+        self._job_mgmt.delete_pending_config(
+            resource_uri=uris.DCIM_BIOSService,
+            cim_creation_class_name='DCIM_BIOSService',
+            cim_name='DCIM:BIOSService', target=self.BIOS_DEVICE_FQDD)
+
+    def get_lifecycle_controller_version(self):
+        """Returns the Lifecycle controller version
+
+        :returns: Lifecycle controller version as a tuple of integers
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        """
+        return lifecycle_controller.LifecycleControllerManagement(
+            self.client).get_version()
 
 
 class WSManClient(wsman.Client):

@@ -1,0 +1,17 @@
+<s:Envelope xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_BootConfigSetting"
+            xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_BootConfigSetting/ChangeBootOrderByInstanceIDResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:6489f08e-43f8-4616-9c8e-46502a0d297e</wsa:RelatesTo>
+    <wsa:MessageID>uuid:14c20b22-2188-1188-8ead-a36fc6fe83b0</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <n1:ChangeBootOrderByInstanceID_OUTPUT>
+      <n1:Message>The command was successful</n1:Message>
+      <n1:MessageID>BOOT001</n1:MessageID>
+      <n1:ReturnValue>0</n1:ReturnValue>
+    </n1:ChangeBootOrderByInstanceID_OUTPUT>
+  </s:Body>
+</s:Envelope>

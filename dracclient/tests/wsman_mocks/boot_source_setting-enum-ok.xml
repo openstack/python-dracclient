@@ -1,0 +1,139 @@
+<s:Envelope xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_BootSourceSetting"
+            xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+            xmlns:wsen="http://schemas.xmlsoap.org/ws/2004/09/enumeration"
+            xmlns:wsman="http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.xmlsoap.org/ws/2004/09/enumeration/EnumerateResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:8228360f-4368-4377-a020-7b86001ec6a2</wsa:RelatesTo>
+    <wsa:MessageID>uuid:9daff045-2172-1172-8ea7-a36fc6fe83b0</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <wsen:EnumerateResponse>
+      <wsman:Items>
+        <n1:DCIM_BootSourceSetting>
+          <n1:BIOSBootString>Embedded SATA Port Optical Drive E: HL-DT-ST DVD-ROM DU90N                   BootSeq</n1:BIOSBootString>
+          <n1:BootSourceType>IPL</n1:BootSourceType>
+          <n1:BootString>Embedded SATA Port Optical Drive E: HL-DT-ST DVD-ROM DU90N                   BootSeq</n1:BootString>
+          <n1:CurrentAssignedSequence>1</n1:CurrentAssignedSequence>
+          <n1:CurrentEnabledStatus>1</n1:CurrentEnabledStatus>
+          <n1:ElementName>Embedded SATA Port Optical Drive E: HL-DT-ST DVD-ROM DU90N                   BootSeq</n1:ElementName>
+          <n1:FailThroughSupported>1</n1:FailThroughSupported>
+          <n1:InstanceID>IPL:BIOS.Setup.1-1#BootSeq#Optical.SATAEmbedded.E-1#9cfba379c4a2890f7f419c75db47d605</n1:InstanceID>
+          <n1:PendingAssignedSequence>1</n1:PendingAssignedSequence>
+          <n1:PendingEnabledStatus>1</n1:PendingEnabledStatus>
+        </n1:DCIM_BootSourceSetting>
+        <n1:DCIM_BootSourceSetting>
+          <n1:BIOSBootString>Embedded NIC 1 Port 1 Partition 1: BRCM MBA Slot 0200 v16.4.3 BootSeq</n1:BIOSBootString>
+          <n1:BootSourceType>IPL</n1:BootSourceType>
+          <n1:BootString>Embedded NIC 1 Port 1 Partition 1: BRCM MBA Slot 0200 v16.4.3 BootSeq</n1:BootString>
+          <n1:CurrentAssignedSequence>0</n1:CurrentAssignedSequence>
+          <n1:CurrentEnabledStatus>1</n1:CurrentEnabledStatus>
+          <n1:ElementName>Embedded NIC 1 Port 1 Partition 1: BRCM MBA Slot 0200 v16.4.3 BootSeq</n1:ElementName>
+          <n1:FailThroughSupported>1</n1:FailThroughSupported>
+          <n1:InstanceID>IPL:BIOS.Setup.1-1#BootSeq#NIC.Embedded.1-1-1#fbeeb18f19fd4e768c941e66af4fc424</n1:InstanceID>
+          <n1:PendingAssignedSequence>0</n1:PendingAssignedSequence>
+          <n1:PendingEnabledStatus>1</n1:PendingEnabledStatus>
+        </n1:DCIM_BootSourceSetting>
+        <n1:DCIM_BootSourceSetting>
+          <n1:BIOSBootString>Hard drive C: BootSeq</n1:BIOSBootString>
+          <n1:BootSourceType>IPL</n1:BootSourceType>
+          <n1:BootString>Hard drive C: BootSeq</n1:BootString>
+          <n1:CurrentAssignedSequence>2</n1:CurrentAssignedSequence>
+          <n1:CurrentEnabledStatus>1</n1:CurrentEnabledStatus>
+          <n1:ElementName>Hard drive C: BootSeq</n1:ElementName>
+          <n1:FailThroughSupported>1</n1:FailThroughSupported>
+          <n1:InstanceID>IPL:BIOS.Setup.1-1#BootSeq#HardDisk.List.1-1#c9203080df84781e2ca3d512883dee6f</n1:InstanceID>
+          <n1:PendingAssignedSequence>2</n1:PendingAssignedSequence>
+          <n1:PendingEnabledStatus>1</n1:PendingEnabledStatus>
+        </n1:DCIM_BootSourceSetting>
+        <n1:DCIM_BootSourceSetting>
+          <n1:BIOSBootString>Integrated RAID Controller 1: PERC H710 Mini(bus 01 dev 00) HddSeq</n1:BIOSBootString>
+          <n1:BootSourceType>BCV</n1:BootSourceType>
+          <n1:BootString>Integrated RAID Controller 1: PERC H710 Mini(bus 01 dev 00) HddSeq</n1:BootString>
+          <n1:CurrentAssignedSequence>0</n1:CurrentAssignedSequence>
+          <n1:CurrentEnabledStatus>1</n1:CurrentEnabledStatus>
+          <n1:ElementName>Integrated RAID Controller 1: PERC H710 Mini(bus 01 dev 00) HddSeq</n1:ElementName>
+          <n1:FailThroughSupported>2</n1:FailThroughSupported>
+          <n1:InstanceID>BCV:BIOS.Setup.1-1#HddSeq#RAID.Integrated.1-1#aa80b1ccc4782ee46ad0015e60b9f8bc</n1:InstanceID>
+          <n1:PendingAssignedSequence>0</n1:PendingAssignedSequence>
+          <n1:PendingEnabledStatus>1</n1:PendingEnabledStatus>
+        </n1:DCIM_BootSourceSetting>
+        <n1:DCIM_BootSourceSetting>
+          <n1:BIOSBootString>Embedded SATA Port Optical Drive E: HL-DT-ST DVD-ROM DU90N                   UefiBootSeq</n1:BIOSBootString>
+          <n1:BootSourceType>UEFI</n1:BootSourceType>
+          <n1:BootString>Embedded SATA Port Optical Drive E: HL-DT-ST DVD-ROM DU90N                   UefiBootSeq</n1:BootString>
+          <n1:CurrentAssignedSequence>0</n1:CurrentAssignedSequence>
+          <n1:CurrentEnabledStatus>1</n1:CurrentEnabledStatus>
+          <n1:ElementName>Embedded SATA Port Optical Drive E: HL-DT-ST DVD-ROM DU90N                   UefiBootSeq</n1:ElementName>
+          <n1:FailThroughSupported>1</n1:FailThroughSupported>
+          <n1:InstanceID>UEFI:BIOS.Setup.1-1#UefiBootSeq#Optical.SATAEmbedded.E-1#e63a20057ae7c7a24a2dcfe561ab3059</n1:InstanceID>
+          <n1:PendingAssignedSequence>0</n1:PendingAssignedSequence>
+          <n1:PendingEnabledStatus>1</n1:PendingEnabledStatus>
+        </n1:DCIM_BootSourceSetting>
+        <n1:DCIM_BootSourceSetting>
+          <n1:BIOSBootString>Embedded NIC 1 Port 1 Partition 1: EFI Network 1 UefiBootSeq</n1:BIOSBootString>
+          <n1:BootSourceType>UEFI</n1:BootSourceType>
+          <n1:BootString>Embedded NIC 1 Port 1 Partition 1: EFI Network 1 UefiBootSeq</n1:BootString>
+          <n1:CurrentAssignedSequence>1</n1:CurrentAssignedSequence>
+          <n1:CurrentEnabledStatus>0</n1:CurrentEnabledStatus>
+          <n1:ElementName>Embedded NIC 1 Port 1 Partition 1: EFI Network 1 UefiBootSeq</n1:ElementName>
+          <n1:FailThroughSupported>1</n1:FailThroughSupported>
+          <n1:InstanceID>UEFI:BIOS.Setup.1-1#UefiBootSeq#NIC.Embedded.1-1-1#4957070f0aa1fcff841e886b4011e6e5</n1:InstanceID>
+          <n1:PendingAssignedSequence>1</n1:PendingAssignedSequence>
+          <n1:PendingEnabledStatus>0</n1:PendingEnabledStatus>
+        </n1:DCIM_BootSourceSetting>
+        <n1:DCIM_BootSourceSetting>
+          <n1:BIOSBootString>Embedded NIC 2 Port 1 Partition 1: EFI Network 2 UefiBootSeq</n1:BIOSBootString>
+          <n1:BootSourceType>UEFI</n1:BootSourceType>
+          <n1:BootString>Embedded NIC 2 Port 1 Partition 1: EFI Network 2 UefiBootSeq</n1:BootString>
+          <n1:CurrentAssignedSequence>2</n1:CurrentAssignedSequence>
+          <n1:CurrentEnabledStatus>0</n1:CurrentEnabledStatus>
+          <n1:ElementName>Embedded NIC 2 Port 1 Partition 1: EFI Network 2 UefiBootSeq</n1:ElementName>
+          <n1:FailThroughSupported>1</n1:FailThroughSupported>
+          <n1:InstanceID>UEFI:BIOS.Setup.1-1#UefiBootSeq#NIC.Embedded.2-1-1#236af982351f674f952c4db458fe40ab</n1:InstanceID>
+          <n1:PendingAssignedSequence>2</n1:PendingAssignedSequence>
+          <n1:PendingEnabledStatus>0</n1:PendingEnabledStatus>
+        </n1:DCIM_BootSourceSetting>
+        <n1:DCIM_BootSourceSetting>
+          <n1:BIOSBootString>NIC in Slot 2 Port 1 Partition 1: EFI Network 3 UefiBootSeq</n1:BIOSBootString>
+          <n1:BootSourceType>UEFI</n1:BootSourceType>
+          <n1:BootString>NIC in Slot 2 Port 1 Partition 1: EFI Network 3 UefiBootSeq</n1:BootString>
+          <n1:CurrentAssignedSequence>3</n1:CurrentAssignedSequence>
+          <n1:CurrentEnabledStatus>0</n1:CurrentEnabledStatus>
+          <n1:ElementName>NIC in Slot 2 Port 1 Partition 1: EFI Network 3 UefiBootSeq</n1:ElementName>
+          <n1:FailThroughSupported>1</n1:FailThroughSupported>
+          <n1:InstanceID>UEFI:BIOS.Setup.1-1#UefiBootSeq#NIC.Slot.2-1-1#d4dcb3203b7a0e381ffa1c5df5873890</n1:InstanceID>
+          <n1:PendingAssignedSequence>3</n1:PendingAssignedSequence>
+          <n1:PendingEnabledStatus>0</n1:PendingEnabledStatus>
+        </n1:DCIM_BootSourceSetting>
+        <n1:DCIM_BootSourceSetting>
+          <n1:BIOSBootString>NIC in Slot 2 Port 2 Partition 1: EFI Network 4 UefiBootSeq</n1:BIOSBootString>
+          <n1:BootSourceType>UEFI</n1:BootSourceType>
+          <n1:BootString>NIC in Slot 2 Port 2 Partition 1: EFI Network 4 UefiBootSeq</n1:BootString>
+          <n1:CurrentAssignedSequence>4</n1:CurrentAssignedSequence>
+          <n1:CurrentEnabledStatus>0</n1:CurrentEnabledStatus>
+          <n1:ElementName>NIC in Slot 2 Port 2 Partition 1: EFI Network 4 UefiBootSeq</n1:ElementName>
+          <n1:FailThroughSupported>1</n1:FailThroughSupported>
+          <n1:InstanceID>UEFI:BIOS.Setup.1-1#UefiBootSeq#NIC.Slot.2-2-1#f438b57a48e180b211662c463cd406b1</n1:InstanceID>
+          <n1:PendingAssignedSequence>4</n1:PendingAssignedSequence>
+          <n1:PendingEnabledStatus>0</n1:PendingEnabledStatus>
+        </n1:DCIM_BootSourceSetting>
+        <n1:DCIM_BootSourceSetting>
+          <n1:BIOSBootString>Unavailable: Windows Boot Manager UefiBootSeq</n1:BIOSBootString>
+          <n1:BootSourceType>UEFI</n1:BootSourceType>
+          <n1:BootString>Unavailable: Windows Boot Manager UefiBootSeq</n1:BootString>
+          <n1:CurrentAssignedSequence>5</n1:CurrentAssignedSequence>
+          <n1:CurrentEnabledStatus>1</n1:CurrentEnabledStatus>
+          <n1:ElementName>Unavailable: Windows Boot Manager UefiBootSeq</n1:ElementName>
+          <n1:FailThroughSupported>1</n1:FailThroughSupported>
+          <n1:InstanceID>UEFI:BIOS.Setup.1-1#UefiBootSeq#Unknown.Unknown.6-1#f80cdb0ddd723411affd9b05852b3f4a</n1:InstanceID>
+          <n1:PendingAssignedSequence>5</n1:PendingAssignedSequence>
+          <n1:PendingEnabledStatus>1</n1:PendingEnabledStatus>
+        </n1:DCIM_BootSourceSetting>
+      </wsman:Items>
+      <wsman:EndOfSequence/>
+    </wsen:EnumerateResponse>
+  </s:Body>
+</s:Envelope>

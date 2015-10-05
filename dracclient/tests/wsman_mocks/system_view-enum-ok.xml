@@ -1,0 +1,23 @@
+<s:Envelope xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_SystemView"
+            xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+            xmlns:wsen="http://schemas.xmlsoap.org/ws/2004/09/enumeration"
+            xmlns:wsman="http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.xmlsoap.org/ws/2004/09/enumeration/EnumerateResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:c4710f54-6fd5-4719-859c-7e69080b99e6</wsa:RelatesTo>
+    <wsa:MessageID>uuid:3b67422f-215c-115c-8e9f-a36fc6fe83b0</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <wsen:EnumerateResponse>
+      <wsman:Items>
+        <n1:DCIM_SystemView>
+          <n1:InstanceID>System.Embedded.1</n1:InstanceID>
+          <n1:LifecycleControllerVersion>2.1.0</n1:LifecycleControllerVersion>
+        </n1:DCIM_SystemView>
+      </wsman:Items>
+      <wsman:EndOfSequence/>
+    </wsen:EnumerateResponse>
+  </s:Body>
+</s:Envelope>

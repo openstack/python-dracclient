@@ -1,0 +1,85 @@
+<s:Envelope xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_BootSourceSetting"
+            xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+            xmlns:wsen="http://schemas.xmlsoap.org/ws/2004/09/enumeration"
+            xmlns:wsman="http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.xmlsoap.org/ws/2004/09/enumeration/EnumerateResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:307f8c7a-e08f-491c-906f-97917d12aca3</wsa:RelatesTo>
+    <wsa:MessageID>uuid:a6d469c4-0340-1340-8003-96a61a2b2b84</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <wsen:EnumerateResponse>
+      <wsman:Items>
+        <n1:DCIM_BootSourceSetting>
+          <n1:BIOSBootString>Embedded NIC 1: BRCM MBA Slot 0200 v7.2.3 BootSeq</n1:BIOSBootString>
+          <n1:BootString>Embedded NIC 1: BRCM MBA Slot 0200 v7.2.3 BootSeq</n1:BootString>
+          <n1:CurrentAssignedSequence>0</n1:CurrentAssignedSequence>
+          <n1:CurrentEnabledStatus>1</n1:CurrentEnabledStatus>
+          <n1:ElementName>Embedded NIC 1: BRCM MBA Slot 0200 v7.2.3 BootSeq</n1:ElementName>
+          <n1:FailThroughSupported>1</n1:FailThroughSupported>
+          <n1:InstanceID>IPL:NIC.Embedded.1-1:082927b7c62a9f52ef0d65a33416d76c</n1:InstanceID>
+          <n1:PendingAssignedSequence>0</n1:PendingAssignedSequence>
+          <n1:PendingEnabledStatus>1</n1:PendingEnabledStatus>
+        </n1:DCIM_BootSourceSetting>
+        <n1:DCIM_BootSourceSetting>
+          <n1:BIOSBootString>Hard drive C: BootSeq</n1:BIOSBootString>
+          <n1:BootString>Hard drive C: BootSeq</n1:BootString>
+          <n1:CurrentAssignedSequence>1</n1:CurrentAssignedSequence>
+          <n1:CurrentEnabledStatus>1</n1:CurrentEnabledStatus>
+          <n1:ElementName>Hard drive C: BootSeq</n1:ElementName>
+          <n1:FailThroughSupported>1</n1:FailThroughSupported>
+          <n1:InstanceID>IPL:HardDisk.List.1-1:c9203080df84781e2ca3d512883dee6f</n1:InstanceID>
+          <n1:PendingAssignedSequence>1</n1:PendingAssignedSequence>
+          <n1:PendingEnabledStatus>1</n1:PendingEnabledStatus>
+        </n1:DCIM_BootSourceSetting>
+        <n1:DCIM_BootSourceSetting>
+          <n1:BIOSBootString>Embedded SATA Port A Optical: SATA Optical Drive BootSeq</n1:BIOSBootString>
+          <n1:BootString>Embedded SATA Port A Optical: SATA Optical Drive BootSeq</n1:BootString>
+          <n1:CurrentAssignedSequence>2</n1:CurrentAssignedSequence>
+          <n1:CurrentEnabledStatus>1</n1:CurrentEnabledStatus>
+          <n1:ElementName>Embedded SATA Port A Optical: SATA Optical Drive BootSeq</n1:ElementName>
+          <n1:FailThroughSupported>1</n1:FailThroughSupported>
+          <n1:InstanceID>IPL:Optical.SATAEmbedded.A-1:eb8aeb15796fb85f8e1447f0cfb8a68e</n1:InstanceID>
+          <n1:PendingAssignedSequence>2</n1:PendingAssignedSequence>
+          <n1:PendingEnabledStatus>1</n1:PendingEnabledStatus>
+        </n1:DCIM_BootSourceSetting>
+        <n1:DCIM_BootSourceSetting>
+          <n1:BIOSBootString>Integrated SAS: #0100 ID0B LUN0 FUJITSU  MBD2147RC      HddSeq</n1:BIOSBootString>
+          <n1:BootString>Integrated SAS: #0100 ID0B LUN0 FUJITSU  MBD2147RC      HddSeq</n1:BootString>
+          <n1:CurrentAssignedSequence>0</n1:CurrentAssignedSequence>
+          <n1:CurrentEnabledStatus>1</n1:CurrentEnabledStatus>
+          <n1:ElementName>Integrated SAS: #0100 ID0B LUN0 FUJITSU  MBD2147RC      HddSeq</n1:ElementName>
+          <n1:FailThroughSupported>2</n1:FailThroughSupported>
+          <n1:InstanceID>BCV:RAID.Integrated.1-1:b0288ef62190fe49448c0c8bd58e3299</n1:InstanceID>
+          <n1:PendingAssignedSequence>0</n1:PendingAssignedSequence>
+          <n1:PendingEnabledStatus>1</n1:PendingEnabledStatus>
+        </n1:DCIM_BootSourceSetting>
+        <n1:DCIM_BootSourceSetting>
+          <n1:BIOSBootString>Embedded SATA Port A Optical: TEAC DVD-ROM DV-28SW                     UefiBootSeq</n1:BIOSBootString>
+          <n1:BootString>Embedded SATA Port A Optical: TEAC DVD-ROM DV-28SW                     UefiBootSeq</n1:BootString>
+          <n1:CurrentAssignedSequence>0</n1:CurrentAssignedSequence>
+          <n1:CurrentEnabledStatus>1</n1:CurrentEnabledStatus>
+          <n1:ElementName>Embedded SATA Port A Optical: TEAC DVD-ROM DV-28SW                     UefiBootSeq</n1:ElementName>
+          <n1:FailThroughSupported>1</n1:FailThroughSupported>
+          <n1:InstanceID>UEFI:Optical.SATAEmbedded.A-1:f4517f4fe99654f4b3d1f2cf5ffa1236</n1:InstanceID>
+          <n1:PendingAssignedSequence>0</n1:PendingAssignedSequence>
+          <n1:PendingEnabledStatus>1</n1:PendingEnabledStatus>
+        </n1:DCIM_BootSourceSetting>
+        <n1:DCIM_BootSourceSetting>
+          <n1:BIOSBootString>Embedded NIC 1: Broadcom NetXtreme II Gigabit Ethernet (BCM5709) UefiBootSeq</n1:BIOSBootString>
+          <n1:BootString>Embedded NIC 1: Broadcom NetXtreme II Gigabit Ethernet (BCM5709) UefiBootSeq</n1:BootString>
+          <n1:CurrentAssignedSequence>1</n1:CurrentAssignedSequence>
+          <n1:CurrentEnabledStatus>1</n1:CurrentEnabledStatus>
+          <n1:ElementName>Embedded NIC 1: Broadcom NetXtreme II Gigabit Ethernet (BCM5709) UefiBootSeq</n1:ElementName>
+          <n1:FailThroughSupported>1</n1:FailThroughSupported>
+          <n1:InstanceID>UEFI:NIC.Embedded.1-1:764aa69cc6ae153bf9aa038a0cf31bf2</n1:InstanceID>
+          <n1:PendingAssignedSequence>1</n1:PendingAssignedSequence>
+          <n1:PendingEnabledStatus>1</n1:PendingEnabledStatus>
+        </n1:DCIM_BootSourceSetting>
+      </wsman:Items>
+      <wsman:EndOfSequence/>
+    </wsen:EnumerateResponse>
+  </s:Body>
+</s:Envelope>
