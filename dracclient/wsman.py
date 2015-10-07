@@ -366,9 +366,13 @@ class _InvokePayload(_Payload):
                  'method': self.method}))
 
         for (name, value) in self.properties.items():
-            property_elem = ElementTree.SubElement(
-                method_elem,
-                ('{%(resource_uri)s}%(name)s' %
-                 {'resource_uri': self.resource_uri,
-                  'name': name}))
-            property_elem.text = value
+            if not isinstance(value, list):
+                value = [value]
+
+            for item in value:
+                property_elem = ElementTree.SubElement(
+                    method_elem,
+                    ('{%(resource_uri)s}%(name)s' %
+                     {'resource_uri': self.resource_uri,
+                      'name': name}))
+                property_elem.text = item

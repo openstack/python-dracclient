@@ -276,3 +276,41 @@ class PayloadTestCase(base.BaseTest):
 
         self.assertEqual(lxml.etree.tostring(expected_payload_obj),
                          lxml.etree.tostring(payload_obj))
+
+    @mock.patch.object(uuid, 'uuid4', autospec=True)
+    def test_build_invoke_with_list_in_properties(self, mock_uuid):
+        expected_payload = """<?xml version="1.0" ?>
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+            xmlns:wsman="http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd">
+    <s:Header>
+        <wsa:To s:mustUnderstand="true">http://host:443/wsman</wsa:To>
+        <wsman:ResourceURI s:mustUnderstand="true">http://resource_uri</wsman:ResourceURI>
+        <wsa:MessageID s:mustUnderstand="true">uuid:1234-12</wsa:MessageID>
+        <wsa:ReplyTo>
+            <wsa:Address>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:Address>
+        </wsa:ReplyTo>
+        <wsa:Action s:mustUnderstand="true">http://resource_uri/method</wsa:Action>
+        <wsman:SelectorSet>
+            <wsman:Selector Name="selector">foo</wsman:Selector>
+        </wsman:SelectorSet>
+    </s:Header>
+    <s:Body>
+        <ns0:method_INPUT xmlns:ns0="http://resource_uri">
+            <ns0:property>foo</ns0:property>
+            <ns0:property>bar</ns0:property>
+            <ns0:property>baz</ns0:property>
+        </ns0:method_INPUT>
+    </s:Body>
+</s:Envelope>
+"""  # noqa
+        expected_payload_obj = lxml.objectify.fromstring(expected_payload)
+
+        mock_uuid.return_value = '1234-12'
+        payload = dracclient.wsman._InvokePayload(
+            'http://host:443/wsman', 'http://resource_uri', 'method',
+            {'selector': 'foo'}, {'property': ['foo', 'bar', 'baz']}).build()
+        payload_obj = lxml.objectify.fromstring(payload)
+
+        self.assertEqual(lxml.etree.tostring(expected_payload_obj),
+                         lxml.etree.tostring(payload_obj))
