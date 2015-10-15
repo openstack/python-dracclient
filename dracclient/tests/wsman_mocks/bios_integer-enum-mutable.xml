@@ -1,0 +1,36 @@
+<s:Envelope xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_BIOSInteger"
+            xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+            xmlns:wsen="http://schemas.xmlsoap.org/ws/2004/09/enumeration"
+            xmlns:wsman="http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.xmlsoap.org/ws/2004/09/enumeration/EnumerateResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:382b3463-6ab7-4998-85d5-0ac3f4d3044d</wsa:RelatesTo>
+    <wsa:MessageID>uuid:319dc294-2213-1213-8eeb-a36fc6fe83b0</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <wsen:EnumerateResponse>
+      <wsman:Items>
+        <n1:DCIM_BIOSInteger>
+          <n1:AttributeDisplayName>Number of Cores</n1:AttributeDisplayName>
+          <n1:AttributeName>Proc1NumCores</n1:AttributeName>
+          <n1:CurrentValue>8</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>446</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Processor Settings</n1:GroupDisplayName>
+          <n1:GroupID>ProcSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:Proc1NumCores</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>65535</n1:UpperBound>
+        </n1:DCIM_BIOSInteger>
+      </wsman:Items>
+      <wsen:EnumerationContext/>
+      <wsman:EndOfSequence/>
+    </wsen:EnumerateResponse>
+  </s:Body>
+</s:Envelope>

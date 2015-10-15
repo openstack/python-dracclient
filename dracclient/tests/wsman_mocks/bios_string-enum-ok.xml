@@ -1,0 +1,581 @@
+<s:Envelope xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_BIOSString"
+            xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+            xmlns:wsen="http://schemas.xmlsoap.org/ws/2004/09/enumeration"
+            xmlns:wsman="http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.xmlsoap.org/ws/2004/09/enumeration/EnumerateResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:1d8b3e77-8919-4459-8f06-2d63284c15c1</wsa:RelatesTo>
+    <wsa:MessageID>uuid:31707306-2213-1213-8ee9-a36fc6fe83b0</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <wsen:EnumerateResponse>
+      <wsman:Items>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>System Model Name</n1:AttributeDisplayName>
+          <n1:AttributeName>SystemModelName</n1:AttributeName>
+          <n1:CurrentValue>PowerEdge R320</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>200</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Information</n1:GroupDisplayName>
+          <n1:GroupID>SysInformation</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SystemModelName</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>32</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>System BIOS Version</n1:AttributeDisplayName>
+          <n1:AttributeName>SystemBiosVersion</n1:AttributeName>
+          <n1:CurrentValue>2.3.3</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>201</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Information</n1:GroupDisplayName>
+          <n1:GroupID>SysInformation</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SystemBiosVersion</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>48</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>System Service Tag</n1:AttributeDisplayName>
+          <n1:AttributeName>SystemServiceTag</n1:AttributeName>
+          <n1:CurrentValue>JLR7Q22</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>202</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Information</n1:GroupDisplayName>
+          <n1:GroupID>SysInformation</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SystemServiceTag</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>16</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>System Manufacturer</n1:AttributeDisplayName>
+          <n1:AttributeName>SystemManufacturer</n1:AttributeName>
+          <n1:CurrentValue>Dell Inc.</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>204</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Information</n1:GroupDisplayName>
+          <n1:GroupID>SysInformation</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SystemManufacturer</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>32</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>System Manufacturer Contact Information</n1:AttributeDisplayName>
+          <n1:AttributeName>SysMfrContactInfo</n1:AttributeName>
+          <n1:CurrentValue>www.dell.com</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>205</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Information</n1:GroupDisplayName>
+          <n1:GroupID>SysInformation</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SysMfrContactInfo</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>32</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>System CPLD Version</n1:AttributeDisplayName>
+          <n1:AttributeName>SystemCpldVersion</n1:AttributeName>
+          <n1:CurrentValue>104</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>206</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Information</n1:GroupDisplayName>
+          <n1:GroupID>SysInformation</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SystemCpldVersion</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>8</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>System Memory Size</n1:AttributeDisplayName>
+          <n1:AttributeName>SysMemSize</n1:AttributeName>
+          <n1:CurrentValue>32.0 GB</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>300</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Memory Settings</n1:GroupDisplayName>
+          <n1:GroupID>MemSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SysMemSize</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>20</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>System Memory Type</n1:AttributeDisplayName>
+          <n1:AttributeName>SysMemType</n1:AttributeName>
+          <n1:CurrentValue>ECC DDR3</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>301</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Memory Settings</n1:GroupDisplayName>
+          <n1:GroupID>MemSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SysMemType</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>16</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>System Memory Speed</n1:AttributeDisplayName>
+          <n1:AttributeName>SysMemSpeed</n1:AttributeName>
+          <n1:CurrentValue>1600 MHz</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>302</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Memory Settings</n1:GroupDisplayName>
+          <n1:GroupID>MemSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SysMemSpeed</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>16</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>System Memory Voltage</n1:AttributeDisplayName>
+          <n1:AttributeName>SysMemVolt</n1:AttributeName>
+          <n1:CurrentValue>1.35V</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>303</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Memory Settings</n1:GroupDisplayName>
+          <n1:GroupID>MemSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SysMemVolt</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>8</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Video Memory</n1:AttributeDisplayName>
+          <n1:AttributeName>VideoMem</n1:AttributeName>
+          <n1:CurrentValue>16 MB</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>304</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Memory Settings</n1:GroupDisplayName>
+          <n1:GroupID>MemSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:VideoMem</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>16</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Processor 64-bit Support</n1:AttributeDisplayName>
+          <n1:AttributeName>Proc64bit</n1:AttributeName>
+          <n1:CurrentValue>Yes</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>435</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Processor Settings</n1:GroupDisplayName>
+          <n1:GroupID>ProcSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:Proc64bit</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>4</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Processor Core Speed</n1:AttributeDisplayName>
+          <n1:AttributeName>ProcCoreSpeed</n1:AttributeName>
+          <n1:CurrentValue>1.90 GHz</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>436</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Processor Settings</n1:GroupDisplayName>
+          <n1:GroupID>ProcSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:ProcCoreSpeed</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>16</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Family-Model-Stepping</n1:AttributeDisplayName>
+          <n1:AttributeName>Proc1Id</n1:AttributeName>
+          <n1:CurrentValue>06-3E-4</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>442</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Processor Settings</n1:GroupDisplayName>
+          <n1:GroupID>ProcSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:Proc1Id</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>8</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Brand</n1:AttributeDisplayName>
+          <n1:AttributeName>Proc1Brand</n1:AttributeName>
+          <n1:CurrentValue>[Intel(R) Xeon(R) CPU E5-2440 v2 @ 1.90GHz      ]</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>443</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Processor Settings</n1:GroupDisplayName>
+          <n1:GroupID>ProcSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:Proc1Brand</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>80</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Level 2 Cache</n1:AttributeDisplayName>
+          <n1:AttributeName>Proc1L2Cache</n1:AttributeName>
+          <n1:CurrentValue>8x256 KB</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>444</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Processor Settings</n1:GroupDisplayName>
+          <n1:GroupID>ProcSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:Proc1L2Cache</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>16</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Level 3 Cache</n1:AttributeDisplayName>
+          <n1:AttributeName>Proc1L3Cache</n1:AttributeName>
+          <n1:CurrentValue>20 MB</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>445</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Processor Settings</n1:GroupDisplayName>
+          <n1:GroupID>ProcSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:Proc1L3Cache</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>16</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Model</n1:AttributeDisplayName>
+          <n1:AttributeName>SataPortAModel</n1:AttributeName>
+          <n1:CurrentValue>Unknown</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>507</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>SATA Settings</n1:GroupDisplayName>
+          <n1:GroupID>SataSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SataPortAModel</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>40</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Drive Type</n1:AttributeDisplayName>
+          <n1:AttributeName>SataPortADriveType</n1:AttributeName>
+          <n1:CurrentValue>Unknown Device</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>508</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>SATA Settings</n1:GroupDisplayName>
+          <n1:GroupID>SataSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SataPortADriveType</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>20</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Capacity</n1:AttributeDisplayName>
+          <n1:AttributeName>SataPortACapacity</n1:AttributeName>
+          <n1:CurrentValue>N/A</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>509</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>SATA Settings</n1:GroupDisplayName>
+          <n1:GroupID>SataSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SataPortACapacity</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>18</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Model</n1:AttributeDisplayName>
+          <n1:AttributeName>SataPortBModel</n1:AttributeName>
+          <n1:CurrentValue>Unknown</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>513</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>SATA Settings</n1:GroupDisplayName>
+          <n1:GroupID>SataSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SataPortBModel</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>40</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Drive Type</n1:AttributeDisplayName>
+          <n1:AttributeName>SataPortBDriveType</n1:AttributeName>
+          <n1:CurrentValue>Unknown Device</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>514</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>SATA Settings</n1:GroupDisplayName>
+          <n1:GroupID>SataSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SataPortBDriveType</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>20</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Capacity</n1:AttributeDisplayName>
+          <n1:AttributeName>SataPortBCapacity</n1:AttributeName>
+          <n1:CurrentValue>N/A</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>515</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>SATA Settings</n1:GroupDisplayName>
+          <n1:GroupID>SataSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SataPortBCapacity</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>18</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Model</n1:AttributeDisplayName>
+          <n1:AttributeName>SataPortCModel</n1:AttributeName>
+          <n1:CurrentValue>Unknown</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>519</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>SATA Settings</n1:GroupDisplayName>
+          <n1:GroupID>SataSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SataPortCModel</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>40</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Drive Type</n1:AttributeDisplayName>
+          <n1:AttributeName>SataPortCDriveType</n1:AttributeName>
+          <n1:CurrentValue>Unknown Device</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>520</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>SATA Settings</n1:GroupDisplayName>
+          <n1:GroupID>SataSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SataPortCDriveType</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>20</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Capacity</n1:AttributeDisplayName>
+          <n1:AttributeName>SataPortCCapacity</n1:AttributeName>
+          <n1:CurrentValue>N/A</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>521</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>SATA Settings</n1:GroupDisplayName>
+          <n1:GroupID>SataSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SataPortCCapacity</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>18</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Model</n1:AttributeDisplayName>
+          <n1:AttributeName>SataPortDModel</n1:AttributeName>
+          <n1:CurrentValue>Unknown</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>525</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>SATA Settings</n1:GroupDisplayName>
+          <n1:GroupID>SataSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SataPortDModel</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>40</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Drive Type</n1:AttributeDisplayName>
+          <n1:AttributeName>SataPortDDriveType</n1:AttributeName>
+          <n1:CurrentValue>Unknown Device</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>526</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>SATA Settings</n1:GroupDisplayName>
+          <n1:GroupID>SataSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SataPortDDriveType</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>20</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Capacity</n1:AttributeDisplayName>
+          <n1:AttributeName>SataPortDCapacity</n1:AttributeName>
+          <n1:CurrentValue>N/A</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>527</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>SATA Settings</n1:GroupDisplayName>
+          <n1:GroupID>SataSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SataPortDCapacity</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>18</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Model</n1:AttributeDisplayName>
+          <n1:AttributeName>SataPortEModel</n1:AttributeName>
+          <n1:CurrentValue>HL-DT-ST DVD-ROM DU90N </n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>531</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>SATA Settings</n1:GroupDisplayName>
+          <n1:GroupID>SataSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SataPortEModel</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>40</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Drive Type</n1:AttributeDisplayName>
+          <n1:AttributeName>SataPortEDriveType</n1:AttributeName>
+          <n1:CurrentValue>Optical Drive</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>532</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>SATA Settings</n1:GroupDisplayName>
+          <n1:GroupID>SataSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SataPortEDriveType</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>20</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Capacity</n1:AttributeDisplayName>
+          <n1:AttributeName>SataPortECapacity</n1:AttributeName>
+          <n1:CurrentValue>N/A</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>533</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>SATA Settings</n1:GroupDisplayName>
+          <n1:GroupID>SataSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SataPortECapacity</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>18</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Intel(R) AES-NI</n1:AttributeDisplayName>
+          <n1:AttributeName>AesNi</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1400</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Security</n1:GroupDisplayName>
+          <n1:GroupID>SysSecurity</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:AesNi</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>20</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>TPM Status</n1:AttributeDisplayName>
+          <n1:AttributeName>TpmStatus</n1:AttributeName>
+          <n1:CurrentValue>Unknown</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1413</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Security</n1:GroupDisplayName>
+          <n1:GroupID>SysSecurity</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:TpmStatus</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>24</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression xsi:nil="true"/>
+        </n1:DCIM_BIOSString>
+        <n1:DCIM_BIOSString>
+          <n1:AttributeDisplayName>Asset Tag</n1:AttributeDisplayName>
+          <n1:AttributeName>AssetTag</n1:AttributeName>
+          <n1:CurrentValue xsi:nil="true"/>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1504</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Miscellaneous Settings</n1:GroupDisplayName>
+          <n1:GroupID>MiscSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:AssetTag</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:MaxLength>30</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:ValueExpression>^[ -~]{0,30}$</n1:ValueExpression>
+        </n1:DCIM_BIOSString>
+      </wsman:Items>
+      <wsen:EnumerationContext/>
+      <wsman:EndOfSequence/>
+    </wsen:EnumerateResponse>
+  </s:Body>
+</s:Envelope>

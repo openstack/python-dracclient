@@ -44,8 +44,17 @@ WSManEnumerations = {
 }
 
 BIOSEnumerations = {
-    uris.DCIM_ComputerSystem: {
-        'ok': load_wsman_xml('computer_system-enum-ok')
+    uris.DCIM_BIOSEnumeration: {
+        'ok': load_wsman_xml('bios_enumeration-enum-ok')
+    },
+    uris.DCIM_BIOSInteger: {
+        'mutable': load_wsman_xml('bios_integer-enum-mutable'),
+        'ok': load_wsman_xml('bios_integer-enum-ok')
+    },
+    uris.DCIM_BIOSString: {
+        'colliding': load_wsman_xml('bios_string-enum-colliding'),
+        'ok': load_wsman_xml('bios_string-enum-ok'),
+        'regexp': load_wsman_xml('bios_string-enum-regexp')
     },
     uris.DCIM_BootConfigSetting: {
         'ok': load_wsman_xml('boot_config_setting-enum-ok')
@@ -53,7 +62,10 @@ BIOSEnumerations = {
     uris.DCIM_BootSourceSetting: {
         'ok': load_wsman_xml('boot_source_setting-enum-ok'),
         'ok-11g': load_wsman_xml('boot_source_setting-enum-ok-11g')
-    }
+    },
+    uris.DCIM_ComputerSystem: {
+        'ok': load_wsman_xml('computer_system-enum-ok')
+    },
 }
 
 BIOSInvocations = {
@@ -64,6 +76,14 @@ BIOSInvocations = {
             'error': load_wsman_xml(
                 'computer_system-invoke-request_state_change-error'),
         },
+    },
+    uris.DCIM_BIOSService: {
+        'SetAttributes': {
+            'ok': load_wsman_xml(
+                'bios_service-invoke-set_attributes-ok'),
+            'error': load_wsman_xml(
+                'bios_service-invoke-set_attributes-error'),
+        }
     },
     uris.DCIM_BootConfigSetting: {
         'ChangeBootOrderByInstanceID': {

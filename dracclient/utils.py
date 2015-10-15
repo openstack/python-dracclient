@@ -15,6 +15,8 @@
 Common functionalities shared between different DRAC modules.
 """
 
+NS_XMLSchema_Instance = 'http://www.w3.org/2001/XMLSchema-instance'
+
 # ReturnValue constants
 RET_SUCCESS = '0'
 RET_ERROR = '2'
@@ -42,7 +44,22 @@ def find_xml(doc, item, namespace, find_all=False):
     return doc.find(query)
 
 
-def get_wsman_resource_attr(doc, resource_uri, attr_name):
-    """Find an attribute of a resource in an ElementTree object"""
+def get_wsman_resource_attr(doc, resource_uri, attr_name, nullable=False):
+    """Find an attribute of a resource in an ElementTree object.
 
-    return find_xml(doc, attr_name, resource_uri).text.strip()
+    :param doc: the element tree object.
+    :param resource_uri: the resource URI of the namespace.
+    :param attr_name: the name of the attribute.
+    :param: nullable: enables checking if the element contains an
+                      XMLSchema-instance namespaced nil attribute that has a
+                      value of True. In this case, it will return None.
+    :returns: value of the attribute
+    """
+    item = find_xml(doc, attr_name, resource_uri)
+
+    if not nullable:
+        return item.text.strip()
+    else:
+        nil_attr = item.attrib.get('{%s}nil' % NS_XMLSchema_Instance)
+        if nil_attr != 'true':
+            return item.text.strip()

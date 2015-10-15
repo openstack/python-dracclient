@@ -1,0 +1,20 @@
+<s:Envelope xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_BIOSService"
+            xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_BIOSService/SetAttributesResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:f06dfc6d-b102-43d8-a61e-722b7ec8b7b2</wsa:RelatesTo>
+    <wsa:MessageID>uuid:2bfaa9a2-223c-123c-8f55-a36fc6fe83b0</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <n1:SetAttributes_OUTPUT>
+      <n1:Message>Invalid AttributeValue for AttributeName ProcVirtualization</n1:Message>
+      <n1:MessageArguments>ProcVirtualization</n1:MessageArguments>
+      <n1:MessageID>BIOS014</n1:MessageID>
+      <n1:RebootRequired>Yes</n1:RebootRequired>
+      <n1:ReturnValue>2</n1:ReturnValue>
+      <n1:SetResult>Set PendingValue</n1:SetResult>
+    </n1:SetAttributes_OUTPUT>
+  </s:Body>
+</s:Envelope>

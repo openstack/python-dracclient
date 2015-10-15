@@ -49,6 +49,7 @@ class DRACClient(object):
         self._job_mgmt = job.JobManagement(self.client)
         self._power_mgmt = bios.PowerManagement(self.client)
         self._boot_mgmt = bios.BootManagement(self.client)
+        self._bios_cfg = bios.BIOSConfiguration(self.client)
 
     def get_power_state(self):
         """Returns the current power state of the node
@@ -115,6 +116,41 @@ class DRACClient(object):
         """
         return self._boot_mgmt.change_boot_device_order(boot_mode,
                                                         boot_device_list)
+
+    def list_bios_settings(self):
+        """List the BIOS configuration settings
+
+        :returns: a dictionary with the BIOS settings using its name as the
+                  key. The attributes are either BIOSEnumerableAttribute,
+                  BIOSStringAttribute or BIOSIntegerAttribute objects.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        """
+        return self._bios_cfg.list_bios_settings()
+
+    def set_bios_settings(self, settings):
+        """Sets the BIOS configuration
+
+        To be more precise, it sets the pending_value parameter for each of the
+        attributes passed in. For the values to be applied, a config job must
+        be created and the node must be rebooted.
+
+        :param: settings: a dictionary containing the proposed values, with
+                          each key being the name of attribute and the
+                          value being the proposed value.
+        :returns: a dictionary containing the commit_needed key with a boolean
+                  value indicating whether a config job must be created for the
+                  values to be applied.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        :raises: InvalidParameterValue on invalid BIOS attribute
+        """
+        return self._bios_cfg.set_bios_settings(settings)
 
     def list_jobs(self, only_unfinished=False):
         """Returns a list of jobs from the job queue
@@ -208,9 +244,11 @@ class DRACClient(object):
             resource_uri, cim_creation_class_name, cim_name, target,
             cim_system_creation_class_name, cim_system_name)
 
-    def commit_pending_bios_changes(self):
+    def commit_pending_bios_changes(self, reboot=False):
         """Applies all pending changes on the BIOS by creating a config job
 
+        :param: reboot: indicates whether a RebootJob should be also be
+                        created or not
         :returns: id of the created job
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
@@ -221,7 +259,8 @@ class DRACClient(object):
         return self._job_mgmt.create_config_job(
             resource_uri=uris.DCIM_BIOSService,
             cim_creation_class_name='DCIM_BIOSService',
-            cim_name='DCIM:BIOSService', target=self.BIOS_DEVICE_FQDD)
+            cim_name='DCIM:BIOSService', target=self.BIOS_DEVICE_FQDD,
+            reboot=reboot)
 
     def abandon_pending_bios_changes(self):
         """Deletes all pending changes on the BIOS

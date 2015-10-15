@@ -1,0 +1,1495 @@
+<s:Envelope xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_BIOSEnumeration"
+            xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+            xmlns:wsen="http://schemas.xmlsoap.org/ws/2004/09/enumeration"
+            xmlns:wsman="http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.xmlsoap.org/ws/2004/09/enumeration/EnumerateResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:659b7e16-501d-4e43-83a6-8ef24472c0ca</wsa:RelatesTo>
+    <wsa:MessageID>uuid:3127d391-2213-1213-8ee7-a36fc6fe83b0</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <wsen:EnumerateResponse>
+      <wsman:Items>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>System Memory Testing</n1:AttributeDisplayName>
+          <n1:AttributeName>MemTest</n1:AttributeName>
+          <n1:CurrentValue>Disabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>306</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Memory Settings</n1:GroupDisplayName>
+          <n1:GroupID>MemSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:MemTest</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Memory Operating Mode</n1:AttributeDisplayName>
+          <n1:AttributeName>MemOpMode</n1:AttributeName>
+          <n1:CurrentValue>OptimizerMode</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>310</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Memory Settings</n1:GroupDisplayName>
+          <n1:GroupID>MemSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:MemOpMode</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>OptimizerMode</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Optimizer Mode</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Node Interleaving</n1:AttributeDisplayName>
+          <n1:AttributeName>NodeInterleave</n1:AttributeName>
+          <n1:CurrentValue>Disabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>312</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Memory Settings</n1:GroupDisplayName>
+          <n1:GroupID>MemSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:NodeInterleave</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Logical Processor</n1:AttributeDisplayName>
+          <n1:AttributeName>LogicalProc</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>401</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Processor Settings</n1:GroupDisplayName>
+          <n1:GroupID>ProcSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:LogicalProc</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Alternate RTID (Requestor Transaction ID) Setting</n1:AttributeDisplayName>
+          <n1:AttributeName>RtidSetting</n1:AttributeName>
+          <n1:CurrentValue>Disabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>407</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Processor Settings</n1:GroupDisplayName>
+          <n1:GroupID>ProcSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:RtidSetting</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Virtualization Technology</n1:AttributeDisplayName>
+          <n1:AttributeName>ProcVirtualization</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>409</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Processor Settings</n1:GroupDisplayName>
+          <n1:GroupID>ProcSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:ProcVirtualization</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Adjacent Cache Line Prefetch</n1:AttributeDisplayName>
+          <n1:AttributeName>ProcAdjCacheLine</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>411</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Processor Settings</n1:GroupDisplayName>
+          <n1:GroupID>ProcSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:ProcAdjCacheLine</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Hardware Prefetcher</n1:AttributeDisplayName>
+          <n1:AttributeName>ProcHwPrefetcher</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>413</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Processor Settings</n1:GroupDisplayName>
+          <n1:GroupID>ProcSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:ProcHwPrefetcher</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>DCU Streamer Prefetcher</n1:AttributeDisplayName>
+          <n1:AttributeName>DcuStreamerPrefetcher</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>415</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Processor Settings</n1:GroupDisplayName>
+          <n1:GroupID>ProcSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:DcuStreamerPrefetcher</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>DCU IP Prefetcher</n1:AttributeDisplayName>
+          <n1:AttributeName>DcuIpPrefetcher</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>417</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Processor Settings</n1:GroupDisplayName>
+          <n1:GroupID>ProcSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:DcuIpPrefetcher</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Execute Disable</n1:AttributeDisplayName>
+          <n1:AttributeName>ProcExecuteDisable</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>419</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Processor Settings</n1:GroupDisplayName>
+          <n1:GroupID>ProcSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:ProcExecuteDisable</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Logical Processor Idling</n1:AttributeDisplayName>
+          <n1:AttributeName>DynamicCoreAllocation</n1:AttributeName>
+          <n1:CurrentValue>Disabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>421</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Processor Settings</n1:GroupDisplayName>
+          <n1:GroupID>ProcSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:DynamicCoreAllocation</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Number of Cores per Processor</n1:AttributeDisplayName>
+          <n1:AttributeName>ProcCores</n1:AttributeName>
+          <n1:CurrentValue>All</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>434</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Processor Settings</n1:GroupDisplayName>
+          <n1:GroupID>ProcSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:ProcCores</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>All</n1:PossibleValues>
+          <n1:PossibleValues>1</n1:PossibleValues>
+          <n1:PossibleValues>2</n1:PossibleValues>
+          <n1:PossibleValues>4</n1:PossibleValues>
+          <n1:PossibleValues>6</n1:PossibleValues>
+          <n1:PossibleValuesDescription>All</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>1</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>2</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>4</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>6</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Embedded SATA</n1:AttributeDisplayName>
+          <n1:AttributeName>EmbSata</n1:AttributeName>
+          <n1:CurrentValue>AhciMode</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>501</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>SATA Settings</n1:GroupDisplayName>
+          <n1:GroupID>SataSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:EmbSata</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>AtaMode</n1:PossibleValues>
+          <n1:PossibleValues>AhciMode</n1:PossibleValues>
+          <n1:PossibleValues>RaidMode</n1:PossibleValues>
+          <n1:PossibleValues>Off</n1:PossibleValues>
+          <n1:PossibleValuesDescription>ATA Mode</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>AHCI Mode</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>RAID Mode</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Off</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Port A</n1:AttributeDisplayName>
+          <n1:AttributeName>SataPortA</n1:AttributeName>
+          <n1:CurrentValue>Auto</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="EmbSata" Op="NOT">AtaMode</ROIf></AttrLev>
+              <ValLev Op="OR" Val="Auto">
+                <ForceIf Name="EmbSata">AhciMode</ForceIf>
+                <ForceIf Name="EmbSata">RaidMode</ForceIf>
+              </ValLev>
+              <ValLev Op="OR" Val="Off">
+                <SupIf Name="EmbSata">AhciMode</SupIf>
+                <SupIf Name="EmbSata">RaidMode</SupIf>
+              </ValLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>506</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>SATA Settings</n1:GroupDisplayName>
+          <n1:GroupID>SataSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SataPortA</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Auto</n1:PossibleValues>
+          <n1:PossibleValues>Off</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Auto</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Off</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Port B</n1:AttributeDisplayName>
+          <n1:AttributeName>SataPortB</n1:AttributeName>
+          <n1:CurrentValue>Auto</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="EmbSata" Op="NOT">AtaMode</ROIf></AttrLev>
+              <ValLev Op="OR" Val="Auto">
+                <ForceIf Name="EmbSata">AhciMode</ForceIf>
+                <ForceIf Name="EmbSata">RaidMode</ForceIf>
+              </ValLev>
+              <ValLev Op="OR" Val="Off">
+                <SupIf Name="EmbSata">AhciMode</SupIf>
+                <SupIf Name="EmbSata">RaidMode</SupIf>
+              </ValLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>512</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>SATA Settings</n1:GroupDisplayName>
+          <n1:GroupID>SataSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SataPortB</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Auto</n1:PossibleValues>
+          <n1:PossibleValues>Off</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Auto</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Off</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Port C</n1:AttributeDisplayName>
+          <n1:AttributeName>SataPortC</n1:AttributeName>
+          <n1:CurrentValue>Auto</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="EmbSata" Op="NOT">AtaMode</ROIf></AttrLev>
+              <ValLev Op="OR" Val="Auto">
+                <ForceIf Name="EmbSata">AhciMode</ForceIf>
+                <ForceIf Name="EmbSata">RaidMode</ForceIf>
+              </ValLev>
+              <ValLev Op="OR" Val="Off">
+                <SupIf Name="EmbSata">AhciMode</SupIf>
+                <SupIf Name="EmbSata">RaidMode</SupIf>
+              </ValLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>518</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>SATA Settings</n1:GroupDisplayName>
+          <n1:GroupID>SataSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SataPortC</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Auto</n1:PossibleValues>
+          <n1:PossibleValues>Off</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Auto</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Off</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Port D</n1:AttributeDisplayName>
+          <n1:AttributeName>SataPortD</n1:AttributeName>
+          <n1:CurrentValue>Auto</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="EmbSata" Op="NOT">AtaMode</ROIf></AttrLev>
+              <ValLev Op="OR" Val="Auto">
+                <ForceIf Name="EmbSata">AhciMode</ForceIf>
+                <ForceIf Name="EmbSata">RaidMode</ForceIf>
+              </ValLev>
+              <ValLev Op="OR" Val="Off">
+                <SupIf Name="EmbSata">AhciMode</SupIf>
+                <SupIf Name="EmbSata">RaidMode</SupIf>
+              </ValLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>524</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>SATA Settings</n1:GroupDisplayName>
+          <n1:GroupID>SataSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SataPortD</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Auto</n1:PossibleValues>
+          <n1:PossibleValues>Off</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Auto</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Off</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Port E</n1:AttributeDisplayName>
+          <n1:AttributeName>SataPortE</n1:AttributeName>
+          <n1:CurrentValue>Auto</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="EmbSata" Op="NOT">AtaMode</ROIf></AttrLev>
+              <ValLev Op="OR" Val="Auto">
+                <ForceIf Name="EmbSata">AhciMode</ForceIf>
+                <ForceIf Name="EmbSata">RaidMode</ForceIf>
+              </ValLev>
+              <ValLev Op="OR" Val="Off">
+                <SupIf Name="EmbSata">AhciMode</SupIf>
+                <SupIf Name="EmbSata">RaidMode</SupIf>
+              </ValLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>530</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>SATA Settings</n1:GroupDisplayName>
+          <n1:GroupID>SataSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SataPortE</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Auto</n1:PossibleValues>
+          <n1:PossibleValues>Off</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Auto</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Off</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Boot Mode</n1:AttributeDisplayName>
+          <n1:AttributeName>BootMode</n1:AttributeName>
+          <n1:CurrentValue>Bios</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>602</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Boot Settings</n1:GroupDisplayName>
+          <n1:GroupID>BootSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:BootMode</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Bios</n1:PossibleValues>
+          <n1:PossibleValues>Uefi</n1:PossibleValues>
+          <n1:PossibleValuesDescription>BIOS</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>UEFI</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Boot Sequence Retry</n1:AttributeDisplayName>
+          <n1:AttributeName>BootSeqRetry</n1:AttributeName>
+          <n1:CurrentValue>Disabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>604</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Boot Settings</n1:GroupDisplayName>
+          <n1:GroupID>BootSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:BootSeqRetry</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>UEFI PXE boot protocol</n1:AttributeDisplayName>
+          <n1:AttributeName>UefiPxeIpVersion</n1:AttributeName>
+          <n1:CurrentValue>IPv4</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="BootMode">Bios</ROIf></AttrLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>810</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>UEFI Boot Settings</n1:GroupDisplayName>
+          <n1:GroupID>UefiBootSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:UefiPxeIpVersion</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>IPv4</n1:PossibleValues>
+          <n1:PossibleValues>IPv6</n1:PossibleValues>
+          <n1:PossibleValuesDescription>IPv4</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>IPv6</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>One-Time Boot Device List</n1:AttributeDisplayName>
+          <n1:AttributeName>OneTimeBootMode</n1:AttributeName>
+          <n1:CurrentValue>Disabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>900</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>One-Time Boot</n1:GroupDisplayName>
+          <n1:GroupID>OneTimeBoot</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:OneTimeBootMode</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValues>OneTimeBootSeq</n1:PossibleValues>
+          <n1:PossibleValues>OneTimeHddSeq</n1:PossibleValues>
+          <n1:PossibleValues>OneTimeUefiBootSeq</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>BIOS Boot Sequence Device</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>BIOS Hard-Disk Drive Sequence Device</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>UEFI Boot Sequence Device</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>BIOS Boot Sequence Device</n1:AttributeDisplayName>
+          <n1:AttributeName>OneTimeBootSeqDev</n1:AttributeName>
+          <n1:CurrentValue>HardDisk.List.1-1</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="OneTimeBootMode" Op="NOT">OneTimeBootSeq</ROIf></AttrLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>901</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>One-Time Boot</n1:GroupDisplayName>
+          <n1:GroupID>OneTimeBoot</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:OneTimeBootSeqDev</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>HardDisk.List.1-1</n1:PossibleValues>
+          <n1:PossibleValues>Optical.SATAEmbedded.E-1</n1:PossibleValues>
+          <n1:PossibleValues>NIC.Embedded.1-1-1</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Hard drive C:</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Embedded SATA Port Optical Drive E: HL-DT-ST DVD-ROM DU90N                  </n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Embedded NIC 1 Port 1 Partition 1: BRCM MBA Slot 0200 v16.4.3</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>BIOS Hard-Disk Drive Sequence Device</n1:AttributeDisplayName>
+          <n1:AttributeName>OneTimeHddSeqDev</n1:AttributeName>
+          <n1:CurrentValue>RAID.Integrated.1-1</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="OneTimeBootMode" Op="NOT">OneTimeHddSeq</ROIf></AttrLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>902</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>One-Time Boot</n1:GroupDisplayName>
+          <n1:GroupID>OneTimeBoot</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:OneTimeHddSeqDev</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>RAID.Integrated.1-1</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Integrated RAID Controller 1: PERC H710 Mini(bus 01 dev 00)</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>UEFI Boot Sequence Device</n1:AttributeDisplayName>
+          <n1:AttributeName>OneTimeUefiBootSeqDev</n1:AttributeName>
+          <n1:CurrentValue>Optical.SATAEmbedded.E-1</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="OneTimeBootMode" Op="NOT">OneTimeUefiBootSeq</ROIf></AttrLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>903</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>One-Time Boot</n1:GroupDisplayName>
+          <n1:GroupID>OneTimeBoot</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:OneTimeUefiBootSeqDev</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Optical.SATAEmbedded.E-1</n1:PossibleValues>
+          <n1:PossibleValues>NIC.Embedded.1-1-1</n1:PossibleValues>
+          <n1:PossibleValues>NIC.Embedded.2-1-1</n1:PossibleValues>
+          <n1:PossibleValues>NIC.Slot.2-1-1</n1:PossibleValues>
+          <n1:PossibleValues>NIC.Slot.2-2-1</n1:PossibleValues>
+          <n1:PossibleValues>Unknown.Unknown.6-1</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Embedded SATA Port Optical Drive E: HL-DT-ST DVD-ROM DU90N                  </n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Embedded NIC 1 Port 1 Partition 1: EFI Network 1</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Embedded NIC 2 Port 1 Partition 1: EFI Network 2</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>NIC in Slot 2 Port 1 Partition 1: EFI Network 3</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>NIC in Slot 2 Port 2 Partition 1: EFI Network 4</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Unavailable: Windows Boot Manager</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Integrated RAID Controller</n1:AttributeDisplayName>
+          <n1:AttributeName>IntegratedRaid</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1003</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Integrated Devices</n1:GroupDisplayName>
+          <n1:GroupID>IntegratedDevices</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:IntegratedRaid</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>User Accessible USB Ports</n1:AttributeDisplayName>
+          <n1:AttributeName>UsbPorts</n1:AttributeName>
+          <n1:CurrentValue>AllOn</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1005</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Integrated Devices</n1:GroupDisplayName>
+          <n1:GroupID>IntegratedDevices</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:UsbPorts</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>AllOn</n1:PossibleValues>
+          <n1:PossibleValues>OnlyBackPortsOn</n1:PossibleValues>
+          <n1:PossibleValues>AllOff</n1:PossibleValues>
+          <n1:PossibleValuesDescription>All Ports On</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Only Back Ports On</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>All Ports Off</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Internal USB Port</n1:AttributeDisplayName>
+          <n1:AttributeName>InternalUsb</n1:AttributeName>
+          <n1:CurrentValue>On</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1007</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Integrated Devices</n1:GroupDisplayName>
+          <n1:GroupID>IntegratedDevices</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:InternalUsb</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>On</n1:PossibleValues>
+          <n1:PossibleValues>Off</n1:PossibleValues>
+          <n1:PossibleValuesDescription>On</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Off</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Embedded NIC1 and NIC2</n1:AttributeDisplayName>
+          <n1:AttributeName>EmbNic1Nic2</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1016</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Integrated Devices</n1:GroupDisplayName>
+          <n1:GroupID>IntegratedDevices</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:EmbNic1Nic2</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>DisabledOs</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled (OS)</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>OS Watchdog Timer</n1:AttributeDisplayName>
+          <n1:AttributeName>OsWatchdogTimer</n1:AttributeName>
+          <n1:CurrentValue>Disabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1026</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Integrated Devices</n1:GroupDisplayName>
+          <n1:GroupID>IntegratedDevices</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:OsWatchdogTimer</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>I/OAT DMA Engine</n1:AttributeDisplayName>
+          <n1:AttributeName>IoatEngine</n1:AttributeName>
+          <n1:CurrentValue>Disabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1028</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Integrated Devices</n1:GroupDisplayName>
+          <n1:GroupID>IntegratedDevices</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:IoatEngine</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Embedded Video Controller</n1:AttributeDisplayName>
+          <n1:AttributeName>EmbVideo</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1030</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Integrated Devices</n1:GroupDisplayName>
+          <n1:GroupID>IntegratedDevices</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:EmbVideo</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>SR-IOV Global Enable</n1:AttributeDisplayName>
+          <n1:AttributeName>SriovGlobalEnable</n1:AttributeName>
+          <n1:CurrentValue>Disabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1032</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Integrated Devices</n1:GroupDisplayName>
+          <n1:GroupID>IntegratedDevices</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SriovGlobalEnable</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Memory Mapped I/O above 4GB</n1:AttributeDisplayName>
+          <n1:AttributeName>MmioAbove4Gb</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1034</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Integrated Devices</n1:GroupDisplayName>
+          <n1:GroupID>IntegratedDevices</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:MmioAbove4Gb</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Slot 1</n1:AttributeDisplayName>
+          <n1:AttributeName>Slot1</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1102</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Slot Disablement</n1:GroupDisplayName>
+          <n1:GroupID>SlotDisablement</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:Slot1</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValues>BootDriverDisabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Boot Driver Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Slot 2</n1:AttributeDisplayName>
+          <n1:AttributeName>Slot2</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1105</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Slot Disablement</n1:GroupDisplayName>
+          <n1:GroupID>SlotDisablement</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:Slot2</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValues>BootDriverDisabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Boot Driver Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Serial Communication</n1:AttributeDisplayName>
+          <n1:AttributeName>SerialComm</n1:AttributeName>
+          <n1:CurrentValue>OnNoConRedir</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1201</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Serial Communication</n1:GroupDisplayName>
+          <n1:GroupID>SerialCommSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SerialComm</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>OnNoConRedir</n1:PossibleValues>
+          <n1:PossibleValues>OnConRedirCom1</n1:PossibleValues>
+          <n1:PossibleValues>OnConRedirCom2</n1:PossibleValues>
+          <n1:PossibleValues>Off</n1:PossibleValues>
+          <n1:PossibleValuesDescription>On without Console Redirection</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>On with Console Redirection via COM1</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>On with Console Redirection via COM2</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Off</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Serial Port Address</n1:AttributeDisplayName>
+          <n1:AttributeName>SerialPortAddress</n1:AttributeName>
+          <n1:CurrentValue>Serial1Com2Serial2Com1</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1203</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Serial Communication</n1:GroupDisplayName>
+          <n1:GroupID>SerialCommSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SerialPortAddress</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Serial1Com1Serial2Com2</n1:PossibleValues>
+          <n1:PossibleValues>Serial1Com2Serial2Com1</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Serial Device1=COM1,Serial Device2=COM2</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Serial Device1=COM2,Serial Device2=COM1</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>External Serial Connector</n1:AttributeDisplayName>
+          <n1:AttributeName>ExtSerialConnector</n1:AttributeName>
+          <n1:CurrentValue>Serial1</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1205</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Serial Communication</n1:GroupDisplayName>
+          <n1:GroupID>SerialCommSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:ExtSerialConnector</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Serial1</n1:PossibleValues>
+          <n1:PossibleValues>Serial2</n1:PossibleValues>
+          <n1:PossibleValues>RemoteAccDevice</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Serial Device 1</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Serial Device 2</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Remote Access Device</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Failsafe Baud Rate</n1:AttributeDisplayName>
+          <n1:AttributeName>FailSafeBaud</n1:AttributeName>
+          <n1:CurrentValue>115200</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1207</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Serial Communication</n1:GroupDisplayName>
+          <n1:GroupID>SerialCommSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:FailSafeBaud</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>115200</n1:PossibleValues>
+          <n1:PossibleValues>57600</n1:PossibleValues>
+          <n1:PossibleValues>19200</n1:PossibleValues>
+          <n1:PossibleValues>9600</n1:PossibleValues>
+          <n1:PossibleValuesDescription>115200</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>57600</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>19200</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>9600</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Remote Terminal Type</n1:AttributeDisplayName>
+          <n1:AttributeName>ConTermType</n1:AttributeName>
+          <n1:CurrentValue>Vt100Vt220</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1209</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Serial Communication</n1:GroupDisplayName>
+          <n1:GroupID>SerialCommSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:ConTermType</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Vt100Vt220</n1:PossibleValues>
+          <n1:PossibleValues>Ansi</n1:PossibleValues>
+          <n1:PossibleValuesDescription>VT100/VT220</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>ANSI</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Redirection After Boot</n1:AttributeDisplayName>
+          <n1:AttributeName>RedirAfterBoot</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1211</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Serial Communication</n1:GroupDisplayName>
+          <n1:GroupID>SerialCommSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:RedirAfterBoot</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>System Profile</n1:AttributeDisplayName>
+          <n1:AttributeName>SysProfile</n1:AttributeName>
+          <n1:CurrentValue>PerfPerWattOptimizedDapc</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1301</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Profile Settings</n1:GroupDisplayName>
+          <n1:GroupID>SysProfileSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:SysProfile</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>PerfPerWattOptimizedDapc</n1:PossibleValues>
+          <n1:PossibleValues>PerfPerWattOptimizedOs</n1:PossibleValues>
+          <n1:PossibleValues>PerfOptimized</n1:PossibleValues>
+          <n1:PossibleValues>DenseCfgOptimized</n1:PossibleValues>
+          <n1:PossibleValues>Custom</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Performance Per Watt (DAPC)</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Performance Per Watt (OS)</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Performance</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Dense Configuration</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Custom</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>CPU Power Management</n1:AttributeDisplayName>
+          <n1:AttributeName>ProcPwrPerf</n1:AttributeName>
+          <n1:CurrentValue>SysDbpm</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="SysProfile" Op="NOT">Custom</ROIf></AttrLev>
+              <ValLev Op="OR" Val="SysDbpm">
+                <ForceIf Name="SysProfile">PerfPerWattOptimizedDapc</ForceIf>
+                <ForceIf Name="SysProfile">DenseCfgOptimized</ForceIf>
+                <SupIf Name="SysProfile">PerfPerWattOptimizedOs</SupIf>
+                <SupIf Name="SysProfile">PerfOptimized</SupIf>
+              </ValLev>
+              <ValLev Op="OR" Val="MaxPerf">
+                <ForceIf Name="SysProfile">PerfOptimized</ForceIf>
+                <SupIf Name="SysProfile">PerfPerWattOptimizedDapc</SupIf>
+                <SupIf Name="SysProfile">PerfPerWattOptimizedOs</SupIf>
+                <SupIf Name="SysProfile">DenseCfgOptimized</SupIf>
+              </ValLev>
+              <ValLev Op="OR" Val="OsDbpm">
+                <ForceIf Name="SysProfile">PerfPerWattOptimizedOs</ForceIf>
+                <SupIf Name="SysProfile">PerfPerWattOptimizedDapc</SupIf>
+                <SupIf Name="SysProfile">PerfOptimized</SupIf>
+                <SupIf Name="SysProfile">DenseCfgOptimized</SupIf>
+              </ValLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>1303</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Profile Settings</n1:GroupDisplayName>
+          <n1:GroupID>SysProfileSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:ProcPwrPerf</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>SysDbpm</n1:PossibleValues>
+          <n1:PossibleValues>MaxPerf</n1:PossibleValues>
+          <n1:PossibleValues>OsDbpm</n1:PossibleValues>
+          <n1:PossibleValuesDescription>System DBPM (DAPC)</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Maximum Performance</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>OS DBPM</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Memory Frequency</n1:AttributeDisplayName>
+          <n1:AttributeName>MemFrequency</n1:AttributeName>
+          <n1:CurrentValue>MaxPerf</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="SysProfile" Op="NOT">Custom</ROIf></AttrLev>
+              <ValLev Op="OR" Val="MaxPerf">
+                <ForceIf Name="SysProfile" Op="NOT">Custom</ForceIf>
+              </ValLev>
+              <ValLev Op="OR" Val="MaxReliability">
+                <SupIf Name="SysProfile" Op="NOT">Custom</SupIf>
+              </ValLev>
+              <ValLev Op="OR" Val="1866MHz">
+                <SupIf Name="SysProfile" Op="NOT">Custom</SupIf>
+              </ValLev>
+              <ValLev Op="OR" Val="1600MHz">
+                <SupIf Name="SysProfile" Op="NOT">Custom</SupIf>
+              </ValLev>
+              <ValLev Op="OR" Val="1333MHz">
+                <SupIf Name="SysProfile" Op="NOT">Custom</SupIf>
+              </ValLev>
+              <ValLev Op="OR" Val="1067MHz">
+                <SupIf Name="SysProfile" Op="NOT">Custom</SupIf>
+              </ValLev>
+              <ValLev Op="OR" Val="800MHz">
+                <SupIf Name="SysProfile" Op="NOT">Custom</SupIf>
+              </ValLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>1310</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Profile Settings</n1:GroupDisplayName>
+          <n1:GroupID>SysProfileSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:MemFrequency</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>MaxPerf</n1:PossibleValues>
+          <n1:PossibleValues>MaxReliability</n1:PossibleValues>
+          <n1:PossibleValues>1866MHz</n1:PossibleValues>
+          <n1:PossibleValues>1600MHz</n1:PossibleValues>
+          <n1:PossibleValues>1333MHz</n1:PossibleValues>
+          <n1:PossibleValues>1067MHz</n1:PossibleValues>
+          <n1:PossibleValues>800MHz</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Maximum Performance</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Maximum Reliability</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>1866MHz</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>1600MHz</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>1333MHz</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>1067MHz</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>800MHz</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Turbo Boost</n1:AttributeDisplayName>
+          <n1:AttributeName>ProcTurboMode</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="SysProfile" Op="NOT">Custom</ROIf></AttrLev>
+              <ValLev Op="OR" Val="Enabled">
+                <ForceIf Name="SysProfile">PerfPerWattOptimizedDapc</ForceIf>
+                <ForceIf Name="SysProfile">PerfPerWattOptimizedOs</ForceIf>
+                <ForceIf Name="SysProfile">PerfOptimized</ForceIf>
+                <SupIf Name="SysProfile">DenseCfgOptimized</SupIf>
+              </ValLev>
+              <ValLev Op="OR" Val="Disabled">
+                <ForceIf Name="SysProfile">DenseCfgOptimized</ForceIf>
+                <SupIf Name="SysProfile">PerfPerWattOptimizedDapc</SupIf>
+                <SupIf Name="SysProfile">PerfPerWattOptimizedOs</SupIf>
+                <SupIf Name="SysProfile">PerfOptimized</SupIf>
+              </ValLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>1312</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Profile Settings</n1:GroupDisplayName>
+          <n1:GroupID>SysProfileSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:ProcTurboMode</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>C1E</n1:AttributeDisplayName>
+          <n1:AttributeName>ProcC1E</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="SysProfile" Op="NOT">Custom</ROIf></AttrLev>
+              <ValLev Op="OR" Val="Enabled">
+                <ForceIf Name="SysProfile">PerfPerWattOptimizedDapc</ForceIf>
+                <ForceIf Name="SysProfile">PerfPerWattOptimizedOs</ForceIf>
+                <ForceIf Name="SysProfile">DenseCfgOptimized</ForceIf>
+                <SupIf Name="SysProfile">PerfOptimized</SupIf>
+              </ValLev>
+              <ValLev Op="OR" Val="Disabled">
+                <ForceIf Name="SysProfile">PerfOptimized</ForceIf>
+                <SupIf Name="SysProfile">PerfPerWattOptimizedDapc</SupIf>
+                <SupIf Name="SysProfile">PerfPerWattOptimizedOs</SupIf>
+                <SupIf Name="SysProfile">DenseCfgOptimized</SupIf>
+              </ValLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>1314</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Profile Settings</n1:GroupDisplayName>
+          <n1:GroupID>SysProfileSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:ProcC1E</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>C States</n1:AttributeDisplayName>
+          <n1:AttributeName>ProcCStates</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="SysProfile" Op="NOT">Custom</ROIf></AttrLev>
+              <ValLev Op="OR" Val="Enabled">
+                <ForceIf Name="SysProfile">PerfPerWattOptimizedDapc</ForceIf>
+                <ForceIf Name="SysProfile">PerfPerWattOptimizedOs</ForceIf>
+                <ForceIf Name="SysProfile">DenseCfgOptimized</ForceIf>
+                <SupIf Name="SysProfile">PerfOptimized</SupIf>
+              </ValLev>
+              <ValLev Op="OR" Val="Disabled">
+                <ForceIf Name="SysProfile">PerfOptimized</ForceIf>
+                <SupIf Name="SysProfile">PerfPerWattOptimizedDapc</SupIf>
+                <SupIf Name="SysProfile">PerfPerWattOptimizedOs</SupIf>
+                <SupIf Name="SysProfile">DenseCfgOptimized</SupIf>
+              </ValLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>1316</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Profile Settings</n1:GroupDisplayName>
+          <n1:GroupID>SysProfileSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:ProcCStates</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Monitor/Mwait</n1:AttributeDisplayName>
+          <n1:AttributeName>MonitorMwait</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="SysProfile" Op="NOT">Custom</ROIf></AttrLev>
+              <ValLev Op="OR" Val="Enabled">
+                <ForceIf Name="SysProfile" Op="NOT">Custom</ForceIf>
+              </ValLev>
+              <ValLev Op="OR" Val="Disabled">
+                <SupIf Name="SysProfile" Op="NOT">Custom</SupIf>
+              </ValLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>1318</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Profile Settings</n1:GroupDisplayName>
+          <n1:GroupID>SysProfileSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:MonitorMwait</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Memory Patrol Scrub</n1:AttributeDisplayName>
+          <n1:AttributeName>MemPatrolScrub</n1:AttributeName>
+          <n1:CurrentValue>Standard</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="SysProfile" Op="NOT">Custom</ROIf></AttrLev>
+              <ValLev Op="OR" Val="Extended">
+                <ForceIf Name="SysProfile">DenseCfgOptimized</ForceIf>
+                <SupIf Name="SysProfile">PerfPerWattOptimizedDapc</SupIf>
+                <SupIf Name="SysProfile">PerfPerWattOptimizedOs</SupIf>
+                <SupIf Name="SysProfile">PerfOptimized</SupIf>
+              </ValLev>
+              <ValLev Op="OR" Val="Standard">
+                <ForceIf Name="SysProfile">PerfOptimized</ForceIf>
+                <ForceIf Name="SysProfile">PerfPerWattOptimizedOs</ForceIf>
+                <ForceIf Name="SysProfile">PerfPerWattOptimizedDapc</ForceIf>
+                <SupIf Name="SysProfile">DenseCfgOptimized</SupIf>
+              </ValLev>
+              <ValLev Op="OR" Val="Disabled">
+                <SupIf Name="SysProfile" Op="NOT">Custom</SupIf>
+              </ValLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>1320</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Profile Settings</n1:GroupDisplayName>
+          <n1:GroupID>SysProfileSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:MemPatrolScrub</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Extended</n1:PossibleValues>
+          <n1:PossibleValues>Standard</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Extended</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Standard</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Memory Refresh Rate</n1:AttributeDisplayName>
+          <n1:AttributeName>MemRefreshRate</n1:AttributeName>
+          <n1:CurrentValue>1x</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="SysProfile" Op="NOT">Custom</ROIf></AttrLev>
+              <ValLev Op="OR" Val="1x">
+                <ForceIf Name="SysProfile">PerfPerWattOptimizedDapc</ForceIf>
+                <ForceIf Name="SysProfile">PerfPerWattOptimizedOs</ForceIf>
+                <ForceIf Name="SysProfile">PerfOptimized</ForceIf>
+                <SupIf Name="SysProfile">DenseCfgOptimized</SupIf>
+              </ValLev>
+              <ValLev Op="OR" Val="2x">
+                <ForceIf Name="SysProfile">DenseCfgOptimized</ForceIf>
+                <SupIf Name="SysProfile">PerfPerWattOptimizedDapc</SupIf>
+                <SupIf Name="SysProfile">PerfPerWattOptimizedOs</SupIf>
+                <SupIf Name="SysProfile">PerfOptimized</SupIf>
+              </ValLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>1322</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Profile Settings</n1:GroupDisplayName>
+          <n1:GroupID>SysProfileSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:MemRefreshRate</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>1x</n1:PossibleValues>
+          <n1:PossibleValues>2x</n1:PossibleValues>
+          <n1:PossibleValuesDescription>1x</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>2x</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Memory Operating Voltage</n1:AttributeDisplayName>
+          <n1:AttributeName>MemVolt</n1:AttributeName>
+          <n1:CurrentValue>AutoVolt</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="SysProfile" Op="NOT">Custom</ROIf></AttrLev>
+              <ValLev Op="OR" Val="AutoVolt">
+                <ForceIf Name="SysProfile">PerfPerWattOptimizedDapc</ForceIf>
+                <ForceIf Name="SysProfile">PerfPerWattOptimizedOs</ForceIf>
+                <ForceIf Name="SysProfile">PerfOptimized</ForceIf>
+                <SupIf Name="SysProfile">DenseCfgOptimized</SupIf>
+              </ValLev>
+              <ValLev Op="OR" Val="Volt15V">
+                <ForceIf Name="SysProfile">DenseCfgOptimized</ForceIf>
+                <SupIf Name="SysProfile">PerfPerWattOptimizedDapc</SupIf>
+                <SupIf Name="SysProfile">PerfPerWattOptimizedOs</SupIf>
+                <SupIf Name="SysProfile">PerfOptimized</SupIf>
+              </ValLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>1325</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Profile Settings</n1:GroupDisplayName>
+          <n1:GroupID>SysProfileSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:MemVolt</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>AutoVolt</n1:PossibleValues>
+          <n1:PossibleValues>Volt15V</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Auto</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>1.5V</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Collaborative CPU Performance Control</n1:AttributeDisplayName>
+          <n1:AttributeName>CollaborativeCpuPerfCtrl</n1:AttributeName>
+          <n1:CurrentValue>Disabled</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="SysProfile" Op="NOT">Custom</ROIf></AttrLev>
+              <ValLev Op="OR" Val="Disabled">
+                <ForceIf Name="SysProfile" Op="NOT">Custom</ForceIf>
+              </ValLev>
+              <ValLev Op="OR" Val="Enabled">
+                <SupIf Name="SysProfile" Op="NOT">Custom</SupIf>
+              </ValLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>1327</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Profile Settings</n1:GroupDisplayName>
+          <n1:GroupID>SysProfileSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:CollaborativeCpuPerfCtrl</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Password Status</n1:AttributeDisplayName>
+          <n1:AttributeName>PasswordStatus</n1:AttributeName>
+          <n1:CurrentValue>Unlocked</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1405</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Security</n1:GroupDisplayName>
+          <n1:GroupID>SysSecurity</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:PasswordStatus</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Unlocked</n1:PossibleValues>
+          <n1:PossibleValues>Locked</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Unlocked</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Locked</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>TPM Security</n1:AttributeDisplayName>
+          <n1:AttributeName>TpmSecurity</n1:AttributeName>
+          <n1:CurrentValue>Off</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1408</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Security</n1:GroupDisplayName>
+          <n1:GroupID>SysSecurity</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:TpmSecurity</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Off</n1:PossibleValues>
+          <n1:PossibleValues>OnPbm</n1:PossibleValues>
+          <n1:PossibleValues>OnNoPbm</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Off</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>On with Pre-boot Measurements</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>On without Pre-boot Measurements</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>TPM Activation</n1:AttributeDisplayName>
+          <n1:AttributeName>TpmActivation</n1:AttributeName>
+          <n1:CurrentValue>NoChange</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="TpmSecurity">Off</ROIf></AttrLev>
+              <ValLev Op="OR" Val="NoChange">
+                <ForceIf Name="TpmSecurity">Off</ForceIf>
+              </ValLev>
+              <ValLev Op="OR" Val="Activate">
+                <SupIf Name="TpmSecurity">Off</SupIf>
+              </ValLev>
+              <ValLev Op="OR" Val="Deactivate">
+                <SupIf Name="TpmSecurity">Off</SupIf>
+              </ValLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>1412</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Security</n1:GroupDisplayName>
+          <n1:GroupID>SysSecurity</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:TpmActivation</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>NoChange</n1:PossibleValues>
+          <n1:PossibleValues>Activate</n1:PossibleValues>
+          <n1:PossibleValues>Deactivate</n1:PossibleValues>
+          <n1:PossibleValuesDescription>No Change</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Activate</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Deactivate</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>TPM Clear</n1:AttributeDisplayName>
+          <n1:AttributeName>TpmClear</n1:AttributeName>
+          <n1:CurrentValue>No</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="TpmSecurity">Off</ROIf></AttrLev>
+              <ValLev Op="OR" Val="No">
+                <ForceIf Name="TpmSecurity">Off</ForceIf>
+              </ValLev>
+              <ValLev Op="OR" Val="Yes">
+                <SupIf Name="TpmSecurity">Off</SupIf>
+              </ValLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>1417</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Security</n1:GroupDisplayName>
+          <n1:GroupID>SysSecurity</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:TpmClear</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>No</n1:PossibleValues>
+          <n1:PossibleValues>Yes</n1:PossibleValues>
+          <n1:PossibleValuesDescription>No</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Yes</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Intel(R) TXT</n1:AttributeDisplayName>
+          <n1:AttributeName>IntelTxt</n1:AttributeName>
+          <n1:CurrentValue>Off</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="ProcVirtualization">Disabled</ROIf>
+                <ROIf Name="TpmActivation">Deactivate</ROIf>
+                <ROIf Name="TpmClear">Yes</ROIf>
+                <ROIf Name="TpmSecurity" Op="NOT">OnPbm</ROIf></AttrLev>
+              <ValLev Op="OR" Val="Off">
+                <ForceIf Name="ProcVirtualization">Disabled</ForceIf>
+                <ForceIf Name="TpmActivation">Deactivate</ForceIf>
+                <ForceIf Name="TpmClear">Yes</ForceIf>
+                <ForceIf Name="TpmSecurity" Op="NOT">OnPbm</ForceIf>
+              </ValLev>
+              <ValLev Op="OR" Val="On">
+                <SupIf Name="ProcVirtualization">Disabled</SupIf>
+                <SupIf Name="TpmActivation">Deactivate</SupIf>
+                <SupIf Name="TpmClear">Yes</SupIf>
+                <SupIf Name="TpmSecurity" Op="NOT">OnPbm</SupIf>
+              </ValLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>1421</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Security</n1:GroupDisplayName>
+          <n1:GroupID>SysSecurity</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:IntelTxt</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Off</n1:PossibleValues>
+          <n1:PossibleValues>On</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Off</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>On</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Power Button</n1:AttributeDisplayName>
+          <n1:AttributeName>PwrButton</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1423</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Security</n1:GroupDisplayName>
+          <n1:GroupID>SysSecurity</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:PwrButton</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>NMI Button</n1:AttributeDisplayName>
+          <n1:AttributeName>NmiButton</n1:AttributeName>
+          <n1:CurrentValue>Disabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1425</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Security</n1:GroupDisplayName>
+          <n1:GroupID>SysSecurity</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:NmiButton</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>AC Power Recovery</n1:AttributeDisplayName>
+          <n1:AttributeName>AcPwrRcvry</n1:AttributeName>
+          <n1:CurrentValue>Last</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1429</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Security</n1:GroupDisplayName>
+          <n1:GroupID>SysSecurity</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:AcPwrRcvry</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Last</n1:PossibleValues>
+          <n1:PossibleValues>On</n1:PossibleValues>
+          <n1:PossibleValues>Off</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Last</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>On</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Off</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>AC Power Recovery Delay</n1:AttributeDisplayName>
+          <n1:AttributeName>AcPwrRcvryDelay</n1:AttributeName>
+          <n1:CurrentValue>Immediate</n1:CurrentValue>
+          <n1:Dependency><![CDATA[
+            <Dep>
+              <AttrLev Op="OR">
+                <ROIf Name="AcPwrRcvry">Off</ROIf></AttrLev>
+            </Dep>]]></n1:Dependency>
+          <n1:DisplayOrder>1430</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>System Security</n1:GroupDisplayName>
+          <n1:GroupID>SysSecurity</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:AcPwrRcvryDelay</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Immediate</n1:PossibleValues>
+          <n1:PossibleValues>Random</n1:PossibleValues>
+          <n1:PossibleValues>User</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Immediate</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Random</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>User Defined</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Keyboard NumLock</n1:AttributeDisplayName>
+          <n1:AttributeName>NumLock</n1:AttributeName>
+          <n1:CurrentValue>On</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1506</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Miscellaneous Settings</n1:GroupDisplayName>
+          <n1:GroupID>MiscSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:NumLock</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>On</n1:PossibleValues>
+          <n1:PossibleValues>Off</n1:PossibleValues>
+          <n1:PossibleValuesDescription>On</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Off</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>Report Keyboard Errors</n1:AttributeDisplayName>
+          <n1:AttributeName>ReportKbdErr</n1:AttributeName>
+          <n1:CurrentValue>Report</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1508</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Miscellaneous Settings</n1:GroupDisplayName>
+          <n1:GroupID>MiscSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:ReportKbdErr</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Report</n1:PossibleValues>
+          <n1:PossibleValues>NoReport</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Report</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Do Not Report</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+        <n1:DCIM_BIOSEnumeration>
+          <n1:AttributeDisplayName>F1/F2 Prompt on Error</n1:AttributeDisplayName>
+          <n1:AttributeName>ErrPrompt</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1510</n1:DisplayOrder>
+          <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
+          <n1:GroupDisplayName>Miscellaneous Settings</n1:GroupDisplayName>
+          <n1:GroupID>MiscSettings</n1:GroupID>
+          <n1:InstanceID>BIOS.Setup.1-1:ErrPrompt</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValuesDescription>Enabled</n1:PossibleValuesDescription>
+          <n1:PossibleValuesDescription>Disabled</n1:PossibleValuesDescription>
+        </n1:DCIM_BIOSEnumeration>
+      </wsman:Items>
+      <wsen:EnumerationContext/>
+      <wsman:EndOfSequence/>
+    </wsen:EnumerateResponse>
+  </s:Body>
+</s:Envelope>
