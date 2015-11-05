@@ -10,7 +10,7 @@ with open('requirements.txt', 'r') as fp:
 
 setup(
     name = 'python-dracclient',
-    version = '0.0.2',
+    version = '0.0.3',
     description = 'Library for managing machines with Dell iDRAC cards.',
     author = 'Imre Farkas',
     author_email = 'ifarkas@redhat.com',
