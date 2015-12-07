@@ -1,0 +1,16 @@
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+            xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_RAIDService">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_RAIDService/DeleteVirtualDiskResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:fefa06de-103a-103a-8002-fd0aa2bdb228</wsa:RelatesTo>
+    <wsa:MessageID>uuid:05bc00f4-1040-1040-899d-a36fc6fe83b0</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <n1:DeleteVirtualDisk_OUTPUT>
+      <n1:RebootRequired>YES</n1:RebootRequired>
+      <n1:ReturnValue>0</n1:ReturnValue>
+    </n1:DeleteVirtualDisk_OUTPUT>
+  </s:Body>
+</s:Envelope>

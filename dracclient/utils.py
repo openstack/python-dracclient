@@ -63,3 +63,32 @@ def get_wsman_resource_attr(doc, resource_uri, attr_name, nullable=False):
         nil_attr = item.attrib.get('{%s}nil' % NS_XMLSchema_Instance)
         if nil_attr != 'true':
             return item.text.strip()
+
+
+def is_reboot_required(doc, resource_uri):
+    """Check the response document if reboot is requested.
+
+    RebootRequired attribute in the response indicates whether a config job
+    needs to be created and the node needs to be rebooted, so that the
+    Lifecycle controller can commit the pending changes.
+
+    :param doc: the element tree object.
+    :param resource_uri: the resource URI of the namespace.
+    :returns: a boolean value indicating reboot was requested or not.
+    """
+
+    reboot_required = find_xml(doc, 'RebootRequired', resource_uri)
+    return reboot_required.text.lower() == 'yes'
+
+
+def validate_integer_value(value, attr_name, error_msgs):
+    """Validate integer value"""
+
+    if value is None:
+        error_msgs.append("'%s' is not supplied" % attr_name)
+        return
+
+    try:
+        int(value)
+    except ValueError:
+        error_msgs.append("'%s' is not an integer value" % attr_name)

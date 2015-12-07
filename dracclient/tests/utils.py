@@ -126,3 +126,32 @@ LifecycleControllerEnumerations = {
         'ok': load_wsman_xml('system_view-enum-ok')
     },
 }
+
+RAIDEnumerations = {
+    uris.DCIM_ControllerView: {
+        'ok': load_wsman_xml('controller_view-enum-ok')
+    },
+    uris.DCIM_PhysicalDiskView: {
+        'ok': load_wsman_xml('physical_disk_view-enum-ok')
+    },
+    uris.DCIM_VirtualDiskView: {
+        'ok': load_wsman_xml('virtual_disk_view-enum-ok')
+    }
+}
+
+RAIDInvocations = {
+    uris.DCIM_RAIDService: {
+        'CreateVirtualDisk': {
+            'ok': load_wsman_xml(
+                'raid_service-invoke-create_virtual_disk-ok'),
+            'error': load_wsman_xml(
+                'raid_service-invoke-create_virtual_disk-error'),
+        },
+        'DeleteVirtualDisk': {
+            'ok': load_wsman_xml(
+                'raid_service-invoke-delete_virtual_disk-ok'),
+            'error': load_wsman_xml(
+                'raid_service-invoke-delete_virtual_disk-error'),
+        }
+    }
+}

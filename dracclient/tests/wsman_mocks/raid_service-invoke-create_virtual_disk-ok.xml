@@ -1,0 +1,29 @@
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+            xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_RAIDService"
+            xmlns:wsman="http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_RAIDService/CreateVirtualDiskResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:2a48cc56-103b-103b-8002-fd0aa2bdb228</wsa:RelatesTo>
+    <wsa:MessageID>uuid:31086b42-1040-1040-89ab-a36fc6fe83b0</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <n1:CreateVirtualDisk_OUTPUT>
+      <n1:NewVirtualDisk>
+        <wsa:EndpointReference>
+          <wsa:Address>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:Address>
+          <wsa:ReferenceParameters>
+            <wsman:ResourceURI>http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_VirtualDiskView</wsman:ResourceURI>
+            <wsman:SelectorSet>
+              <wsman:Selector Name="InstanceID">DISK.Virtual.267386880:RAID.Integrated.1-1</wsman:Selector>
+              <wsman:Selector Name="__cimnamespace">root/dcim</wsman:Selector>
+            </wsman:SelectorSet>
+          </wsa:ReferenceParameters>
+        </wsa:EndpointReference>
+      </n1:NewVirtualDisk>
+      <n1:RebootRequired>YES</n1:RebootRequired>
+      <n1:ReturnValue>0</n1:ReturnValue>
+    </n1:CreateVirtualDisk_OUTPUT>
+  </s:Body>
+</s:Envelope>

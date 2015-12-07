@@ -1,0 +1,17 @@
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+            xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_RAIDService">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_RAIDService/CreateVirtualDiskResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:1a12188d-103b-103b-8002-fd0aa2bdb228</wsa:RelatesTo>
+    <wsa:MessageID>uuid:20ade7ab-1040-1040-89a6-a36fc6fe83b0</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <n1:CreateVirtualDisk_OUTPUT>
+      <n1:Message>Physical disk not found</n1:Message>
+      <n1:MessageID>STOR029</n1:MessageID>
+      <n1:ReturnValue>2</n1:ReturnValue>
+    </n1:CreateVirtualDisk_OUTPUT>
+  </s:Body>
+</s:Envelope>

@@ -37,11 +37,20 @@ DCIM_BootSourceSetting = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
 DCIM_ComputerSystem = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2'
                        '/DCIM_ComputerSystem')
 
+DCIM_ControllerView = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
+                       'DCIM_ControllerView')
+
 DCIM_LifecycleJob = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
                      'DCIM_LifecycleJob')
+
+DCIM_PhysicalDiskView = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
+                         'DCIM_PhysicalDiskView')
 
 DCIM_RAIDService = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
                     'DCIM_RAIDService')
 
 DCIM_SystemView = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
                    'DCIM_SystemView')
+
+DCIM_VirtualDiskView = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
+                        'DCIM_VirtualDiskView')

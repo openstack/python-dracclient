@@ -573,12 +573,5 @@ class BIOSConfiguration(object):
         doc = self.client.invoke(uris.DCIM_BIOSService, 'SetAttributes',
                                  selectors, properties)
 
-        # Checking for RebootRequired attribute in the response, which
-        # indicates whether we need to create a config job and then reboot, so
-        # that the Lifecycle controller can commit the BIOS config changes that
-        # have been proposed.
-        reboot_required = utils.find_xml(doc, 'RebootRequired',
-                                         uris.DCIM_BIOSService)
-        commit_required = (reboot_required.text == 'Yes')
-
-        return {'commit_required': commit_required}
+        return {'commit_required': utils.is_reboot_required(
+            doc, uris.DCIM_BIOSService)}

@@ -21,6 +21,7 @@ from dracclient import exceptions
 from dracclient.resources import bios
 from dracclient.resources import job
 from dracclient.resources import lifecycle_controller
+from dracclient.resources import raid
 from dracclient.resources import uris
 from dracclient import utils
 from dracclient import wsman
@@ -50,6 +51,7 @@ class DRACClient(object):
         self._power_mgmt = bios.PowerManagement(self.client)
         self._boot_mgmt = bios.BootManagement(self.client)
         self._bios_cfg = bios.BIOSConfiguration(self.client)
+        self._raid_mgmt = raid.RAIDManagement(self.client)
 
     def get_power_state(self):
         """Returns the current power state of the node
@@ -287,6 +289,118 @@ class DRACClient(object):
         """
         return lifecycle_controller.LifecycleControllerManagement(
             self.client).get_version()
+
+    def list_raid_controllers(self):
+        """Returns the list of RAID controllers
+
+        :returns: a list of RAIDController objects
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        """
+        return self._raid_mgmt.list_raid_controllers()
+
+    def list_virtual_disks(self):
+        """Returns the list of RAID arrays
+
+        :returns: a list of VirtualDisk objects
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        """
+        return self._raid_mgmt.list_virtual_disks()
+
+    def list_physical_disks(self):
+        """Returns the list of physical disks
+
+        :returns: a list of PhysicalDisk objects
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        """
+        return self._raid_mgmt.list_physical_disks()
+
+    def create_virtual_disk(self, raid_controller, physical_disks, raid_level,
+                            size_mb, disk_name=None, span_length=None,
+                            span_depth=None):
+        """Creates a virtual disk
+
+        The created virtual disk will be in pending state.
+
+        :param raid_controller: id of the RAID controller
+        :param physical_disks: ids of the physical disks
+        :param raid_level: RAID level of the virtual disk
+        :param size_mb: size of the virtual disk in megabytes
+        :param disk_name: name of the virtual disk (optional)
+        :param span_length: number of disks per span (optional)
+        :param span_depth: number of spans in virtual disk (optional)
+        :returns: a dictionary containing the commit_needed key with a boolean
+                  value indicating whether a config job must be created for the
+                  values to be applied.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        :raises: InvalidParameterValue on invalid input parameter
+        """
+        return self._raid_mgmt.create_virtual_disk(
+            raid_controller, physical_disks, raid_level, size_mb, disk_name,
+            span_length, span_depth)
+
+    def delete_virtual_disk(self, virtual_disk):
+        """Deletes a virtual disk
+
+        The deleted virtual disk will be in pending state. For the changes to
+        be applied, a config job must be created and the node must be rebooted.
+
+        :param virtual_disk: id of the virtual disk
+        :returns: a dictionary containing the commit_needed key with a boolean
+                  value indicating whether a config job must be created for the
+                  values to be applied.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        """
+        return self._raid_mgmt.delete_virtual_disk(virtual_disk)
+
+    def commit_pending_raid_changes(self, raid_controller, reboot=False):
+        """Applies all pending changes on a RAID controller
+
+         ...by creating a config job.
+
+        :param: reboot: indicates whether a RebootJob should be also be
+                        created or not
+        :returns: id of the created job
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        """
+        return self._job_mgmt.create_config_job(
+            resource_uri=uris.DCIM_RAIDService,
+            cim_creation_class_name='DCIM_RAIDService',
+            cim_name='DCIM:RAIDService', target=raid_controller, reboot=reboot)
+
+    def abandon_pending_raid_changes(self, raid_controller):
+        """Deletes all pending changes on a RAID controller
+
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        """
+        self._job_mgmt.delete_pending_config(
+            resource_uri=uris.DCIM_RAIDService,
+            cim_creation_class_name='DCIM_RAIDService',
+            cim_name='DCIM:RAIDService', target=raid_controller)
 
 
 class WSManClient(wsman.Client):
