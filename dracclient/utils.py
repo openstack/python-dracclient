@@ -50,9 +50,9 @@ def get_wsman_resource_attr(doc, resource_uri, attr_name, nullable=False):
     :param doc: the element tree object.
     :param resource_uri: the resource URI of the namespace.
     :param attr_name: the name of the attribute.
-    :param: nullable: enables checking if the element contains an
-                      XMLSchema-instance namespaced nil attribute that has a
-                      value of True. In this case, it will return None.
+    :param nullable: enables checking if the element contains an
+                     XMLSchema-instance namespaced nil attribute that has a
+                     value of True. In this case, it will return None.
     :returns: value of the attribute
     """
     item = find_xml(doc, attr_name, resource_uri)

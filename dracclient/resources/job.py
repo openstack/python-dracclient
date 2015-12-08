@@ -96,15 +96,15 @@ class JobManagement(object):
         the instance of the class, on which the CreateTargetedConfigJob method
         is invoked.
 
-        :param: resource_uri: URI of resource to invoke
-        :param: cim_creation_class_name: creation class name of the CIM object
-        :param: cim_name: name of the CIM object
-        :param: target: target device
-        :param: cim_system_creation_class_name: creation class name of the
-                                                scoping system
-        :param: cim_system_name: name of the scoping system
-        :param: reboot: indicates whether a RebootJob should be also be
-                        created or not
+        :param resource_uri: URI of resource to invoke
+        :param cim_creation_class_name: creation class name of the CIM object
+        :param cim_name: name of the CIM object
+        :param target: target device
+        :param cim_system_creation_class_name: creation class name of the
+                                               scoping system
+        :param cim_system_name: name of the scoping system
+        :param reboot: indicates whether a RebootJob should be also be
+                       created or not
         :returns: id of the created job
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
@@ -152,13 +152,13 @@ class JobManagement(object):
         the instance of the class, on which the CreateTargetedConfigJob method
         is invoked.
 
-        :param: resource_uri: URI of resource to invoke
-        :param: cim_creation_class_name: creation class name of the CIM object
-        :param: cim_name: name of the CIM object
-        :param: target: target device
-        :param: cim_system_creation_class_name: creation class name of the
-                                                scoping system
-        :param: cim_system_name: name of the scoping system
+        :param resource_uri: URI of resource to invoke
+        :param cim_creation_class_name: creation class name of the CIM object
+        :param cim_name: name of the CIM object
+        :param target: target device
+        :param cim_system_creation_class_name: creation class name of the
+                                               scoping system
+        :param cim_system_name: name of the scoping system
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
         :raises: DRACOperationFailed on error reported back by the DRAC

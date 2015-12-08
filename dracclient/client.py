@@ -139,9 +139,9 @@ class DRACClient(object):
         attributes passed in. For the values to be applied, a config job must
         be created and the node must be rebooted.
 
-        :param: settings: a dictionary containing the proposed values, with
-                          each key being the name of attribute and the
-                          value being the proposed value.
+        :param settings: a dictionary containing the proposed values, with
+                         each key being the name of attribute and the value
+                         being the proposed value.
         :returns: a dictionary containing the commit_needed key with a boolean
                   value indicating whether a config job must be created for the
                   values to be applied.
@@ -193,15 +193,15 @@ class DRACClient(object):
         the instance of the class, on which the CreateTargetedConfigJob method
         is invoked.
 
-        :param: resource_uri: URI of resource to invoke
-        :param: cim_creation_class_name: creation class name of the CIM object
-        :param: cim_name: name of the CIM object
-        :param: target: target device
-        :param: cim_system_creation_class_name: creation class name of the
-                                                scoping system
-        :param: cim_system_name: name of the scoping system
-        :param: reboot: indicates whether a RebootJob should be also be
-                        created or not
+        :param resource_uri: URI of resource to invoke
+        :param cim_creation_class_name: creation class name of the CIM object
+        :param cim_name: name of the CIM object
+        :param target: target device
+        :param cim_system_creation_class_name: creation class name of the
+                                               scoping system
+        :param cim_system_name: name of the scoping system
+        :param reboot: indicates whether a RebootJob should be also be
+                       created or not
         :returns: id of the created job
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
@@ -229,13 +229,13 @@ class DRACClient(object):
         the instance of the class, on which the CreateTargetedConfigJob method
         is invoked.
 
-        :param: resource_uri: URI of resource to invoke
-        :param: cim_creation_class_name: creation class name of the CIM object
-        :param: cim_name: name of the CIM object
-        :param: target: target device
-        :param: cim_system_creation_class_name: creation class name of the
-                                                scoping system
-        :param: cim_system_name: name of the scoping system
+        :param resource_uri: URI of resource to invoke
+        :param cim_creation_class_name: creation class name of the CIM object
+        :param cim_name: name of the CIM object
+        :param target: target device
+        :param cim_system_creation_class_name: creation class name of the
+                                               scoping system
+        :param cim_system_name: name of the scoping system
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
         :raises: DRACOperationFailed on error reported back by the DRAC
@@ -249,8 +249,8 @@ class DRACClient(object):
     def commit_pending_bios_changes(self, reboot=False):
         """Applies all pending changes on the BIOS by creating a config job
 
-        :param: reboot: indicates whether a RebootJob should be also be
-                        created or not
+        :param reboot: indicates whether a RebootJob should be also be
+                       created or not
         :returns: id of the created job
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
@@ -374,8 +374,8 @@ class DRACClient(object):
 
          ...by creating a config job.
 
-        :param: reboot: indicates whether a RebootJob should be also be
-                        created or not
+        :param reboot: indicates whether a RebootJob should be also be
+                       created or not
         :returns: id of the created job
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response

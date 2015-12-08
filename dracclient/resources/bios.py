@@ -503,9 +503,9 @@ class BIOSConfiguration(object):
         attributes passed in. For the values to be applied, a config job must
         be created and the node must be rebooted.
 
-        :param: new_settings: a dictionary containing the proposed values, with
-                              each key being the name of attribute and the
-                              value being the proposed value.
+        :param new_settings: a dictionary containing the proposed values, with
+                             each key being the name of attribute and the
+                             value being the proposed value.
         :returns: a dictionary containing the commit_needed key with a boolean
                   value indicating whether a config job must be created for the
                   values to be applied.
