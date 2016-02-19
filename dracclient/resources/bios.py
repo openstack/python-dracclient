@@ -545,8 +545,8 @@ class BIOSConfiguration(object):
                     invalid_attribs_msgs.append(validation_msg)
 
         if unchanged_attribs:
-            LOG.warn('Ignoring unchanged BIOS attributes: %r' %
-                     unchanged_attribs)
+            LOG.warning('Ignoring unchanged BIOS attributes: %r',
+                        unchanged_attribs)
 
         if invalid_attribs_msgs or read_only_keys:
             if read_only_keys:
