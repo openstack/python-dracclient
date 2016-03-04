@@ -103,8 +103,8 @@ class JobManagement(object):
         :param cim_system_creation_class_name: creation class name of the
                                                scoping system
         :param cim_system_name: name of the scoping system
-        :param reboot: indicates whether a RebootJob should be also be
-                       created or not
+        :param reboot: indicates whether a RebootJob should also be created or
+                       not
         :returns: id of the created job
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
@@ -142,8 +142,7 @@ class JobManagement(object):
             cim_system_name='DCIM:ComputerSystem'):
         """Cancels pending configuration
 
-        Configuration can only be canceled until a config job hasn't been
-        submitted.
+        Once a config job has been submitted, it can no longer be abandoned.
 
         In CIM (Common Information Model), weak association is used to name an
         instance of one class in the context of an instance of another class.

@@ -200,7 +200,7 @@ class DRACClient(object):
         :param cim_system_creation_class_name: creation class name of the
                                                scoping system
         :param cim_system_name: name of the scoping system
-        :param reboot: indicates whether a RebootJob should be also be
+        :param reboot: indicates whether a RebootJob should also be
                        created or not
         :returns: id of the created job
         :raises: WSManRequestFailure on request failures
@@ -219,8 +219,7 @@ class DRACClient(object):
             cim_system_name='DCIM:ComputerSystem'):
         """Cancels pending configuration
 
-        Configuration can only be canceled until a config job hasn't been
-        submitted.
+        Once a config job has been submitted, it can no longer be abandoned.
 
         In CIM (Common Information Model), weak association is used to name an
         instance of one class in the context of an instance of another class.
@@ -249,7 +248,7 @@ class DRACClient(object):
     def commit_pending_bios_changes(self, reboot=False):
         """Applies all pending changes on the BIOS by creating a config job
 
-        :param reboot: indicates whether a RebootJob should be also be
+        :param reboot: indicates whether a RebootJob should also be
                        created or not
         :returns: id of the created job
         :raises: WSManRequestFailure on request failures
@@ -266,6 +265,8 @@ class DRACClient(object):
 
     def abandon_pending_bios_changes(self):
         """Deletes all pending changes on the BIOS
+
+        Once a config job has been submitted, it can no longer be abandoned.
 
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
@@ -374,7 +375,8 @@ class DRACClient(object):
 
          ...by creating a config job.
 
-        :param reboot: indicates whether a RebootJob should be also be
+        :param raid_controller: id of the RAID controller
+        :param reboot: indicates whether a RebootJob should also be
                        created or not
         :returns: id of the created job
         :raises: WSManRequestFailure on request failures
@@ -391,6 +393,9 @@ class DRACClient(object):
     def abandon_pending_raid_changes(self, raid_controller):
         """Deletes all pending changes on a RAID controller
 
+        Once a config job has been submitted, it can no longer be abandoned.
+
+        :param raid_controller: id of the RAID controller
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
         :raises: DRACOperationFailed on error reported back by the DRAC
