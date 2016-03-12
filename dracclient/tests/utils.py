@@ -97,6 +97,12 @@ BIOSInvocations = {
     }
 }
 
+CPUEnumerations = {
+    uris.DCIM_CPUView: {
+        'ok': load_wsman_xml('cpu-enumeration-enum-ok')
+    }
+}
+
 JobEnumerations = {
     uris.DCIM_LifecycleJob: {
         'ok': load_wsman_xml('lifecycle_job-enum-ok'),

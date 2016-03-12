@@ -19,6 +19,7 @@ import logging
 
 from dracclient import exceptions
 from dracclient.resources import bios
+from dracclient.resources import inventory
 from dracclient.resources import job
 from dracclient.resources import lifecycle_controller
 from dracclient.resources import raid
@@ -52,6 +53,7 @@ class DRACClient(object):
         self._boot_mgmt = bios.BootManagement(self.client)
         self._bios_cfg = bios.BIOSConfiguration(self.client)
         self._raid_mgmt = raid.RAIDManagement(self.client)
+        self._inventory_mgmt = inventory.InventoryManagement(self.client)
 
     def get_power_state(self):
         """Returns the current power state of the node
@@ -401,6 +403,17 @@ class DRACClient(object):
             resource_uri=uris.DCIM_RAIDService,
             cim_creation_class_name='DCIM_RAIDService',
             cim_name='DCIM:RAIDService', target=raid_controller)
+
+    def list_cpus(self):
+        """Returns the list of CPUs
+
+        :returns: a list of CPU objects
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        """
+        return self._inventory_mgmt.list_cpus()
 
 
 class WSManClient(wsman.Client):

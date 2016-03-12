@@ -20,6 +20,7 @@ import requests_mock
 import dracclient.client
 from dracclient import exceptions
 from dracclient.resources import bios
+from dracclient.resources import inventory
 import dracclient.resources.job
 from dracclient.resources import lifecycle_controller
 from dracclient.resources import raid
@@ -952,3 +953,32 @@ class WSManClientTestCase(base.BaseTest):
         self.assertRaises(exceptions.DRACUnexpectedReturnValue, client.invoke,
                           'http://resource', 'Foo',
                           expected_return_value='4242')
+
+
+@requests_mock.Mocker()
+class ClientCPUTestCase(base.BaseTest):
+
+    def setUp(self):
+        super(ClientCPUTestCase, self).setUp()
+        self.drac_client = dracclient.client.DRACClient(
+            **test_utils.FAKE_ENDPOINT)
+
+    def test_list_cpus(self, mock_requests):
+        expected_cpu = [inventory.CPU(
+            id='CPU.Socket.1',
+            cores=6,
+            speed=2400,
+            ht_enabled=True,
+            model='Intel(R) Xeon(R) CPU E5-2620 v3 @ 2.40GHz',
+            status='OK',
+            turbo_enabled=True,
+            vt_enabled=True
+            )]
+
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.CPUEnumerations[uris.DCIM_CPUView]['ok'])
+
+        self.assertEqual(
+            expected_cpu,
+            self.drac_client.list_cpus())
