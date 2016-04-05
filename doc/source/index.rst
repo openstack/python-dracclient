@@ -1,12 +1,11 @@
 Welcome to python-dracclient's documentation!
 =============================================
 
-Contents:
-
 .. toctree::
+  :maxdepth: 2
 
-  Usage <usage>
-  Client API <client-api>
+  usage
+  client-api
   Contributing <contributing>
 
 Indices and tables

@@ -1,5 +1,5 @@
 Usage
------
+=====
 
 Create a client object by providing the connection details of the DRAC card::
 
