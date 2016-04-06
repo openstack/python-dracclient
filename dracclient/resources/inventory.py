@@ -21,6 +21,10 @@ CPU = collections.namedtuple(
     ['id', 'cores', 'speed', 'ht_enabled', 'model', 'status', 'turbo_enabled',
      'vt_enabled'])
 
+Memory = collections.namedtuple(
+    'Memory',
+    ['id', 'size', 'speed', 'manufacturer', 'model', 'status'])
+
 PrimaryStatus = {
     '0': 'Unknown',
     '1': 'OK',
@@ -71,3 +75,35 @@ class InventoryManagement(object):
     def _get_cpu_attr(self, cpu, attr_name):
         return utils.get_wsman_resource_attr(
             cpu, uris.DCIM_CPUView, attr_name)
+
+    def list_memory(self):
+        """Returns the list of installed memory
+
+        :returns: a list of Memory objects
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+        """
+
+        doc = self.client.enumerate(uris.DCIM_MemoryView)
+
+        installed_memory = utils.find_xml(doc, 'DCIM_MemoryView',
+                                          uris.DCIM_MemoryView,
+                                          find_all=True)
+
+        return [self._parse_memory(memory) for memory in installed_memory]
+
+    def _parse_memory(self, memory):
+        return Memory(id=self._get_memory_attr(memory, 'FQDD'),
+                      size=int(self._get_memory_attr(memory, 'Size')),
+                      speed=int(self._get_memory_attr(memory, 'Speed')),
+                      manufacturer=self._get_memory_attr(memory,
+                                                         'Manufacturer'),
+                      model=self._get_memory_attr(memory, 'Model'),
+                      status=PrimaryStatus[self._get_memory_attr(
+                          memory,
+                          'PrimaryStatus')])
+
+    def _get_memory_attr(self, memory, attr_name):
+        return utils.get_wsman_resource_attr(memory, uris.DCIM_MemoryView,
+                                             attr_name)

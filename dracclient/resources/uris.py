@@ -46,6 +46,9 @@ DCIM_CPUView = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
 DCIM_LifecycleJob = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
                      'DCIM_LifecycleJob')
 
+DCIM_MemoryView = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
+                   'DCIM_MemoryView')
+
 DCIM_PhysicalDiskView = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
                          'DCIM_PhysicalDiskView')
 

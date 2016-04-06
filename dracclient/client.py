@@ -420,6 +420,18 @@ class DRACClient(object):
         """
         return self._inventory_mgmt.list_cpus()
 
+    def list_memory(self):
+        """Returns a list of memory modules
+
+        :returns: a list of Memory objects
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        """
+
+        return self._inventory_mgmt.list_memory()
+
 
 class WSManClient(wsman.Client):
     """Wrapper for wsman.Client with return value checking"""

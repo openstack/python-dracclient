@@ -1,0 +1,40 @@
+<s:Envelope
+    xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+    xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+    xmlns:wsen="http://schemas.xmlsoap.org/ws/2004/09/enumeration"
+    xmlns:wsman="http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd"
+    xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_MemoryView">
+    <s:Header>
+        <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+        <wsa:Action>http://schemas.xmlsoap.org/ws/2004/09/enumeration/EnumerateResponse</wsa:Action>
+        <wsa:RelatesTo>uuid:6a7e85cd-00a9-49a2-a781-d047063b9975</wsa:RelatesTo>
+        <wsa:MessageID>uuid:09c85e7c-2fda-1fda-bf81-f148d4fe83b0</wsa:MessageID>
+    </s:Header>
+    <s:Body>
+        <wsen:EnumerateResponse>
+            <wsman:Items>
+                <n1:DCIM_MemoryView>
+                <n1:BankLabel>A</n1:BankLabel>
+                <n1:CurrentOperatingSpeed>1866</n1:CurrentOperatingSpeed>
+                <n1:DeviceDescription>DIMM A1</n1:DeviceDescription>
+                <n1:FQDD>DIMM.Socket.A1</n1:FQDD>
+                <n1:InstanceID>DIMM.Socket.A1</n1:InstanceID>
+                <n1:LastSystemInventoryTime>20160215025015.000000+000</n1:LastSystemInventoryTime>
+                <n1:LastUpdateTime>20151112191452.000000+000</n1:LastUpdateTime>
+                <n1:ManufactureDate>Mon Sep 22 07:00:00 2014 UTC</n1:ManufactureDate>
+                <n1:Manufacturer>Samsung</n1:Manufacturer>
+                <n1:MemoryType>26</n1:MemoryType>
+                <n1:Model>DDR4 DIMM</n1:Model>
+                <n1:PartNumber>M393A2G40DB0-CPB</n1:PartNumber>
+                <n1:PrimaryStatus>1</n1:PrimaryStatus>
+                <n1:Rank>2</n1:Rank>
+                <n1:SerialNumber>39406867</n1:SerialNumber>
+                <n1:Size>16384</n1:Size>
+                <n1:Speed>2133</n1:Speed>
+                </n1:DCIM_MemoryView>
+            </wsman:Items>
+        <wsen:EnumerationContext/>
+        <wsman:EndOfSequence/>
+        </wsen:EnumerateResponse>
+    </s:Body>
+</s:Envelope>

@@ -133,6 +133,12 @@ LifecycleControllerEnumerations = {
     },
 }
 
+MemoryEnumerations = {
+    uris.DCIM_MemoryView: {
+        'ok': load_wsman_xml('memory-enumeration-enum-ok')
+    },
+}
+
 RAIDEnumerations = {
     uris.DCIM_ControllerView: {
         'ok': load_wsman_xml('controller_view-enum-ok')

@@ -159,6 +159,16 @@ Required parameters:
 
 * ``raid_controller``: id of the RAID controller.
 
+Inventory Management
+--------------------
+
+list_cpus
+~~~~~~~~~
+Returns a list of installed CPUs.
+
+list_memory
+~~~~~~~~~~~
+Returns a list of installed memory modules.
 
 Job management
 --------------

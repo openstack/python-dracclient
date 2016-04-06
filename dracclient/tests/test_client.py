@@ -982,3 +982,30 @@ class ClientCPUTestCase(base.BaseTest):
         self.assertEqual(
             expected_cpu,
             self.drac_client.list_cpus())
+
+
+@requests_mock.Mocker()
+class ClientMemoryestCase(base.BaseTest):
+
+    def setUp(self):
+        super(ClientMemoryestCase, self).setUp()
+        self.drac_client = dracclient.client.DRACClient(
+            **test_utils.FAKE_ENDPOINT)
+
+    def test_list_memory(self, mock_requests):
+        expected_memory = [inventory.Memory(
+            id='DIMM.Socket.A1',
+            size=16384,
+            speed=2133,
+            manufacturer='Samsung',
+            model='DDR4 DIMM',
+            status='OK',
+            )]
+
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.MemoryEnumerations[uris.DCIM_MemoryView]['ok'])
+
+        self.assertEqual(
+            expected_memory,
+            self.drac_client.list_memory())
