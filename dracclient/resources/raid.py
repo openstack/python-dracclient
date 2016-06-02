@@ -234,6 +234,36 @@ class RAIDManagement(object):
         return utils.get_wsman_resource_attr(
             drac_disk, uris.DCIM_PhysicalDiskView, attr_name)
 
+    def convert_physical_disks(self, physical_disks, raid_enable):
+        """Converts a list of physical disks into or out of RAID mode.
+
+        Disks can be enabled or disabled for RAID mode.
+
+        :param physical_disks: list of FQDD ID strings of the physical disks
+               to update
+        :param raid_enable: boolean flag, set to True if the disk is to
+               become part of the RAID.  The same flag is applied to all
+               listed disks
+        :returns: a dictionary containing the commit_needed key with a boolean
+                  value indicating whether a config job must be created for the
+                  values to be applied.
+        """
+        invocation = 'ConvertToRAID' if raid_enable else 'ConvertToNonRAID'
+
+        selectors = {'SystemCreationClassName': 'DCIM_ComputerSystem',
+                     'CreationClassName': 'DCIM_RAIDService',
+                     'SystemName': 'DCIM:ComputerSystem',
+                     'Name': 'DCIM:RAIDService'}
+
+        properties = {'PDArray': physical_disks}
+
+        doc = self.client.invoke(uris.DCIM_RAIDService, invocation,
+                                 selectors, properties,
+                                 expected_return_value=utils.RET_SUCCESS)
+
+        return {'commit_required':
+                utils.is_reboot_required(doc, uris.DCIM_RAIDService)}
+
     def create_virtual_disk(self, raid_controller, physical_disks, raid_level,
                             size_mb, disk_name=None, span_length=None,
                             span_depth=None):

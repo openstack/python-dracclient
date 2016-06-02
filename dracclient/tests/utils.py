@@ -164,6 +164,12 @@ RAIDInvocations = {
                 'raid_service-invoke-delete_virtual_disk-ok'),
             'error': load_wsman_xml(
                 'raid_service-invoke-delete_virtual_disk-error'),
+        },
+        'ConvertToRAID': {
+            'ok': load_wsman_xml(
+                'raid_service-invoke-convert_physical_disks-ok'),
+            'error': load_wsman_xml(
+                'raid_service-invoke-convert_physical_disks-error'),
         }
     }
 }

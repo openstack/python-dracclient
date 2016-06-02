@@ -15,6 +15,7 @@ import re
 
 import lxml.etree
 import mock
+import random
 import requests_mock
 
 import dracclient.client
@@ -701,6 +702,162 @@ class ClientRAIDManagementTestCase(base.BaseTest):
 
         self.assertIn(expected_physical_disk,
                       self.drac_client.list_physical_disks())
+
+    # Verify that various client convert_physical_disks calls to dracclient
+    # result in a WSMan.invoke with appropriate parameters
+    def _random_term(self):
+        return "".join(random.sample('ABCDEFGHabcdefgh0123456',
+                                     random.randint(4, 12)))
+
+    def _random_fqdd(self):
+        result = self._random_term()
+        for i in range(0, random.randint(6, 10)):
+            result += random.sample('.:-', 1)[0] + self._random_term()
+        return result
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke',
+                       spec_set=True, autospec=True)
+    def test_convert_physical_disks_1(self, mock_requests, mock_invoke):
+        '''Convert a single disk to RAID mode'''
+        device_fqdd = self._random_fqdd()
+        expected_invocation = 'ConvertToRAID'
+        expected_selectors = {'SystemCreationClassName': 'DCIM_ComputerSystem',
+                              'CreationClassName': 'DCIM_RAIDService',
+                              'SystemName': 'DCIM:ComputerSystem',
+                              'Name': 'DCIM:RAIDService'}
+        expected_properties = {'PDArray': [device_fqdd]}
+
+        result = self.drac_client.convert_physical_disks(
+            raid_controller='controller',
+            physical_disks=[device_fqdd],
+            raid_enable=True)
+
+        self.assertEqual({'commit_required': False}, result)
+        mock_invoke.assert_called_once_with(
+            mock.ANY, uris.DCIM_RAIDService, expected_invocation,
+            expected_selectors, expected_properties,
+            expected_return_value=utils.RET_SUCCESS)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke',
+                       spec_set=True, autospec=True)
+    def test_convert_physical_disks_n(self, mock_requests, mock_invoke):
+        '''Convert a number of disks to RAID mode'''
+        device_list = []
+        for i in range(0, random.randint(2, 10)):
+            device_list += self._random_fqdd()
+
+        expected_invocation = 'ConvertToRAID'
+        expected_selectors = {'SystemCreationClassName': 'DCIM_ComputerSystem',
+                              'CreationClassName': 'DCIM_RAIDService',
+                              'SystemName': 'DCIM:ComputerSystem',
+                              'Name': 'DCIM:RAIDService'}
+        expected_properties = {'PDArray': device_list}
+
+        result = self.drac_client.convert_physical_disks(
+            raid_controller='controller',
+            physical_disks=device_list,
+            raid_enable=True)
+
+        self.assertEqual({'commit_required': False}, result)
+        mock_invoke.assert_called_once_with(
+            mock.ANY, uris.DCIM_RAIDService, expected_invocation,
+            expected_selectors, expected_properties,
+            expected_return_value=utils.RET_SUCCESS)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke',
+                       spec_set=True, autospec=True)
+    def test_convert_physical_disks_nonraid_1(self, mock_requests,
+                                              mock_invoke):
+        '''Convert a single disk to non-RAID mode'''
+        device_fqdd = self._random_fqdd()
+        expected_invocation = 'ConvertToNonRAID'
+        expected_selectors = {'SystemCreationClassName': 'DCIM_ComputerSystem',
+                              'CreationClassName': 'DCIM_RAIDService',
+                              'SystemName': 'DCIM:ComputerSystem',
+                              'Name': 'DCIM:RAIDService'}
+        expected_properties = {'PDArray': [device_fqdd]}
+
+        result = self.drac_client.convert_physical_disks(
+            raid_controller='controller',
+            physical_disks=[device_fqdd],
+            raid_enable=False)
+
+        self.assertEqual({'commit_required': False}, result)
+        mock_invoke.assert_called_once_with(
+            mock.ANY, uris.DCIM_RAIDService, expected_invocation,
+            expected_selectors, expected_properties,
+            expected_return_value=utils.RET_SUCCESS)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke',
+                       spec_set=True, autospec=True)
+    def test_convert_physical_disks_nonraid_n(self, mock_requests,
+                                              mock_invoke):
+        '''Convert a number of disks to non-RAID mode'''
+        device_list = []
+        for i in range(0, random.randint(2, 10)):
+            device_list += self._random_fqdd()
+
+        expected_invocation = 'ConvertToNonRAID'
+        expected_selectors = {'SystemCreationClassName': 'DCIM_ComputerSystem',
+                              'CreationClassName': 'DCIM_RAIDService',
+                              'SystemName': 'DCIM:ComputerSystem',
+                              'Name': 'DCIM:RAIDService'}
+        expected_properties = {'PDArray': device_list}
+
+        result = self.drac_client.convert_physical_disks(
+            raid_controller='controller',
+            physical_disks=device_list,
+            raid_enable=False)
+
+        self.assertEqual({'commit_required': False}, result)
+        mock_invoke.assert_called_once_with(
+            mock.ANY, uris.DCIM_RAIDService, expected_invocation,
+            expected_selectors, expected_properties,
+            expected_return_value=utils.RET_SUCCESS)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke',
+                       spec_set=True, autospec=True)
+    def test_convert_physical_disks_ok(self, mock_requests, mock_invoke):
+        '''Convert a number of disks to RAID mode and check the return value'''
+        device_list = []
+        for i in range(0, random.randint(2, 10)):
+            device_list += self._random_fqdd()
+
+        expected_invocation = 'ConvertToRAID'
+        expected_selectors = {'SystemCreationClassName': 'DCIM_ComputerSystem',
+                              'CreationClassName': 'DCIM_RAIDService',
+                              'SystemName': 'DCIM:ComputerSystem',
+                              'Name': 'DCIM:RAIDService'}
+        expected_properties = {'PDArray': device_list}
+
+        mock_invoke.return_value = lxml.etree.fromstring(
+            test_utils.RAIDInvocations[uris.DCIM_RAIDService][
+                expected_invocation]['ok'])
+
+        result = self.drac_client.convert_physical_disks(
+            raid_controller='controller',
+            physical_disks=device_list,
+            raid_enable=True)
+
+        self.assertEqual({'commit_required': True}, result)
+        mock_invoke.assert_called_once_with(
+            mock.ANY, uris.DCIM_RAIDService, expected_invocation,
+            expected_selectors, expected_properties,
+            expected_return_value=utils.RET_SUCCESS)
+
+    def test_convert_physical_disks_fail(self, mock_requests):
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.RAIDInvocations[
+                uris.DCIM_RAIDService]['ConvertToRAID']['error'])
+
+        self.assertRaises(
+            exceptions.DRACOperationFailed,
+            self.drac_client.convert_physical_disks,
+            raid_controller='controller',
+            physical_disks=['Disk0:Enclosure-1:RAID-1',
+                            'Disk1:Enclosure-1:RAID-1'],
+            raid_enable=True)
 
     @mock.patch.object(dracclient.client.WSManClient, 'invoke',
                        spec_set=True, autospec=True)

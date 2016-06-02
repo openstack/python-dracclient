@@ -326,6 +326,25 @@ class DRACClient(object):
         """
         return self._raid_mgmt.list_physical_disks()
 
+    def convert_physical_disks(self, raid_controller, physical_disks,
+                               raid_enable=True):
+        """Changes the operational mode of a physical disk.
+
+        Disks can be enabled or disabled for RAID mode.
+
+        :param raid_controller: the FQDD ID of the RAID controller
+        :param physical_disks: list of FQDD ID strings of the physical disks
+               to update
+        :param raid_enable: boolean flag, set to True if the disk is to
+               become part of the RAID.  The same flag is applied to all
+               listed disks
+        :returns: a dictionary containing the commit_required key with a
+                  boolean value indicating whether a config job must be
+                  created for the values to be applied.
+        """
+        return self._raid_mgmt.convert_physical_disks(
+            physical_disks, raid_enable)
+
     def create_virtual_disk(self, raid_controller, physical_disks, raid_level,
                             size_mb, disk_name=None, span_length=None,
                             span_depth=None):

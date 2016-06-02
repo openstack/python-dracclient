@@ -1,0 +1,16 @@
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_RAIDService">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_RAIDService/ConvertToRAIDResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:6364e38d-4e3c-4769-8c67-ff4332ea603a</wsa:RelatesTo>
+    <wsa:MessageID>uuid:ad08919a-34b2-14b2-a4b0-ea19c46a0064</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <n1:ConvertToRAID_OUTPUT>
+      <n1:Message>Invalid parameter value</n1:Message>
+      <n1:MessageArguments>NULL</n1:MessageArguments>
+      <n1:MessageID>STOR004</n1:MessageID>
+      <n1:ReturnValue>2</n1:ReturnValue>
+    </n1:ConvertToRAID_OUTPUT>
+  </s:Body>
+</s:Envelope>
