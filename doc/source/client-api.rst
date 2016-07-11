@@ -170,6 +170,10 @@ list_memory
 ~~~~~~~~~~~
 Returns a list of installed memory modules.
 
+list_nics
+~~~~~~~~~
+Returns a list of NICs.
+
 Job management
 --------------
 

@@ -1047,6 +1047,92 @@ class ClientRAIDManagementTestCase(base.BaseTest):
 
 
 @requests_mock.Mocker()
+class ClientInventoryManagementTestCase(base.BaseTest):
+
+    def setUp(self):
+        super(ClientInventoryManagementTestCase, self).setUp()
+        self.drac_client = dracclient.client.DRACClient(
+            **test_utils.FAKE_ENDPOINT)
+
+    def test_list_cpus(self, mock_requests):
+        expected_cpu = [inventory.CPU(
+            id='CPU.Socket.1',
+            cores=6,
+            speed_mhz=2400,
+            ht_enabled=True,
+            model='Intel(R) Xeon(R) CPU E5-2620 v3 @ 2.40GHz',
+            status='OK',
+            turbo_enabled=True,
+            vt_enabled=True
+            )]
+
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.InventoryEnumerations[uris.DCIM_CPUView]['ok'])
+
+        self.assertEqual(
+            expected_cpu,
+            self.drac_client.list_cpus())
+
+    def test_list_memory(self, mock_requests):
+        expected_memory = [inventory.Memory(
+            id='DIMM.Socket.A1',
+            size=16384,
+            speed_mhz=2133,
+            manufacturer='Samsung',
+            model='DDR4 DIMM',
+            status='OK',
+            )]
+
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.InventoryEnumerations[uris.DCIM_MemoryView]['ok'])
+
+        self.assertEqual(
+            expected_memory,
+            self.drac_client.list_memory())
+
+    def test_list_nics(self, mock_requests):
+        expected_nics = [
+            inventory.NIC(
+                id='NIC.Embedded.1-1-1',
+                mac='B0:83:FE:C6:6F:A1',
+                model='Broadcom Gigabit Ethernet BCM5720 - B0:83:FE:C6:6F:A1',
+                speed_mbps=1000,
+                duplex='full duplex',
+                media_type='Base T'),
+            inventory.NIC(
+                id='NIC.Slot.2-1-1',
+                mac='A0:36:9F:52:7D:1E',
+                model='Intel(R) Gigabit 2P I350-t Adapter - A0:36:9F:52:7D:1E',
+                speed_mbps=1000,
+                duplex='full duplex',
+                media_type='Base T'),
+            inventory.NIC(
+                id='NIC.Slot.2-2-1',
+                mac='A0:36:9F:52:7D:1F',
+                model='Intel(R) Gigabit 2P I350-t Adapter - A0:36:9F:52:7D:1F',
+                speed_mbps=1000,
+                duplex='full duplex',
+                media_type='Base T'),
+            inventory.NIC(
+                id='NIC.Embedded.2-1-1',
+                mac='B0:83:FE:C6:6F:A2',
+                model='Broadcom Gigabit Ethernet BCM5720 - B0:83:FE:C6:6F:A2',
+                speed_mbps=1000,
+                duplex='full duplex',
+                media_type='Base T')]
+
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.InventoryEnumerations[uris.DCIM_NICView]['ok'])
+
+        self.assertEqual(
+            expected_nics,
+            self.drac_client.list_nics())
+
+
+@requests_mock.Mocker()
 class WSManClientTestCase(base.BaseTest):
 
     def test_enumerate(self, mock_requests):
@@ -1110,59 +1196,3 @@ class WSManClientTestCase(base.BaseTest):
         self.assertRaises(exceptions.DRACUnexpectedReturnValue, client.invoke,
                           'http://resource', 'Foo',
                           expected_return_value='4242')
-
-
-@requests_mock.Mocker()
-class ClientCPUTestCase(base.BaseTest):
-
-    def setUp(self):
-        super(ClientCPUTestCase, self).setUp()
-        self.drac_client = dracclient.client.DRACClient(
-            **test_utils.FAKE_ENDPOINT)
-
-    def test_list_cpus(self, mock_requests):
-        expected_cpu = [inventory.CPU(
-            id='CPU.Socket.1',
-            cores=6,
-            speed=2400,
-            ht_enabled=True,
-            model='Intel(R) Xeon(R) CPU E5-2620 v3 @ 2.40GHz',
-            status='OK',
-            turbo_enabled=True,
-            vt_enabled=True
-            )]
-
-        mock_requests.post(
-            'https://1.2.3.4:443/wsman',
-            text=test_utils.CPUEnumerations[uris.DCIM_CPUView]['ok'])
-
-        self.assertEqual(
-            expected_cpu,
-            self.drac_client.list_cpus())
-
-
-@requests_mock.Mocker()
-class ClientMemoryestCase(base.BaseTest):
-
-    def setUp(self):
-        super(ClientMemoryestCase, self).setUp()
-        self.drac_client = dracclient.client.DRACClient(
-            **test_utils.FAKE_ENDPOINT)
-
-    def test_list_memory(self, mock_requests):
-        expected_memory = [inventory.Memory(
-            id='DIMM.Socket.A1',
-            size=16384,
-            speed=2133,
-            manufacturer='Samsung',
-            model='DDR4 DIMM',
-            status='OK',
-            )]
-
-        mock_requests.post(
-            'https://1.2.3.4:443/wsman',
-            text=test_utils.MemoryEnumerations[uris.DCIM_MemoryView]['ok'])
-
-        self.assertEqual(
-            expected_memory,
-            self.drac_client.list_memory())

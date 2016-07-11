@@ -15,3 +15,6 @@
 POWER_ON = 'POWER_ON'
 POWER_OFF = 'POWER_OFF'
 REBOOT = 'REBOOT'
+
+# binary unit constants
+UNITS_KI = 2 ** 10
