@@ -24,6 +24,8 @@ PRIMARY_STATUS = {
     '3': 'Error'
 }
 
+CPU_CHARACTERISTICS_64BIT = '4'
+
 NIC_LINK_SPEED_MBPS = {
     '0': None,
     '1': 10,
@@ -51,8 +53,8 @@ NIC_MODE = {
 
 CPU = collections.namedtuple(
     'CPU',
-    ['id', 'cores', 'speed_mhz', 'ht_enabled', 'model', 'status',
-     'turbo_enabled', 'vt_enabled'])
+    ['id', 'cores', 'speed_mhz', 'model', 'status', 'ht_enabled',
+     'turbo_enabled', 'vt_enabled', 'arch64'])
 
 Memory = collections.namedtuple(
     'Memory',
@@ -90,17 +92,20 @@ class InventoryManagement(object):
         return [self._parse_cpus(cpu) for cpu in cpus]
 
     def _parse_cpus(self, cpu):
+        drac_characteristics = self._get_cpu_attr(cpu, 'Characteristics')
+        arch64 = (CPU_CHARACTERISTICS_64BIT == drac_characteristics)
+
         return CPU(
             id=self._get_cpu_attr(cpu, 'FQDD'),
             cores=int(self._get_cpu_attr(cpu, 'NumberOfProcessorCores')),
             speed_mhz=int(self._get_cpu_attr(cpu, 'CurrentClockSpeed')),
-            ht_enabled=bool(self._get_cpu_attr(cpu, 'HyperThreadingEnabled')),
             model=self._get_cpu_attr(cpu, 'Model'),
             status=PRIMARY_STATUS[self._get_cpu_attr(cpu, 'PrimaryStatus')],
+            ht_enabled=bool(self._get_cpu_attr(cpu, 'HyperThreadingEnabled')),
             turbo_enabled=bool(self._get_cpu_attr(cpu, 'TurboModeEnabled')),
             vt_enabled=bool(self._get_cpu_attr(cpu,
-                            'VirtualizationTechnologyEnabled'))
-            )
+                            'VirtualizationTechnologyEnabled')),
+            arch64=arch64)
 
     def _get_cpu_attr(self, cpu, attr_name):
         return utils.get_wsman_resource_attr(
