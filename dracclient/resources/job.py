@@ -12,13 +12,34 @@
 #    under the License.
 
 import collections
+import logging
 
 from dracclient.resources import uris
 from dracclient import utils
 from dracclient import wsman
 
-Job = collections.namedtuple('Job', ['id', 'name', 'start_time', 'until_time',
-                                     'message', 'state', 'percent_complete'])
+LOG = logging.getLogger(__name__)
+
+JobTuple = collections.namedtuple(
+    'Job',
+    ['id', 'name', 'start_time', 'until_time', 'message', 'status',
+     'percent_complete'])
+
+
+class Job(JobTuple):
+
+    def __new__(cls, **kwargs):
+        if 'state' in kwargs:
+            LOG.warning('Job.state is deprecated. Use Job.status instead.')
+            kwargs['status'] = kwargs['state']
+            del kwargs['state']
+
+        return super(Job, cls).__new__(cls, **kwargs)
+
+    @property
+    def state(self):
+        LOG.warning('Job.state is deprecated. Use Job.status instead.')
+        return self.status
 
 
 class JobManagement(object):
@@ -182,7 +203,7 @@ class JobManagement(object):
                    start_time=self._get_job_attr(drac_job, 'JobStartTime'),
                    until_time=self._get_job_attr(drac_job, 'JobUntilTime'),
                    message=self._get_job_attr(drac_job, 'Message'),
-                   state=self._get_job_attr(drac_job, 'JobStatus'),
+                   status=self._get_job_attr(drac_job, 'JobStatus'),
                    percent_complete=self._get_job_attr(drac_job,
                                                        'PercentComplete'))
 
