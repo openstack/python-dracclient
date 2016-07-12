@@ -101,15 +101,17 @@ class InventoryManagement(object):
             speed_mhz=int(self._get_cpu_attr(cpu, 'CurrentClockSpeed')),
             model=self._get_cpu_attr(cpu, 'Model'),
             status=PRIMARY_STATUS[self._get_cpu_attr(cpu, 'PrimaryStatus')],
-            ht_enabled=bool(self._get_cpu_attr(cpu, 'HyperThreadingEnabled')),
-            turbo_enabled=bool(self._get_cpu_attr(cpu, 'TurboModeEnabled')),
-            vt_enabled=bool(self._get_cpu_attr(cpu,
-                            'VirtualizationTechnologyEnabled')),
+            ht_enabled=bool(self._get_cpu_attr(cpu, 'HyperThreadingEnabled',
+                                               allow_missing=True)),
+            turbo_enabled=bool(self._get_cpu_attr(cpu, 'TurboModeEnabled',
+                                                  allow_missing=True)),
+            vt_enabled=bool(self._get_cpu_attr(
+                cpu, 'VirtualizationTechnologyEnabled', allow_missing=True)),
             arch64=arch64)
 
-    def _get_cpu_attr(self, cpu, attr_name):
+    def _get_cpu_attr(self, cpu, attr_name, allow_missing=False):
         return utils.get_wsman_resource_attr(
-            cpu, uris.DCIM_CPUView, attr_name)
+            cpu, uris.DCIM_CPUView, attr_name, allow_missing=allow_missing)
 
     def list_memory(self):
         """Returns the list of installed memory
