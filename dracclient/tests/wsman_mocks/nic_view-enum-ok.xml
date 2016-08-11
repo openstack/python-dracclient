@@ -1,0 +1,189 @@
+<s:Envelope xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_NICView"
+            xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+            xmlns:wsen="http://schemas.xmlsoap.org/ws/2004/09/enumeration"
+            xmlns:wsman="http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <s:Header>
+        <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+        <wsa:Action>http://schemas.xmlsoap.org/ws/2004/09/enumeration/EnumerateResponse</wsa:Action>
+        <wsa:RelatesTo>uuid:c31a0567-63f6-4a58-8379-b4ea037a18a6</wsa:RelatesTo>
+        <wsa:MessageID>uuid:94e955b1-371f-171f-94f8-a36fc6fe83b0</wsa:MessageID>
+    </s:Header>
+    <s:Body>
+        <wsen:EnumerateResponse>
+            <wsman:Items>
+                <n1:DCIM_NICView>
+                    <n1:AutoNegotiation>2</n1:AutoNegotiation>
+                    <n1:BusNumber>2</n1:BusNumber>
+                    <n1:ControllerBIOSVersion>1.34</n1:ControllerBIOSVersion>
+                    <n1:CurrentMACAddress>B0:83:FE:C6:6F:A1</n1:CurrentMACAddress>
+                    <n1:DataBusWidth>0002</n1:DataBusWidth>
+                    <n1:DeviceDescription>Embedded NIC 1 Port 1 Partition 1</n1:DeviceDescription>
+                    <n1:DeviceNumber>0</n1:DeviceNumber>
+                    <n1:EFIVersion>16.4.14</n1:EFIVersion>
+                    <n1:FCoEOffloadMode>3</n1:FCoEOffloadMode>
+                    <n1:FCoEWWNN/>
+                    <n1:FQDD>NIC.Embedded.1-1-1</n1:FQDD>
+                    <n1:FamilyVersion>7.10.17</n1:FamilyVersion>
+                    <n1:FunctionNumber>0</n1:FunctionNumber>
+                    <n1:InstanceID>NIC.Embedded.1-1-1</n1:InstanceID>
+                    <n1:LastSystemInventoryTime>20151126211205.000000+000</n1:LastSystemInventoryTime>
+                    <n1:LastUpdateTime>20141017011300.000000+000</n1:LastUpdateTime>
+                    <n1:LinkDuplex>1</n1:LinkDuplex>
+                    <n1:LinkSpeed>3</n1:LinkSpeed>
+                    <n1:MaxBandwidth>0</n1:MaxBandwidth>
+                    <n1:MediaType>Base T</n1:MediaType>
+                    <n1:MinBandwidth>0</n1:MinBandwidth>
+                    <n1:NicMode>3</n1:NicMode>
+                    <n1:PCIDeviceID>165f</n1:PCIDeviceID>
+                    <n1:PCISubDeviceID>04f7</n1:PCISubDeviceID>
+                    <n1:PCISubVendorID>1028</n1:PCISubVendorID>
+                    <n1:PCIVendorID>14e4</n1:PCIVendorID>
+                    <n1:PermanentFCOEMACAddress/>
+                    <n1:PermanentMACAddress>B0:83:FE:C6:6F:A1</n1:PermanentMACAddress>
+                    <n1:PermanentiSCSIMACAddress/>
+                    <n1:ProductName>Broadcom Gigabit Ethernet BCM5720 - B0:83:FE:C6:6F:A1</n1:ProductName>
+                    <n1:ReceiveFlowControl>2</n1:ReceiveFlowControl>
+                    <n1:SlotLength>0002</n1:SlotLength>
+                    <n1:SlotType>0002</n1:SlotType>
+                    <n1:TransmitFlowControl>2</n1:TransmitFlowControl>
+                    <n1:VendorName>Broadcom Corp</n1:VendorName>
+                    <n1:VirtWWN xsi:nil="true"/>
+                    <n1:VirtWWPN xsi:nil="true"/>
+                    <n1:WWN xsi:nil="true"/>
+                    <n1:WWPN xsi:nil="true"/>
+                    <n1:iScsiOffloadMode>3</n1:iScsiOffloadMode>
+                </n1:DCIM_NICView>
+                <n1:DCIM_NICView>
+                    <n1:AutoNegotiation>2</n1:AutoNegotiation>
+                    <n1:BusNumber>8</n1:BusNumber>
+                    <n1:ControllerBIOSVersion xsi:nil="true"/>
+                    <n1:CurrentMACAddress>A0:36:9F:52:7D:1E</n1:CurrentMACAddress>
+                    <n1:DataBusWidth>000D</n1:DataBusWidth>
+                    <n1:DeviceDescription>NIC in Slot 2 Port 1 Partition 1</n1:DeviceDescription>
+                    <n1:DeviceNumber>0</n1:DeviceNumber>
+                    <n1:EFIVersion xsi:nil="true"/>
+                    <n1:FCoEOffloadMode>3</n1:FCoEOffloadMode>
+                    <n1:FCoEWWNN/>
+                    <n1:FQDD>NIC.Slot.2-1-1</n1:FQDD>
+                    <n1:FamilyVersion>16.0.22</n1:FamilyVersion>
+                    <n1:FunctionNumber>0</n1:FunctionNumber>
+                    <n1:InstanceID>NIC.Slot.2-1-1</n1:InstanceID>
+                    <n1:LastSystemInventoryTime>20151126211205.000000+000</n1:LastSystemInventoryTime>
+                    <n1:LastUpdateTime>20150114205015.000000+000</n1:LastUpdateTime>
+                    <n1:LinkDuplex>1</n1:LinkDuplex>
+                    <n1:LinkSpeed>3</n1:LinkSpeed>
+                    <n1:MaxBandwidth>0</n1:MaxBandwidth>
+                    <n1:MediaType>Base T</n1:MediaType>
+                    <n1:MinBandwidth>0</n1:MinBandwidth>
+                    <n1:NicMode>3</n1:NicMode>
+                    <n1:PCIDeviceID>1521</n1:PCIDeviceID>
+                    <n1:PCISubDeviceID>5002</n1:PCISubDeviceID>
+                    <n1:PCISubVendorID>8086</n1:PCISubVendorID>
+                    <n1:PCIVendorID>8086</n1:PCIVendorID>
+                    <n1:PermanentFCOEMACAddress/>
+                    <n1:PermanentMACAddress>A0:36:9F:52:7D:1E</n1:PermanentMACAddress>
+                    <n1:PermanentiSCSIMACAddress/>
+                    <n1:ProductName>Intel(R) Gigabit 2P I350-t Adapter - A0:36:9F:52:7D:1E</n1:ProductName>
+                    <n1:ReceiveFlowControl>2</n1:ReceiveFlowControl>
+                    <n1:SlotLength>0004</n1:SlotLength>
+                    <n1:SlotType>00B1</n1:SlotType>
+                    <n1:TransmitFlowControl>3</n1:TransmitFlowControl>
+                    <n1:VendorName>Intel Corp</n1:VendorName>
+                    <n1:VirtWWN xsi:nil="true"/>
+                    <n1:VirtWWPN xsi:nil="true"/>
+                    <n1:WWN xsi:nil="true"/>
+                    <n1:WWPN xsi:nil="true"/>
+                    <n1:iScsiOffloadMode>3</n1:iScsiOffloadMode>
+                </n1:DCIM_NICView>
+                <n1:DCIM_NICView>
+                    <n1:AutoNegotiation>2</n1:AutoNegotiation>
+                    <n1:BusNumber>8</n1:BusNumber>
+                    <n1:ControllerBIOSVersion xsi:nil="true"/>
+                    <n1:CurrentMACAddress>A0:36:9F:52:7D:1F</n1:CurrentMACAddress>
+                    <n1:DataBusWidth>000D</n1:DataBusWidth>
+                    <n1:DeviceDescription>NIC in Slot 2 Port 2 Partition 1</n1:DeviceDescription>
+                    <n1:DeviceNumber>0</n1:DeviceNumber>
+                    <n1:EFIVersion xsi:nil="true"/>
+                    <n1:FCoEOffloadMode>3</n1:FCoEOffloadMode>
+                    <n1:FCoEWWNN/>
+                    <n1:FQDD>NIC.Slot.2-2-1</n1:FQDD>
+                    <n1:FamilyVersion>16.0.22</n1:FamilyVersion>
+                    <n1:FunctionNumber>1</n1:FunctionNumber>
+                    <n1:InstanceID>NIC.Slot.2-2-1</n1:InstanceID>
+                    <n1:LastSystemInventoryTime>20151126211205.000000+000</n1:LastSystemInventoryTime>
+                    <n1:LastUpdateTime>20150114205015.000000+000</n1:LastUpdateTime>
+                    <n1:LinkDuplex>1</n1:LinkDuplex>
+                    <n1:LinkSpeed>3</n1:LinkSpeed>
+                    <n1:MaxBandwidth>0</n1:MaxBandwidth>
+                    <n1:MediaType>Base T</n1:MediaType>
+                    <n1:MinBandwidth>0</n1:MinBandwidth>
+                    <n1:NicMode>3</n1:NicMode>
+                    <n1:PCIDeviceID>1521</n1:PCIDeviceID>
+                    <n1:PCISubDeviceID>5002</n1:PCISubDeviceID>
+                    <n1:PCISubVendorID>8086</n1:PCISubVendorID>
+                    <n1:PCIVendorID>8086</n1:PCIVendorID>
+                    <n1:PermanentFCOEMACAddress/>
+                    <n1:PermanentMACAddress>A0:36:9F:52:7D:1F</n1:PermanentMACAddress>
+                    <n1:PermanentiSCSIMACAddress/>
+                    <n1:ProductName>Intel(R) Gigabit 2P I350-t Adapter - A0:36:9F:52:7D:1F</n1:ProductName>
+                    <n1:ReceiveFlowControl>2</n1:ReceiveFlowControl>
+                    <n1:SlotLength>0004</n1:SlotLength>
+                    <n1:SlotType>00B1</n1:SlotType>
+                    <n1:TransmitFlowControl>3</n1:TransmitFlowControl>
+                    <n1:VendorName>Intel Corp</n1:VendorName>
+                    <n1:VirtWWN xsi:nil="true"/>
+                    <n1:VirtWWPN xsi:nil="true"/>
+                    <n1:WWN xsi:nil="true"/>
+                    <n1:WWPN xsi:nil="true"/>
+                    <n1:iScsiOffloadMode>3</n1:iScsiOffloadMode>
+                </n1:DCIM_NICView>
+                <n1:DCIM_NICView>
+                    <n1:AutoNegotiation>2</n1:AutoNegotiation>
+                    <n1:BusNumber>2</n1:BusNumber>
+                    <n1:ControllerBIOSVersion>1.34</n1:ControllerBIOSVersion>
+                    <n1:CurrentMACAddress>B0:83:FE:C6:6F:A2</n1:CurrentMACAddress>
+                    <n1:DataBusWidth>0002</n1:DataBusWidth>
+                    <n1:DeviceDescription>Embedded NIC 2 Port 1 Partition 1</n1:DeviceDescription>
+                    <n1:DeviceNumber>0</n1:DeviceNumber>
+                    <n1:EFIVersion>16.4.14</n1:EFIVersion>
+                    <n1:FCoEOffloadMode>3</n1:FCoEOffloadMode>
+                    <n1:FCoEWWNN/>
+                    <n1:FQDD>NIC.Embedded.2-1-1</n1:FQDD>
+                    <n1:FamilyVersion>7.10.17</n1:FamilyVersion>
+                    <n1:FunctionNumber>1</n1:FunctionNumber>
+                    <n1:InstanceID>NIC.Embedded.2-1-1</n1:InstanceID>
+                    <n1:LastSystemInventoryTime>20151126211205.000000+000</n1:LastSystemInventoryTime>
+                    <n1:LastUpdateTime>20150114205015.000000+000</n1:LastUpdateTime>
+                    <n1:LinkDuplex>1</n1:LinkDuplex>
+                    <n1:LinkSpeed>3</n1:LinkSpeed>
+                    <n1:MaxBandwidth>0</n1:MaxBandwidth>
+                    <n1:MediaType>Base T</n1:MediaType>
+                    <n1:MinBandwidth>0</n1:MinBandwidth>
+                    <n1:NicMode>3</n1:NicMode>
+                    <n1:PCIDeviceID>165f</n1:PCIDeviceID>
+                    <n1:PCISubDeviceID>04f7</n1:PCISubDeviceID>
+                    <n1:PCISubVendorID>1028</n1:PCISubVendorID>
+                    <n1:PCIVendorID>14e4</n1:PCIVendorID>
+                    <n1:PermanentFCOEMACAddress/>
+                    <n1:PermanentMACAddress>B0:83:FE:C6:6F:A2</n1:PermanentMACAddress>
+                    <n1:PermanentiSCSIMACAddress/>
+                    <n1:ProductName>Broadcom Gigabit Ethernet BCM5720 - B0:83:FE:C6:6F:A2</n1:ProductName>
+                    <n1:ReceiveFlowControl>2</n1:ReceiveFlowControl>
+                    <n1:SlotLength>0002</n1:SlotLength>
+                    <n1:SlotType>0002</n1:SlotType>
+                    <n1:TransmitFlowControl>2</n1:TransmitFlowControl>
+                    <n1:VendorName>Broadcom Corp</n1:VendorName>
+                    <n1:VirtWWN xsi:nil="true"/>
+                    <n1:VirtWWPN xsi:nil="true"/>
+                    <n1:WWN xsi:nil="true"/>
+                    <n1:WWPN xsi:nil="true"/>
+                    <n1:iScsiOffloadMode>3</n1:iScsiOffloadMode>
+                </n1:DCIM_NICView>
+            </wsman:Items>
+            <wsen:EnumerationContext/>
+            <wsman:EndOfSequence/>
+        </wsen:EnumerateResponse>
+    </s:Body>
+</s:Envelope>

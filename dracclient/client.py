@@ -451,6 +451,18 @@ class DRACClient(object):
 
         return self._inventory_mgmt.list_memory()
 
+    def list_nics(self):
+        """Returns a list of NICs
+
+        :returns: a list of NIC objects
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        """
+
+        return self._inventory_mgmt.list_nics()
+
 
 class WSManClient(wsman.Client):
     """Wrapper for wsman.Client with return value checking"""

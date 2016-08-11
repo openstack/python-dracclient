@@ -97,9 +97,15 @@ BIOSInvocations = {
     }
 }
 
-CPUEnumerations = {
+InventoryEnumerations = {
     uris.DCIM_CPUView: {
         'ok': load_wsman_xml('cpu-enumeration-enum-ok')
+    },
+    uris.DCIM_MemoryView: {
+        'ok': load_wsman_xml('memory-enumeration-enum-ok')
+    },
+    uris.DCIM_NICView: {
+        'ok': load_wsman_xml('nic_view-enum-ok')
     }
 }
 
@@ -130,12 +136,6 @@ JobInvocations = {
 LifecycleControllerEnumerations = {
     uris.DCIM_SystemView: {
         'ok': load_wsman_xml('system_view-enum-ok')
-    },
-}
-
-MemoryEnumerations = {
-    uris.DCIM_MemoryView: {
-        'ok': load_wsman_xml('memory-enumeration-enum-ok')
     },
 }
 
