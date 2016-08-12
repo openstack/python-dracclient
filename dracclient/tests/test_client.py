@@ -1059,12 +1059,12 @@ class ClientInventoryManagementTestCase(base.BaseTest):
             id='CPU.Socket.1',
             cores=6,
             speed_mhz=2400,
-            ht_enabled=True,
             model='Intel(R) Xeon(R) CPU E5-2620 v3 @ 2.40GHz',
             status='OK',
+            ht_enabled=True,
             turbo_enabled=True,
-            vt_enabled=True
-            )]
+            vt_enabled=True,
+            arch64=True)]
 
         mock_requests.post(
             'https://1.2.3.4:443/wsman',
