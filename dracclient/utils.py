@@ -44,7 +44,8 @@ def find_xml(doc, item, namespace, find_all=False):
     return doc.find(query)
 
 
-def get_wsman_resource_attr(doc, resource_uri, attr_name, nullable=False):
+def get_wsman_resource_attr(doc, resource_uri, attr_name, nullable=False,
+                            allow_missing=False):
     """Find an attribute of a resource in an ElementTree object.
 
     :param doc: the element tree object.
@@ -53,9 +54,20 @@ def get_wsman_resource_attr(doc, resource_uri, attr_name, nullable=False):
     :param nullable: enables checking if the element contains an
                      XMLSchema-instance namespaced nil attribute that has a
                      value of True. In this case, it will return None.
+    :param allow_missing: if set to True, attributes missing from the XML
+                          document will return None instead of raising
+                          AttributeError.
+    :raises: AttributeError if the attribute is missing from the XML doc and
+             allow_missing is False.
     :returns: value of the attribute
     """
     item = find_xml(doc, attr_name, resource_uri)
+
+    if item is None:
+        if allow_missing:
+            return
+        else:
+            raise AttributeError("Could not find attribute '%s'" % (attr_name))
 
     if not nullable:
         return item.text.strip()

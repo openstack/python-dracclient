@@ -1074,6 +1074,27 @@ class ClientInventoryManagementTestCase(base.BaseTest):
             expected_cpu,
             self.drac_client.list_cpus())
 
+    def test_list_cpus_with_missing_flags(self, mock_requests):
+        expected_cpu = [inventory.CPU(
+            id='CPU.Socket.1',
+            cores=8,
+            speed_mhz=1900,
+            model='Intel(R) Xeon(R) CPU E5-2440 v2 @ 1.90GHz',
+            status='OK',
+            ht_enabled=False,
+            turbo_enabled=False,
+            vt_enabled=False,
+            arch64=False)]
+
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.InventoryEnumerations[
+                uris.DCIM_CPUView]['missing_flags'])
+
+        self.assertEqual(
+            expected_cpu,
+            self.drac_client.list_cpus())
+
     def test_list_memory(self, mock_requests):
         expected_memory = [inventory.Memory(
             id='DIMM.Socket.A1',
