@@ -17,13 +17,6 @@ from dracclient import constants
 from dracclient.resources import uris
 from dracclient import utils
 
-PRIMARY_STATUS = {
-    '0': 'Unknown',
-    '1': 'OK',
-    '2': 'Degraded',
-    '3': 'Error'
-}
-
 CPU_CHARACTERISTICS_64BIT = '4'
 
 NIC_LINK_SPEED_MBPS = {
@@ -58,7 +51,7 @@ CPU = collections.namedtuple(
 
 Memory = collections.namedtuple(
     'Memory',
-    ['id', 'size', 'speed_mhz', 'manufacturer', 'model', 'status'])
+    ['id', 'size_mb', 'speed_mhz', 'manufacturer', 'model', 'status'])
 
 NIC = collections.namedtuple(
     'NIC',
@@ -100,7 +93,8 @@ class InventoryManagement(object):
             cores=int(self._get_cpu_attr(cpu, 'NumberOfProcessorCores')),
             speed_mhz=int(self._get_cpu_attr(cpu, 'CurrentClockSpeed')),
             model=self._get_cpu_attr(cpu, 'Model'),
-            status=PRIMARY_STATUS[self._get_cpu_attr(cpu, 'PrimaryStatus')],
+            status=constants.PRIMARY_STATUS[
+                self._get_cpu_attr(cpu, 'PrimaryStatus')],
             ht_enabled=bool(self._get_cpu_attr(cpu, 'HyperThreadingEnabled',
                                                allow_missing=True)),
             turbo_enabled=bool(self._get_cpu_attr(cpu, 'TurboModeEnabled',
@@ -131,15 +125,14 @@ class InventoryManagement(object):
         return [self._parse_memory(memory) for memory in installed_memory]
 
     def _parse_memory(self, memory):
-        return Memory(id=self._get_memory_attr(memory, 'FQDD'),
-                      size=int(self._get_memory_attr(memory, 'Size')),
-                      speed_mhz=int(self._get_memory_attr(memory, 'Speed')),
-                      manufacturer=self._get_memory_attr(memory,
-                                                         'Manufacturer'),
-                      model=self._get_memory_attr(memory, 'Model'),
-                      status=PRIMARY_STATUS[self._get_memory_attr(
-                          memory,
-                          'PrimaryStatus')])
+        return Memory(
+            id=self._get_memory_attr(memory, 'FQDD'),
+            size_mb=int(self._get_memory_attr(memory, 'Size')),
+            speed_mhz=int(self._get_memory_attr(memory, 'Speed')),
+            manufacturer=self._get_memory_attr(memory, 'Manufacturer'),
+            model=self._get_memory_attr(memory, 'Model'),
+            status=constants.PRIMARY_STATUS[
+                self._get_memory_attr(memory, 'PrimaryStatus')])
 
     def _get_memory_attr(self, memory, attr_name):
         return utils.get_wsman_resource_attr(memory, uris.DCIM_MemoryView,

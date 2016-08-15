@@ -445,7 +445,7 @@ class ClientJobManagementTestCase(base.BaseTest):
                                                     start_time='TIME_NA',
                                                     until_time='TIME_NA',
                                                     message='NA',
-                                                    state='Pending',
+                                                    status='Pending',
                                                     percent_complete='0')
         mock_enumerate.return_value = lxml.etree.fromstring(
             test_utils.JobEnumerations[uris.DCIM_LifecycleJob]['ok'])
@@ -666,8 +666,8 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             controller='RAID.Integrated.1-1',
             raid_level='1',
             size_mb=571776,
-            state='ok',
-            raid_state='online',
+            status='ok',
+            raid_status='online',
             span_depth=1,
             span_length=2,
             pending_operations=None)
@@ -693,8 +693,8 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             free_size_mb=571776,
             serial_number='S0M3EY2Z',
             firmware_version='LS0A',
-            state='ok',
-            raid_state='ready')
+            status='ok',
+            raid_status='ready')
 
         mock_requests.post(
             'https://1.2.3.4:443/wsman',
@@ -1060,7 +1060,7 @@ class ClientInventoryManagementTestCase(base.BaseTest):
             cores=6,
             speed_mhz=2400,
             model='Intel(R) Xeon(R) CPU E5-2620 v3 @ 2.40GHz',
-            status='OK',
+            status='ok',
             ht_enabled=True,
             turbo_enabled=True,
             vt_enabled=True,
@@ -1080,7 +1080,7 @@ class ClientInventoryManagementTestCase(base.BaseTest):
             cores=8,
             speed_mhz=1900,
             model='Intel(R) Xeon(R) CPU E5-2440 v2 @ 1.90GHz',
-            status='OK',
+            status='ok',
             ht_enabled=False,
             turbo_enabled=False,
             vt_enabled=False,
@@ -1098,12 +1098,11 @@ class ClientInventoryManagementTestCase(base.BaseTest):
     def test_list_memory(self, mock_requests):
         expected_memory = [inventory.Memory(
             id='DIMM.Socket.A1',
-            size=16384,
+            size_mb=16384,
             speed_mhz=2133,
             manufacturer='Samsung',
             model='DDR4 DIMM',
-            status='OK',
-            )]
+            status='ok')]
 
         mock_requests.post(
             'https://1.2.3.4:443/wsman',

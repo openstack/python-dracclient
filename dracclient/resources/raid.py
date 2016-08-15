@@ -12,10 +12,14 @@
 #    under the License.
 
 import collections
+import logging
 
+from dracclient import constants
 from dracclient import exceptions
 from dracclient.resources import uris
 from dracclient import utils
+
+LOG = logging.getLogger(__name__)
 
 RAID_LEVELS = {
     'non-raid': '1',
@@ -29,13 +33,6 @@ RAID_LEVELS = {
 }
 
 REVERSE_RAID_LEVELS = dict((v, k) for (k, v) in RAID_LEVELS.items())
-
-DISK_STATUS = {
-    '0': 'unknown',
-    '1': 'ok',
-    '2': 'degraded',
-    '3': 'error'
-}
 
 DISK_RAID_STATUS = {
     '0': 'unknown',
@@ -71,20 +68,81 @@ PHYSICAL_DISK_BUS_PROTOCOL = {
     '6': 'sas'
 }
 
-PhysicalDisk = collections.namedtuple(
+PhysicalDiskTuple = collections.namedtuple(
     'PhysicalDisk',
     ['id', 'description', 'controller', 'manufacturer', 'model', 'media_type',
      'interface_type', 'size_mb', 'free_size_mb', 'serial_number',
-     'firmware_version', 'state', 'raid_state'])
+     'firmware_version', 'status', 'raid_status'])
+
+
+class PhysicalDisk(PhysicalDiskTuple):
+
+    def __new__(cls, **kwargs):
+        if 'state' in kwargs:
+            LOG.warning('PhysicalDisk.state is deprecated. '
+                        'Use PhysicalDisk.status instead.')
+            kwargs['status'] = kwargs['state']
+            del kwargs['state']
+
+        if 'raid_state' in kwargs:
+            LOG.warning('PhysicalDisk.raid_state is deprecated. '
+                        'Use PhysicalDisk.raid_status instead.')
+            kwargs['raid_status'] = kwargs['raid_state']
+            del kwargs['raid_state']
+
+        return super(PhysicalDisk, cls).__new__(cls, **kwargs)
+
+    @property
+    def state(self):
+        LOG.warning('PhysicalDisk.state is deprecated. '
+                    'Use PhysicalDisk.status instead.')
+        return self.status
+
+    @property
+    def raid_state(self):
+        LOG.warning('PhysicalDisk.raid_state is deprecated. '
+                    'Use PhysicalDisk.raid_status instead.')
+        return self.raid_status
 
 RAIDController = collections.namedtuple(
     'RAIDController', ['id', 'description', 'manufacturer', 'model',
                        'firmware_version'])
 
-VirtualDisk = collections.namedtuple(
+VirtualDiskTuple = collections.namedtuple(
     'VirtualDisk',
     ['id', 'name', 'description', 'controller', 'raid_level', 'size_mb',
-     'state', 'raid_state', 'span_depth', 'span_length', 'pending_operations'])
+     'status', 'raid_status', 'span_depth', 'span_length',
+     'pending_operations'])
+
+
+class VirtualDisk(VirtualDiskTuple):
+
+    def __new__(cls, **kwargs):
+        if 'state' in kwargs:
+            LOG.warning('VirtualDisk.state is deprecated. '
+                        'Use VirtualDisk.status instead.')
+            kwargs['status'] = kwargs['state']
+            del kwargs['state']
+
+        if 'raid_state' in kwargs:
+            LOG.warning('VirtualDisk.raid_state is deprecated. '
+                        'Use VirtualDisk.raid_status instead.')
+            kwargs['raid_status'] = kwargs['raid_state']
+            del kwargs['raid_state']
+
+        return super(VirtualDisk, cls).__new__(cls, **kwargs)
+
+    @property
+    def state(self):
+        LOG.warning('VirtualDisk.state is deprecated. '
+                    'Use VirtualDisk.status instead.')
+        return self.status
+
+    @property
+    def raid_state(self):
+        LOG.warning('VirtualDisk.raid_state is deprecated. '
+                    'Use VirtualDisk.raid_status instead.')
+        return self.raid_status
 
 
 class RAIDManagement(object):
@@ -167,8 +225,8 @@ class RAIDManagement(object):
             controller=fqdd.split(':')[1],
             raid_level=REVERSE_RAID_LEVELS[drac_raid_level],
             size_mb=int(size_b) / 2 ** 20,
-            state=DISK_STATUS[drac_status],
-            raid_state=DISK_RAID_STATUS[drac_raid_status],
+            status=constants.PRIMARY_STATUS[drac_status],
+            raid_status=DISK_RAID_STATUS[drac_raid_status],
             span_depth=int(self._get_virtual_disk_attr(drac_disk,
                                                        'SpanDepth')),
             span_length=int(self._get_virtual_disk_attr(drac_disk,
@@ -227,8 +285,8 @@ class RAIDManagement(object):
                                                        'SerialNumber'),
             firmware_version=self._get_physical_disk_attr(drac_disk,
                                                           'Revision'),
-            state=DISK_STATUS[drac_status],
-            raid_state=DISK_RAID_STATUS[drac_raid_status])
+            status=constants.PRIMARY_STATUS[drac_status],
+            raid_status=DISK_RAID_STATUS[drac_raid_status])
 
     def _get_physical_disk_attr(self, drac_disk, attr_name):
         return utils.get_wsman_resource_attr(
