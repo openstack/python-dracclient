@@ -135,10 +135,28 @@ JobInvocations = {
     }
 }
 
+iDracCardEnumerations = {
+    uris.DCIM_iDRACCardEnumeration: {
+        'ok': load_wsman_xml('idraccard_enumeration-enum-ok')
+    },
+    uris.DCIM_iDRACCardString: {
+        'ok': load_wsman_xml('idraccard_string-enum-ok')
+    },
+    uris.DCIM_iDRACCardInteger: {
+        'ok': load_wsman_xml('idraccard_integer-enum-ok')
+    },
+}
+
 LifecycleControllerEnumerations = {
     uris.DCIM_SystemView: {
         'ok': load_wsman_xml('system_view-enum-ok')
     },
+    uris.DCIM_LCEnumeration: {
+        'ok': load_wsman_xml('lc_enumeration-enum-ok')
+    },
+    uris.DCIM_LCString: {
+        'ok': load_wsman_xml('lc_string-enum-ok')
+    }
 }
 
 RAIDEnumerations = {

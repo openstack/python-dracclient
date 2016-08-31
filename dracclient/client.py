@@ -19,6 +19,7 @@ import logging
 
 from dracclient import exceptions
 from dracclient.resources import bios
+from dracclient.resources import idrac_card
 from dracclient.resources import inventory
 from dracclient.resources import job
 from dracclient.resources import lifecycle_controller
@@ -52,6 +53,8 @@ class DRACClient(object):
         self._power_mgmt = bios.PowerManagement(self.client)
         self._boot_mgmt = bios.BootManagement(self.client)
         self._bios_cfg = bios.BIOSConfiguration(self.client)
+        self._lifecycle_cfg = lifecycle_controller.LCConfiguration(self.client)
+        self._idrac_cfg = idrac_card.iDRACCardConfiguration(self.client)
         self._raid_mgmt = raid.RAIDManagement(self.client)
         self._inventory_mgmt = inventory.InventoryManagement(self.client)
 
@@ -158,6 +161,33 @@ class DRACClient(object):
         :raises: InvalidParameterValue on invalid BIOS attribute
         """
         return self._bios_cfg.set_bios_settings(settings)
+
+    def list_idrac_settings(self):
+        """List the iDRAC configuration settings
+
+        :returns: a dictionary with the iDRAC settings using InstanceID as the
+                  key. The attributes are either iDRACCArdEnumerableAttribute,
+                  iDRACCardStringAttribute or iDRACCardIntegerAttribute
+                  objects.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        """
+        return self._idrac_cfg.list_idrac_settings()
+
+    def list_lifecycle_settings(self):
+        """List the Lifecycle Controller configuration settings
+
+        :returns: a dictionary with the Lifecycle Controller settings using its
+                  InstanceID as the key. The attributes are either
+                  LCEnumerableAttribute or LCStringAttribute objects.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        """
+        return self._lifecycle_cfg.list_lifecycle_settings()
 
     def list_jobs(self, only_unfinished=False):
         """Returns a list of jobs from the job queue

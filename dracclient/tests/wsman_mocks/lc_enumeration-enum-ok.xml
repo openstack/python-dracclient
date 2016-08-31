@@ -1,0 +1,144 @@
+<s:Envelope xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_LCEnumeration"
+            xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+            xmlns:wsen="http://schemas.xmlsoap.org/ws/2004/09/enumeration"
+            xmlns:wsman="http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.xmlsoap.org/ws/2004/09/enumeration/EnumerateResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:68f2fe2e-1424-4833-9ac0-756f24db2542</wsa:RelatesTo>
+    <wsa:MessageID>uuid:3ae5f7b2-40a9-10a9-8061-de7e4e771814</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <wsen:EnumerateResponse>
+      <wsman:Items>
+        <n1:DCIM_LCEnumeration>
+          <n1:AttributeName>Collect System Inventory on Restart</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:DefaultValue>Enabled</n1:DefaultValue>
+          <n1:ElementName>LC.emb.1</n1:ElementName>
+          <n1:InstanceID>LifecycleController.Embedded.1#LCAttributes.1#CollectSystemInventoryOnRestart</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+        </n1:DCIM_LCEnumeration>
+        <n1:DCIM_LCEnumeration>
+          <n1:AttributeName>Part Configuration Update</n1:AttributeName>
+          <n1:CurrentValue>Apply always</n1:CurrentValue>
+          <n1:DefaultValue>Apply always</n1:DefaultValue>
+          <n1:ElementName>LC.emb.1</n1:ElementName>
+          <n1:InstanceID>LifecycleController.Embedded.1#LCAttributes.1#PartConfigurationUpdate</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValues>Apply always</n1:PossibleValues>
+          <n1:PossibleValues>Apply only if firmware match</n1:PossibleValues>
+        </n1:DCIM_LCEnumeration>
+        <n1:DCIM_LCEnumeration>
+          <n1:AttributeName>Part Firmware Update</n1:AttributeName>
+          <n1:CurrentValue>Match firmware of replaced part</n1:CurrentValue>
+          <n1:DefaultValue>Match firmware of replaced part</n1:DefaultValue>
+          <n1:ElementName>LC.emb.1</n1:ElementName>
+          <n1:InstanceID>LifecycleController.Embedded.1#LCAttributes.1#PartFirmwareUpdate</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Disable</n1:PossibleValues>
+          <n1:PossibleValues>Allow version upgrade only</n1:PossibleValues>
+          <n1:PossibleValues>Match firmware of replaced part</n1:PossibleValues>
+        </n1:DCIM_LCEnumeration>
+        <n1:DCIM_LCEnumeration>
+          <n1:AttributeName>Lifecycle Controller State</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:DefaultValue>Enabled</n1:DefaultValue>
+          <n1:ElementName>LC.emb.1</n1:ElementName>
+          <n1:InstanceID>LifecycleController.Embedded.1#LCAttributes.1#LifecycleControllerState</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Recovery</n1:PossibleValues>
+        </n1:DCIM_LCEnumeration>
+        <n1:DCIM_LCEnumeration>
+          <n1:AttributeName>Licensed</n1:AttributeName>
+          <n1:CurrentValue>Yes</n1:CurrentValue>
+          <n1:DefaultValue>No</n1:DefaultValue>
+          <n1:ElementName>LC.emb.1</n1:ElementName>
+          <n1:InstanceID>LifecycleController.Embedded.1#LCAttributes.1#Licensed</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>No</n1:PossibleValues>
+          <n1:PossibleValues>Yes</n1:PossibleValues>
+        </n1:DCIM_LCEnumeration>
+        <n1:DCIM_LCEnumeration>
+          <n1:AttributeName>Auto Discovery</n1:AttributeName>
+          <n1:CurrentValue>Off</n1:CurrentValue>
+          <n1:DefaultValue>Off</n1:DefaultValue>
+          <n1:ElementName>LC.emb.1</n1:ElementName>
+          <n1:InstanceID>LifecycleController.Embedded.1#LCAttributes.1#AutoDiscovery</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Off</n1:PossibleValues>
+          <n1:PossibleValues>On</n1:PossibleValues>
+        </n1:DCIM_LCEnumeration>
+        <n1:DCIM_LCEnumeration>
+          <n1:AttributeName>Discovery Factory Defaults</n1:AttributeName>
+          <n1:CurrentValue>Off</n1:CurrentValue>
+          <n1:DefaultValue>Off</n1:DefaultValue>
+          <n1:ElementName>LC.emb.1</n1:ElementName>
+          <n1:InstanceID>LifecycleController.Embedded.1#LCAttributes.1#DiscoveryFactoryDefaults</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Off</n1:PossibleValues>
+          <n1:PossibleValues>On</n1:PossibleValues>
+        </n1:DCIM_LCEnumeration>
+        <n1:DCIM_LCEnumeration>
+          <n1:AttributeName>IPChangeNotifyPS</n1:AttributeName>
+          <n1:CurrentValue>Off</n1:CurrentValue>
+          <n1:DefaultValue>Off</n1:DefaultValue>
+          <n1:ElementName>LC.emb.1</n1:ElementName>
+          <n1:InstanceID>LifecycleController.Embedded.1#LCAttributes.1#IPChangeNotifyPS</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Off</n1:PossibleValues>
+          <n1:PossibleValues>On</n1:PossibleValues>
+        </n1:DCIM_LCEnumeration>
+        <n1:DCIM_LCEnumeration>
+          <n1:AttributeName>BIOS Reset To Defaults Requested</n1:AttributeName>
+          <n1:CurrentValue>False</n1:CurrentValue>
+          <n1:DefaultValue>False</n1:DefaultValue>
+          <n1:ElementName>LC.emb.1</n1:ElementName>
+          <n1:InstanceID>LifecycleController.Embedded.1#LCAttributes.1#BIOSRTDRequested</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>False</n1:PossibleValues>
+          <n1:PossibleValues>True</n1:PossibleValues>
+        </n1:DCIM_LCEnumeration>
+        <n1:DCIM_LCEnumeration>
+          <n1:AttributeName>Automatic Update Feature</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:DefaultValue>Disabled</n1:DefaultValue>
+          <n1:ElementName>LC.emb.1</n1:ElementName>
+          <n1:InstanceID>LifecycleController.Embedded.1#LCAttributes.1#AutoUpdate</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValues>Enabled</n1:PossibleValues></n1:DCIM_LCEnumeration>
+        <n1:DCIM_LCEnumeration>
+          <n1:AttributeName>Automatic Backup Feature</n1:AttributeName>
+          <n1:CurrentValue>Disabled</n1:CurrentValue>
+          <n1:DefaultValue>Disabled</n1:DefaultValue>
+          <n1:ElementName>LC.emb.1</n1:ElementName>
+          <n1:InstanceID>LifecycleController.Embedded.1#LCAttributes.1#AutoBackup</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+        </n1:DCIM_LCEnumeration>
+      </wsman:Items>
+      <wsen:EnumerationContext/>
+      <wsman:EndOfSequence/>
+    </wsen:EnumerateResponse>
+  </s:Body>
+</s:Envelope>

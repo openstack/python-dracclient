@@ -1,0 +1,1397 @@
+<s:Envelope xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_iDRACCardInteger"
+            xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+            xmlns:wsen="http://schemas.xmlsoap.org/ws/2004/09/enumeration"
+            xmlns:wsman="http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.xmlsoap.org/ws/2004/09/enumeration/EnumerateResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:1b114e09-e635-4ad9-90dd-3045421499a7</wsa:RelatesTo>
+    <wsa:MessageID>uuid:a92483bc-40aa-10aa-8221-de7e4e771814</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <wsen:EnumerateResponse>
+      <wsman:Items>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>NIC MTU</n1:AttributeDisplayName>
+          <n1:AttributeName>MTU</n1:AttributeName>
+          <n1:CurrentValue>1500</n1:CurrentValue>
+          <n1:DefaultValue>1500</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>58</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>NIC Information</n1:GroupDisplayName>
+          <n1:GroupID>NIC.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#NIC.1#MTU</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>576</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>1500</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>VLAN Priority</n1:AttributeDisplayName>
+          <n1:AttributeName>VLanPriority</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>64</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>NIC Information</n1:GroupDisplayName>
+          <n1:GroupID>NIC.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#NIC.1#VLanPriority</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>7</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>VLAN ID</n1:AttributeDisplayName>
+          <n1:AttributeName>VLanID</n1:AttributeName>
+          <n1:CurrentValue>1</n1:CurrentValue>
+          <n1:DefaultValue>1</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>65</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>NIC Information</n1:GroupDisplayName>
+          <n1:GroupID>NIC.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#NIC.1#VLanID</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>4096</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Shared to Dedicated Failover Timeout</n1:AttributeDisplayName>
+          <n1:AttributeName>DedicatedNICScanTime</n1:AttributeName>
+          <n1:CurrentValue>5</n1:CurrentValue>
+          <n1:DefaultValue>5</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>67</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>NIC Information</n1:GroupDisplayName>
+          <n1:GroupID>NIC.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#NIC.1#DedicatedNICScanTime</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>5</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>255</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Dedicated to Shared Failover Timeout</n1:AttributeDisplayName>
+          <n1:AttributeName>SharedNICScanTime</n1:AttributeName>
+          <n1:CurrentValue>30</n1:CurrentValue>
+          <n1:DefaultValue>30</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>68</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>NIC Information</n1:GroupDisplayName>
+          <n1:GroupID>NIC.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#NIC.1#SharedNICScanTime</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>5</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>255</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>IPV6 Link Local Prefix Length</n1:AttributeDisplayName>
+          <n1:AttributeName>PrefixLength</n1:AttributeName>
+          <n1:CurrentValue>64</n1:CurrentValue>
+          <n1:DefaultValue>64</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>157</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>IPv6 Information</n1:GroupDisplayName>
+          <n1:GroupID>IPv6.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#IPv6.1#PrefixLength</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>128</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Total Number of Extended IP</n1:AttributeDisplayName>
+          <n1:AttributeName>IPV6NumOfExtAddress</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>160</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>IPv6 Information</n1:GroupDisplayName>
+          <n1:GroupID>IPv6.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#IPv6.1#IPV6NumOfExtAddress</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>255</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>IPV6 Link Local Prefix Length</n1:AttributeDisplayName>
+          <n1:AttributeName>PrefixLength</n1:AttributeName>
+          <n1:CurrentValue>64</n1:CurrentValue>
+          <n1:DefaultValue>64</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>193</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>IPv6 Static Information</n1:GroupDisplayName>
+          <n1:GroupID>IPv6Static.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#IPv6Static.1#PrefixLength</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>128</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>User Admin Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>253</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>iDRAC Users</n1:GroupDisplayName>
+          <n1:GroupID>Users.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Users.1#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>User Admin Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>511</n1:CurrentValue>
+          <n1:DefaultValue>511</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>263</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>iDRAC Users</n1:GroupDisplayName>
+          <n1:GroupID>Users.2</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Users.2#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>User Admin Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>273</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>iDRAC Users</n1:GroupDisplayName>
+          <n1:GroupID>Users.3</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Users.3#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>User Admin Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>313</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>283</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>iDRAC Users</n1:GroupDisplayName>
+          <n1:GroupID>Users.4</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Users.4#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>User Admin Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>293</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>iDRAC Users</n1:GroupDisplayName>
+          <n1:GroupID>Users.5</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Users.5#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>User Admin Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>303</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>iDRAC Users</n1:GroupDisplayName>
+          <n1:GroupID>Users.6</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Users.6#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>User Admin Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>313</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>iDRAC Users</n1:GroupDisplayName>
+          <n1:GroupID>Users.7</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Users.7#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>User Admin Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>323</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>iDRAC Users</n1:GroupDisplayName>
+          <n1:GroupID>Users.8</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Users.8#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>User Admin Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>333</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>iDRAC Users</n1:GroupDisplayName>
+          <n1:GroupID>Users.9</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Users.9#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>User Admin Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>343</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>iDRAC Users</n1:GroupDisplayName>
+          <n1:GroupID>Users.10</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Users.10#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>User Admin Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>353</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>iDRAC Users</n1:GroupDisplayName>
+          <n1:GroupID>Users.11</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Users.11#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>User Admin Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>363</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>iDRAC Users</n1:GroupDisplayName>
+          <n1:GroupID>Users.12</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Users.12#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>User Admin Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>373</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>iDRAC Users</n1:GroupDisplayName>
+          <n1:GroupID>Users.13</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Users.13#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>User Admin Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>383</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>iDRAC Users</n1:GroupDisplayName>
+          <n1:GroupID>Users.14</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Users.14#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>User Admin Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>393</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>iDRAC Users</n1:GroupDisplayName>
+          <n1:GroupID>Users.15</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Users.15#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>User Admin Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>403</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>iDRAC Users</n1:GroupDisplayName>
+          <n1:GroupID>Users.16</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Users.16#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>SMTP Port</n1:AttributeDisplayName>
+          <n1:AttributeName>SMTPPort</n1:AttributeName>
+          <n1:CurrentValue>25</n1:CurrentValue>
+          <n1:DefaultValue>25</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>542</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>RAC Remote Hosts</n1:GroupDisplayName>
+          <n1:GroupID>RemoteHosts.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#RemoteHosts.1#SMTPPort</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>65535</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Telnet Port</n1:AttributeDisplayName>
+          <n1:AttributeName>Port</n1:AttributeName>
+          <n1:CurrentValue>23</n1:CurrentValue>
+          <n1:DefaultValue>23</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>552</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Telnet Configuration</n1:GroupDisplayName>
+          <n1:GroupID>Telnet.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Telnet.1#Port</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>65535</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Timeout</n1:AttributeDisplayName>
+          <n1:AttributeName>Timeout</n1:AttributeName>
+          <n1:CurrentValue>1800</n1:CurrentValue>
+          <n1:DefaultValue>1800</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>553</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Telnet Configuration</n1:GroupDisplayName>
+          <n1:GroupID>Telnet.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Telnet.1#Timeout</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>60</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>10800</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>SSH Port</n1:AttributeDisplayName>
+          <n1:AttributeName>Port</n1:AttributeName>
+          <n1:CurrentValue>22</n1:CurrentValue>
+          <n1:DefaultValue>22</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>562</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>RAC SSH</n1:GroupDisplayName>
+          <n1:GroupID>SSH.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#SSH.1#Port</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>65535</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>SSH Idle Timeout</n1:AttributeDisplayName>
+          <n1:AttributeName>Timeout</n1:AttributeName>
+          <n1:CurrentValue>1800</n1:CurrentValue>
+          <n1:DefaultValue>1800</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>563</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>RAC SSH</n1:GroupDisplayName>
+          <n1:GroupID>SSH.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#SSH.1#Timeout</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>60</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>10800</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Http Port</n1:AttributeDisplayName>
+          <n1:AttributeName>HttpPort</n1:AttributeName>
+          <n1:CurrentValue>80</n1:CurrentValue>
+          <n1:DefaultValue>80</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>572</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>RAC Web Server</n1:GroupDisplayName>
+          <n1:GroupID>WebServer.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#WebServer.1#HttpPort</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>65535</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Https Port</n1:AttributeDisplayName>
+          <n1:AttributeName>HttpsPort</n1:AttributeName>
+          <n1:CurrentValue>443</n1:CurrentValue>
+          <n1:DefaultValue>443</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>573</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>RAC Web Server</n1:GroupDisplayName>
+          <n1:GroupID>WebServer.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#WebServer.1#HttpsPort</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>65535</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Timeout</n1:AttributeDisplayName>
+          <n1:AttributeName>Timeout</n1:AttributeName>
+          <n1:CurrentValue>1800</n1:CurrentValue>
+          <n1:DefaultValue>1800</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>574</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>RAC Web Server</n1:GroupDisplayName>
+          <n1:GroupID>WebServer.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#WebServer.1#Timeout</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>60</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>10800</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Max Number Of Sessions</n1:AttributeDisplayName>
+          <n1:AttributeName>MaxNumberOfSessions</n1:AttributeName>
+          <n1:CurrentValue>8</n1:CurrentValue>
+          <n1:DefaultValue>8</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>578</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>RAC Web Server</n1:GroupDisplayName>
+          <n1:GroupID>WebServer.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#WebServer.1#MaxNumberOfSessions</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>8</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Max Sessions</n1:AttributeDisplayName>
+          <n1:AttributeName>MaxSessions</n1:AttributeName>
+          <n1:CurrentValue>6</n1:CurrentValue>
+          <n1:DefaultValue>6</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>585</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Virtual Console Configuration</n1:GroupDisplayName>
+          <n1:GroupID>VirtualConsole.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#VirtualConsole.1#MaxSessions</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>6</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>vKVM Port</n1:AttributeDisplayName>
+          <n1:AttributeName>Port</n1:AttributeName>
+          <n1:CurrentValue>5900</n1:CurrentValue>
+          <n1:DefaultValue>5900</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>586</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Virtual Console Configuration</n1:GroupDisplayName>
+          <n1:GroupID>VirtualConsole.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#VirtualConsole.1#Port</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>65535</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Timeout</n1:AttributeDisplayName>
+          <n1:AttributeName>Timeout</n1:AttributeName>
+          <n1:CurrentValue>1800</n1:CurrentValue>
+          <n1:DefaultValue>1800</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>587</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Virtual Console Configuration</n1:GroupDisplayName>
+          <n1:GroupID>VirtualConsole.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#VirtualConsole.1#Timeout</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>60</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>10800</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Remote Timeout</n1:AttributeDisplayName>
+          <n1:AttributeName>Timeout</n1:AttributeName>
+          <n1:CurrentValue>60</n1:CurrentValue>
+          <n1:DefaultValue>60</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>592</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Remote Racadm Configuration</n1:GroupDisplayName>
+          <n1:GroupID>Racadm.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Racadm.1#Timeout</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>10</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>1920</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Serial Console Idle Timeout</n1:AttributeDisplayName>
+          <n1:AttributeName>IdleTimeout</n1:AttributeName>
+          <n1:CurrentValue>300</n1:CurrentValue>
+          <n1:DefaultValue>300</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>603</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Serial Configuration</n1:GroupDisplayName>
+          <n1:GroupID>Serial.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Serial.1#IdleTimeout</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>60</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>1920</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Serial History Size</n1:AttributeDisplayName>
+          <n1:AttributeName>HistorySize</n1:AttributeName>
+          <n1:CurrentValue>8192</n1:CurrentValue>
+          <n1:DefaultValue>8192</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>605</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Serial Configuration</n1:GroupDisplayName>
+          <n1:GroupID>Serial.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Serial.1#HistorySize</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>8192</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>IPMI SOL Accumulate Interval</n1:AttributeDisplayName>
+          <n1:AttributeName>AccumulateInterval</n1:AttributeName>
+          <n1:CurrentValue>10</n1:CurrentValue>
+          <n1:DefaultValue>10</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>644</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>IPMI SOL</n1:GroupDisplayName>
+          <n1:GroupID>IPMISOL.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#IPMISOL.1#AccumulateInterval</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>255</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>IPMI SOL Send Threshold</n1:AttributeDisplayName>
+          <n1:AttributeName>SendThreshold</n1:AttributeName>
+          <n1:CurrentValue>255</n1:CurrentValue>
+          <n1:DefaultValue>255</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>645</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>IPMI SOL</n1:GroupDisplayName>
+          <n1:GroupID>IPMISOL.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#IPMISOL.1#SendThreshold</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>255</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>IPMI SOL Retry Count</n1:AttributeDisplayName>
+          <n1:AttributeName>RetryCount</n1:AttributeName>
+          <n1:CurrentValue>7</n1:CurrentValue>
+          <n1:DefaultValue>255</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>646</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>IPMI SOL</n1:GroupDisplayName>
+          <n1:GroupID>IPMISOL.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#IPMISOL.1#RetryCount</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>255</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>IPMI SOL Retry Interval</n1:AttributeDisplayName>
+          <n1:AttributeName>RetryInterval</n1:AttributeName>
+          <n1:CurrentValue>48</n1:CurrentValue>
+          <n1:DefaultValue>255</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>647</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>IPMI SOL</n1:GroupDisplayName>
+          <n1:GroupID>IPMISOL.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#IPMISOL.1#RetryInterval</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>255</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Discovery Port</n1:AttributeDisplayName>
+          <n1:AttributeName>DiscoveryPort</n1:AttributeName>
+          <n1:CurrentValue>161</n1:CurrentValue>
+          <n1:DefaultValue>161</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>705</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>SNMP Configuration</n1:GroupDisplayName>
+          <n1:GroupID>SNMP.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#SNMP.1#DiscoveryPort</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>65535</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Alert Port</n1:AttributeDisplayName>
+          <n1:AttributeName>AlertPort</n1:AttributeName>
+          <n1:CurrentValue>162</n1:CurrentValue>
+          <n1:DefaultValue>162</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>706</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>SNMP Configuration</n1:GroupDisplayName>
+          <n1:GroupID>SNMP.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#SNMP.1#AlertPort</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>65535</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Tune IP Block Fail Count</n1:AttributeDisplayName>
+          <n1:AttributeName>FailCount</n1:AttributeName>
+          <n1:CurrentValue>3</n1:CurrentValue>
+          <n1:DefaultValue>3</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>731</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>IP Blocking</n1:GroupDisplayName>
+          <n1:GroupID>IPBlocking.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#IPBlocking.1#FailCount</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>2</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>16</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Tune IP Block Fail Window</n1:AttributeDisplayName>
+          <n1:AttributeName>FailWindow</n1:AttributeName>
+          <n1:CurrentValue>60</n1:CurrentValue>
+          <n1:DefaultValue>60</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>732</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>IP Blocking</n1:GroupDisplayName>
+          <n1:GroupID>IPBlocking.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#IPBlocking.1#FailWindow</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>10</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>65535</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Tune IP Block Penalty Time</n1:AttributeDisplayName>
+          <n1:AttributeName>PenaltyTime</n1:AttributeName>
+          <n1:CurrentValue>600</n1:CurrentValue>
+          <n1:DefaultValue>600</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>733</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>IP Blocking</n1:GroupDisplayName>
+          <n1:GroupID>IPBlocking.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#IPBlocking.1#PenaltyTime</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>2</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>65535</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Tune Time Zone Offset</n1:AttributeDisplayName>
+          <n1:AttributeName>TimeZoneOffset</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>751</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Time Zone Configuration Information</n1:GroupDisplayName>
+          <n1:GroupID>Time.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Time.1#TimeZoneOffset</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>-43200</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>46800</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Tune Day Light Offset</n1:AttributeDisplayName>
+          <n1:AttributeName>DaylightOffset</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>752</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Time Zone Configuration Information</n1:GroupDisplayName>
+          <n1:GroupID>Time.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#Time.1#DaylightOffset</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>60</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>LDAP Port</n1:AttributeDisplayName>
+          <n1:AttributeName>Port</n1:AttributeName>
+          <n1:CurrentValue>636</n1:CurrentValue>
+          <n1:DefaultValue>636</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1083</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>LDAP</n1:GroupDisplayName>
+          <n1:GroupID>LDAP.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#LDAP.1#Port</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>65535</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Active Directory Authentication Timeout</n1:AttributeDisplayName>
+          <n1:AttributeName>AuthTimeout</n1:AttributeName>
+          <n1:CurrentValue>120</n1:CurrentValue>
+          <n1:DefaultValue>120</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>774</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Active Directory</n1:GroupDisplayName>
+          <n1:GroupID>ActiveDirectory.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#ActiveDirectory.1#AuthTimeout</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>15</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>300</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>AD Group Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>803</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>AD Group Configuration</n1:GroupDisplayName>
+          <n1:GroupID>ADGroup.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#ADGroup.1#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>AD Group Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>813</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>AD Group Configuration</n1:GroupDisplayName>
+          <n1:GroupID>ADGroup.2</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#ADGroup.2#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>AD Group Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>823</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>AD Group Configuration</n1:GroupDisplayName>
+          <n1:GroupID>ADGroup.3</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#ADGroup.3#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>AD Group Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>833</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>ADGroup Configuration</n1:GroupDisplayName>
+          <n1:GroupID>ADGroup.4</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#ADGroup.4#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>AD Group Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>843</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>ADGroup Configuration</n1:GroupDisplayName>
+          <n1:GroupID>ADGroup.5</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#ADGroup.5#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Sys Log Port</n1:AttributeDisplayName>
+          <n1:AttributeName>Port</n1:AttributeName>
+          <n1:CurrentValue>514</n1:CurrentValue>
+          <n1:DefaultValue>514</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1072</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Sys Log</n1:GroupDisplayName>
+          <n1:GroupID>SysLog.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#SysLog.1#Port</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>65535</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Power Log Interval</n1:AttributeDisplayName>
+          <n1:AttributeName>PowerLogInterval</n1:AttributeName>
+          <n1:CurrentValue>5</n1:CurrentValue>
+          <n1:DefaultValue>5</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1077</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Sys Log</n1:GroupDisplayName>
+          <n1:GroupID>SysLog.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#SysLog.1#PowerLogInterval</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>1440</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>LDAP Group Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1102</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>LDAP Group</n1:GroupDisplayName>
+          <n1:GroupID>LDAPRoleGroup.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#LDAPRoleGroup.1#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>LDAP Group Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1112</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>LDAP Group</n1:GroupDisplayName>
+          <n1:GroupID>LDAPRoleGroup.2</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#LDAPRoleGroup.2#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>LDAP Group Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1122</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>LDAP Group</n1:GroupDisplayName>
+          <n1:GroupID>LDAPRoleGroup.3</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#LDAPRoleGroup.3#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>LDAP Group Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1132</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>LDAP Group</n1:GroupDisplayName>
+          <n1:GroupID>LDAPRoleGroup.4</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#LDAPRoleGroup.4#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>LDAP Group Privilege</n1:AttributeDisplayName>
+          <n1:AttributeName>Privilege</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1142</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>LDAP Group</n1:GroupDisplayName>
+          <n1:GroupID>LDAPRoleGroup.5</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#LDAPRoleGroup.5#Privilege</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>511</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Destination Number</n1:AttributeDisplayName>
+          <n1:AttributeName>DestinationNum</n1:AttributeName>
+          <n1:CurrentValue>1</n1:CurrentValue>
+          <n1:DefaultValue>1</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1151</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>SNMP Trap IPv6</n1:GroupDisplayName>
+          <n1:GroupID>SNMPTrapIPv6.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#SNMPTrapIPv6.1#DestinationNum</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>4</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Destination Number</n1:AttributeDisplayName>
+          <n1:AttributeName>DestinationNum</n1:AttributeName>
+          <n1:CurrentValue>1</n1:CurrentValue>
+          <n1:DefaultValue>1</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1161</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>SNMP Trap IPv6</n1:GroupDisplayName>
+          <n1:GroupID>SNMPTrapIPv6.2</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#SNMPTrapIPv6.2#DestinationNum</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>4</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Destination Number</n1:AttributeDisplayName>
+          <n1:AttributeName>DestinationNum</n1:AttributeName>
+          <n1:CurrentValue>1</n1:CurrentValue>
+          <n1:DefaultValue>1</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1171</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>SNMP Trap IPv6</n1:GroupDisplayName>
+          <n1:GroupID>SNMPTrapIPv6.3</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#SNMPTrapIPv6.3#DestinationNum</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>4</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Destination Number</n1:AttributeDisplayName>
+          <n1:AttributeName>DestinationNum</n1:AttributeName>
+          <n1:CurrentValue>1</n1:CurrentValue>
+          <n1:DefaultValue>1</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1181</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>SNMP Trap IPv6</n1:GroupDisplayName>
+          <n1:GroupID>SNMPTrapIPv6.4</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#SNMPTrapIPv6.4#DestinationNum</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>4</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Destination Number</n1:AttributeDisplayName>
+          <n1:AttributeName>DestinationNum</n1:AttributeName>
+          <n1:CurrentValue>1</n1:CurrentValue>
+          <n1:DefaultValue>1</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1191</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>SNMP Trap IPv4</n1:GroupDisplayName>
+          <n1:GroupID>SNMPTrapIPv4.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#SNMPTrapIPv4.1#DestinationNum</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>4</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Destination Number</n1:AttributeDisplayName>
+          <n1:AttributeName>DestinationNum</n1:AttributeName>
+          <n1:CurrentValue>1</n1:CurrentValue>
+          <n1:DefaultValue>1</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1201</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>SNMP Trap IPv4</n1:GroupDisplayName>
+          <n1:GroupID>SNMPTrapIPv4.2</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#SNMPTrapIPv4.2#DestinationNum</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>4</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Destination Number</n1:AttributeDisplayName>
+          <n1:AttributeName>DestinationNum</n1:AttributeName>
+          <n1:CurrentValue>1</n1:CurrentValue>
+          <n1:DefaultValue>1</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1211</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>SNMP Trap IPv4</n1:GroupDisplayName>
+          <n1:GroupID>SNMPTrapIPv4.3</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#SNMPTrapIPv4.3#DestinationNum</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>4</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Destination Number</n1:AttributeDisplayName>
+          <n1:AttributeName>DestinationNum</n1:AttributeName>
+          <n1:CurrentValue>1</n1:CurrentValue>
+          <n1:DefaultValue>1</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1221</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>SNMP Trap IPv4</n1:GroupDisplayName>
+          <n1:GroupID>SNMPTrapIPv4.4</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#SNMPTrapIPv4.4#DestinationNum</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>4</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>SNMP V3 UserID</n1:AttributeDisplayName>
+          <n1:AttributeName>SNMPv3UserID</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1604</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>SNMP Alert Destination</n1:GroupDisplayName>
+          <n1:GroupID>SNMPAlert.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#SNMPAlert.1#SNMPv3UserID</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>16</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>SNMP V3 UserID</n1:AttributeDisplayName>
+          <n1:AttributeName>SNMPv3UserID</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1604</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>SNMP Alert Destination</n1:GroupDisplayName>
+          <n1:GroupID>SNMPAlert.2</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#SNMPAlert.2#SNMPv3UserID</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>16</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>SNMP V3 UserID</n1:AttributeDisplayName>
+          <n1:AttributeName>SNMPv3UserID</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1604</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>SNMP Alert Destination</n1:GroupDisplayName>
+          <n1:GroupID>SNMPAlert.3</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#SNMPAlert.3#SNMPv3UserID</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>16</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>SNMP V3 UserID</n1:AttributeDisplayName>
+          <n1:AttributeName>SNMPv3UserID</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1610</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>SNMP Alert Destination</n1:GroupDisplayName>
+          <n1:GroupID>SNMPAlert.4</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#SNMPAlert.4#SNMPv3UserID</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>16</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>SNMP V3 UserID</n1:AttributeDisplayName>
+          <n1:AttributeName>SNMPv3UserID</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1612</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>SNMP Alert Destination</n1:GroupDisplayName>
+          <n1:GroupID>SNMPAlert.5</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#SNMPAlert.5#SNMPv3UserID</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>16</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>SNMP V3 UserID</n1:AttributeDisplayName>
+          <n1:AttributeName>SNMPv3UserID</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1614</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>SNMP Alert Destination</n1:GroupDisplayName>
+          <n1:GroupID>SNMPAlert.6</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#SNMPAlert.6#SNMPv3UserID</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>16</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>SNMP V3 UserID</n1:AttributeDisplayName>
+          <n1:AttributeName>SNMPv3UserID</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1616</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>SNMP Alert Destination</n1:GroupDisplayName>
+          <n1:GroupID>SNMPAlert.7</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#SNMPAlert.7#SNMPv3UserID</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>16</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>SNMP V3 UserID</n1:AttributeDisplayName>
+          <n1:AttributeName>SNMPv3UserID</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:DefaultValue>0</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1618</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>SNMP Alert Destination</n1:GroupDisplayName>
+          <n1:GroupID>SNMPAlert.8</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#SNMPAlert.8#SNMPv3UserID</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>16</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>NTP Maximum Distance</n1:AttributeDisplayName>
+          <n1:AttributeName>NTPMaxDist</n1:AttributeName>
+          <n1:CurrentValue>16</n1:CurrentValue>
+          <n1:DefaultValue>16</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>2005</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>NTP Configuration Group</n1:GroupDisplayName>
+          <n1:GroupID>NTPConfigGroup.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#NTPConfigGroup.1#NTPMaxDist</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>128</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>System reset time on watchdog alert</n1:AttributeDisplayName>
+          <n1:AttributeName>WatchdogResetTime</n1:AttributeName>
+          <n1:CurrentValue>480</n1:CurrentValue>
+          <n1:DefaultValue>480</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>2153</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>ServiceModule</n1:GroupDisplayName>
+          <n1:GroupID>ServiceModule.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#ServiceModule.1#WatchdogResetTime</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>60</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>720</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Port</n1:AttributeDisplayName>
+          <n1:AttributeName>Port</n1:AttributeName>
+          <n1:CurrentValue>5901</n1:CurrentValue>
+          <n1:DefaultValue>5901</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>2164</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>RAC VNC Server</n1:GroupDisplayName>
+          <n1:GroupID>VNCServer.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#VNCServer.1#Port</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>1024</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>65535</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Timeout</n1:AttributeDisplayName>
+          <n1:AttributeName>Timeout</n1:AttributeName>
+          <n1:CurrentValue>300</n1:CurrentValue>
+          <n1:DefaultValue>300</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>2166</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>RAC VNC Server</n1:GroupDisplayName>
+          <n1:GroupID>VNCServer.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#VNCServer.1#Timeout</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>60</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>10800</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Delivery Retry Attempts</n1:AttributeDisplayName>
+          <n1:AttributeName>DeliveryRetryAttempts</n1:AttributeName>
+          <n1:CurrentValue>3</n1:CurrentValue>
+          <n1:DefaultValue>3</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>2240</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>RedfishEventing</n1:GroupDisplayName>
+          <n1:GroupID>RedfishEventing.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#RedfishEventing.1#DeliveryRetryAttempts</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>5</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+        <n1:DCIM_iDRACCardInteger>
+          <n1:AttributeDisplayName>Delivery Retry Interval In Seconds</n1:AttributeDisplayName>
+          <n1:AttributeName>DeliveryRetryIntervalInSeconds</n1:AttributeName>
+          <n1:CurrentValue>30</n1:CurrentValue>
+          <n1:DefaultValue>30</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>2241</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>RedfishEventing</n1:GroupDisplayName>
+          <n1:GroupID>RedfishEventing.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.1#RedfishEventing.1#DeliveryRetryIntervalInSeconds</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>5</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>60</n1:UpperBound>
+        </n1:DCIM_iDRACCardInteger>
+      </wsman:Items>
+      <wsen:EnumerationContext/>
+      <wsman:EndOfSequence/>
+    </wsen:EnumerateResponse>
+  </s:Body>
+</s:Envelope>
