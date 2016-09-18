@@ -25,6 +25,7 @@ from dracclient.resources import inventory
 from dracclient.resources import job
 from dracclient.resources import lifecycle_controller
 from dracclient.resources import raid
+from dracclient.resources import system
 from dracclient.resources import uris
 from dracclient import utils
 from dracclient import wsman
@@ -59,6 +60,7 @@ class DRACClient(object):
         self._lifecycle_cfg = lifecycle_controller.LCConfiguration(self.client)
         self._idrac_cfg = idrac_card.iDRACCardConfiguration(self.client)
         self._raid_mgmt = raid.RAIDManagement(self.client)
+        self._system_cfg = system.SystemConfiguration(self.client)
         self._inventory_mgmt = inventory.InventoryManagement(self.client)
 
     def get_power_state(self):
@@ -191,6 +193,19 @@ class DRACClient(object):
                  interface
         """
         return self._lifecycle_cfg.list_lifecycle_settings()
+
+    def list_system_settings(self):
+        """List the System configuration settings
+
+        :returns: a dictionary with the System settings using its instance id
+                  as key. The attributes are either SystemEnumerableAttribute,
+                  SystemStringAttribute or SystemIntegerAttribute objects.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        """
+        return self._system_cfg.list_system_settings()
 
     def list_jobs(self, only_unfinished=False):
         """Returns a list of jobs from the job queue

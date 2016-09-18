@@ -29,7 +29,7 @@ def load_wsman_xml(name):
     """Helper function to load a WSMan XML response from a file."""
 
     with open(os.path.join(os.path.dirname(__file__), 'wsman_mocks',
-              '%s.xml' % name), 'r') as f:
+                           '%s.xml' % name), 'r') as f:
         xml_body = f.read()
 
     return xml_body
@@ -201,5 +201,17 @@ RAIDInvocations = {
             'error': load_wsman_xml(
                 'raid_service-invoke-convert_physical_disks-error'),
         }
+    }
+}
+
+SystemEnumerations = {
+    uris.DCIM_SystemEnumeration: {
+        'ok': load_wsman_xml('system_enumeration-enum-ok'),
+    },
+    uris.DCIM_SystemString: {
+        'ok': load_wsman_xml('system_string-enum-ok'),
+    },
+    uris.DCIM_SystemInteger: {
+        'ok': load_wsman_xml('system_integer-enum-ok'),
     }
 }

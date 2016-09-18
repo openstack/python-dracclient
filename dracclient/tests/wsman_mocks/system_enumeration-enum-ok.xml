@@ -1,0 +1,294 @@
+<s:Envelope xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_SystemEnumeration"
+      xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+      xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+      xmlns:wsen="http://schemas.xmlsoap.org/ws/2004/09/enumeration"
+      xmlns:wsman="http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.xmlsoap.org/ws/2004/09/enumeration/EnumerateResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:f150770f-b5b7-4b08-9572-b5225e7c668b</wsa:RelatesTo>
+    <wsa:MessageID>uuid:7c41ce96-41ee-11ee-a839-de7e4e771814</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <wsen:EnumerateResponse>
+      <wsman:Items>
+        <n1:DCIM_SystemEnumeration>
+          <n1:AttributeDisplayName>Power Cap Setting</n1:AttributeDisplayName>
+          <n1:AttributeName>PowerCapSetting</n1:AttributeName>
+          <n1:CurrentValue>Disabled</n1:CurrentValue>
+          <n1:DefaultValue>Disabled</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1401</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Server Power</n1:GroupDisplayName>
+          <n1:GroupID>ServerPwr.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#ServerPwr.1#PowerCapSetting</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+        </n1:DCIM_SystemEnumeration>
+        <n1:DCIM_SystemEnumeration>
+          <n1:AttributeDisplayName>Power Supply Redundancy Policy</n1:AttributeDisplayName>
+          <n1:AttributeName>PSRedPolicy</n1:AttributeName>
+          <n1:CurrentValue>Input Power Redundant</n1:CurrentValue>
+          <n1:DefaultValue>Not Redundant</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1405</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Server Power</n1:GroupDisplayName>
+          <n1:GroupID>ServerPwr.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#ServerPwr.1#PSRedPolicy</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Not Redundant</n1:PossibleValues>
+          <n1:PossibleValues>Input Power Redundant</n1:PossibleValues>
+        </n1:DCIM_SystemEnumeration>
+        <n1:DCIM_SystemEnumeration>
+          <n1:AttributeDisplayName>Power Supply PFC Enable</n1:AttributeDisplayName>
+          <n1:AttributeName>PSPFCEnabled</n1:AttributeName>
+          <n1:CurrentValue>Disabled</n1:CurrentValue>
+          <n1:DefaultValue>Disabled</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1406</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Server Power</n1:GroupDisplayName>
+          <n1:GroupID>ServerPwr.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#ServerPwr.1#PSPFCEnabled</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+        </n1:DCIM_SystemEnumeration>
+        <n1:DCIM_SystemEnumeration>
+          <n1:AttributeDisplayName>Power Supply Rapid On Enable</n1:AttributeDisplayName>
+          <n1:AttributeName>PSRapidOn</n1:AttributeName>
+          <n1:CurrentValue>Disabled</n1:CurrentValue>
+          <n1:DefaultValue>Enabled</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1408</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Server Power</n1:GroupDisplayName>
+          <n1:GroupID>ServerPwr.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#ServerPwr.1#PSRapidOn</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+        </n1:DCIM_SystemEnumeration>
+        <n1:DCIM_SystemEnumeration>
+          <n1:AttributeDisplayName>Rapid on Primary PSU</n1:AttributeDisplayName>
+          <n1:AttributeName>RapidOnPrimaryPSU</n1:AttributeName>
+          <n1:CurrentValue>PSU1</n1:CurrentValue>
+          <n1:DefaultValue>PSU1</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1411</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Server Power</n1:GroupDisplayName>
+          <n1:GroupID>ServerPwr.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#ServerPwr.1#RapidOnPrimaryPSU</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>PSU1</n1:PossibleValues>
+          <n1:PossibleValues>PSU2</n1:PossibleValues>
+        </n1:DCIM_SystemEnumeration>
+        <n1:DCIM_SystemEnumeration>
+          <n1:AttributeDisplayName>LCD Configuration</n1:AttributeDisplayName>
+          <n1:AttributeName>Configuration</n1:AttributeName>
+          <n1:CurrentValue>Service Tag</n1:CurrentValue>
+          <n1:DefaultValue>Service Tag</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1432</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>LCD</n1:GroupDisplayName>
+          <n1:GroupID>LCD.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#LCD.1#Configuration</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>User Defined</n1:PossibleValues>
+          <n1:PossibleValues>Model Name</n1:PossibleValues>
+          <n1:PossibleValues>None</n1:PossibleValues>
+          <n1:PossibleValues>iDRAC IPv4 Address</n1:PossibleValues>
+          <n1:PossibleValues>iDRAC MAC Address</n1:PossibleValues>
+          <n1:PossibleValues>OS System Name</n1:PossibleValues>
+          <n1:PossibleValues>Service Tag</n1:PossibleValues>
+          <n1:PossibleValues>IPv6 Address</n1:PossibleValues>
+          <n1:PossibleValues>Ambient Temperature</n1:PossibleValues>
+          <n1:PossibleValues>System Watts</n1:PossibleValues>
+          <n1:PossibleValues>Asset Tag</n1:PossibleValues>
+        </n1:DCIM_SystemEnumeration>
+        <n1:DCIM_SystemEnumeration>
+          <n1:AttributeDisplayName>vConsole Indication</n1:AttributeDisplayName>
+          <n1:AttributeName>vConsoleIndication</n1:AttributeName>
+          <n1:CurrentValue>Disabled</n1:CurrentValue>
+          <n1:DefaultValue>Disabled</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1434</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>LCD</n1:GroupDisplayName>
+          <n1:GroupID>LCD.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#LCD.1#vConsoleIndication</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+        </n1:DCIM_SystemEnumeration>
+        <n1:DCIM_SystemEnumeration>
+          <n1:AttributeDisplayName>System Watt Qualifier</n1:AttributeDisplayName>
+          <n1:AttributeName>QualifierWatt</n1:AttributeName>
+          <n1:CurrentValue>Watts</n1:CurrentValue>
+          <n1:DefaultValue>Watts</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1435</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>LCD</n1:GroupDisplayName>
+          <n1:GroupID>LCD.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#LCD.1#QualifierWatt</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Watts</n1:PossibleValues>
+          <n1:PossibleValues>BTU/hr</n1:PossibleValues>
+        </n1:DCIM_SystemEnumeration>
+        <n1:DCIM_SystemEnumeration>
+          <n1:AttributeDisplayName>Ambient Temperature Qualifier</n1:AttributeDisplayName>
+          <n1:AttributeName>QualifierTemp</n1:AttributeName>
+          <n1:CurrentValue>F</n1:CurrentValue>
+          <n1:DefaultValue>C</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1436</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>LCD</n1:GroupDisplayName>
+          <n1:GroupID>LCD.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#LCD.1#QualifierTemp</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>C</n1:PossibleValues>
+          <n1:PossibleValues>F</n1:PossibleValues>
+        </n1:DCIM_SystemEnumeration>
+        <n1:DCIM_SystemEnumeration>
+          <n1:AttributeDisplayName>Fresh Air Compliant Configuration</n1:AttributeDisplayName>
+          <n1:AttributeName>FreshAirCompliantConfiguration</n1:AttributeName>
+          <n1:CurrentValue>Yes</n1:CurrentValue>
+          <n1:DefaultValue>Yes</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1441</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Thermal Configuration</n1:GroupDisplayName>
+          <n1:GroupID>ThermalConfig.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#ThermalConfig.1#FreshAirCompliantConfiguration</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Not Applicable</n1:PossibleValues>
+          <n1:PossibleValues>Yes</n1:PossibleValues>
+          <n1:PossibleValues>No</n1:PossibleValues>
+        </n1:DCIM_SystemEnumeration>
+        <n1:DCIM_SystemEnumeration>
+          <n1:AttributeDisplayName>Thermal Profile</n1:AttributeDisplayName>
+          <n1:AttributeName>ThermalProfile</n1:AttributeName>
+          <n1:CurrentValue>Maximum Performance</n1:CurrentValue>
+          <n1:DefaultValue>Default Thermal Profile Settings</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1470</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Thermal Settings</n1:GroupDisplayName>
+          <n1:GroupID>ThermalSettings.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#ThermalSettings.1#ThermalProfile</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Default Thermal Profile Settings</n1:PossibleValues>
+          <n1:PossibleValues>Maximum Performance</n1:PossibleValues>
+          <n1:PossibleValues>Minimum Power</n1:PossibleValues>
+        </n1:DCIM_SystemEnumeration>
+        <n1:DCIM_SystemEnumeration>
+          <n1:AttributeDisplayName>Fan Speed Offset</n1:AttributeDisplayName>
+          <n1:AttributeName>FanSpeedOffset</n1:AttributeName>
+          <n1:CurrentValue>Off</n1:CurrentValue>
+          <n1:DefaultValue>Off</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1472</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Thermal Settings</n1:GroupDisplayName>
+          <n1:GroupID>ThermalSettings.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#ThermalSettings.1#FanSpeedOffset</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Off</n1:PossibleValues>
+          <n1:PossibleValues>Low Fan Speed</n1:PossibleValues>
+          <n1:PossibleValues>High Fan Speed</n1:PossibleValues>
+          <n1:PossibleValues>Medium Fan Speed</n1:PossibleValues>
+          <n1:PossibleValues>Max Fan Speed</n1:PossibleValues>
+        </n1:DCIM_SystemEnumeration>
+        <n1:DCIM_SystemEnumeration>
+          <n1:AttributeDisplayName>Fan Speed Response for Third-Party PCI Cards</n1:AttributeDisplayName>
+          <n1:AttributeName>ThirdPartyPCIFanResponse</n1:AttributeName>
+          <n1:CurrentValue>Enabled</n1:CurrentValue>
+          <n1:DefaultValue>Enabled</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1480</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Thermal Settings</n1:GroupDisplayName>
+          <n1:GroupID>ThermalSettings.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#ThermalSettings.1#ThirdPartyPCIFanResponse</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Disabled</n1:PossibleValues>
+          <n1:PossibleValues>Enabled</n1:PossibleValues>
+        </n1:DCIM_SystemEnumeration>
+        <n1:DCIM_SystemEnumeration>
+          <n1:AttributeDisplayName>Quick Sync Presence</n1:AttributeDisplayName>
+          <n1:AttributeName>Presence</n1:AttributeName>
+          <n1:CurrentValue>Not Supported</n1:CurrentValue>
+          <n1:DefaultValue>Not Supported</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>2300</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Quick Sync</n1:GroupDisplayName>
+          <n1:GroupID>QuickSync.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#QuickSync.1#Presence</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Not Supported</n1:PossibleValues>
+          <n1:PossibleValues>Absent</n1:PossibleValues>
+          <n1:PossibleValues>Present</n1:PossibleValues>
+        </n1:DCIM_SystemEnumeration>
+        <n1:DCIM_SystemEnumeration>
+          <n1:AttributeDisplayName>Backplane Bus Mode</n1:AttributeDisplayName>
+          <n1:AttributeName>BackplaneBusMode</n1:AttributeName>
+          <n1:CurrentValue>I2C</n1:CurrentValue>
+          <n1:DefaultValue>Unknown</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>2330</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Backplane</n1:GroupDisplayName>
+          <n1:GroupID>Backplane.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#Backplane.1#BackplaneBusMode</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Unknown</n1:PossibleValues>
+          <n1:PossibleValues>I2C</n1:PossibleValues>
+          <n1:PossibleValues>SGPIO</n1:PossibleValues>
+        </n1:DCIM_SystemEnumeration>
+        <n1:DCIM_SystemEnumeration>
+          <n1:AttributeDisplayName>LED State</n1:AttributeDisplayName>
+          <n1:AttributeName>ChassisLEDState</n1:AttributeName>
+          <n1:CurrentValue>Off</n1:CurrentValue>
+          <n1:DefaultValue>Unknown</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>2372</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Powerstate</n1:GroupDisplayName>
+          <n1:GroupID>ChassisPwrState.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#ChassisPwrState.1#ChassisLEDState</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>Unknown</n1:PossibleValues>
+          <n1:PossibleValues>Blinking</n1:PossibleValues>
+          <n1:PossibleValues>Off</n1:PossibleValues>
+        </n1:DCIM_SystemEnumeration>
+      </wsman:Items>
+      <wsen:EnumerationContext/>
+      <wsman:EndOfSequence/>
+    </wsen:EnumerateResponse>
+  </s:Body>
+</s:Envelope>

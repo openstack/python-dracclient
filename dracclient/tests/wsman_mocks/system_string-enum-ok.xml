@@ -1,0 +1,213 @@
+<s:Envelope xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_SystemString"
+	    xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+	    xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+	    xmlns:wsen="http://schemas.xmlsoap.org/ws/2004/09/enumeration"
+	    xmlns:wsman="http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd"
+	    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.xmlsoap.org/ws/2004/09/enumeration/EnumerateResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:2c1819b5-9c87-44ee-bde1-88e43cd73edd</wsa:RelatesTo>
+    <wsa:MessageID>uuid:7c734ea8-41ee-11ee-a83b-de7e4e771814</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <wsen:EnumerateResponse>
+      <wsman:Items>
+        <n1:DCIM_SystemString>
+          <n1:AttributeDisplayName>Active Power Cap Policy Name</n1:AttributeDisplayName>
+          <n1:AttributeName>ActivePolicyName</n1:AttributeName>
+          <n1:CurrentValue>iDRAC</n1:CurrentValue>
+          <n1:DefaultValue xsi:nil="true"/>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1410</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Server Power</n1:GroupDisplayName>
+          <n1:GroupID>ServerPwr.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#ServerPwr.1#ActivePolicyName</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>128</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+        </n1:DCIM_SystemString>
+        <n1:DCIM_SystemString>
+          <n1:AttributeDisplayName>Data Center Name</n1:AttributeDisplayName>
+          <n1:AttributeName>DataCenterName</n1:AttributeName>
+          <n1:CurrentValue xsi:nil="true"/>
+          <n1:DefaultValue xsi:nil="true"/>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1421</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Server Topology</n1:GroupDisplayName>
+          <n1:GroupID>ServerTopology.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#ServerTopology.1#DataCenterName</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:MaxLength>128</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+        </n1:DCIM_SystemString>
+        <n1:DCIM_SystemString>
+          <n1:AttributeDisplayName>Aisle Name</n1:AttributeDisplayName>
+          <n1:AttributeName>AisleName</n1:AttributeName>
+          <n1:CurrentValue xsi:nil="true"/>
+          <n1:DefaultValue xsi:nil="true"/>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1422</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Server Topology</n1:GroupDisplayName>
+          <n1:GroupID>ServerTopology.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#ServerTopology.1#AisleName</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:MaxLength>128</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+        </n1:DCIM_SystemString>
+        <n1:DCIM_SystemString>
+          <n1:AttributeDisplayName>Rack Name</n1:AttributeDisplayName>
+          <n1:AttributeName>RackName</n1:AttributeName>
+          <n1:CurrentValue xsi:nil="true"/>
+          <n1:DefaultValue xsi:nil="true"/>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1423</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Server Topology</n1:GroupDisplayName>
+          <n1:GroupID>ServerTopology.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#ServerTopology.1#RackName</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:MaxLength>128</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+        </n1:DCIM_SystemString>
+        <n1:DCIM_SystemString>
+          <n1:AttributeDisplayName>Room Name</n1:AttributeDisplayName>
+          <n1:AttributeName>RoomName</n1:AttributeName>
+          <n1:CurrentValue xsi:nil="true"/>
+          <n1:DefaultValue xsi:nil="true"/>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1428</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Server Topology</n1:GroupDisplayName>
+          <n1:GroupID>ServerTopology.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#ServerTopology.1#RoomName</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:MaxLength>128</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+        </n1:DCIM_SystemString>
+        <n1:DCIM_SystemString>
+          <n1:AttributeDisplayName>Current LCD Display String</n1:AttributeDisplayName>
+          <n1:AttributeName>CurrentDisplay</n1:AttributeName>
+          <n1:CurrentValue>ST: 1234567</n1:CurrentValue>
+          <n1:DefaultValue xsi:nil="true"/>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1431</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>LCD</n1:GroupDisplayName>
+          <n1:GroupID>LCD.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#LCD.1#CurrentDisplay</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>62</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+        </n1:DCIM_SystemString>
+        <n1:DCIM_SystemString>
+          <n1:AttributeDisplayName>User Defined String for LCD</n1:AttributeDisplayName>
+          <n1:AttributeName>UserDefinedString</n1:AttributeName>
+          <n1:CurrentValue xsi:nil="true"/>
+          <n1:DefaultValue xsi:nil="true"/>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1433</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>LCD</n1:GroupDisplayName>
+          <n1:GroupID>LCD.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#LCD.1#UserDefinedString</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:MaxLength>62</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+        </n1:DCIM_SystemString>
+        <n1:DCIM_SystemString>
+          <n1:AttributeDisplayName>Host Name</n1:AttributeDisplayName>
+          <n1:AttributeName>HostName</n1:AttributeName>
+          <n1:CurrentValue>test-host1-1-dc.ops.domain.net</n1:CurrentValue>
+          <n1:DefaultValue xsi:nil="true"/>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1450</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Server Operating System</n1:GroupDisplayName>
+          <n1:GroupID>ServerOS.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#ServerOS.1#HostName</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:MaxLength>62</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+        </n1:DCIM_SystemString>
+        <n1:DCIM_SystemString>
+          <n1:AttributeDisplayName>Operating System Name</n1:AttributeDisplayName>
+          <n1:AttributeName>OSName</n1:AttributeName>
+          <n1:CurrentValue>CentOS</n1:CurrentValue>
+          <n1:DefaultValue xsi:nil="true"/>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1451</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Server Operating System</n1:GroupDisplayName>
+          <n1:GroupID>ServerOS.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#ServerOS.1#OSName</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:MaxLength>62</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+        </n1:DCIM_SystemString>
+        <n1:DCIM_SystemString>
+          <n1:AttributeDisplayName>Operating System Version</n1:AttributeDisplayName>
+          <n1:AttributeName>OSVersion</n1:AttributeName>
+          <n1:CurrentValue>release 6.8 (Final) Kernel 2.6.32-642.3.1.el6.x86_64 (x86_64)</n1:CurrentValue>
+          <n1:DefaultValue xsi:nil="true"/>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1452</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Server Operating System</n1:GroupDisplayName>
+          <n1:GroupID>ServerOS.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#ServerOS.1#OSVersion</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>62</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+        </n1:DCIM_SystemString>
+        <n1:DCIM_SystemString>
+          <n1:AttributeDisplayName>OEM Operating System Version</n1:AttributeDisplayName>
+          <n1:AttributeName>OEMOSVersion</n1:AttributeName>
+          <n1:CurrentValue>release 6.8 (Final) Kernel 2.6.32-642.3.1.el6.x86_64 (x86_64)</n1:CurrentValue>
+          <n1:DefaultValue xsi:nil="true"/>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>1454</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Server Operating System</n1:GroupDisplayName>
+          <n1:GroupID>ServerOS.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#ServerOS.1#OEMOSVersion</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>62</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+        </n1:DCIM_SystemString>
+        <n1:DCIM_SystemString>
+          <n1:AttributeDisplayName>OS App Collection Time</n1:AttributeDisplayName>
+          <n1:AttributeName>OSAppCollectionTime</n1:AttributeName>
+          <n1:CurrentValue>N/A</n1:CurrentValue>
+          <n1:DefaultValue xsi:nil="true"/>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>2310</n1:DisplayOrder>
+          <n1:FQDD>System.Embedded.1</n1:FQDD>
+          <n1:GroupDisplayName>Server Information</n1:GroupDisplayName>
+          <n1:GroupID>Diagnostics.1</n1:GroupID>
+          <n1:InstanceID>System.Embedded.1#Diagnostics.1#OSAppCollectionTime</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:MaxLength>64</n1:MaxLength>
+          <n1:MinLength>0</n1:MinLength>
+          <n1:PendingValue xsi:nil="true"/>
+        </n1:DCIM_SystemString>
+      </wsman:Items>
+      <wsen:EnumerationContext/>
+      <wsman:EndOfSequence/>
+    </wsen:EnumerateResponse>
+  </s:Body>
+</s:Envelope>

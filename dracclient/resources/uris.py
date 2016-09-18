@@ -82,5 +82,14 @@ DCIM_RAIDService = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
 DCIM_SystemView = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
                    'DCIM_SystemView')
 
+DCIM_SystemEnumeration = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
+                          'DCIM_SystemEnumeration')
+
+DCIM_SystemString = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
+                     'DCIM_SystemString')
+
+DCIM_SystemInteger = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
+                      'DCIM_SystemInteger')
+
 DCIM_VirtualDiskView = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
                         'DCIM_VirtualDiskView')
