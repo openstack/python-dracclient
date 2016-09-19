@@ -261,16 +261,19 @@ class BootManagement(object):
 class BIOSAttribute(object):
     """Generic BIOS attribute class"""
 
-    def __init__(self, name, current_value, pending_value, read_only):
+    def __init__(self, name, instance_id, current_value, pending_value,
+                 read_only):
         """Creates BIOSAttribute object
 
         :param name: name of the BIOS attribute
+        :param instance_id: opaque and unique identifier of the BIOS attribute
         :param current_value: current value of the BIOS attribute
         :param pending_value: pending value of the BIOS attribute, reflecting
                 an unprocessed change (eg. config job not completed)
         :param read_only: indicates whether this BIOS attribute can be changed
         """
         self.name = name
+        self.instance_id = instance_id
         self.current_value = current_value
         self.pending_value = pending_value
         self.read_only = read_only
@@ -287,6 +290,8 @@ class BIOSAttribute(object):
 
         name = utils.get_wsman_resource_attr(
             bios_attr_xml, namespace, 'AttributeName')
+        instance_id = utils.get_wsman_resource_attr(
+            bios_attr_xml, namespace, 'InstanceID')
         current_value = utils.get_wsman_resource_attr(
             bios_attr_xml, namespace, 'CurrentValue', nullable=True)
         pending_value = utils.get_wsman_resource_attr(
@@ -294,7 +299,8 @@ class BIOSAttribute(object):
         read_only = utils.get_wsman_resource_attr(
             bios_attr_xml, namespace, 'IsReadOnly')
 
-        return cls(name, current_value, pending_value, (read_only == 'true'))
+        return cls(name, instance_id, current_value, pending_value,
+                   (read_only == 'true'))
 
 
 class BIOSEnumerableAttribute(BIOSAttribute):
@@ -302,8 +308,8 @@ class BIOSEnumerableAttribute(BIOSAttribute):
 
     namespace = uris.DCIM_BIOSEnumeration
 
-    def __init__(self, name, current_value, pending_value, read_only,
-                 possible_values):
+    def __init__(self, name, instance_id, current_value, pending_value,
+                 read_only, possible_values):
         """Creates BIOSEnumerableAttribute object
 
         :param name: name of the BIOS attribute
@@ -314,7 +320,8 @@ class BIOSEnumerableAttribute(BIOSAttribute):
         :param possible_values: list containing the allowed values for the BIOS
                                 attribute
         """
-        super(BIOSEnumerableAttribute, self).__init__(name, current_value,
+        super(BIOSEnumerableAttribute, self).__init__(name, instance_id,
+                                                      current_value,
                                                       pending_value, read_only)
         self.possible_values = possible_values
 
@@ -327,9 +334,9 @@ class BIOSEnumerableAttribute(BIOSAttribute):
                            in utils.find_xml(bios_attr_xml, 'PossibleValues',
                                              cls.namespace, find_all=True)]
 
-        return cls(bios_attr.name, bios_attr.current_value,
-                   bios_attr.pending_value, bios_attr.read_only,
-                   possible_values)
+        return cls(bios_attr.name, bios_attr.instance_id,
+                   bios_attr.current_value, bios_attr.pending_value,
+                   bios_attr.read_only, possible_values)
 
     def validate(self, new_value):
         """Validates new value"""
@@ -348,8 +355,8 @@ class BIOSStringAttribute(BIOSAttribute):
 
     namespace = uris.DCIM_BIOSString
 
-    def __init__(self, name, current_value, pending_value, read_only,
-                 min_length, max_length, pcre_regex):
+    def __init__(self, name, instance_id, current_value, pending_value,
+                 read_only, min_length, max_length, pcre_regex):
         """Creates BIOSStringAttribute object
 
         :param name: name of the BIOS attribute
@@ -362,8 +369,9 @@ class BIOSStringAttribute(BIOSAttribute):
         :param pcre_regex: is a PCRE compatible regular expression that the
                            string must match
         """
-        super(BIOSStringAttribute, self).__init__(name, current_value,
-                                                  pending_value, read_only)
+        super(BIOSStringAttribute, self).__init__(name, instance_id,
+                                                  current_value, pending_value,
+                                                  read_only)
         self.min_length = min_length
         self.max_length = max_length
         self.pcre_regex = pcre_regex
@@ -380,9 +388,9 @@ class BIOSStringAttribute(BIOSAttribute):
         pcre_regex = utils.get_wsman_resource_attr(
             bios_attr_xml, cls.namespace, 'ValueExpression', nullable=True)
 
-        return cls(bios_attr.name, bios_attr.current_value,
-                   bios_attr.pending_value, bios_attr.read_only,
-                   min_length, max_length, pcre_regex)
+        return cls(bios_attr.name, bios_attr.instance_id,
+                   bios_attr.current_value, bios_attr.pending_value,
+                   bios_attr.read_only, min_length, max_length, pcre_regex)
 
     def validate(self, new_value):
         """Validates new value"""
@@ -403,8 +411,8 @@ class BIOSIntegerAttribute(BIOSAttribute):
 
     namespace = uris.DCIM_BIOSInteger
 
-    def __init__(self, name, current_value, pending_value, read_only,
-                 lower_bound, upper_bound):
+    def __init__(self, name, instance_id, current_value, pending_value,
+                 read_only, lower_bound, upper_bound):
         """Creates BIOSIntegerAttribute object
 
         :param name: name of the BIOS attribute
@@ -415,7 +423,8 @@ class BIOSIntegerAttribute(BIOSAttribute):
         :param lower_bound: minimum value for the BIOS attribute
         :param upper_bound: maximum value for the BOIS attribute
         """
-        super(BIOSIntegerAttribute, self).__init__(name, current_value,
+        super(BIOSIntegerAttribute, self).__init__(name, instance_id,
+                                                   current_value,
                                                    pending_value, read_only)
         self.lower_bound = lower_bound
         self.upper_bound = upper_bound
@@ -435,9 +444,9 @@ class BIOSIntegerAttribute(BIOSAttribute):
         if bios_attr.pending_value:
             bios_attr.pending_value = int(bios_attr.pending_value)
 
-        return cls(bios_attr.name, bios_attr.current_value,
-                   bios_attr.pending_value, bios_attr.read_only,
-                   int(lower_bound), int(upper_bound))
+        return cls(bios_attr.name, bios_attr.instance_id,
+                   bios_attr.current_value, bios_attr.pending_value,
+                   bios_attr.read_only, int(lower_bound), int(upper_bound))
 
     def validate(self, new_value):
         """Validates new value"""
@@ -462,9 +471,11 @@ class BIOSConfiguration(object):
         """
         self.client = client
 
-    def list_bios_settings(self):
+    def list_bios_settings(self, by_name=True):
         """List the BIOS configuration settings
 
+        :param by_name: Controls whether returned dictionary uses BIOS
+                        attribute name or instance_id as key.
         :returns: a dictionary with the BIOS settings using its name as the
                   key. The attributes are either BIOSEnumerableAttribute,
                   BIOSStringAttribute or BIOSIntegerAttribute objects.
@@ -479,7 +490,7 @@ class BIOSConfiguration(object):
                       (uris.DCIM_BIOSString, BIOSStringAttribute),
                       (uris.DCIM_BIOSInteger, BIOSIntegerAttribute)]
         for (namespace, attr_cls) in namespaces:
-            attribs = self._get_config(namespace, attr_cls)
+            attribs = self._get_config(namespace, attr_cls, by_name)
             if not set(result).isdisjoint(set(attribs)):
                 raise exceptions.DRACOperationFailed(
                     drac_messages=('Colliding attributes %r' % (
@@ -487,7 +498,7 @@ class BIOSConfiguration(object):
             result.update(attribs)
         return result
 
-    def _get_config(self, resource, attr_cls):
+    def _get_config(self, resource, attr_cls, by_name):
         result = {}
 
         doc = self.client.enumerate(resource)
@@ -495,7 +506,10 @@ class BIOSConfiguration(object):
 
         for item in items:
             attribute = attr_cls.parse(item)
-            result[attribute.name] = attribute
+            if by_name:
+                result[attribute.name] = attribute
+            else:
+                result[attribute.instance_id] = attribute
 
         return result
 
@@ -520,7 +534,14 @@ class BIOSConfiguration(object):
         :raises: InvalidParameterValue on invalid BIOS attribute
         """
 
-        current_settings = self.list_bios_settings()
+        current_settings = self.list_bios_settings(by_name=True)
+        # BIOS settings are returned as dict indexed by InstanceID.
+        # However DCIM_BIOSService requires attribute name, not instance id
+        # so recreate this as a dict indexed by attribute name
+        # TODO(anish) : Enable this code if/when by_name gets deprecated
+        # bios_settings = self.list_bios_settings(by_name=False)
+        # current_settings = dict((value.name, value)
+        #                         for key, value in bios_settings.items())
         unknown_keys = set(new_settings) - set(current_settings)
         if unknown_keys:
             msg = ('Unknown BIOS attributes found: %(unknown_keys)r' %

@@ -199,15 +199,17 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
             **test_utils.FAKE_ENDPOINT)
 
     @requests_mock.Mocker()
-    def test_list_bios_settings(self, mock_requests):
+    def test_list_bios_settings_by_instance_id(self, mock_requests):
         expected_enum_attr = bios.BIOSEnumerableAttribute(
             name='MemTest',
+            instance_id='BIOS.Setup.1-1:MemTest',
             read_only=False,
             current_value='Disabled',
             pending_value=None,
             possible_values=['Enabled', 'Disabled'])
         expected_string_attr = bios.BIOSStringAttribute(
             name='SystemModelName',
+            instance_id='BIOS.Setup.1-1:SystemModelName',
             read_only=True,
             current_value='PowerEdge R320',
             pending_value=None,
@@ -216,6 +218,7 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
             pcre_regex=None)
         expected_integer_attr = bios.BIOSIntegerAttribute(
             name='Proc1NumCores',
+            instance_id='BIOS.Setup.1-1:Proc1NumCores',
             read_only=True,
             current_value=8,
             pending_value=None,
@@ -229,7 +232,57 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
             {'text': test_utils.BIOSEnumerations[
                 uris.DCIM_BIOSInteger]['ok']}])
 
-        bios_settings = self.drac_client.list_bios_settings()
+        bios_settings = self.drac_client.list_bios_settings(by_name=False)
+
+        self.assertEqual(103, len(bios_settings))
+        # enumerable attribute
+        self.assertIn('BIOS.Setup.1-1:MemTest', bios_settings)
+        self.assertEqual(expected_enum_attr, bios_settings[
+                         'BIOS.Setup.1-1:MemTest'])
+        # string attribute
+        self.assertIn('BIOS.Setup.1-1:SystemModelName', bios_settings)
+        self.assertEqual(expected_string_attr,
+                         bios_settings['BIOS.Setup.1-1:SystemModelName'])
+        # integer attribute
+        self.assertIn('BIOS.Setup.1-1:Proc1NumCores', bios_settings)
+        self.assertEqual(expected_integer_attr, bios_settings[
+                         'BIOS.Setup.1-1:Proc1NumCores'])
+
+    @requests_mock.Mocker()
+    def test_list_bios_settings_by_name(self, mock_requests):
+        expected_enum_attr = bios.BIOSEnumerableAttribute(
+            name='MemTest',
+            instance_id='BIOS.Setup.1-1:MemTest',
+            read_only=False,
+            current_value='Disabled',
+            pending_value=None,
+            possible_values=['Enabled', 'Disabled'])
+        expected_string_attr = bios.BIOSStringAttribute(
+            name='SystemModelName',
+            instance_id='BIOS.Setup.1-1:SystemModelName',
+            read_only=True,
+            current_value='PowerEdge R320',
+            pending_value=None,
+            min_length=0,
+            max_length=32,
+            pcre_regex=None)
+        expected_integer_attr = bios.BIOSIntegerAttribute(
+            name='Proc1NumCores',
+            instance_id='BIOS.Setup.1-1:Proc1NumCores',
+            read_only=True,
+            current_value=8,
+            pending_value=None,
+            lower_bound=0,
+            upper_bound=65535)
+        mock_requests.post('https://1.2.3.4:443/wsman', [
+            {'text': test_utils.BIOSEnumerations[
+                uris.DCIM_BIOSEnumeration]['ok']},
+            {'text': test_utils.BIOSEnumerations[
+                uris.DCIM_BIOSString]['ok']},
+            {'text': test_utils.BIOSEnumerations[
+                uris.DCIM_BIOSInteger]['ok']}])
+
+        bios_settings = self.drac_client.list_bios_settings(by_name=True)
 
         self.assertEqual(103, len(bios_settings))
         # enumerable attribute
@@ -244,7 +297,8 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
         self.assertEqual(expected_integer_attr, bios_settings['Proc1NumCores'])
 
     @requests_mock.Mocker()
-    def test_list_bios_settings_with_colliding_attrs(self, mock_requests):
+    def test_list_bios_settings_by_name_with_colliding_attrs(
+            self, mock_requests):
         mock_requests.post('https://1.2.3.4:443/wsman', [
             {'text': test_utils.BIOSEnumerations[
                 uris.DCIM_BIOSEnumeration]['ok']},
@@ -254,7 +308,7 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
                 uris.DCIM_BIOSInteger]['ok']}])
 
         self.assertRaises(exceptions.DRACOperationFailed,
-                          self.drac_client.list_bios_settings)
+                          self.drac_client.list_bios_settings, by_name=True)
 
     @requests_mock.Mocker()
     @mock.patch.object(dracclient.client.WSManClient, 'invoke',

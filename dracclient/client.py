@@ -121,9 +121,12 @@ class DRACClient(object):
         return self._boot_mgmt.change_boot_device_order(boot_mode,
                                                         boot_device_list)
 
-    def list_bios_settings(self):
+    def list_bios_settings(self, by_name=True):
         """List the BIOS configuration settings
 
+        :param by_name: Controls whether returned dictionary uses BIOS
+                        attribute name as key. If set to False, instance_id
+                        will be used.
         :returns: a dictionary with the BIOS settings using its name as the
                   key. The attributes are either BIOSEnumerableAttribute,
                   BIOSStringAttribute or BIOSIntegerAttribute objects.
@@ -132,7 +135,7 @@ class DRACClient(object):
         :raises: DRACOperationFailed on error reported back by the DRAC
                  interface
         """
-        return self._bios_cfg.list_bios_settings()
+        return self._bios_cfg.list_bios_settings(by_name)
 
     def set_bios_settings(self, settings):
         """Sets the BIOS configuration
