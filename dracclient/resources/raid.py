@@ -187,7 +187,8 @@ class RAIDManagement(object):
 
     def _get_raid_controller_attr(self, drac_controller, attr_name):
         return utils.get_wsman_resource_attr(
-            drac_controller, uris.DCIM_ControllerView, attr_name)
+            drac_controller, uris.DCIM_ControllerView, attr_name,
+            nullable=True)
 
     def list_virtual_disks(self):
         """Returns the list of virtual disks
@@ -290,7 +291,7 @@ class RAIDManagement(object):
 
     def _get_physical_disk_attr(self, drac_disk, attr_name):
         return utils.get_wsman_resource_attr(
-            drac_disk, uris.DCIM_PhysicalDiskView, attr_name)
+            drac_disk, uris.DCIM_PhysicalDiskView, attr_name, nullable=True)
 
     def convert_physical_disks(self, physical_disks, raid_enable):
         """Converts a list of physical disks into or out of RAID mode.
