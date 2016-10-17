@@ -278,6 +278,9 @@ class BIOSAttribute(object):
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
     @classmethod
     def parse(cls, namespace, bios_attr_xml):
         """Parses XML and creates BIOSAttribute object"""
