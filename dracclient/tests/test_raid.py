@@ -40,6 +40,7 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             description='Integrated RAID Controller 1',
             manufacturer='DELL',
             model='PERC H710 Mini',
+            primary_status='ok',
             firmware_version='21.3.0-0009')
 
         mock_requests.post(
