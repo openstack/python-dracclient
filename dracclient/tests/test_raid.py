@@ -95,6 +95,30 @@ class ClientRAIDManagementTestCase(base.BaseTest):
         self.assertIn(expected_physical_disk,
                       self.drac_client.list_physical_disks())
 
+    def test_list_physical_disks_direct(self, mock_requests):
+        expected_physical_disk = raid.PhysicalDisk(
+            id='Disk.Direct.2:RAID.Integrated.1-1',
+            description=('Disk 2 on '
+                         'Integrated RAID Controller 1'),
+            controller='RAID.Integrated.1-1',
+            manufacturer='ATA',
+            model='ST600MM0007',
+            media_type='ssd',
+            interface_type='sata',
+            size_mb=571776,
+            free_size_mb=571776,
+            serial_number='S0M3EY3Z',
+            firmware_version='LS0B',
+            status='ok',
+            raid_status='ready')
+
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.RAIDEnumerations[uris.DCIM_PhysicalDiskView]['ok'])
+
+        self.assertIn(expected_physical_disk,
+                      self.drac_client.list_physical_disks())
+
     # Verify that various client convert_physical_disks calls to dracclient
     # result in a WSMan.invoke with appropriate parameters
     def _random_term(self):
