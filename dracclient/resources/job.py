@@ -100,7 +100,7 @@ class JobManagement(object):
         drac_job = utils.find_xml(doc, 'DCIM_LifecycleJob',
                                   uris.DCIM_LifecycleJob)
 
-        if drac_job:
+        if drac_job is not None:
             return self._parse_drac_job(drac_job)
 
     def create_config_job(self, resource_uri, cim_creation_class_name,
