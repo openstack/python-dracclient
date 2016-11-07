@@ -100,7 +100,8 @@ BIOSInvocations = {
 InventoryEnumerations = {
     uris.DCIM_CPUView: {
         'ok': load_wsman_xml('cpu_view-enum-ok'),
-        'missing_flags': load_wsman_xml('cpu_view-enum-missing_flags')
+        'missing_flags': load_wsman_xml('cpu_view-enum-missing_flags'),
+        'empty_flag': load_wsman_xml('cpu_view-enum-empty_flag'),
     },
     uris.DCIM_MemoryView: {
         'ok': load_wsman_xml('memory_view-enum-ok')

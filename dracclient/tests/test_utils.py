@@ -15,6 +15,7 @@ import re
 
 from lxml import etree
 
+from dracclient import exceptions
 from dracclient.resources import uris
 from dracclient.tests import base
 from dracclient.tests import utils as test_utils
@@ -63,3 +64,17 @@ class UtilsTestCase(base.BaseTest):
             allow_missing=True)
 
         self.assertIsNone(val)
+
+    def test_get_wsman_resource_attr_missing_text(self):
+        expected_message = ("Attribute 'HyperThreadingEnabled' is not nullable"
+                            ", but no value received")
+        doc = etree.fromstring(
+            test_utils.InventoryEnumerations[
+                uris.DCIM_CPUView]['empty_flag'])
+        cpus = utils.find_xml(doc, 'DCIM_CPUView', uris.DCIM_CPUView,
+                              find_all=True)
+
+        self.assertRaisesRegexp(
+            exceptions.DRACEmptyResponseField, re.escape(expected_message),
+            utils.get_wsman_resource_attr, cpus[0], uris.DCIM_CPUView,
+            'HyperThreadingEnabled', allow_missing=False)

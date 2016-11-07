@@ -15,6 +15,8 @@
 Common functionalities shared between different DRAC modules.
 """
 
+from dracclient import exceptions
+
 NS_XMLSchema_Instance = 'http://www.w3.org/2001/XMLSchema-instance'
 
 # ReturnValue constants
@@ -59,6 +61,8 @@ def get_wsman_resource_attr(doc, resource_uri, attr_name, nullable=False,
                           AttributeError.
     :raises: AttributeError if the attribute is missing from the XML doc and
              allow_missing is False.
+    :raises: DRACEmptyResponseField if the attribute is present in the XML doc
+             but it has no text and nullable is False.
     :returns: value of the attribute
     """
     item = find_xml(doc, attr_name, resource_uri)
@@ -70,6 +74,8 @@ def get_wsman_resource_attr(doc, resource_uri, attr_name, nullable=False,
             raise AttributeError("Could not find attribute '%s'" % (attr_name))
 
     if not nullable:
+        if item.text is None:
+            raise exceptions.DRACEmptyResponseField(attr=attr_name)
         return item.text.strip()
     else:
         nil_attr = item.attrib.get('{%s}nil' % NS_XMLSchema_Instance)

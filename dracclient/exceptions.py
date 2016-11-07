@@ -35,6 +35,10 @@ class DRACUnexpectedReturnValue(DRACRequestFailed):
                '%(expected_return_value)s')
 
 
+class DRACEmptyResponseField(BaseClientException):
+    msg_fmt = ("Attribute '%(attr)s' is not nullable, but no value received")
+
+
 class InvalidParameterValue(BaseClientException):
     msg_fmt = '%(reason)s'
 
