@@ -39,6 +39,10 @@ class DRACEmptyResponseField(BaseClientException):
     msg_fmt = ("Attribute '%(attr)s' is not nullable, but no value received")
 
 
+class DRACMissingResponseField(BaseClientException, AttributeError):
+    msg_fmt = ("Attribute '%(attr)s' is missing from the response")
+
+
 class InvalidParameterValue(BaseClientException):
     msg_fmt = '%(reason)s'
 

@@ -58,9 +58,9 @@ def get_wsman_resource_attr(doc, resource_uri, attr_name, nullable=False,
                      value of True. In this case, it will return None.
     :param allow_missing: if set to True, attributes missing from the XML
                           document will return None instead of raising
-                          AttributeError.
-    :raises: AttributeError if the attribute is missing from the XML doc and
-             allow_missing is False.
+                          DRACMissingResponseField.
+    :raises: DRACMissingResponseField if the attribute is missing from the XML
+             doc and allow_missing is False.
     :raises: DRACEmptyResponseField if the attribute is present in the XML doc
              but it has no text and nullable is False.
     :returns: value of the attribute
@@ -71,7 +71,7 @@ def get_wsman_resource_attr(doc, resource_uri, attr_name, nullable=False,
         if allow_missing:
             return
         else:
-            raise AttributeError("Could not find attribute '%s'" % (attr_name))
+            raise exceptions.DRACMissingResponseField(attr=attr_name)
 
     if not nullable:
         if item.text is None:

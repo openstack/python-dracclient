@@ -40,7 +40,8 @@ class UtilsTestCase(base.BaseTest):
         self.assertEqual('1', val)
 
     def test_get_wsman_resource_attr_missing_attr(self):
-        expected_message = ("Could not find attribute 'HyperThreadingEnabled'")
+        expected_message = ("Attribute 'HyperThreadingEnabled' is missing "
+                            "from the response")
         doc = etree.fromstring(
             test_utils.InventoryEnumerations[
                 uris.DCIM_CPUView]['missing_flags'])
@@ -48,7 +49,7 @@ class UtilsTestCase(base.BaseTest):
                               find_all=True)
 
         self.assertRaisesRegexp(
-            AttributeError, re.escape(expected_message),
+            exceptions.DRACMissingResponseField, re.escape(expected_message),
             utils.get_wsman_resource_attr, cpus[0], uris.DCIM_CPUView,
             'HyperThreadingEnabled', allow_missing=False)
 
