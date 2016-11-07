@@ -4,4 +4,4 @@
 
 lxml>=2.3
 pbr>=1.6
-requests>=2.5.2
+requests>=2.10.0
