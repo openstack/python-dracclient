@@ -223,9 +223,11 @@ class RAIDManagement(object):
 
         return VirtualDisk(
             id=fqdd,
-            name=self._get_virtual_disk_attr(drac_disk, 'Name'),
+            name=self._get_virtual_disk_attr(drac_disk, 'Name',
+                                             nullable=True),
             description=self._get_virtual_disk_attr(drac_disk,
-                                                    'DeviceDescription'),
+                                                    'DeviceDescription',
+                                                    nullable=True),
             controller=fqdd.split(':')[-1],
             raid_level=REVERSE_RAID_LEVELS[drac_raid_level],
             size_mb=int(size_b) / 2 ** 20,
@@ -238,9 +240,10 @@ class RAIDManagement(object):
             pending_operations=(
                 VIRTUAL_DISK_PENDING_OPERATIONS[drac_pending_operations]))
 
-    def _get_virtual_disk_attr(self, drac_disk, attr_name):
+    def _get_virtual_disk_attr(self, drac_disk, attr_name, nullable=False):
         return utils.get_wsman_resource_attr(
-            drac_disk, uris.DCIM_VirtualDiskView, attr_name)
+            drac_disk, uris.DCIM_VirtualDiskView, attr_name,
+            nullable=nullable)
 
     def list_physical_disks(self):
         """Returns the list of physical disks
