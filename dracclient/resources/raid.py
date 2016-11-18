@@ -43,7 +43,8 @@ DISK_RAID_STATUS = {
     '5': 'blocked',
     '6': 'failed',
     '7': 'degraded',
-    '8': 'non-RAID'
+    '8': 'non-RAID',
+    '9': 'missing'
 }
 
 VIRTUAL_DISK_PENDING_OPERATIONS = {
