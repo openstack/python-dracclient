@@ -62,7 +62,11 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             raid_status='online',
             span_depth=1,
             span_length=2,
-            pending_operations=None)
+            pending_operations=None,
+            physical_disks=[
+                'Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1',
+                'Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1'
+            ])
 
         mock_requests.post(
             'https://1.2.3.4:443/wsman',
@@ -452,7 +456,7 @@ class ClientRAIDManagementTestCase(base.BaseTest):
 
     @mock.patch.object(dracclient.resources.job.JobManagement,
                        'delete_pending_config', spec_set=True, autospec=True)
-    def test_abandon_pending_bios_changes(self, mock_requests,
+    def test_abandon_pending_raid_changes(self, mock_requests,
                                           mock_delete_pending_config):
         self.drac_client.abandon_pending_raid_changes('controller')
 
