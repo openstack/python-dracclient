@@ -46,6 +46,15 @@ def find_xml(doc, item, namespace, find_all=False):
     return doc.find(query)
 
 
+def _is_attr_non_nil(elem):
+    """Return whether an element is non-nil.
+
+    :param elem: the element object.
+    :returns: whether the element is nil.
+    """
+    return elem.attrib.get('{%s}nil' % NS_XMLSchema_Instance) != 'true'
+
+
 def get_wsman_resource_attr(doc, resource_uri, attr_name, nullable=False,
                             allow_missing=False):
     """Find an attribute of a resource in an ElementTree object.
@@ -78,9 +87,35 @@ def get_wsman_resource_attr(doc, resource_uri, attr_name, nullable=False,
             raise exceptions.DRACEmptyResponseField(attr=attr_name)
         return item.text.strip()
     else:
-        nil_attr = item.attrib.get('{%s}nil' % NS_XMLSchema_Instance)
-        if nil_attr != 'true':
+        if _is_attr_non_nil(item):
             return item.text.strip()
+
+
+def get_all_wsman_resource_attrs(doc, resource_uri, attr_name, nullable=False):
+    """Find all instances of an attribute of a resource in an ElementTree.
+
+    :param doc: the element tree object.
+    :param resource_uri: the resource URI of the namespace.
+    :param attr_name: the name of the attribute.
+    :param nullable: enables checking if any of the elements contain an
+                     XMLSchema-instance namespaced nil attribute that has a
+                     value of True. In this case, these elements will not be
+                     returned.
+    :raises: DRACEmptyResponseField if any of the attributes in the XML doc
+             have no text and nullable is False.
+    :returns: a list containing the value of each of the instances of the
+              attribute.
+    """
+    items = find_xml(doc, attr_name, resource_uri, find_all=True)
+
+    if not nullable:
+        for item in items:
+            if item.text is None:
+                raise exceptions.DRACEmptyResponseField(attr=attr_name)
+        return [item.text.strip() for item in items]
+    else:
+
+        return [item.text.strip() for item in items if _is_attr_non_nil(item)]
 
 
 def is_reboot_required(doc, resource_uri):

@@ -113,7 +113,7 @@ VirtualDiskTuple = collections.namedtuple(
     'VirtualDisk',
     ['id', 'name', 'description', 'controller', 'raid_level', 'size_mb',
      'status', 'raid_status', 'span_depth', 'span_length',
-     'pending_operations'])
+     'pending_operations', 'physical_disks'])
 
 
 class VirtualDisk(VirtualDiskTuple):
@@ -239,12 +239,18 @@ class RAIDManagement(object):
             span_length=int(self._get_virtual_disk_attr(drac_disk,
                                                         'SpanLength')),
             pending_operations=(
-                VIRTUAL_DISK_PENDING_OPERATIONS[drac_pending_operations]))
+                VIRTUAL_DISK_PENDING_OPERATIONS[drac_pending_operations]),
+            physical_disks=self._get_virtual_disk_attrs(drac_disk,
+                                                        'PhysicalDiskIDs'))
 
     def _get_virtual_disk_attr(self, drac_disk, attr_name, nullable=False):
         return utils.get_wsman_resource_attr(
             drac_disk, uris.DCIM_VirtualDiskView, attr_name,
             nullable=nullable)
+
+    def _get_virtual_disk_attrs(self, drac_disk, attr_name):
+        return utils.get_all_wsman_resource_attrs(
+            drac_disk, uris.DCIM_VirtualDiskView, attr_name, nullable=False)
 
     def list_physical_disks(self):
         """Returns the list of physical disks

@@ -30,7 +30,8 @@
           <n1:OperationName>Background Intialization</n1:OperationName>
           <n1:OperationPercentComplete>8</n1:OperationPercentComplete>
           <n1:PendingOperations>0</n1:PendingOperations>
-          <n1:PhysicalDiskIDs xsi:nil="true"/>
+          <n1:PhysicalDiskIDs>Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:PhysicalDiskIDs>
+          <n1:PhysicalDiskIDs>Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:PhysicalDiskIDs>
           <n1:PrimaryStatus>1</n1:PrimaryStatus>
           <n1:RAIDStatus>2</n1:RAIDStatus>
           <n1:RAIDTypes>4</n1:RAIDTypes>
