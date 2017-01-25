@@ -68,7 +68,7 @@ class ClientTestCase(base.BaseTest):
         foo_resource_uri = 'http://FooResource'
         bar_resource_uri = 'http://BarResource'
         self.assertEqual(
-            3, len(resp_xml.findall('.//{%s}FooResource' % foo_resource_uri)))
+            4, len(resp_xml.findall('.//{%s}FooResource' % foo_resource_uri)))
         self.assertEqual(
             1, len(resp_xml.findall('.//{%s}BazResource' % bar_resource_uri)))
         self.assertEqual(

@@ -1,6 +1,8 @@
 <s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope"
             xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
-            xmlns:wsen="http://schemas.xmlsoap.org/ws/2004/09/enumeration">
+            xmlns:wsen="http://schemas.xmlsoap.org/ws/2004/09/enumeration"
+            xmlns:wsman="http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd"
+            xmlns:n1="http://FooResource">
   <s:Header>
     <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
     <wsa:Action>http://schemas.xmlsoap.org/ws/2004/09/enumeration/EnumerateResponse</wsa:Action>
@@ -10,6 +12,11 @@
   <s:Body>
     <wsen:EnumerateResponse>
       <wsen:EnumerationContext>enum-context-uuid</wsen:EnumerationContext>
+      <wsman:Items>
+        <n1:FooResource>
+          <n1:InstanceID>1</n1:InstanceID>
+        </n1:FooResource>
+      </wsman:Items>
     </wsen:EnumerateResponse>
   </s:Body>
 </s:Envelope>

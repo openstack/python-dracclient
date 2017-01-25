@@ -105,21 +105,23 @@ class Client(object):
         resp_xml = ElementTree.fromstring(resp.content)
 
         if auto_pull:
-            find_items_query = './/{%s}Items' % NS_WSMAN_ENUM
+            # The first response returns "<wsman:Items>"
+            find_items_wsman_query = './/{%s}Items' % NS_WSMAN
+
+            # Successive pulls return "<wsen:Items>"
+            find_items_enum_query = './/{%s}Items' % NS_WSMAN_ENUM
+
             full_resp_xml = resp_xml
+            items_xml = full_resp_xml.find(find_items_wsman_query)
 
             context = self._enum_context(full_resp_xml)
             while context is not None:
                 resp_xml = self.pull(resource_uri, context, max_elems)
                 context = self._enum_context(resp_xml)
 
-                items_xml = full_resp_xml.find(find_items_query)
-                if items_xml is not None:
-                    # merge enumeration items
-                    for item in resp_xml.find(find_items_query):
-                        items_xml.append(item)
-                else:
-                    full_resp_xml = resp_xml
+                # Merge in next batch of enumeration items
+                for item in resp_xml.find(find_items_enum_query):
+                    items_xml.append(item)
 
             # remove enumeration context because items are already merged
             enum_context_elem = full_resp_xml.find('.//{%s}EnumerationContext'

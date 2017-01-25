@@ -13,10 +13,10 @@
       <wsen:EnumerationContext>enum-context-uuid</wsen:EnumerationContext>
       <wsen:Items>
         <n1:FooResource>
-          <n1:InstanceID>2</n1:InstanceID>
+          <n1:InstanceID>3</n1:InstanceID>
         </n1:FooResource>
         <n1:FooResource>
-          <n1:InstanceID>3</n1:InstanceID>
+          <n1:InstanceID>4</n1:InstanceID>
         </n1:FooResource>
       </wsen:Items>
     </wsen:PullResponse>
