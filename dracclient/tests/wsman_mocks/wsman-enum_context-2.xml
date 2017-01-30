@@ -14,7 +14,7 @@
       <wsen:EnumerationContext>enum-context-uuid</wsen:EnumerationContext>
       <wsen:Items>
         <n1:FooResource>
-          <n1:InstanceID>1</n1:InstanceID>
+          <n1:InstanceID>2</n1:InstanceID>
         </n1:FooResource>
       </wsen:Items>
     </wsen:PullResponse>

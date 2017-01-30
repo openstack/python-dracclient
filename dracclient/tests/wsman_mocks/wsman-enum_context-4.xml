@@ -12,7 +12,7 @@
     <wsen:PullResponse>
       <wsen:Items>
         <n1:BazResource>
-          <n1:InstanceID>4</n1:InstanceID>
+          <n1:InstanceID>5</n1:InstanceID>
         </n1:BazResource>
       </wsen:Items>
       <wsen:EndOfSequence/>
