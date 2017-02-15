@@ -421,7 +421,7 @@ class BIOSIntegerAttribute(BIOSAttribute):
                 an unprocessed change (eg. config job not completed)
         :param read_only: indicates whether this BIOS attribute can be changed
         :param lower_bound: minimum value for the BIOS attribute
-        :param upper_bound: maximum value for the BOIS attribute
+        :param upper_bound: maximum value for the BIOS attribute
         """
         super(BIOSIntegerAttribute, self).__init__(name, instance_id,
                                                    current_value,
