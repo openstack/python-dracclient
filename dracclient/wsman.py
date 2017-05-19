@@ -12,10 +12,10 @@
 #    under the License.
 
 import logging
+import time
 import uuid
 
 from lxml import etree as ElementTree
-import requests
 import requests.exceptions
 
 from dracclient import exceptions
@@ -41,13 +41,27 @@ class Client(object):
     """Simple client for talking over WSMan protocol."""
 
     def __init__(self, host, username, password, port=443, path='/wsman',
-                 protocol='https'):
+                 protocol='https', retries=3, retry_delay=0):
+        """Creates client object
+
+        :param host: hostname or IP of the DRAC interface
+        :param username: username for accessing the DRAC interface
+        :param password: password for accessing the DRAC interface
+        :param port: port for accessing the DRAC interface
+        :param path: path for accessing the DRAC interface
+        :param protocol: protocol for accessing the DRAC interface
+        :param retries: number of resends to attempt on failure
+        :param retry_delay: number of seconds to wait between retries
+        """
+
         self.host = host
         self.username = username
         self.password = password
         self.port = port
         self.path = path
         self.protocol = protocol
+        self.retries = retries
+        self.retry_delay = retry_delay
         self.endpoint = ('%(protocol)s://%(host)s:%(port)s%(path)s' % {
             'protocol': self.protocol,
             'host': self.host,
@@ -58,16 +72,52 @@ class Client(object):
         payload = payload.build()
         LOG.debug('Sending request to %(endpoint)s: %(payload)s',
                   {'endpoint': self.endpoint, 'payload': payload})
-        try:
-            resp = requests.post(
-                self.endpoint,
-                auth=requests.auth.HTTPBasicAuth(self.username, self.password),
-                data=payload,
-                # TODO(ifarkas): enable cert verification
-                verify=False)
-        except requests.exceptions.RequestException:
-            LOG.exception('Request failed')
-            raise exceptions.WSManRequestFailure()
+
+        num_tries = 1
+        while num_tries <= self.retries:
+            try:
+                resp = requests.post(
+                    self.endpoint,
+                    auth=requests.auth.HTTPBasicAuth(self.username,
+                                                     self.password),
+                    data=payload,
+                    # TODO(ifarkas): enable cert verification
+                    verify=False)
+                break
+            except (requests.exceptions.ConnectionError,
+                    requests.exceptions.SSLError) as ex:
+
+                error_msg = "A {error_type} error occurred while " \
+                    " communicating with {host}, attempt {num_tries} of " \
+                    "{retries}".format(
+                        error_type=type(ex).__name__,
+                        host=self.host,
+                        num_tries=num_tries,
+                        retries=self.retries)
+
+                if num_tries == self.retries:
+                    LOG.error(error_msg)
+                    raise exceptions.WSManRequestFailure(
+                        "A {error_type} error occurred while communicating "
+                        "with {host}: {error}".format(
+                            error_type=type(ex).__name__,
+                            host=self.host,
+                            error=ex))
+                else:
+                    LOG.warning(error_msg)
+
+                num_tries += 1
+                if self.retry_delay > 0 and num_tries <= self.retries:
+                    time.sleep(self.retry_delay)
+
+            except requests.exceptions.RequestException as ex:
+                error_msg = "A {error_type} error occurred while " \
+                    "communicating with {host}: {error}".format(
+                        error_type=type(ex).__name__,
+                        host=self.host,
+                        error=ex)
+                LOG.error(error_msg)
+                raise exceptions.WSManRequestFailure(error_msg)
 
         LOG.debug('Received response from %(endpoint)s: %(payload)s',
                   {'endpoint': self.endpoint, 'payload': resp.content})

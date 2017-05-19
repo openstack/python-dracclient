@@ -37,7 +37,7 @@ class DRACClient(object):
     BIOS_DEVICE_FQDD = 'BIOS.Setup.1-1'
 
     def __init__(self, host, username, password, port=443, path='/wsman',
-                 protocol='https'):
+                 protocol='https', retries=3, retry_delay=0):
         """Creates client object
 
         :param host: hostname or IP of the DRAC interface
@@ -46,9 +46,11 @@ class DRACClient(object):
         :param port: port for accessing the DRAC interface
         :param path: path for accessing the DRAC interface
         :param protocol: protocol for accessing the DRAC interface
+        :param retries: number of resends to attempt on failure
+        :param retry_delay: number of seconds to wait between retries
         """
         self.client = WSManClient(host, username, password, port, path,
-                                  protocol)
+                                  protocol, retries, retry_delay)
         self._job_mgmt = job.JobManagement(self.client)
         self._power_mgmt = bios.PowerManagement(self.client)
         self._boot_mgmt = bios.BootManagement(self.client)
