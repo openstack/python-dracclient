@@ -1,0 +1,19 @@
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_LCService">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_LCService/GetRemoteServicesAPIStatusResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:3ef0c018-3169-4184-9d81-ee1a73059940</wsa:RelatesTo>
+    <wsa:MessageID>uuid:9d5ff7cc-4fc0-1fc0-8090-98d61742a844</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <n1:GetRemoteServicesAPIStatus_OUTPUT>
+      <n1:LCStatus>5</n1:LCStatus>
+      <n1:Message>Lifecycle Controller Remote Services is not ready.</n1:Message>
+      <n1:MessageID>LC060</n1:MessageID>
+      <n1:RTStatus>0</n1:RTStatus>
+      <n1:ReturnValue>0</n1:ReturnValue>
+      <n1:ServerStatus>2</n1:ServerStatus>
+      <n1:Status>1</n1:Status>
+    </n1:GetRemoteServicesAPIStatus_OUTPUT>
+  </s:Body>
+</s:Envelope>

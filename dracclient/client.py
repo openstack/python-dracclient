@@ -16,6 +16,7 @@ Wrapper for pywsman.Client
 """
 
 import logging
+import time
 
 from dracclient import exceptions
 from dracclient.resources import bios
@@ -495,6 +496,53 @@ class DRACClient(object):
         """
 
         return self._inventory_mgmt.list_nics()
+
+    def is_idrac_ready(self):
+        """Indicates if the iDRAC is ready to accept commands
+
+           Returns a boolean indicating if the iDRAC is ready to accept
+           commands.
+
+        :returns: Boolean indicating iDRAC readiness
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        """
+
+        return self._lifecycle_cfg.is_idrac_ready()
+
+    def wait_until_idrac_is_ready(self, retries=24, retry_delay=10):
+        """Waits until the iDRAC is in a ready state
+
+        :param retries: The number of times to check if the iDRAC is ready
+        :param retry_delay: The number of seconds to wait between retries
+
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface or timeout
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        """
+
+        # Try every 10 seconds over 4 minutes for the iDRAC to become ready
+        while retries > 0:
+            LOG.debug("Checking to see if the iDRAC is ready")
+
+            if self.is_idrac_ready():
+                LOG.debug("The iDRAC is ready")
+                return
+
+            LOG.debug("The iDRAC is not ready")
+            retries -= 1
+            if retries > 0:
+                time.sleep(retry_delay)
+
+        if retries == 0:
+            err_msg = "Timed out waiting for the iDRAC to become ready"
+            LOG.error(err_msg)
+            raise exceptions.DRACOperationFailed(drac_messages=err_msg)
 
 
 class WSManClient(wsman.Client):

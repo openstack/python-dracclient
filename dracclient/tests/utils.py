@@ -159,6 +159,16 @@ LifecycleControllerEnumerations = {
     }
 }
 
+LifecycleControllerInvocations = {
+    uris.DCIM_LCService: {
+        'GetRemoteServicesAPIStatus': {
+            'is_ready': load_wsman_xml('lc_getremoteservicesapistatus_ready'),
+            'is_not_ready': load_wsman_xml(
+                'lc_getremoteservicesapistatus_not_ready')
+        }
+    }
+}
+
 RAIDEnumerations = {
     uris.DCIM_ControllerView: {
         'ok': load_wsman_xml('controller_view-enum-ok')
