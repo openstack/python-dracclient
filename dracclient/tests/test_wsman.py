@@ -17,6 +17,7 @@ import uuid
 import lxml.etree
 import lxml.objectify
 import mock
+import requests.exceptions
 import requests_mock
 
 from dracclient import exceptions
@@ -107,6 +108,74 @@ class ClientTestCase(base.BaseTest):
                                   {'selector': 'foo'}, {'property': 'bar'})
 
         self.assertEqual('yay!', resp.text)
+
+    @requests_mock.Mocker()
+    def test_invoke_with_ssl_errors(self, mock_requests):
+        mock_requests.post('https://1.2.3.4:443/wsman',
+                           exc=requests.exceptions.SSLError)
+
+        self.assertRaises(exceptions.WSManRequestFailure,
+                          self.client.invoke, 'http://resource', 'method',
+                          {'selector': 'foo'}, {'property': 'bar'})
+
+    @requests_mock.Mocker()
+    def test_invoke_with_ssl_error_success(self, mock_requests):
+        expected_resp = '<result>yay!</result>'
+        mock_requests.post('https://1.2.3.4:443/wsman',
+                           [{'exc': requests.exceptions.SSLError},
+                            {'text': expected_resp}])
+
+        resp = self.client.invoke('http://resource', 'method',
+                                  {'selector': 'foo'}, {'property': 'bar'})
+
+        self.assertEqual('yay!', resp.text)
+
+    @requests_mock.Mocker()
+    def test_invoke_with_connection_errors(self, mock_requests):
+        mock_requests.post('https://1.2.3.4:443/wsman',
+                           exc=requests.exceptions.ConnectionError)
+
+        self.assertRaises(exceptions.WSManRequestFailure,
+                          self.client.invoke, 'http://resource', 'method',
+                          {'selector': 'foo'}, {'property': 'bar'})
+
+    @requests_mock.Mocker()
+    def test_invoke_with_connection_error_success(self, mock_requests):
+        expected_resp = '<result>yay!</result>'
+        mock_requests.post('https://1.2.3.4:443/wsman',
+                           [{'exc': requests.exceptions.ConnectionError},
+                            {'text': expected_resp}])
+
+        resp = self.client.invoke('http://resource', 'method',
+                                  {'selector': 'foo'}, {'property': 'bar'})
+
+        self.assertEqual('yay!', resp.text)
+
+    @requests_mock.Mocker()
+    def test_invoke_with_unknown_error(self, mock_requests):
+        mock_requests.post('https://1.2.3.4:443/wsman',
+                           exc=requests.exceptions.HTTPError)
+        self.assertRaises(exceptions.WSManRequestFailure,
+                          self.client.invoke, 'http://resource', 'method',
+                          {'selector': 'foo'}, {'property': 'bar'})
+
+    @requests_mock.Mocker()
+    @mock.patch('time.sleep', autospec=True)
+    def test_client_retry_delay(self, mock_requests, mock_ts):
+        retry_delay = 5
+        fake_endpoint = test_utils.FAKE_ENDPOINT.copy()
+        fake_endpoint['retry_delay'] = retry_delay
+        client = dracclient.wsman.Client(**fake_endpoint)
+        expected_resp = '<result>yay!</result>'
+        mock_requests.post('https://1.2.3.4:443/wsman',
+                           [{'exc': requests.exceptions.SSLError},
+                            {'text': expected_resp}])
+
+        resp = client.invoke('http://resource', 'method',
+                             {'selector': 'foo'}, {'property': 'bar'})
+
+        self.assertEqual('yay!', resp.text)
+        mock_ts.assert_called_once_with(retry_delay)
 
 
 class PayloadTestCase(base.BaseTest):
