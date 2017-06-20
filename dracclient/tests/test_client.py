@@ -11,10 +11,12 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import mock
 import requests_mock
 
 import dracclient.client
 from dracclient import exceptions
+from dracclient.resources import uris
 from dracclient.tests import base
 from dracclient.tests import utils as test_utils
 
@@ -83,3 +85,48 @@ class WSManClientTestCase(base.BaseTest):
         self.assertRaises(exceptions.DRACUnexpectedReturnValue, client.invoke,
                           'http://resource', 'Foo',
                           expected_return_value='4242')
+
+    def test_is_idrac_ready_ready(self, mock_requests):
+        expected_text = test_utils.LifecycleControllerInvocations[
+            uris.DCIM_LCService]['GetRemoteServicesAPIStatus']['is_ready']
+        mock_requests.post('https://1.2.3.4:443/wsman',
+                           text=expected_text)
+
+        client = dracclient.client.WSManClient(**test_utils.FAKE_ENDPOINT)
+        self.assertTrue(client.is_idrac_ready())
+
+    def test_is_idrac_ready_not_ready(self, mock_requests):
+        expected_text = test_utils.LifecycleControllerInvocations[
+            uris.DCIM_LCService]['GetRemoteServicesAPIStatus']['is_not_ready']
+        mock_requests.post('https://1.2.3.4:443/wsman',
+                           text=expected_text)
+
+        client = dracclient.client.WSManClient(**test_utils.FAKE_ENDPOINT)
+        self.assertFalse(client.is_idrac_ready())
+
+    def test_wait_until_idrac_is_ready_ready(self, mock_requests):
+        expected_text = test_utils.LifecycleControllerInvocations[
+            uris.DCIM_LCService]['GetRemoteServicesAPIStatus']['is_ready']
+        mock_requests.post('https://1.2.3.4:443/wsman',
+                           text=expected_text)
+
+        client = dracclient.client.WSManClient(**test_utils.FAKE_ENDPOINT)
+
+        try:
+            client.wait_until_idrac_is_ready()
+        except exceptions.DRACOperationFailed:
+            self.fail('wait_until_idrac_is_ready() timed out when it should '
+                      'not have!')
+
+    @mock.patch('time.sleep', autospec=True)
+    def test_wait_until_idrac_is_ready_timeout(self,
+                                               mock_requests,
+                                               mock_ts):
+        expected_text = test_utils.LifecycleControllerInvocations[
+            uris.DCIM_LCService]['GetRemoteServicesAPIStatus']['is_not_ready']
+        mock_requests.post('https://1.2.3.4:443/wsman',
+                           text=expected_text)
+
+        client = dracclient.client.WSManClient(**test_utils.FAKE_ENDPOINT)
+        self.assertRaises(exceptions.DRACOperationFailed,
+                          client.wait_until_idrac_is_ready)
