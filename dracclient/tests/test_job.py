@@ -124,7 +124,11 @@ class ClientJobManagementTestCase(base.BaseTest):
         self.assertEqual('JID_442507917525', job_id)
 
     @requests_mock.Mocker()
-    def test_create_config_job_failed(self, mock_requests):
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_create_config_job_failed(self, mock_requests,
+                                      mock_wait_until_idrac_is_ready):
         cim_creation_class_name = 'DCIM_BIOSService'
         cim_name = 'DCIM:BIOSService'
         target = 'BIOS.Setup.1-1'
@@ -188,7 +192,11 @@ class ClientJobManagementTestCase(base.BaseTest):
             expected_return_value=utils.RET_SUCCESS)
 
     @requests_mock.Mocker()
-    def test_delete_pending_config_failed(self, mock_requests):
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_delete_pending_config_failed(self, mock_requests,
+                                          mock_wait_until_idrac_is_ready):
         cim_creation_class_name = 'DCIM_BIOSService'
         cim_name = 'DCIM:BIOSService'
         target = 'BIOS.Setup.1-1'

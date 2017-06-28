@@ -567,7 +567,10 @@ class DRACClient(object):
 
 
 class WSManClient(wsman.Client):
-    """Wrapper for wsman.Client with return value checking"""
+    """Wrapper for wsman.Client that can wait until iDRAC is ready
+
+       Additionally, the Invoke operation offers return value checking.
+    """
 
     def __init__(
             self, host, username, password, port=443, path='/wsman',
@@ -601,7 +604,7 @@ class WSManClient(wsman.Client):
         self._ready_retry_delay = ready_retry_delay
 
     def invoke(self, resource_uri, method, selectors=None, properties=None,
-               expected_return_value=None):
+               expected_return_value=None, wait_for_idrac=True):
         """Invokes a remote WS-Man method
 
         :param resource_uri: URI of the resource
@@ -612,6 +615,9 @@ class WSManClient(wsman.Client):
             the DRAC card. For return value codes check the profile
             documentation of the resource used in the method call. If not set,
             return value checking is skipped.
+        :param wait_for_idrac: indicates whether or not to wait for the
+            iDRAC to be ready to accept commands before issuing the
+            command
         :returns: an lxml.etree.Element object of the response received
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
@@ -619,6 +625,10 @@ class WSManClient(wsman.Client):
                  interface
         :raises: DRACUnexpectedReturnValue on return value mismatch
         """
+        if wait_for_idrac:
+            self.wait_until_idrac_is_ready(self._ready_retries,
+                                           self._ready_retry_delay)
+
         if selectors is None:
             selectors = {}
 
@@ -665,7 +675,8 @@ class WSManClient(wsman.Client):
                              'GetRemoteServicesAPIStatus',
                              selectors,
                              {},
-                             expected_return_value=utils.RET_SUCCESS)
+                             expected_return_value=utils.RET_SUCCESS,
+                             wait_for_idrac=False)
 
         message_id = utils.find_xml(result,
                                     'MessageID',

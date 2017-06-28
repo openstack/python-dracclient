@@ -43,7 +43,11 @@ class ClientPowerManagementTestCase(base.BaseTest):
 
         self.assertEqual('POWER_ON', self.drac_client.get_power_state())
 
-    def test_set_power_state(self, mock_requests):
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_set_power_state(self, mock_requests,
+                             mock_wait_until_idrac_is_ready):
         mock_requests.post(
             'https://1.2.3.4:443/wsman',
             text=test_utils.BIOSInvocations[
@@ -51,7 +55,11 @@ class ClientPowerManagementTestCase(base.BaseTest):
 
         self.assertIsNone(self.drac_client.set_power_state('POWER_ON'))
 
-    def test_set_power_state_fail(self, mock_requests):
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_set_power_state_fail(self, mock_requests,
+                                  mock_wait_until_idrac_is_ready):
         mock_requests.post(
             'https://1.2.3.4:443/wsman',
             text=test_utils.BIOSInvocations[
@@ -151,7 +159,11 @@ class ClientBootManagementTestCase(base.BaseTest):
             2,  boot_devices['IPL'][2].pending_assigned_sequence)
 
     @requests_mock.Mocker()
-    def test_change_boot_device_order(self, mock_requests):
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_change_boot_device_order(self, mock_requests,
+                                      mock_wait_until_idrac_is_ready):
         mock_requests.post(
             'https://1.2.3.4:443/wsman',
             text=test_utils.BIOSInvocations[
@@ -179,7 +191,11 @@ class ClientBootManagementTestCase(base.BaseTest):
             expected_properties, expected_return_value=utils.RET_SUCCESS)
 
     @requests_mock.Mocker()
-    def test_change_boot_device_order_error(self, mock_requests):
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_change_boot_device_order_error(self, mock_requests,
+                                            mock_wait_until_idrac_is_ready):
         mock_requests.post(
             'https://1.2.3.4:443/wsman',
             text=test_utils.BIOSInvocations[
@@ -341,7 +357,11 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
             expected_selectors, expected_properties)
 
     @requests_mock.Mocker()
-    def test_set_bios_settings_error(self, mock_requests):
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_set_bios_settings_error(self, mock_requests,
+                                     mock_wait_until_idrac_is_ready):
         mock_requests.post('https://1.2.3.4:443/wsman', [
             {'text': test_utils.BIOSEnumerations[
                 uris.DCIM_BIOSEnumeration]['ok']},

@@ -33,7 +33,10 @@ class WSManClientTestCase(base.BaseTest):
         resp = client.enumerate('http://resource')
         self.assertEqual('yay!', resp.text)
 
-    def test_invoke(self, mock_requests):
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_invoke(self, mock_requests, mock_wait_until_idrac_is_ready):
         xml = """
 <response xmlns:n1="http://resource">
     <n1:ReturnValue>42</n1:ReturnValue>
@@ -44,6 +47,27 @@ class WSManClientTestCase(base.BaseTest):
 
         client = dracclient.client.WSManClient(**test_utils.FAKE_ENDPOINT)
         resp = client.invoke('http://resource', 'Foo')
+        mock_wait_until_idrac_is_ready.assert_called_once_with(
+            client, constants.DEFAULT_IDRAC_IS_READY_RETRIES,
+            constants.DEFAULT_IDRAC_IS_READY_RETRY_DELAY_SEC)
+        self.assertEqual('yay!', resp.find('result').text)
+
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_invoke_without_wait_for_idrac(
+            self, mock_requests, mock_wait_until_idrac_is_ready):
+        xml = """
+<response xmlns:n1="http://resource">
+    <n1:ReturnValue>42</n1:ReturnValue>
+    <result>yay!</result>
+</response>
+"""  # noqa
+        mock_requests.post('https://1.2.3.4:443/wsman', text=xml)
+
+        client = dracclient.client.WSManClient(**test_utils.FAKE_ENDPOINT)
+        resp = client.invoke('http://resource', 'Foo', wait_for_idrac=False)
+        self.assertFalse(mock_wait_until_idrac_is_ready.called)
         self.assertEqual('yay!', resp.find('result').text)
 
     def test_invoke_with_expected_return_value(self, mock_requests):
@@ -57,7 +81,7 @@ class WSManClientTestCase(base.BaseTest):
 
         client = dracclient.client.WSManClient(**test_utils.FAKE_ENDPOINT)
         resp = client.invoke('http://resource', 'Foo',
-                             expected_return_value='42')
+                             expected_return_value='42', wait_for_idrac=False)
         self.assertEqual('yay!', resp.find('result').text)
 
     def test_invoke_with_error_return_value(self, mock_requests):
@@ -71,7 +95,7 @@ class WSManClientTestCase(base.BaseTest):
 
         client = dracclient.client.WSManClient(**test_utils.FAKE_ENDPOINT)
         self.assertRaises(exceptions.DRACOperationFailed, client.invoke,
-                          'http://resource', 'Foo')
+                          'http://resource', 'Foo', wait_for_idrac=False)
 
     def test_invoke_with_unexpected_return_value(self, mock_requests):
         xml = """
@@ -85,7 +109,7 @@ class WSManClientTestCase(base.BaseTest):
         client = dracclient.client.WSManClient(**test_utils.FAKE_ENDPOINT)
         self.assertRaises(exceptions.DRACUnexpectedReturnValue, client.invoke,
                           'http://resource', 'Foo',
-                          expected_return_value='4242')
+                          expected_return_value='4242', wait_for_idrac=False)
 
     def test_is_idrac_ready_ready(self, mock_requests):
         expected_text = test_utils.LifecycleControllerInvocations[

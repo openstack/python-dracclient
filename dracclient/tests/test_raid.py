@@ -265,7 +265,11 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             expected_selectors, expected_properties,
             expected_return_value=utils.RET_SUCCESS)
 
-    def test_convert_physical_disks_fail(self, mock_requests):
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_convert_physical_disks_fail(self, mock_requests,
+                                         mock_wait_until_idrac_is_ready):
         mock_requests.post(
             'https://1.2.3.4:443/wsman',
             text=test_utils.RAIDInvocations[
@@ -334,7 +338,11 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             expected_selectors, expected_properties,
             expected_return_value=utils.RET_SUCCESS)
 
-    def test_create_virtual_disk_fail(self, mock_requests):
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_create_virtual_disk_fail(self, mock_requests,
+                                      mock_wait_until_idrac_is_ready):
         mock_requests.post(
             'https://1.2.3.4:443/wsman',
             text=test_utils.RAIDInvocations[
@@ -422,7 +430,11 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             expected_selectors, expected_properties,
             expected_return_value=utils.RET_SUCCESS)
 
-    def test_delete_virtual_disk_fail(self, mock_requests):
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_delete_virtual_disk_fail(self, mock_requests,
+                                      mock_wait_until_idrac_is_ready):
         mock_requests.post(
             'https://1.2.3.4:443/wsman',
             text=test_utils.RAIDInvocations[
