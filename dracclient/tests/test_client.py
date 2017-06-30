@@ -25,12 +25,31 @@ from dracclient.tests import utils as test_utils
 @requests_mock.Mocker()
 class WSManClientTestCase(base.BaseTest):
 
-    def test_enumerate(self, mock_requests):
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_enumerate(self, mock_requests, mock_wait_until_idrac_is_ready):
         mock_requests.post('https://1.2.3.4:443/wsman',
                            text='<result>yay!</result>')
 
         client = dracclient.client.WSManClient(**test_utils.FAKE_ENDPOINT)
         resp = client.enumerate('http://resource')
+        mock_wait_until_idrac_is_ready.assert_called_once_with(
+            client, constants.DEFAULT_IDRAC_IS_READY_RETRIES,
+            constants.DEFAULT_IDRAC_IS_READY_RETRY_DELAY_SEC)
+        self.assertEqual('yay!', resp.text)
+
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_enumerate_without_wait_for_idrac(
+            self, mock_requests, mock_wait_until_idrac_is_ready):
+        mock_requests.post('https://1.2.3.4:443/wsman',
+                           text='<result>yay!</result>')
+
+        client = dracclient.client.WSManClient(**test_utils.FAKE_ENDPOINT)
+        resp = client.enumerate('http://resource', wait_for_idrac=False)
+        self.assertFalse(mock_wait_until_idrac_is_ready.called)
         self.assertEqual('yay!', resp.text)
 
     @mock.patch.object(dracclient.client.WSManClient,

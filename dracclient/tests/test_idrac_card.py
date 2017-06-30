@@ -11,6 +11,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import mock
 import requests_mock
 
 import dracclient.client
@@ -28,7 +29,11 @@ class ClientiDRACCardConfigurationTestCase(base.BaseTest):
             **test_utils.FAKE_ENDPOINT)
 
     @requests_mock.Mocker()
-    def test_list_idrac_settings(self, mock_requests):
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_list_idrac_settings(self, mock_requests,
+                                 mock_wait_until_idrac_is_ready):
         expected_enum_attr = idrac_card.iDRACCardEnumerableAttribute(
             name='Type',
             instance_id='iDRAC.Embedded.1#Info.1#Type',

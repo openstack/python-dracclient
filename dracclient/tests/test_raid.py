@@ -34,7 +34,11 @@ class ClientRAIDManagementTestCase(base.BaseTest):
         self.drac_client = dracclient.client.DRACClient(
             **test_utils.FAKE_ENDPOINT)
 
-    def test_list_raid_controllers(self, mock_requests):
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_list_raid_controllers(self, mock_requests,
+                                   mock_wait_until_idrac_is_ready):
         expected_raid_controller = raid.RAIDController(
             id='RAID.Integrated.1-1',
             description='Integrated RAID Controller 1',
@@ -50,7 +54,11 @@ class ClientRAIDManagementTestCase(base.BaseTest):
         self.assertIn(expected_raid_controller,
                       self.drac_client.list_raid_controllers())
 
-    def test_list_virtual_disks(self, mock_requests):
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_list_virtual_disks(self, mock_requests,
+                                mock_wait_until_idrac_is_ready):
         expected_virtual_disk = raid.VirtualDisk(
             id='Disk.Virtual.0:RAID.Integrated.1-1',
             name='disk 0',
@@ -75,7 +83,11 @@ class ClientRAIDManagementTestCase(base.BaseTest):
         self.assertIn(expected_virtual_disk,
                       self.drac_client.list_virtual_disks())
 
-    def test_list_physical_disks(self, mock_requests):
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_list_physical_disks(self, mock_requests,
+                                 mock_wait_until_idrac_is_ready):
         expected_physical_disk = raid.PhysicalDisk(
             id='Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1',
             description=('Disk 1 in Backplane 1 of '
@@ -99,7 +111,11 @@ class ClientRAIDManagementTestCase(base.BaseTest):
         self.assertIn(expected_physical_disk,
                       self.drac_client.list_physical_disks())
 
-    def test_list_physical_disks_direct(self, mock_requests):
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_list_physical_disks_direct(self, mock_requests,
+                                        mock_wait_until_idrac_is_ready):
         expected_physical_disk = raid.PhysicalDisk(
             id='Disk.Direct.2:RAID.Integrated.1-1',
             description=('Disk 2 on '

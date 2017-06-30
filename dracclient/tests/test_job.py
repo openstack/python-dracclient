@@ -32,7 +32,10 @@ class ClientJobManagementTestCase(base.BaseTest):
             **test_utils.FAKE_ENDPOINT)
 
     @requests_mock.Mocker()
-    def test_list_jobs(self, mock_requests):
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_list_jobs(self, mock_requests, mock_wait_until_idrac_is_ready):
         mock_requests.post(
             'https://1.2.3.4:443/wsman',
             text=test_utils.JobEnumerations[uris.DCIM_LifecycleJob]['ok'])

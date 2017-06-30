@@ -11,6 +11,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import mock
 import requests_mock
 
 import dracclient.client
@@ -22,6 +23,8 @@ from dracclient.tests import utils as test_utils
 
 
 @requests_mock.Mocker()
+@mock.patch.object(dracclient.client.WSManClient, 'wait_until_idrac_is_ready',
+                   spec_set=True, autospec=True)
 class ClientInventoryManagementTestCase(base.BaseTest):
 
     def setUp(self):
@@ -29,7 +32,7 @@ class ClientInventoryManagementTestCase(base.BaseTest):
         self.drac_client = dracclient.client.DRACClient(
             **test_utils.FAKE_ENDPOINT)
 
-    def test_list_cpus(self, mock_requests):
+    def test_list_cpus(self, mock_requests, mock_wait_until_idrac_is_ready):
         expected_cpu = [inventory.CPU(
             id='CPU.Socket.1',
             cores=6,
@@ -49,7 +52,8 @@ class ClientInventoryManagementTestCase(base.BaseTest):
             expected_cpu,
             self.drac_client.list_cpus())
 
-    def test_list_cpus_with_missing_flags(self, mock_requests):
+    def test_list_cpus_with_missing_flags(self, mock_requests,
+                                          mock_wait_until_idrac_is_ready):
         expected_cpu = [inventory.CPU(
             id='CPU.Socket.1',
             cores=8,
@@ -70,7 +74,7 @@ class ClientInventoryManagementTestCase(base.BaseTest):
             expected_cpu,
             self.drac_client.list_cpus())
 
-    def test_list_memory(self, mock_requests):
+    def test_list_memory(self, mock_requests, mock_wait_until_idrac_is_ready):
         expected_memory = [inventory.Memory(
             id='DIMM.Socket.A1',
             size_mb=16384,
@@ -87,7 +91,7 @@ class ClientInventoryManagementTestCase(base.BaseTest):
             expected_memory,
             self.drac_client.list_memory())
 
-    def test_list_nics(self, mock_requests):
+    def test_list_nics(self, mock_requests, mock_wait_until_idrac_is_ready):
         expected_nics = [
             inventory.NIC(
                 id='NIC.Embedded.1-1-1',

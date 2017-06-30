@@ -603,6 +603,36 @@ class WSManClient(wsman.Client):
         self._ready_retries = ready_retries
         self._ready_retry_delay = ready_retry_delay
 
+    def enumerate(self, resource_uri, optimization=True, max_elems=100,
+                  auto_pull=True, filter_query=None, filter_dialect='cql',
+                  wait_for_idrac=True):
+        """Executes enumerate operation over WS-Man
+
+        :param resource_uri: URI of resource to enumerate
+        :param optimization: flag to enable enumeration optimization. If
+                             disabled, the enumeration returns only an
+                             enumeration context.
+        :param max_elems: maximum number of elements returned by the operation
+        :param auto_pull: flag to enable automatic pull on the enumeration
+                          context, merging the items returned
+        :param filter_query: filter query string
+        :param filter_dialect: filter dialect. Valid options are: 'cql' and
+                               'wql'.
+        :param wait_for_idrac: indicates whether or not to wait for the
+            iDRAC to be ready to accept commands before issuing the
+            command
+        :returns: an lxml.etree.Element object of the response received
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        """
+        if wait_for_idrac:
+            self.wait_until_idrac_is_ready(self._ready_retries,
+                                           self._ready_retry_delay)
+
+        return super(WSManClient, self).enumerate(resource_uri, optimization,
+                                                  max_elems, auto_pull,
+                                                  filter_query, filter_dialect)
+
     def invoke(self, resource_uri, method, selectors=None, properties=None,
                expected_return_value=None, wait_for_idrac=True):
         """Invokes a remote WS-Man method

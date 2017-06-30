@@ -11,6 +11,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import mock
 import requests_mock
 
 import dracclient.client
@@ -28,7 +29,11 @@ class ClientLifecycleControllerManagementTestCase(base.BaseTest):
             **test_utils.FAKE_ENDPOINT)
 
     @requests_mock.Mocker()
-    def test_get_lifecycle_controller_version(self, mock_requests):
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_get_lifecycle_controller_version(self, mock_requests,
+                                              mock_wait_until_idrac_is_ready):
         mock_requests.post(
             'https://1.2.3.4:443/wsman',
             text=test_utils.LifecycleControllerEnumerations[
@@ -47,7 +52,11 @@ class ClientLCConfigurationTestCase(base.BaseTest):
             **test_utils.FAKE_ENDPOINT)
 
     @requests_mock.Mocker()
-    def test_list_lifecycle_settings(self, mock_requests):
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_list_lifecycle_settings(self, mock_requests,
+                                     mock_wait_until_idrac_is_ready):
         expected_enum_attr = lifecycle_controller.LCEnumerableAttribute(
             name='Lifecycle Controller State',
             instance_id='LifecycleController.Embedded.1#LCAttributes.1#LifecycleControllerState',  # noqa

@@ -29,6 +29,8 @@ from dracclient import utils
 
 
 @requests_mock.Mocker()
+@mock.patch.object(dracclient.client.WSManClient, 'wait_until_idrac_is_ready',
+                   spec_set=True, autospec=True)
 class ClientPowerManagementTestCase(base.BaseTest):
 
     def setUp(self):
@@ -36,16 +38,14 @@ class ClientPowerManagementTestCase(base.BaseTest):
         self.drac_client = dracclient.client.DRACClient(
             **test_utils.FAKE_ENDPOINT)
 
-    def test_get_power_state(self, mock_requests):
+    def test_get_power_state(self, mock_requests,
+                             mock_wait_until_idrac_is_ready):
         mock_requests.post(
             'https://1.2.3.4:443/wsman',
             text=test_utils.BIOSEnumerations[uris.DCIM_ComputerSystem]['ok'])
 
         self.assertEqual('POWER_ON', self.drac_client.get_power_state())
 
-    @mock.patch.object(dracclient.client.WSManClient,
-                       'wait_until_idrac_is_ready', spec_set=True,
-                       autospec=True)
     def test_set_power_state(self, mock_requests,
                              mock_wait_until_idrac_is_ready):
         mock_requests.post(
@@ -55,9 +55,6 @@ class ClientPowerManagementTestCase(base.BaseTest):
 
         self.assertIsNone(self.drac_client.set_power_state('POWER_ON'))
 
-    @mock.patch.object(dracclient.client.WSManClient,
-                       'wait_until_idrac_is_ready', spec_set=True,
-                       autospec=True)
     def test_set_power_state_fail(self, mock_requests,
                                   mock_wait_until_idrac_is_ready):
         mock_requests.post(
@@ -68,11 +65,15 @@ class ClientPowerManagementTestCase(base.BaseTest):
         self.assertRaises(exceptions.DRACOperationFailed,
                           self.drac_client.set_power_state, 'POWER_ON')
 
-    def test_set_power_state_invalid_target_state(self, mock_requests):
+    def test_set_power_state_invalid_target_state(
+            self, mock_requests, mock_wait_until_idrac_is_ready):
         self.assertRaises(exceptions.InvalidParameterValue,
                           self.drac_client.set_power_state, 'foo')
 
 
+@requests_mock.Mocker()
+@mock.patch.object(dracclient.client.WSManClient, 'wait_until_idrac_is_ready',
+                   spec_set=True, autospec=True)
 class ClientBootManagementTestCase(base.BaseTest):
 
     def setUp(self):
@@ -80,8 +81,8 @@ class ClientBootManagementTestCase(base.BaseTest):
         self.drac_client = dracclient.client.DRACClient(
             **test_utils.FAKE_ENDPOINT)
 
-    @requests_mock.Mocker()
-    def test_list_boot_modes(self, mock_requests):
+    def test_list_boot_modes(self, mock_requests,
+                             mock_wait_until_idrac_is_ready):
         expected_boot_mode = bios.BootMode(id='IPL', name='BootSeq',
                                            is_current=True, is_next=True)
         mock_requests.post(
@@ -94,8 +95,8 @@ class ClientBootManagementTestCase(base.BaseTest):
         self.assertEqual(5, len(boot_modes))
         self.assertIn(expected_boot_mode, boot_modes)
 
-    @requests_mock.Mocker()
-    def test_list_boot_devices(self, mock_requests):
+    def test_list_boot_devices(self, mock_requests,
+                               mock_wait_until_idrac_is_ready):
         expected_boot_device = bios.BootDevice(
             id=('IPL:BIOS.Setup.1-1#BootSeq#NIC.Embedded.1-1-1#'
                 'fbeeb18f19fd4e768c941e66af4fc424'),
@@ -124,11 +125,11 @@ class ClientBootManagementTestCase(base.BaseTest):
         self.assertEqual(
             2,  boot_devices['IPL'][2].pending_assigned_sequence)
 
-    @requests_mock.Mocker()
     @mock.patch.object(lifecycle_controller.LifecycleControllerManagement,
                        'get_version', spec_set=True, autospec=True)
     def test_list_boot_devices_11g(self, mock_requests,
-                                   mock_get_lifecycle_controller_version):
+                                   mock_get_lifecycle_controller_version,
+                                   mock_wait_until_idrac_is_ready):
         expected_boot_device = bios.BootDevice(
             id=('IPL:NIC.Embedded.1-1:082927b7c62a9f52ef0d65a33416d76c'),
             boot_mode='IPL',
@@ -158,10 +159,6 @@ class ClientBootManagementTestCase(base.BaseTest):
         self.assertEqual(
             2,  boot_devices['IPL'][2].pending_assigned_sequence)
 
-    @requests_mock.Mocker()
-    @mock.patch.object(dracclient.client.WSManClient,
-                       'wait_until_idrac_is_ready', spec_set=True,
-                       autospec=True)
     def test_change_boot_device_order(self, mock_requests,
                                       mock_wait_until_idrac_is_ready):
         mock_requests.post(
@@ -175,7 +172,8 @@ class ClientBootManagementTestCase(base.BaseTest):
 
     @mock.patch.object(dracclient.client.WSManClient, 'invoke',
                        spec_set=True, autospec=True)
-    def test_change_boot_device_order_list(self, mock_invoke):
+    def test_change_boot_device_order_list(self, mock_requests, mock_invoke,
+                                           mock_wait_until_idrac_is_ready):
         expected_selectors = {'InstanceID': 'IPL'}
         expected_properties = {'source': ['foo', 'bar', 'baz']}
         mock_invoke.return_value = lxml.etree.fromstring(
@@ -190,10 +188,6 @@ class ClientBootManagementTestCase(base.BaseTest):
             'ChangeBootOrderByInstanceID', expected_selectors,
             expected_properties, expected_return_value=utils.RET_SUCCESS)
 
-    @requests_mock.Mocker()
-    @mock.patch.object(dracclient.client.WSManClient,
-                       'wait_until_idrac_is_ready', spec_set=True,
-                       autospec=True)
     def test_change_boot_device_order_error(self, mock_requests,
                                             mock_wait_until_idrac_is_ready):
         mock_requests.post(
@@ -207,6 +201,9 @@ class ClientBootManagementTestCase(base.BaseTest):
             self.drac_client.change_boot_device_order, 'IPL', 'foo')
 
 
+@requests_mock.Mocker()
+@mock.patch.object(dracclient.client.WSManClient, 'wait_until_idrac_is_ready',
+                   spec_set=True, autospec=True)
 class ClientBIOSConfigurationTestCase(base.BaseTest):
 
     def setUp(self):
@@ -214,8 +211,8 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
         self.drac_client = dracclient.client.DRACClient(
             **test_utils.FAKE_ENDPOINT)
 
-    @requests_mock.Mocker()
-    def test_list_bios_settings_by_instance_id(self, mock_requests):
+    def test_list_bios_settings_by_instance_id(self, mock_requests,
+                                               mock_wait_until_idrac_is_ready):
         expected_enum_attr = bios.BIOSEnumerableAttribute(
             name='MemTest',
             instance_id='BIOS.Setup.1-1:MemTest',
@@ -264,8 +261,8 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
         self.assertEqual(expected_integer_attr, bios_settings[
                          'BIOS.Setup.1-1:Proc1NumCores'])
 
-    @requests_mock.Mocker()
-    def test_list_bios_settings_by_name(self, mock_requests):
+    def test_list_bios_settings_by_name(self, mock_requests,
+                                        mock_wait_until_idrac_is_ready):
         expected_enum_attr = bios.BIOSEnumerableAttribute(
             name='MemTest',
             instance_id='BIOS.Setup.1-1:MemTest',
@@ -312,9 +309,8 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
         self.assertIn('Proc1NumCores', bios_settings)
         self.assertEqual(expected_integer_attr, bios_settings['Proc1NumCores'])
 
-    @requests_mock.Mocker()
     def test_list_bios_settings_by_name_with_colliding_attrs(
-            self, mock_requests):
+            self, mock_requests, mock_wait_until_idrac_is_ready):
         mock_requests.post('https://1.2.3.4:443/wsman', [
             {'text': test_utils.BIOSEnumerations[
                 uris.DCIM_BIOSEnumeration]['ok']},
@@ -326,10 +322,10 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
         self.assertRaises(exceptions.DRACOperationFailed,
                           self.drac_client.list_bios_settings, by_name=True)
 
-    @requests_mock.Mocker()
     @mock.patch.object(dracclient.client.WSManClient, 'invoke',
                        spec_set=True, autospec=True)
-    def test_set_bios_settings(self, mock_requests, mock_invoke):
+    def test_set_bios_settings(self, mock_requests, mock_invoke,
+                               mock_wait_until_idrac_is_ready):
         expected_selectors = {'CreationClassName': 'DCIM_BIOSService',
                               'SystemName': 'DCIM:ComputerSystem',
                               'Name': 'DCIM:BIOSService',
@@ -356,10 +352,6 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
             mock.ANY, uris.DCIM_BIOSService, 'SetAttributes',
             expected_selectors, expected_properties)
 
-    @requests_mock.Mocker()
-    @mock.patch.object(dracclient.client.WSManClient,
-                       'wait_until_idrac_is_ready', spec_set=True,
-                       autospec=True)
     def test_set_bios_settings_error(self, mock_requests,
                                      mock_wait_until_idrac_is_ready):
         mock_requests.post('https://1.2.3.4:443/wsman', [
@@ -376,8 +368,8 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
                           self.drac_client.set_bios_settings,
                           {'ProcVirtualization': 'Disabled'})
 
-    @requests_mock.Mocker()
-    def test_set_bios_settings_with_unknown_attr(self, mock_requests):
+    def test_set_bios_settings_with_unknown_attr(
+            self, mock_requests, mock_wait_until_idrac_is_ready):
         mock_requests.post('https://1.2.3.4:443/wsman', [
             {'text': test_utils.BIOSEnumerations[
                 uris.DCIM_BIOSEnumeration]['ok']},
@@ -389,8 +381,8 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
         self.assertRaises(exceptions.InvalidParameterValue,
                           self.drac_client.set_bios_settings, {'foo': 'bar'})
 
-    @requests_mock.Mocker()
-    def test_set_bios_settings_with_unchanged_attr(self, mock_requests):
+    def test_set_bios_settings_with_unchanged_attr(
+            self, mock_requests, mock_wait_until_idrac_is_ready):
         mock_requests.post('https://1.2.3.4:443/wsman', [
             {'text': test_utils.BIOSEnumerations[
                 uris.DCIM_BIOSEnumeration]['ok']},
@@ -404,8 +396,8 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
 
         self.assertEqual({'commit_required': False}, result)
 
-    @requests_mock.Mocker()
-    def test_set_bios_settings_with_readonly_attr(self, mock_requests):
+    def test_set_bios_settings_with_readonly_attr(
+            self, mock_requests, mock_wait_until_idrac_is_ready):
         expected_message = ("Cannot set read-only BIOS attributes: "
                             "['Proc1NumCores'].")
         mock_requests.post('https://1.2.3.4:443/wsman', [
@@ -420,8 +412,8 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
             exceptions.DRACOperationFailed, re.escape(expected_message),
             self.drac_client.set_bios_settings, {'Proc1NumCores': 42})
 
-    @requests_mock.Mocker()
-    def test_set_bios_settings_with_incorrect_enum_value(self, mock_requests):
+    def test_set_bios_settings_with_incorrect_enum_value(
+            self, mock_requests, mock_wait_until_idrac_is_ready):
         expected_message = ("Attribute 'MemTest' cannot be set to value "
                             "'foo'. It must be in ['Enabled', 'Disabled'].")
         mock_requests.post('https://1.2.3.4:443/wsman', [
@@ -436,8 +428,8 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
             exceptions.DRACOperationFailed, re.escape(expected_message),
             self.drac_client.set_bios_settings, {'MemTest': 'foo'})
 
-    @requests_mock.Mocker()
-    def test_set_bios_settings_with_incorrect_regexp(self, mock_requests):
+    def test_set_bios_settings_with_incorrect_regexp(
+            self, mock_requests, mock_wait_until_idrac_is_ready):
         expected_message = ("Attribute 'SystemModelName' cannot be set to "
                             "value 'bar.' It must match regex 'foo'.")
         mock_requests.post('https://1.2.3.4:443/wsman', [
@@ -452,8 +444,8 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
             exceptions.DRACOperationFailed, re.escape(expected_message),
             self.drac_client.set_bios_settings, {'SystemModelName': 'bar'})
 
-    @requests_mock.Mocker()
-    def test_set_bios_settings_with_out_of_bounds_value(self, mock_requests):
+    def test_set_bios_settings_with_out_of_bounds_value(
+            self, mock_requests, mock_wait_until_idrac_is_ready):
         expected_message = ('Attribute Proc1NumCores cannot be set to value '
                             '-42. It must be between 0 and 65535.')
         mock_requests.post('https://1.2.3.4:443/wsman', [
