@@ -18,6 +18,7 @@ Wrapper for pywsman.Client
 import logging
 import time
 
+from dracclient import constants
 from dracclient import exceptions
 from dracclient.resources import bios
 from dracclient.resources import idrac_card
@@ -40,8 +41,14 @@ class DRACClient(object):
 
     BIOS_DEVICE_FQDD = 'BIOS.Setup.1-1'
 
-    def __init__(self, host, username, password, port=443, path='/wsman',
-                 protocol='https', retries=3, retry_delay=0):
+    def __init__(
+            self, host, username, password, port=443, path='/wsman',
+            protocol='https',
+            ssl_retries=constants.DEFAULT_WSMAN_SSL_ERROR_RETRIES,
+            ssl_retry_delay=constants.DEFAULT_WSMAN_SSL_ERROR_RETRY_DELAY_SEC,
+            ready_retries=constants.DEFAULT_IDRAC_IS_READY_RETRIES,
+            ready_retry_delay=(
+                constants.DEFAULT_IDRAC_IS_READY_RETRY_DELAY_SEC)):
         """Creates client object
 
         :param host: hostname or IP of the DRAC interface
@@ -50,11 +57,17 @@ class DRACClient(object):
         :param port: port for accessing the DRAC interface
         :param path: path for accessing the DRAC interface
         :param protocol: protocol for accessing the DRAC interface
-        :param retries: number of resends to attempt on failure
-        :param retry_delay: number of seconds to wait between retries
+        :param ssl_retries: number of resends to attempt on SSL failures
+        :param ssl_retry_delay: number of seconds to wait between
+                                retries on SSL failures
+        :param ready_retries: number of times to check if the iDRAC is
+                              ready
+        :param ready_retry_delay: number of seconds to wait between
+                                  checks if the iDRAC is ready
         """
         self.client = WSManClient(host, username, password, port, path,
-                                  protocol, retries, retry_delay)
+                                  protocol, ssl_retries, ssl_retry_delay,
+                                  ready_retries, ready_retry_delay)
         self._job_mgmt = job.JobManagement(self.client)
         self._power_mgmt = bios.PowerManagement(self.client)
         self._boot_mgmt = bios.BootManagement(self.client)
@@ -532,12 +545,17 @@ class DRACClient(object):
 
         return self.client.is_idrac_ready()
 
-    def wait_until_idrac_is_ready(self, retries=24, retry_delay=10):
+    def wait_until_idrac_is_ready(self, retries=None, retry_delay=None):
         """Waits until the iDRAC is in a ready state
 
-        :param retries: The number of times to check if the iDRAC is ready
-        :param retry_delay: The number of seconds to wait between retries
-
+        :param retries: The number of times to check if the iDRAC is
+                        ready. If None, the value of ready_retries that
+                        was provided when the object was created is
+                        used.
+        :param retry_delay: The number of seconds to wait between
+                            retries. If None, the value of
+                            ready_retry_delay that was provided
+                            when the object was created is used.
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
         :raises: DRACOperationFailed on error reported back by the DRAC
@@ -550,6 +568,37 @@ class DRACClient(object):
 
 class WSManClient(wsman.Client):
     """Wrapper for wsman.Client with return value checking"""
+
+    def __init__(
+            self, host, username, password, port=443, path='/wsman',
+            protocol='https',
+            ssl_retries=constants.DEFAULT_WSMAN_SSL_ERROR_RETRIES,
+            ssl_retry_delay=constants.DEFAULT_WSMAN_SSL_ERROR_RETRY_DELAY_SEC,
+            ready_retries=constants.DEFAULT_IDRAC_IS_READY_RETRIES,
+            ready_retry_delay=(
+                constants.DEFAULT_IDRAC_IS_READY_RETRY_DELAY_SEC)):
+        """Creates client object
+
+        :param host: hostname or IP of the DRAC interface
+        :param username: username for accessing the DRAC interface
+        :param password: password for accessing the DRAC interface
+        :param port: port for accessing the DRAC interface
+        :param path: path for accessing the DRAC interface
+        :param protocol: protocol for accessing the DRAC interface
+        :param ssl_retries: number of resends to attempt on SSL failures
+        :param ssl_retry_delay: number of seconds to wait between
+                                retries on SSL failures
+        :param ready_retries: number of times to check if the iDRAC is
+                              ready
+        :param ready_retry_delay: number of seconds to wait between
+                                  checks if the iDRAC is ready
+        """
+        super(WSManClient, self).__init__(host, username, password,
+                                          port, path, protocol, ssl_retries,
+                                          ssl_retry_delay)
+
+        self._ready_retries = ready_retries
+        self._ready_retry_delay = ready_retry_delay
 
     def invoke(self, resource_uri, method, selectors=None, properties=None,
                expected_return_value=None):
@@ -624,18 +673,29 @@ class WSManClient(wsman.Client):
 
         return message_id == IDRAC_IS_READY
 
-    def wait_until_idrac_is_ready(self, retries=24, retry_delay=10):
+    def wait_until_idrac_is_ready(self, retries=None, retry_delay=None):
         """Waits until the iDRAC is in a ready state
 
-        :param retries: The number of times to check if the iDRAC is ready
-        :param retry_delay: The number of seconds to wait between retries
-
+        :param retries: The number of times to check if the iDRAC is
+                        ready. If None, the value of ready_retries that
+                        was provided when the object was created is
+                        used.
+        :param retry_delay: The number of seconds to wait between
+                            retries. If None, the value of
+                            ready_retry_delay that was provided when the
+                            object was created is used.
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
         :raises: DRACOperationFailed on error reported back by the DRAC
                  interface or timeout
         :raises: DRACUnexpectedReturnValue on return value mismatch
         """
+
+        if retries is None:
+            retries = self._ready_retries
+
+        if retry_delay is None:
+            retry_delay = self._ready_retry_delay
 
         # Try every 10 seconds over 4 minutes for the iDRAC to become ready
         while retries > 0:

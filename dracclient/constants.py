@@ -11,6 +11,15 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+# iDRAC is ready retry constants
+DEFAULT_IDRAC_IS_READY_RETRIES = 24
+DEFAULT_IDRAC_IS_READY_RETRY_DELAY_SEC = 10
+
+# Web Services Management (WS-Management and WS-Man) SSL retry on error
+# behavior constants
+DEFAULT_WSMAN_SSL_ERROR_RETRIES = 3
+DEFAULT_WSMAN_SSL_ERROR_RETRY_DELAY_SEC = 0
+
 # power states
 POWER_ON = 'POWER_ON'
 POWER_OFF = 'POWER_OFF'

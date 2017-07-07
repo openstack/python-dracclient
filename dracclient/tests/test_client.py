@@ -15,6 +15,7 @@ import mock
 import requests_mock
 
 import dracclient.client
+from dracclient import constants
 from dracclient import exceptions
 from dracclient.resources import uris
 from dracclient.tests import base
@@ -103,6 +104,58 @@ class WSManClientTestCase(base.BaseTest):
 
         client = dracclient.client.WSManClient(**test_utils.FAKE_ENDPOINT)
         self.assertFalse(client.is_idrac_ready())
+
+    @mock.patch.object(dracclient.client.WSManClient, 'is_idrac_ready',
+                       autospec=True)
+    @mock.patch('time.sleep', autospec=True)
+    def test_wait_until_idrac_is_ready_with_none_arguments(
+            self, mock_requests, mock_ts, mock_is_idrac_ready):
+        ready_retries = 2
+        ready_retry_delay = 1
+
+        side_effect = (ready_retries - 1) * [False]
+        side_effect.append(True)
+        mock_is_idrac_ready.side_effect = side_effect
+
+        fake_endpoint = test_utils.FAKE_ENDPOINT.copy()
+        fake_endpoint['ready_retries'] = ready_retries
+        fake_endpoint['ready_retry_delay'] = ready_retry_delay
+
+        client = dracclient.client.WSManClient(**fake_endpoint)
+        client.wait_until_idrac_is_ready(retries=None, retry_delay=None)
+
+        self.assertEqual(mock_is_idrac_ready.call_count, ready_retries)
+        self.assertEqual(mock_ts.call_count, ready_retries - 1)
+        mock_ts.assert_called_with(ready_retry_delay)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'is_idrac_ready',
+                       autospec=True)
+    @mock.patch('time.sleep', autospec=True)
+    def test_wait_until_idrac_is_ready_with_non_none_arguments(
+            self, mock_requests, mock_ts, mock_is_idrac_ready):
+        retries = 2
+        self.assertNotEqual(retries, constants.DEFAULT_IDRAC_IS_READY_RETRIES)
+
+        retry_delay = 1
+        self.assertNotEqual(
+            retry_delay, constants.DEFAULT_IDRAC_IS_READY_RETRY_DELAY_SEC)
+
+        side_effect = (retries - 1) * [False]
+        side_effect.append(True)
+        mock_is_idrac_ready.side_effect = side_effect
+
+        fake_endpoint = test_utils.FAKE_ENDPOINT.copy()
+        fake_endpoint['ready_retries'] = (
+            constants.DEFAULT_IDRAC_IS_READY_RETRIES)
+        fake_endpoint['ready_retry_delay'] = (
+            constants.DEFAULT_IDRAC_IS_READY_RETRY_DELAY_SEC)
+
+        client = dracclient.client.WSManClient(**fake_endpoint)
+        client.wait_until_idrac_is_ready(retries, retry_delay)
+
+        self.assertEqual(mock_is_idrac_ready.call_count, retries)
+        self.assertEqual(mock_ts.call_count, retries - 1)
+        mock_ts.assert_called_with(retry_delay)
 
     def test_wait_until_idrac_is_ready_ready(self, mock_requests):
         expected_text = test_utils.LifecycleControllerInvocations[

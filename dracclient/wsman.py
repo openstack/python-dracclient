@@ -18,6 +18,7 @@ import uuid
 from lxml import etree as ElementTree
 import requests.exceptions
 
+from dracclient import constants
 from dracclient import exceptions
 
 LOG = logging.getLogger(__name__)
@@ -41,7 +42,10 @@ class Client(object):
     """Simple client for talking over WSMan protocol."""
 
     def __init__(self, host, username, password, port=443, path='/wsman',
-                 protocol='https', retries=3, retry_delay=0):
+                 protocol='https',
+                 ssl_retries=constants.DEFAULT_WSMAN_SSL_ERROR_RETRIES,
+                 ssl_retry_delay=(
+                     constants.DEFAULT_WSMAN_SSL_ERROR_RETRY_DELAY_SEC)):
         """Creates client object
 
         :param host: hostname or IP of the DRAC interface
@@ -50,8 +54,9 @@ class Client(object):
         :param port: port for accessing the DRAC interface
         :param path: path for accessing the DRAC interface
         :param protocol: protocol for accessing the DRAC interface
-        :param retries: number of resends to attempt on failure
-        :param retry_delay: number of seconds to wait between retries
+        :param ssl_retries: number of resends to attempt on SSL failures
+        :param ssl_retry_delay: number of seconds to wait between
+                                retries on SSL failures
         """
 
         self.host = host
@@ -60,8 +65,8 @@ class Client(object):
         self.port = port
         self.path = path
         self.protocol = protocol
-        self.retries = retries
-        self.retry_delay = retry_delay
+        self.ssl_retries = ssl_retries
+        self.ssl_retry_delay = ssl_retry_delay
         self.endpoint = ('%(protocol)s://%(host)s:%(port)s%(path)s' % {
             'protocol': self.protocol,
             'host': self.host,
@@ -74,7 +79,7 @@ class Client(object):
                   {'endpoint': self.endpoint, 'payload': payload})
 
         num_tries = 1
-        while num_tries <= self.retries:
+        while num_tries <= self.ssl_retries:
             try:
                 resp = requests.post(
                     self.endpoint,
@@ -93,9 +98,9 @@ class Client(object):
                         error_type=type(ex).__name__,
                         host=self.host,
                         num_tries=num_tries,
-                        retries=self.retries)
+                        retries=self.ssl_retries)
 
-                if num_tries == self.retries:
+                if num_tries == self.ssl_retries:
                     LOG.error(error_msg)
                     raise exceptions.WSManRequestFailure(
                         "A {error_type} error occurred while communicating "
@@ -107,8 +112,8 @@ class Client(object):
                     LOG.warning(error_msg)
 
                 num_tries += 1
-                if self.retry_delay > 0 and num_tries <= self.retries:
-                    time.sleep(self.retry_delay)
+                if self.ssl_retry_delay > 0 and num_tries <= self.ssl_retries:
+                    time.sleep(self.ssl_retry_delay)
 
             except requests.exceptions.RequestException as ex:
                 error_msg = "A {error_type} error occurred while " \

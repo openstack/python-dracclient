@@ -162,9 +162,9 @@ class ClientTestCase(base.BaseTest):
     @requests_mock.Mocker()
     @mock.patch('time.sleep', autospec=True)
     def test_client_retry_delay(self, mock_requests, mock_ts):
-        retry_delay = 5
+        ssl_retry_delay = 5
         fake_endpoint = test_utils.FAKE_ENDPOINT.copy()
-        fake_endpoint['retry_delay'] = retry_delay
+        fake_endpoint['ssl_retry_delay'] = ssl_retry_delay
         client = dracclient.wsman.Client(**fake_endpoint)
         expected_resp = '<result>yay!</result>'
         mock_requests.post('https://1.2.3.4:443/wsman',
@@ -175,7 +175,7 @@ class ClientTestCase(base.BaseTest):
                              {'selector': 'foo'}, {'property': 'bar'})
 
         self.assertEqual('yay!', resp.text)
-        mock_ts.assert_called_once_with(retry_delay)
+        mock_ts.assert_called_once_with(ssl_retry_delay)
 
 
 class PayloadTestCase(base.BaseTest):
