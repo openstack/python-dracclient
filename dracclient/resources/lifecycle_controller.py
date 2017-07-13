@@ -15,8 +15,6 @@ from dracclient.resources import uris
 from dracclient import utils
 from dracclient import wsman
 
-IDRAC_IS_READY = "LC061"
-
 
 class LifecycleControllerManagement(object):
 
@@ -86,37 +84,6 @@ class LCConfiguration(object):
             result[attribute.instance_id] = attribute
 
         return result
-
-    def is_idrac_ready(self):
-        """Indicates if the iDRAC is ready to accept commands
-
-           Returns a boolean indicating if the iDRAC is ready to accept
-           commands.
-
-        :returns: Boolean indicating iDRAC readiness
-        :raises: WSManRequestFailure on request failures
-        :raises: WSManInvalidResponse when receiving invalid response
-        :raises: DRACOperationFailed on error reported back by the DRAC
-                 interface
-        :raises: DRACUnexpectedReturnValue on return value mismatch
-        """
-
-        selectors = {'SystemCreationClassName': 'DCIM_ComputerSystem',
-                     'SystemName': 'DCIM:ComputerSystem',
-                     'CreationClassName': 'DCIM_LCService',
-                     'Name': 'DCIM:LCService'}
-
-        result = self.client.invoke(uris.DCIM_LCService,
-                                    'GetRemoteServicesAPIStatus',
-                                    selectors,
-                                    {},
-                                    expected_return_value=utils.RET_SUCCESS)
-
-        message_id = utils.find_xml(result,
-                                    'MessageID',
-                                    uris.DCIM_LCService).text
-
-        return message_id == IDRAC_IS_READY
 
 
 class LCAttribute(object):
