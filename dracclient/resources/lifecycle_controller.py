@@ -35,10 +35,7 @@ class LifecycleControllerManagement(object):
                  interface
         """
 
-        filter_query = ('select LifecycleControllerVersion '
-                        'from DCIM_SystemView')
-        doc = self.client.enumerate(uris.DCIM_SystemView,
-                                    filter_query=filter_query)
+        doc = self.client.enumerate(uris.DCIM_SystemView, wait_for_idrac=False)
         lc_version_str = utils.find_xml(doc, 'LifecycleControllerVersion',
                                         uris.DCIM_SystemView).text
 
