@@ -626,8 +626,7 @@ class WSManClient(wsman.Client):
         :raises: WSManInvalidResponse when receiving invalid response
         """
         if wait_for_idrac:
-            self.wait_until_idrac_is_ready(self._ready_retries,
-                                           self._ready_retry_delay)
+            self.wait_until_idrac_is_ready()
 
         return super(WSManClient, self).enumerate(resource_uri, optimization,
                                                   max_elems, auto_pull,
@@ -656,8 +655,7 @@ class WSManClient(wsman.Client):
         :raises: DRACUnexpectedReturnValue on return value mismatch
         """
         if wait_for_idrac:
-            self.wait_until_idrac_is_ready(self._ready_retries,
-                                           self._ready_retry_delay)
+            self.wait_until_idrac_is_ready()
 
         if selectors is None:
             selectors = {}

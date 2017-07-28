@@ -34,9 +34,7 @@ class WSManClientTestCase(base.BaseTest):
 
         client = dracclient.client.WSManClient(**test_utils.FAKE_ENDPOINT)
         resp = client.enumerate('http://resource')
-        mock_wait_until_idrac_is_ready.assert_called_once_with(
-            client, constants.DEFAULT_IDRAC_IS_READY_RETRIES,
-            constants.DEFAULT_IDRAC_IS_READY_RETRY_DELAY_SEC)
+        mock_wait_until_idrac_is_ready.assert_called_once_with(client)
         self.assertEqual('yay!', resp.text)
 
     @mock.patch.object(dracclient.client.WSManClient,
@@ -66,9 +64,7 @@ class WSManClientTestCase(base.BaseTest):
 
         client = dracclient.client.WSManClient(**test_utils.FAKE_ENDPOINT)
         resp = client.invoke('http://resource', 'Foo')
-        mock_wait_until_idrac_is_ready.assert_called_once_with(
-            client, constants.DEFAULT_IDRAC_IS_READY_RETRIES,
-            constants.DEFAULT_IDRAC_IS_READY_RETRY_DELAY_SEC)
+        mock_wait_until_idrac_is_ready.assert_called_once_with(client)
         self.assertEqual('yay!', resp.find('result').text)
 
     @mock.patch.object(dracclient.client.WSManClient,
