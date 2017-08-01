@@ -68,6 +68,7 @@ class JobManagement(object):
             filter_query = ('select * from DCIM_LifecycleJob '
                             'where Name != "CLEARALL" and '
                             'JobStatus != "Reboot Completed" and '
+                            'JobStatus != "Reboot Failed" and '
                             'JobStatus != "Completed" and '
                             'JobStatus != "Completed with Errors" and '
                             'JobStatus != "Failed"')
