@@ -107,7 +107,7 @@ class PhysicalDisk(PhysicalDiskTuple):
 
 RAIDController = collections.namedtuple(
     'RAIDController', ['id', 'description', 'manufacturer', 'model',
-                       'primary_status', 'firmware_version'])
+                       'primary_status', 'firmware_version', 'bus'])
 
 VirtualDiskTuple = collections.namedtuple(
     'VirtualDisk',
@@ -187,7 +187,8 @@ class RAIDManagement(object):
                 self._get_raid_controller_attr(drac_controller,
                                                'PrimaryStatus')],
             firmware_version=self._get_raid_controller_attr(
-                drac_controller, 'ControllerFirmwareVersion'))
+                drac_controller, 'ControllerFirmwareVersion'),
+            bus=self._get_raid_controller_attr(drac_controller, 'Bus'))
 
     def _get_raid_controller_attr(self, drac_controller, attr_name):
         return utils.get_wsman_resource_attr(

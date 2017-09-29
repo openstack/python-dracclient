@@ -45,7 +45,8 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             manufacturer='DELL',
             model='PERC H710 Mini',
             primary_status='ok',
-            firmware_version='21.3.0-0009')
+            firmware_version='21.3.0-0009',
+            bus='1')
 
         mock_requests.post(
             'https://1.2.3.4:443/wsman',
