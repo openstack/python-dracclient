@@ -102,7 +102,8 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             serial_number='S0M3EY2Z',
             firmware_version='LS0A',
             status='ok',
-            raid_status='ready')
+            raid_status='ready',
+            sas_address='5000C5007764F409')
 
         mock_requests.post(
             'https://1.2.3.4:443/wsman',
@@ -130,7 +131,8 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             serial_number='S0M3EY3Z',
             firmware_version='LS0B',
             status='ok',
-            raid_status='ready')
+            raid_status='ready',
+            sas_address='5000C5007764F409')
 
         mock_requests.post(
             'https://1.2.3.4:443/wsman',

@@ -73,7 +73,7 @@ PhysicalDiskTuple = collections.namedtuple(
     'PhysicalDisk',
     ['id', 'description', 'controller', 'manufacturer', 'model', 'media_type',
      'interface_type', 'size_mb', 'free_size_mb', 'serial_number',
-     'firmware_version', 'status', 'raid_status'])
+     'firmware_version', 'status', 'raid_status', 'sas_address'])
 
 
 class PhysicalDisk(PhysicalDiskTuple):
@@ -300,7 +300,8 @@ class RAIDManagement(object):
             firmware_version=self._get_physical_disk_attr(drac_disk,
                                                           'Revision'),
             status=constants.PRIMARY_STATUS[drac_status],
-            raid_status=DISK_RAID_STATUS[drac_raid_status])
+            raid_status=DISK_RAID_STATUS[drac_raid_status],
+            sas_address=self._get_physical_disk_attr(drac_disk, 'SASAddress'))
 
     def _get_physical_disk_attr(self, drac_disk, attr_name):
         return utils.get_wsman_resource_attr(
