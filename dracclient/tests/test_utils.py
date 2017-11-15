@@ -166,3 +166,10 @@ class UtilsTestCase(base.BaseTest):
             controllers[0], uris.DCIM_ControllerView, 'DriverVersion',
             nullable=True)
         self.assertEqual(result, [])
+
+    def test_build_return_dict_fail(self):
+        self.assertRaises(exceptions.InvalidParameterValue,
+                          utils.build_return_dict,
+                          doc=None,
+                          resource_uri=None,
+                          is_reboot_required_value='foo')

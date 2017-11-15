@@ -170,9 +170,18 @@ class DRACClient(object):
         :param settings: a dictionary containing the proposed values, with
                          each key being the name of attribute and the value
                          being the proposed value.
-        :returns: a dictionary containing the commit_needed key with a boolean
-                  value indicating whether a config job must be created for the
-                  values to be applied.
+        :returns: a dictionary containing:
+                 - The commit_required key with a boolean value indicating
+                   whether a config job must be created for the values to be
+                   applied.  This key actually has a value that indicates if
+                   a reboot is required.  This key has been deprecated and
+                   will be removed in a future release.
+                 - The is_commit_required key with a boolean value indicating
+                   whether a config job must be created for the values to be
+                   applied.
+                 - The is_reboot_required key with a RebootRequired enumerated
+                   value indicating whether the server must be rebooted for the
+                   values to be applied.  Possible values are true and false.
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
         :raises: DRACOperationFailed on error reported back by the DRAC
@@ -404,9 +413,18 @@ class DRACClient(object):
         :param raid_enable: boolean flag, set to True if the disk is to
                become part of the RAID.  The same flag is applied to all
                listed disks
-        :returns: a dictionary containing the commit_required key with a
-                  boolean value indicating whether a config job must be
-                  created for the values to be applied.
+        :returns: a dictionary containing:
+                 - The commit_required key with a boolean value indicating
+                   whether a config job must be created for the values to be
+                   applied.  This key actually has a value that indicates if
+                   a reboot is required.  This key has been deprecated and
+                   will be removed in a future release.
+                 - The is_commit_required key with the value always set to
+                   True indicating that a config job must be created to
+                   complete disk conversion.
+                 - The is_reboot_required key with a RebootRequired enumerated
+                   value indicating whether the server must be rebooted to
+                   complete disk conversion.
         """
         return self._raid_mgmt.convert_physical_disks(
             physical_disks, raid_enable)
@@ -425,9 +443,18 @@ class DRACClient(object):
         :param disk_name: name of the virtual disk (optional)
         :param span_length: number of disks per span (optional)
         :param span_depth: number of spans in virtual disk (optional)
-        :returns: a dictionary containing the commit_needed key with a boolean
-                  value indicating whether a config job must be created for the
-                  values to be applied.
+        :returns: a dictionary containing:
+                 - The commit_required key with a boolean value indicating
+                   whether a config job must be created for the values to be
+                   applied.  This key actually has a value that indicates if
+                   a reboot is required.  This key has been deprecated and
+                   will be removed in a future release.
+                 - The is_commit_required key with the value always set to
+                   True indicating that a config job must be created to
+                   complete virtual disk creation.
+                 - The is_reboot_required key with a RebootRequired enumerated
+                   value indicating whether the server must be rebooted to
+                   complete virtual disk creation.
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
         :raises: DRACOperationFailed on error reported back by the DRAC
@@ -446,9 +473,18 @@ class DRACClient(object):
         be applied, a config job must be created and the node must be rebooted.
 
         :param virtual_disk: id of the virtual disk
-        :returns: a dictionary containing the commit_needed key with a boolean
-                  value indicating whether a config job must be created for the
-                  values to be applied.
+        :returns: a dictionary containing:
+                 - The commit_required key with a boolean value indicating
+                   whether a config job must be created for the values to be
+                   applied.  This key actually has a value that indicates if
+                   a reboot is required.  This key has been deprecated and
+                   will be removed in a future release.
+                 - The is_commit_required key with the value always set to
+                   True indicating that a config job must be created to
+                   complete virtual disk deletion.
+                 - The is_reboot_required key with a RebootRequired enumerated
+                   value indicating whether the server must be rebooted to
+                   complete virtual disk deletion.
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
         :raises: DRACOperationFailed on error reported back by the DRAC

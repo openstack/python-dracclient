@@ -17,6 +17,7 @@ import random
 import requests_mock
 
 import dracclient.client
+from dracclient import constants
 from dracclient import exceptions
 import dracclient.resources.job
 from dracclient.resources import raid
@@ -165,13 +166,19 @@ class ClientRAIDManagementTestCase(base.BaseTest):
                               'SystemName': 'DCIM:ComputerSystem',
                               'Name': 'DCIM:RAIDService'}
         expected_properties = {'PDArray': [device_fqdd]}
+        mock_invoke.return_value = lxml.etree.fromstring(
+            test_utils.RAIDInvocations[uris.DCIM_RAIDService][
+                'ConvertToRAID']['ok'])
 
         result = self.drac_client.convert_physical_disks(
             raid_controller='controller',
             physical_disks=[device_fqdd],
             raid_enable=True)
 
-        self.assertEqual({'commit_required': False}, result)
+        self.assertEqual({'commit_required': True,
+                          'is_commit_required': True,
+                          'is_reboot_required': constants.RebootRequired.true},
+                         result)
         mock_invoke.assert_called_once_with(
             mock.ANY, uris.DCIM_RAIDService, expected_invocation,
             expected_selectors, expected_properties,
@@ -191,13 +198,19 @@ class ClientRAIDManagementTestCase(base.BaseTest):
                               'SystemName': 'DCIM:ComputerSystem',
                               'Name': 'DCIM:RAIDService'}
         expected_properties = {'PDArray': device_list}
+        mock_invoke.return_value = lxml.etree.fromstring(
+            test_utils.RAIDInvocations[uris.DCIM_RAIDService][
+                'ConvertToRAID']['ok'])
 
         result = self.drac_client.convert_physical_disks(
             raid_controller='controller',
             physical_disks=device_list,
             raid_enable=True)
 
-        self.assertEqual({'commit_required': False}, result)
+        self.assertEqual({'commit_required': True,
+                          'is_commit_required': True,
+                          'is_reboot_required': constants.RebootRequired.true},
+                         result)
         mock_invoke.assert_called_once_with(
             mock.ANY, uris.DCIM_RAIDService, expected_invocation,
             expected_selectors, expected_properties,
@@ -215,13 +228,19 @@ class ClientRAIDManagementTestCase(base.BaseTest):
                               'SystemName': 'DCIM:ComputerSystem',
                               'Name': 'DCIM:RAIDService'}
         expected_properties = {'PDArray': [device_fqdd]}
+        mock_invoke.return_value = lxml.etree.fromstring(
+            test_utils.RAIDInvocations[uris.DCIM_RAIDService][
+                'ConvertToRAID']['ok'])
 
         result = self.drac_client.convert_physical_disks(
             raid_controller='controller',
             physical_disks=[device_fqdd],
             raid_enable=False)
 
-        self.assertEqual({'commit_required': False}, result)
+        self.assertEqual({'commit_required': True,
+                          'is_commit_required': True,
+                          'is_reboot_required': constants.RebootRequired.true},
+                         result)
         mock_invoke.assert_called_once_with(
             mock.ANY, uris.DCIM_RAIDService, expected_invocation,
             expected_selectors, expected_properties,
@@ -242,43 +261,19 @@ class ClientRAIDManagementTestCase(base.BaseTest):
                               'SystemName': 'DCIM:ComputerSystem',
                               'Name': 'DCIM:RAIDService'}
         expected_properties = {'PDArray': device_list}
+        mock_invoke.return_value = lxml.etree.fromstring(
+            test_utils.RAIDInvocations[uris.DCIM_RAIDService][
+                'ConvertToRAID']['ok'])
 
         result = self.drac_client.convert_physical_disks(
             raid_controller='controller',
             physical_disks=device_list,
             raid_enable=False)
 
-        self.assertEqual({'commit_required': False}, result)
-        mock_invoke.assert_called_once_with(
-            mock.ANY, uris.DCIM_RAIDService, expected_invocation,
-            expected_selectors, expected_properties,
-            expected_return_value=utils.RET_SUCCESS)
-
-    @mock.patch.object(dracclient.client.WSManClient, 'invoke',
-                       spec_set=True, autospec=True)
-    def test_convert_physical_disks_ok(self, mock_requests, mock_invoke):
-        '''Convert a number of disks to RAID mode and check the return value'''
-        device_list = []
-        for i in range(0, random.randint(2, 10)):
-            device_list += self._random_fqdd()
-
-        expected_invocation = 'ConvertToRAID'
-        expected_selectors = {'SystemCreationClassName': 'DCIM_ComputerSystem',
-                              'CreationClassName': 'DCIM_RAIDService',
-                              'SystemName': 'DCIM:ComputerSystem',
-                              'Name': 'DCIM:RAIDService'}
-        expected_properties = {'PDArray': device_list}
-
-        mock_invoke.return_value = lxml.etree.fromstring(
-            test_utils.RAIDInvocations[uris.DCIM_RAIDService][
-                expected_invocation]['ok'])
-
-        result = self.drac_client.convert_physical_disks(
-            raid_controller='controller',
-            physical_disks=device_list,
-            raid_enable=True)
-
-        self.assertEqual({'commit_required': True}, result)
+        self.assertEqual({'commit_required': True,
+                          'is_commit_required': True,
+                          'is_reboot_required': constants.RebootRequired.true},
+                         result)
         mock_invoke.assert_called_once_with(
             mock.ANY, uris.DCIM_RAIDService, expected_invocation,
             expected_selectors, expected_properties,
@@ -321,7 +316,10 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             raid_controller='controller', physical_disks=['disk1', 'disk2'],
             raid_level='1', size_mb=42)
 
-        self.assertEqual({'commit_required': True}, result)
+        self.assertEqual({'commit_required': True,
+                          'is_commit_required': True,
+                          'is_reboot_required': constants.RebootRequired.true},
+                         result)
         mock_invoke.assert_called_once_with(
             mock.ANY, uris.DCIM_RAIDService, 'CreateVirtualDisk',
             expected_selectors, expected_properties,
@@ -351,7 +349,10 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             raid_level='1', size_mb=42, disk_name='name', span_length=2,
             span_depth=3)
 
-        self.assertEqual({'commit_required': True}, result)
+        self.assertEqual({'commit_required': True,
+                          'is_commit_required': True,
+                          'is_reboot_required': constants.RebootRequired.true},
+                         result)
         mock_invoke.assert_called_once_with(
             mock.ANY, uris.DCIM_RAIDService, 'CreateVirtualDisk',
             expected_selectors, expected_properties,
@@ -443,7 +444,10 @@ class ClientRAIDManagementTestCase(base.BaseTest):
 
         result = self.drac_client.delete_virtual_disk('disk1')
 
-        self.assertEqual({'commit_required': True}, result)
+        self.assertEqual({'commit_required': True,
+                          'is_commit_required': True,
+                          'is_reboot_required': constants.RebootRequired.true},
+                         result)
         mock_invoke.assert_called_once_with(
             mock.ANY, uris.DCIM_RAIDService, 'DeleteVirtualDisk',
             expected_selectors, expected_properties,

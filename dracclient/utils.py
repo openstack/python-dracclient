@@ -15,6 +15,7 @@
 Common functionalities shared between different DRAC modules.
 """
 
+from dracclient import constants
 from dracclient import exceptions
 
 NS_XMLSchema_Instance = 'http://www.w3.org/2001/XMLSchema-instance'
@@ -23,6 +24,12 @@ NS_XMLSchema_Instance = 'http://www.w3.org/2001/XMLSchema-instance'
 RET_SUCCESS = '0'
 RET_ERROR = '2'
 RET_CREATED = '4096'
+
+REBOOT_REQUIRED = {
+    'yes': constants.RebootRequired.true,
+    'no': constants.RebootRequired.false,
+    'optional': constants.RebootRequired.optional
+}
 
 
 def find_xml(doc, item, namespace, find_all=False):
@@ -118,6 +125,77 @@ def get_all_wsman_resource_attrs(doc, resource_uri, attr_name, nullable=False):
         return [item.text.strip() for item in items if _is_attr_non_nil(item)]
 
 
+def build_return_dict(doc, resource_uri,
+                      is_commit_required_value=None,
+                      is_reboot_required_value=None,
+                      commit_required_value=None):
+    """Builds a dictionary to be returned
+
+       Build a dictionary to be returned from WSMAN operations that are not
+       read-only.
+
+    :param doc: the element tree object.
+    :param resource_uri: the resource URI of the namespace.
+    :param is_commit_required_value: The value to be returned for
+           is_commit_required, or None if the value should be determined
+           from the doc.
+    :param is_reboot_required_value: The value to be returned for
+           is_reboot_required, or None if the value should be determined
+           from the doc.
+    :param commit_required_value: The value to be returned for
+           commit_required, or None if the value should be determined
+           from the doc.
+    :returns: a dictionary containing:
+             - is_commit_required: indicates if a commit is required.
+             - is_reboot_required: indicates if a reboot is required.
+             - commit_required: a deprecated key indicating if a commit is
+               required.  This key actually has a value that indicates if a
+               reboot is required.
+    """
+
+    if is_reboot_required_value is not None and \
+            is_reboot_required_value not in constants.RebootRequired.all():
+        msg = ("is_reboot_required_value must be a member of the "
+               "RebootRequired enumeration or None.  The passed value was "
+               "%(is_reboot_required_value)s" % {
+                   'is_reboot_required_value': is_reboot_required_value})
+        raise exceptions.InvalidParameterValue(reason=msg)
+
+    result = {}
+    if is_commit_required_value is None:
+        is_commit_required_value = is_commit_required(doc, resource_uri)
+
+    result['is_commit_required'] = is_commit_required_value
+
+    if is_reboot_required_value is None:
+        is_reboot_required_value = reboot_required(doc, resource_uri)
+
+    result['is_reboot_required'] = is_reboot_required_value
+
+    # Include commit_required in the response for backwards compatibility
+    # TBD: Remove this parameter in the future
+    if commit_required_value is None:
+        commit_required_value = is_reboot_required(doc, resource_uri)
+
+    result['commit_required'] = commit_required_value
+
+    return result
+
+
+def is_commit_required(doc, resource_uri):
+    """Check the response document if commit is required.
+
+    If SetResult contains "pending" in the response then a commit is required.
+
+    :param doc: the element tree object.
+    :param resource_uri: the resource URI of the namespace.
+    :returns: a boolean value indicating commit is required or not.
+    """
+
+    commit_required = find_xml(doc, 'SetResult', resource_uri)
+    return "pendingvalue" in commit_required.text.lower()
+
+
 def is_reboot_required(doc, resource_uri):
     """Check the response document if reboot is requested.
 
@@ -132,6 +210,22 @@ def is_reboot_required(doc, resource_uri):
 
     reboot_required = find_xml(doc, 'RebootRequired', resource_uri)
     return reboot_required.text.lower() == 'yes'
+
+
+def reboot_required(doc, resource_uri):
+    """Check the response document if reboot is requested.
+
+    RebootRequired attribute in the response indicates whether node needs to
+    be rebooted, so that the pending changes can be committed.
+
+    :param doc: the element tree object.
+    :param resource_uri: the resource URI of the namespace.
+    :returns: True if reboot is required, False if it is not, and the string
+              "optional" if reboot is optional.
+    """
+
+    reboot_required_value = find_xml(doc, 'RebootRequired', resource_uri)
+    return REBOOT_REQUIRED[reboot_required_value.text.lower()]
 
 
 def validate_integer_value(value, attr_name, error_msgs):

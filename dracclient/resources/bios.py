@@ -522,9 +522,18 @@ class BIOSConfiguration(object):
         :param new_settings: a dictionary containing the proposed values, with
                              each key being the name of attribute and the
                              value being the proposed value.
-        :returns: a dictionary containing the commit_needed key with a boolean
-                  value indicating whether a config job must be created for the
-                  values to be applied.
+        :returns: a dictionary containing:
+                 - The commit_required key with a boolean value indicating
+                   whether a config job must be created for the values to be
+                   applied.  This key actually has a value that indicates if
+                   a reboot is required.  This key has been deprecated and
+                   will be removed in a future release.
+                 - The is_commit_required key with a boolean value indicating
+                   whether a config job must be created for the values to be
+                   applied.
+                 - The is_reboot_required key with a RebootRequired enumerated
+                   value indicating whether the server must be rebooted for the
+                   values to be applied.  Possible values are true and false.
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
         :raises: DRACOperationFailed on error reported back by the DRAC
@@ -583,7 +592,10 @@ class BIOSConfiguration(object):
                 drac_messages=drac_messages)
 
         if not attrib_names:
-            return {'commit_required': False}
+            return utils.build_return_dict(
+                None, uris.DCIM_BIOSService, is_commit_required_value=False,
+                is_reboot_required_value=constants.RebootRequired.false,
+                commit_required_value=False)
 
         selectors = {'CreationClassName': 'DCIM_BIOSService',
                      'Name': 'DCIM:BIOSService',
@@ -596,5 +608,4 @@ class BIOSConfiguration(object):
         doc = self.client.invoke(uris.DCIM_BIOSService, 'SetAttributes',
                                  selectors, properties)
 
-        return {'commit_required': utils.is_reboot_required(
-            doc, uris.DCIM_BIOSService)}
+        return utils.build_return_dict(doc, uris.DCIM_BIOSService)
