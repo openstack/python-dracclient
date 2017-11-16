@@ -20,7 +20,6 @@ from dracclient import exceptions
 from dracclient.resources import lifecycle_controller
 from dracclient.resources import uris
 from dracclient import utils
-from dracclient import wsman
 
 LOG = logging.getLogger(__name__)
 
@@ -463,6 +462,10 @@ class BIOSIntegerAttribute(BIOSAttribute):
 
 class BIOSConfiguration(object):
 
+    NAMESPACES = [(uris.DCIM_BIOSEnumeration, BIOSEnumerableAttribute),
+                  (uris.DCIM_BIOSString, BIOSStringAttribute),
+                  (uris.DCIM_BIOSInteger, BIOSIntegerAttribute)]
+
     def __init__(self, client):
         """Creates BIOSConfiguration object
 
@@ -484,33 +487,7 @@ class BIOSConfiguration(object):
                  interface
         """
 
-        result = {}
-        namespaces = [(uris.DCIM_BIOSEnumeration, BIOSEnumerableAttribute),
-                      (uris.DCIM_BIOSString, BIOSStringAttribute),
-                      (uris.DCIM_BIOSInteger, BIOSIntegerAttribute)]
-        for (namespace, attr_cls) in namespaces:
-            attribs = self._get_config(namespace, attr_cls, by_name)
-            if not set(result).isdisjoint(set(attribs)):
-                raise exceptions.DRACOperationFailed(
-                    drac_messages=('Colliding attributes %r' % (
-                        set(result) & set(attribs))))
-            result.update(attribs)
-        return result
-
-    def _get_config(self, resource, attr_cls, by_name):
-        result = {}
-
-        doc = self.client.enumerate(resource)
-        items = doc.find('.//{%s}Items' % wsman.NS_WSMAN)
-
-        for item in items:
-            attribute = attr_cls.parse(item)
-            if by_name:
-                result[attribute.name] = attribute
-            else:
-                result[attribute.instance_id] = attribute
-
-        return result
+        return utils.list_settings(self.client, self.NAMESPACES, by_name)
 
     def set_bios_settings(self, new_settings):
         """Sets the BIOS configuration
@@ -542,70 +519,11 @@ class BIOSConfiguration(object):
         :raises: InvalidParameterValue on invalid BIOS attribute
         """
 
-        current_settings = self.list_bios_settings(by_name=True)
-        # BIOS settings are returned as dict indexed by InstanceID.
-        # However DCIM_BIOSService requires attribute name, not instance id
-        # so recreate this as a dict indexed by attribute name
-        # TODO(anish) : Enable this code if/when by_name gets deprecated
-        # bios_settings = self.list_bios_settings(by_name=False)
-        # current_settings = dict((value.name, value)
-        #                         for key, value in bios_settings.items())
-        unknown_keys = set(new_settings) - set(current_settings)
-        if unknown_keys:
-            msg = ('Unknown BIOS attributes found: %(unknown_keys)r' %
-                   {'unknown_keys': unknown_keys})
-            raise exceptions.InvalidParameterValue(reason=msg)
-
-        read_only_keys = []
-        unchanged_attribs = []
-        invalid_attribs_msgs = []
-        attrib_names = []
-        candidates = set(new_settings)
-
-        for attr in candidates:
-            if str(new_settings[attr]) == str(
-                    current_settings[attr].current_value):
-                unchanged_attribs.append(attr)
-            elif current_settings[attr].read_only:
-                read_only_keys.append(attr)
-            else:
-                validation_msg = current_settings[attr].validate(
-                    new_settings[attr])
-                if validation_msg is None:
-                    attrib_names.append(attr)
-                else:
-                    invalid_attribs_msgs.append(validation_msg)
-
-        if unchanged_attribs:
-            LOG.warning('Ignoring unchanged BIOS attributes: %r',
-                        unchanged_attribs)
-
-        if invalid_attribs_msgs or read_only_keys:
-            if read_only_keys:
-                read_only_msg = ['Cannot set read-only BIOS attributes: %r.'
-                                 % read_only_keys]
-            else:
-                read_only_msg = []
-
-            drac_messages = '\n'.join(invalid_attribs_msgs + read_only_msg)
-            raise exceptions.DRACOperationFailed(
-                drac_messages=drac_messages)
-
-        if not attrib_names:
-            return utils.build_return_dict(
-                None, uris.DCIM_BIOSService, is_commit_required_value=False,
-                is_reboot_required_value=constants.RebootRequired.false,
-                commit_required_value=False)
-
-        selectors = {'CreationClassName': 'DCIM_BIOSService',
-                     'Name': 'DCIM:BIOSService',
-                     'SystemCreationClassName': 'DCIM_ComputerSystem',
-                     'SystemName': 'DCIM:ComputerSystem'}
-        properties = {'Target': 'BIOS.Setup.1-1',
-                      'AttributeName': attrib_names,
-                      'AttributeValue': [new_settings[attr] for attr
-                                         in attrib_names]}
-        doc = self.client.invoke(uris.DCIM_BIOSService, 'SetAttributes',
-                                 selectors, properties)
-
-        return utils.build_return_dict(doc, uris.DCIM_BIOSService)
+        return utils.set_settings('BIOS',
+                                  self.client,
+                                  self.NAMESPACES,
+                                  new_settings,
+                                  uris.DCIM_BIOSService,
+                                  "DCIM_BIOSService",
+                                  "DCIM:BIOSService",
+                                  'BIOS.Setup.1-1')

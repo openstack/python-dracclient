@@ -16,7 +16,12 @@ Common functionalities shared between different DRAC modules.
 """
 
 from dracclient import constants
+import logging
+
 from dracclient import exceptions
+from dracclient import wsman
+
+LOG = logging.getLogger(__name__)
 
 NS_XMLSchema_Instance = 'http://www.w3.org/2001/XMLSchema-instance'
 
@@ -239,3 +244,158 @@ def validate_integer_value(value, attr_name, error_msgs):
         int(value)
     except ValueError:
         error_msgs.append("'%s' is not an integer value" % attr_name)
+
+
+def list_settings(client, namespaces, by_name=True):
+        """List the configuration settings
+
+        :param client: an instance of WSManClient.
+        :param namespaces: a list of URI/class pairs to retrieve.
+        :param by_name: controls whether returned dictionary uses
+                        attribute name or instance_id as key.
+        :returns: a dictionary with the settings using name or instance_id as
+                  the key.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        """
+
+        result = {}
+        for (namespace, attr_cls) in namespaces:
+            attribs = _get_config(client, namespace, attr_cls, by_name)
+            if not set(result).isdisjoint(set(attribs)):
+                raise exceptions.DRACOperationFailed(
+                    drac_messages=('Colliding attributes %r' % (
+                        set(result) & set(attribs))))
+            result.update(attribs)
+        return result
+
+
+def _get_config(client, resource, attr_cls, by_name):
+    result = {}
+
+    doc = client.enumerate(resource)
+    items = doc.find('.//{%s}Items' % wsman.NS_WSMAN)
+
+    for item in items:
+        attribute = attr_cls.parse(item)
+        if by_name:
+            result[attribute.name] = attribute
+        else:
+            result[attribute.instance_id] = attribute
+
+    return result
+
+
+def set_settings(settings_type,
+                 client,
+                 namespaces,
+                 new_settings,
+                 resource_uri,
+                 cim_creation_class_name,
+                 cim_name,
+                 target):
+    """Generically handles setting various types of settings on the iDRAC
+
+    This method pulls the current list of settings from the iDRAC then compares
+    that list against the passed new settings to determine if there are any
+    errors.  If no errors exist then the settings are sent to the iDRAC using
+    the passed resource, target, etc.
+
+    :param settings_type: a string indicating the settings type
+    :param client: an instance of WSManClient
+    :param namespaces: a list of URI/class pairs to retrieve.
+    :param new_settings: a dictionary containing the proposed values, with
+                         each key being the name of attribute and the
+                         value being the proposed value.
+    :param resource_uri: URI of resource to invoke
+    :param cim_creation_class_name: creation class name of the CIM object
+    :param cim_name: name of the CIM object
+    :param target: target device
+    :returns: a dictionary containing:
+             - The commit_required key with a boolean value indicating
+               whether a config job must be created for the values to be
+               applied.  This key actually has a value that indicates if
+               a reboot is required.  This key has been deprecated and
+               will be removed in a future release.
+             - The is_commit_required key with a boolean value indicating
+               whether a config job must be created for the values to be
+               applied.
+             - The is_reboot_required key with a RebootRequired enumerated
+               value indicating whether the server must be rebooted for the
+               values to be applied.  Possible values are true and false.
+    :raises: WSManRequestFailure on request failures
+    :raises: WSManInvalidResponse when receiving invalid response
+    :raises: DRACOperationFailed on new settings with invalid values or
+             attempting to set read-only settings or when an error is reported
+             back by the iDRAC interface
+    :raises: DRACUnexpectedReturnValue on return value mismatch
+    :raises: InvalidParameterValue on invalid new setting
+    """
+
+    current_settings = list_settings(client, namespaces, by_name=True)
+
+    unknown_keys = set(new_settings) - set(current_settings)
+    if unknown_keys:
+        msg = ('Unknown %(settings_type)s attributes found: %(unknown_keys)r' %
+               {'settings_type': settings_type, 'unknown_keys': unknown_keys})
+        raise exceptions.InvalidParameterValue(reason=msg)
+
+    read_only_keys = []
+    unchanged_attribs = []
+    invalid_attribs_msgs = []
+    attrib_names = []
+    candidates = set(new_settings)
+
+    for attr in candidates:
+        if str(new_settings[attr]) == str(
+                current_settings[attr].current_value):
+            unchanged_attribs.append(attr)
+        elif current_settings[attr].read_only:
+            read_only_keys.append(attr)
+        else:
+            validation_msg = current_settings[attr].validate(
+                new_settings[attr])
+            if not validation_msg:
+                attrib_names.append(attr)
+            else:
+                invalid_attribs_msgs.append(validation_msg)
+
+    if unchanged_attribs:
+        LOG.debug('Ignoring unchanged %(settings_type)s attributes: '
+                  '%(unchanged_attribs)r' %
+                  {'settings_type': settings_type,
+                   'unchanged_attribs': unchanged_attribs})
+
+    if invalid_attribs_msgs or read_only_keys:
+        if read_only_keys:
+            read_only_msg = ['Cannot set read-only %(settings_type)s '
+                             'attributes: %(read_only_keys)r.' %
+                             {'settings_type': settings_type,
+                              'read_only_keys': read_only_keys}]
+        else:
+            read_only_msg = []
+
+        drac_messages = '\n'.join(invalid_attribs_msgs + read_only_msg)
+        raise exceptions.DRACOperationFailed(
+            drac_messages=drac_messages)
+
+    if not attrib_names:
+        return build_return_dict(
+            None, resource_uri, is_commit_required_value=False,
+            is_reboot_required_value=constants.RebootRequired.false,
+            commit_required_value=False)
+
+    selectors = {'CreationClassName': cim_creation_class_name,
+                 'Name': cim_name,
+                 'SystemCreationClassName': 'DCIM_ComputerSystem',
+                 'SystemName': 'DCIM:ComputerSystem'}
+    properties = {'Target': target,
+                  'AttributeName': attrib_names,
+                  'AttributeValue': [new_settings[attr] for attr
+                                     in attrib_names]}
+    doc = client.invoke(resource_uri, 'SetAttributes',
+                        selectors, properties)
+
+    return build_return_dict(doc, resource_uri)
