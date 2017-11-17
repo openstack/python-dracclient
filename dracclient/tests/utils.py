@@ -147,6 +147,15 @@ iDracCardEnumerations = {
     },
 }
 
+iDracCardInvocations = {
+    uris.DCIM_iDRACCardService: {
+        'SetAttributes': {
+            'ok': load_wsman_xml(
+                'idrac_service-invoke-set_attributes-ok')
+        }
+    }
+}
+
 LifecycleControllerEnumerations = {
     uris.DCIM_SystemView: {
         'ok': load_wsman_xml('system_view-enum-ok')

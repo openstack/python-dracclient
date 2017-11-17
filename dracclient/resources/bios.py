@@ -526,4 +526,5 @@ class BIOSConfiguration(object):
                                   uris.DCIM_BIOSService,
                                   "DCIM_BIOSService",
                                   "DCIM:BIOSService",
-                                  'BIOS.Setup.1-1')
+                                  'BIOS.Setup.1-1',
+                                  include_commit_required=True)

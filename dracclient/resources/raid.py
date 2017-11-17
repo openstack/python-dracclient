@@ -345,6 +345,7 @@ class RAIDManagement(object):
                                  expected_return_value=utils.RET_SUCCESS)
 
         return utils.build_return_dict(doc, uris.DCIM_RAIDService,
+                                       include_commit_required=True,
                                        is_commit_required_value=True)
 
     def create_virtual_disk(self, raid_controller, physical_disks, raid_level,
@@ -445,6 +446,7 @@ class RAIDManagement(object):
                                  expected_return_value=utils.RET_SUCCESS)
 
         return utils.build_return_dict(doc, uris.DCIM_RAIDService,
+                                       include_commit_required=True,
                                        is_commit_required_value=True)
 
     def delete_virtual_disk(self, virtual_disk):
@@ -484,4 +486,5 @@ class RAIDManagement(object):
                                  expected_return_value=utils.RET_SUCCESS)
 
         return utils.build_return_dict(doc, uris.DCIM_RAIDService,
+                                       include_commit_required=True,
                                        is_commit_required_value=True)

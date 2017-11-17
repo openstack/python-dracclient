@@ -15,34 +15,6 @@ from dracclient.resources import uris
 from dracclient import utils
 
 
-class iDRACCardConfiguration(object):
-
-    def __init__(self, client):
-        """Creates iDRACCardManagement object
-
-        :param client: an instance of WSManClient
-        """
-        self.client = client
-
-    def list_idrac_settings(self):
-        """List the iDRACCard configuration settings
-
-        :returns: a dictionary with the iDRACCard settings using its name as
-                  the key. The attributes are either
-                  iDRACCardEnumerableAttribute, iDRACCardStringAttribute
-                  or iDRACCardIntegerAttribute objects.
-        :raises: WSManRequestFailure on request failures
-        :raises: WSManInvalidResponse when receiving invalid response
-        :raises: DRACOperationFailed on error reported back by the DRAC
-                 interface
-        """
-        namespaces = [(uris.DCIM_iDRACCardEnumeration,
-                       iDRACCardEnumerableAttribute),
-                      (uris.DCIM_iDRACCardString, iDRACCardStringAttribute),
-                      (uris.DCIM_iDRACCardInteger, iDRACCardIntegerAttribute)]
-        return utils.list_settings(self.client, namespaces, by_name=False)
-
-
 class iDRACCardAttribute(object):
     """Generic iDRACCard attribute class"""
 
@@ -195,6 +167,20 @@ class iDRACCardStringAttribute(iDRACCardAttribute):
                    idrac_attr.read_only, idrac_attr.fqdd, idrac_attr.group_id,
                    min_length, max_length)
 
+    def validate(self, new_value):
+        """Validates new value"""
+
+        val_len = len(new_value)
+        if val_len < self.min_length or val_len > self.max_length:
+            msg = ("Attribute '%(attr)s' cannot be set to value '%(val)s'."
+                   " It must be between %(lower)d and %(upper)d characters in "
+                   "length.") % {
+                       'attr': self.name,
+                       'val': new_value,
+                       'lower': self.min_length,
+                       'upper': self.max_length}
+            return msg
+
 
 class iDRACCardIntegerAttribute(iDRACCardAttribute):
     """Integer iDRACCard attribute class"""
@@ -258,3 +244,83 @@ class iDRACCardIntegerAttribute(iDRACCardAttribute):
                        'lower': self.lower_bound,
                        'upper': self.upper_bound}
             return msg
+
+
+class iDRACCardConfiguration(object):
+
+    NAMESPACES = [(uris.DCIM_iDRACCardEnumeration,
+                   iDRACCardEnumerableAttribute),
+                  (uris.DCIM_iDRACCardString, iDRACCardStringAttribute),
+                  (uris.DCIM_iDRACCardInteger, iDRACCardIntegerAttribute)]
+
+    def __init__(self, client):
+        """Creates an iDRACCardConfiguration object
+
+        :param client: an instance of WSManClient
+        """
+        self.client = client
+
+    def list_idrac_settings(self, by_name=False, fqdd_filter=None):
+        """List the iDRACCard configuration settings
+
+        :param by_name: Controls whether returned dictionary uses iDRAC card
+                        attribute name as key. If set to False, instance_id
+                        will be used.  If set to True the keys will be of the
+                        form "group_id#name".
+        :param fqdd_filter: An FQDD used to filter the instances.  Note that
+                            this is only used when by_name is True.
+        :returns: a dictionary with the iDRAC settings using instance_id as the
+                  key except when by_name is True. The attributes are either
+                  iDRACCArdEnumerableAttribute, iDRACCardStringAttribute or
+                  iDRACCardIntegerAttribute objects.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        """
+
+        return utils.list_settings(self.client,
+                                   self.NAMESPACES,
+                                   by_name=by_name,
+                                   fqdd_filter=fqdd_filter,
+                                   name_formatter=_name_formatter)
+
+    def set_idrac_settings(self, new_settings, idrac_fqdd):
+        """Set the iDRACCard configuration settings
+
+        To be more precise, it sets the pending_value parameter for each of the
+        attributes passed in. For the values to be applied, a config job may
+        need to be created and the node may need to be rebooted.
+
+        :param new_settings: a dictionary containing the proposed values, with
+                             each key being the name of attribute qualified
+                             with the group ID in the form "group_id#name" and
+                             the value being the proposed value.
+        :param idrac_fqdd: the FQDD of the iDRAC.
+        :returns: a dictionary containing:
+                 - The is_commit_required key with a boolean value indicating
+                   whether a config job must be created for the values to be
+                   applied.
+                 - The is_reboot_required key with a RebootRequired enumerated
+                   value indicating whether the server must be rebooted for the
+                   values to be applied.  Possible values are true and false.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        :raises: InvalidParameterValue on invalid attribute
+        """
+        return utils.set_settings('iDRAC Card',
+                                  self.client,
+                                  self.NAMESPACES,
+                                  new_settings,
+                                  uris.DCIM_iDRACCardService,
+                                  "DCIM_iDRACCardService",
+                                  "DCIM:iDRACCardService",
+                                  idrac_fqdd,
+                                  name_formatter=_name_formatter)
+
+
+def _name_formatter(attribute):
+    return "{}#{}".format(attribute.group_id, attribute.name)

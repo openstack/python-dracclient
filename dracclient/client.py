@@ -40,6 +40,7 @@ class DRACClient(object):
     """Client for managing DRAC nodes"""
 
     BIOS_DEVICE_FQDD = 'BIOS.Setup.1-1'
+    IDRAC_FQDD = 'iDRAC.Embedded.1'
 
     def __init__(
             self, host, username, password, port=443, path='/wsman',
@@ -191,19 +192,94 @@ class DRACClient(object):
         """
         return self._bios_cfg.set_bios_settings(settings)
 
-    def list_idrac_settings(self):
+    def list_idrac_settings(self, by_name=False, fqdd_filter=IDRAC_FQDD):
         """List the iDRAC configuration settings
 
-        :returns: a dictionary with the iDRAC settings using InstanceID as the
-                  key. The attributes are either iDRACCArdEnumerableAttribute,
-                  iDRACCardStringAttribute or iDRACCardIntegerAttribute
-                  objects.
+        :param by_name: Controls whether returned dictionary uses iDRAC card
+                        attribute name as key. If set to False, instance_id
+                        will be used.  If set to True the keys will be of the
+                        form "group_id#name".
+        :param fqdd_filter: An FQDD used to filter the instances.  Note that
+                            this is only used when by_name is True.
+        :returns: a dictionary with the iDRAC settings using instance_id as the
+                  key except when by_name is True. The attributes are either
+                  iDRACCardEnumerableAttribute, iDRACCardStringAttribute or
+                  iDRACCardIntegerAttribute objects.
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
         :raises: DRACOperationFailed on error reported back by the DRAC
                  interface
         """
-        return self._idrac_cfg.list_idrac_settings()
+        return self._idrac_cfg.list_idrac_settings(by_name=by_name,
+                                                   fqdd_filter=fqdd_filter)
+
+    def set_idrac_settings(self, settings, idrac_fqdd=IDRAC_FQDD):
+        """Sets the iDRAC configuration settings
+
+        To be more precise, it sets the pending_value parameter for each of the
+        attributes passed in. For the values to be applied, a config job may
+        need to be created and the node may need to be rebooted.
+
+        :param settings: a dictionary containing the proposed values, with
+                         each key being the name of attribute qualified with
+                         the group ID in the form "group_id#name" and the value
+                         being the proposed value.
+        :param idrac_fqdd: the FQDD of the iDRAC.
+        :returns: a dictionary containing:
+                 - The is_commit_required key with a boolean value indicating
+                   whether a config job must be created for the values to be
+                   applied.
+                 - The is_reboot_required key with a RebootRequired enumerated
+                   value indicating whether the server must be rebooted for the
+                   values to be applied.  Possible values are true and false.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        :raises: InvalidParameterValue on invalid attribute
+        """
+        return self._idrac_cfg.set_idrac_settings(settings, idrac_fqdd)
+
+    def commit_pending_idrac_changes(
+            self,
+            idrac_fqdd=IDRAC_FQDD,
+            reboot=False):
+        """Creates a config job for applying all pending changes to an iDRAC
+
+        :param idrac_fqdd: the FQDD of the iDRAC.
+        :param reboot: indication of whether to also create a reboot job
+        :returns: id of the created configuration job
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the iDRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        """
+        return self._job_mgmt.create_config_job(
+            resource_uri=uris.DCIM_iDRACCardService,
+            cim_creation_class_name='DCIM_iDRACCardService',
+            cim_name='DCIM:iDRACCardService',
+            target=idrac_fqdd,
+            reboot=reboot)
+
+    def abandon_pending_idrac_changes(self, idrac_fqdd=IDRAC_FQDD):
+        """Abandon all pending changes to an iDRAC
+
+        Once a config job has been submitted, it can no longer be abandoned.
+
+        :param idrac_fqdd: the FQDD of the iDRAC.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the iDRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        """
+        self._job_mgmt.delete_pending_config(
+            resource_uri=uris.DCIM_iDRACCardService,
+            cim_creation_class_name='DCIM_iDRACCardService',
+            cim_name='DCIM:iDRACCardService',
+            target=idrac_fqdd)
 
     def list_lifecycle_settings(self):
         """List the Lifecycle Controller configuration settings
