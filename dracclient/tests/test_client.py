@@ -112,6 +112,20 @@ class WSManClientTestCase(base.BaseTest):
         self.assertRaises(exceptions.DRACOperationFailed, client.invoke,
                           'http://resource', 'Foo', wait_for_idrac=False)
 
+    def test_invoke_with_unchecked_return_value(self, mock_requests):
+        xml = """
+<response xmlns:n1="http://resource">
+    <n1:ReturnValue>2</n1:ReturnValue>
+    <result>yay!</result>
+</response>
+"""  # noqa
+        mock_requests.post('https://1.2.3.4:443/wsman', text=xml)
+
+        client = dracclient.client.WSManClient(**test_utils.FAKE_ENDPOINT)
+        resp = client.invoke('http://resource', 'Foo',
+                             wait_for_idrac=False, check_return_value=False)
+        self.assertEqual('yay!', resp.find('result').text)
+
     def test_invoke_with_unexpected_return_value(self, mock_requests):
         xml = """
 <response xmlns:n1="http://resource">
