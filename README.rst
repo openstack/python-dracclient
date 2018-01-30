@@ -13,6 +13,6 @@ python-dracclient
 Library for managing machines with Dell iDRAC cards.
 
 * Free software: Apache license
-* Documentation: http://docs.openstack.org/developer/python-dracclient
+* Documentation: https://docs.openstack.org/python-dracclient/latest
 * Source: http://git.openstack.org/cgit/openstack/python-dracclient
 * Bugs: http://bugs.launchpad.net/python-dracclient
