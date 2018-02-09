@@ -66,14 +66,17 @@ PHYSICAL_DISK_BUS_PROTOCOL = {
     '3': 'fibre',
     '4': 'usb',
     '5': 'sata',
-    '6': 'sas'
+    '6': 'sas',
+    '7': 'pcie',
+    '8': 'nvme'
 }
 
 PhysicalDiskTuple = collections.namedtuple(
     'PhysicalDisk',
     ['id', 'description', 'controller', 'manufacturer', 'model', 'media_type',
      'interface_type', 'size_mb', 'free_size_mb', 'serial_number',
-     'firmware_version', 'status', 'raid_status', 'sas_address'])
+     'firmware_version', 'status', 'raid_status', 'sas_address',
+     'device_protocol'])
 
 
 class PhysicalDisk(PhysicalDiskTuple):
@@ -232,7 +235,7 @@ class RAIDManagement(object):
                                                     nullable=True),
             controller=fqdd.split(':')[-1],
             raid_level=REVERSE_RAID_LEVELS[drac_raid_level],
-            size_mb=int(size_b) / 2 ** 20,
+            size_mb=int(size_b) // 2 ** 20,
             status=constants.PRIMARY_STATUS[drac_status],
             raid_status=DISK_RAID_STATUS[drac_raid_status],
             span_depth=int(self._get_virtual_disk_attr(drac_disk,
@@ -268,45 +271,74 @@ class RAIDManagement(object):
         drac_physical_disks = utils.find_xml(doc, 'DCIM_PhysicalDiskView',
                                              uris.DCIM_PhysicalDiskView,
                                              find_all=True)
+        physical_disks = [self._parse_drac_physical_disk(disk)
+                          for disk in drac_physical_disks]
 
-        return [self._parse_drac_physical_disk(disk)
-                for disk in drac_physical_disks]
+        drac_pcie_disks = utils.find_xml(doc, 'DCIM_PCIeSSDView',
+                                         uris.DCIM_PCIeSSDView,
+                                         find_all=True)
+        pcie_disks = [self._parse_drac_physical_disk(disk,
+                      uris.DCIM_PCIeSSDView) for disk in drac_pcie_disks]
 
-    def _parse_drac_physical_disk(self, drac_disk):
-        fqdd = self._get_physical_disk_attr(drac_disk, 'FQDD')
-        size_b = self._get_physical_disk_attr(drac_disk, 'SizeInBytes')
+        return physical_disks + pcie_disks
+
+    def _parse_drac_physical_disk(self,
+                                  drac_disk,
+                                  uri=uris.DCIM_PhysicalDiskView):
+        fqdd = self._get_physical_disk_attr(drac_disk, 'FQDD', uri)
+        size_b = self._get_physical_disk_attr(drac_disk, 'SizeInBytes', uri)
+
         free_size_b = self._get_physical_disk_attr(drac_disk,
-                                                   'FreeSizeInBytes')
-        drac_status = self._get_physical_disk_attr(drac_disk, 'PrimaryStatus')
+                                                   'FreeSizeInBytes', uri)
+        if free_size_b is not None:
+            free_size_mb = int(free_size_b) // 2 ** 20
+        else:
+            free_size_mb = None
+
+        drac_status = self._get_physical_disk_attr(drac_disk, 'PrimaryStatus',
+                                                   uri)
         drac_raid_status = self._get_physical_disk_attr(drac_disk,
-                                                        'RaidStatus')
-        drac_media_type = self._get_physical_disk_attr(drac_disk, 'MediaType')
+                                                        'RaidStatus', uri)
+        if drac_raid_status is not None:
+            raid_status = DISK_RAID_STATUS[drac_raid_status]
+        else:
+            raid_status = None
+        drac_media_type = self._get_physical_disk_attr(drac_disk, 'MediaType',
+                                                       uri)
         drac_bus_protocol = self._get_physical_disk_attr(drac_disk,
-                                                         'BusProtocol')
+                                                         'BusProtocol', uri)
 
         return PhysicalDisk(
             id=fqdd,
             description=self._get_physical_disk_attr(drac_disk,
-                                                     'DeviceDescription'),
+                                                     'DeviceDescription',
+                                                     uri),
             controller=fqdd.split(':')[-1],
             manufacturer=self._get_physical_disk_attr(drac_disk,
-                                                      'Manufacturer'),
-            model=self._get_physical_disk_attr(drac_disk, 'Model'),
+                                                      'Manufacturer', uri),
+            model=self._get_physical_disk_attr(drac_disk, 'Model', uri),
             media_type=PHYSICAL_DISK_MEDIA_TYPE[drac_media_type],
             interface_type=PHYSICAL_DISK_BUS_PROTOCOL[drac_bus_protocol],
-            size_mb=int(size_b) / 2 ** 20,
-            free_size_mb=int(free_size_b) / 2 ** 20,
+            size_mb=int(size_b) // 2 ** 20,
+            free_size_mb=free_size_mb,
             serial_number=self._get_physical_disk_attr(drac_disk,
-                                                       'SerialNumber'),
+                                                       'SerialNumber', uri),
             firmware_version=self._get_physical_disk_attr(drac_disk,
-                                                          'Revision'),
+                                                          'Revision', uri),
             status=constants.PRIMARY_STATUS[drac_status],
-            raid_status=DISK_RAID_STATUS[drac_raid_status],
-            sas_address=self._get_physical_disk_attr(drac_disk, 'SASAddress'))
+            raid_status=raid_status,
+            sas_address=self._get_physical_disk_attr(drac_disk, 'SASAddress',
+                                                     uri, allow_missing=True),
+            device_protocol=self._get_physical_disk_attr(drac_disk,
+                                                         'DeviceProtocol',
+                                                         uri,
+                                                         allow_missing=True))
 
-    def _get_physical_disk_attr(self, drac_disk, attr_name):
+    def _get_physical_disk_attr(self, drac_disk, attr_name, uri,
+                                allow_missing=False):
         return utils.get_wsman_resource_attr(
-            drac_disk, uris.DCIM_PhysicalDiskView, attr_name, nullable=True)
+            drac_disk, uri, attr_name, nullable=True,
+            allow_missing=allow_missing)
 
     def convert_physical_disks(self, physical_disks, raid_enable):
         """Converts a list of physical disks into or out of RAID mode.

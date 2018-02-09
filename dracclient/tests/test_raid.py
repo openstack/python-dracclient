@@ -104,7 +104,8 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             firmware_version='LS0A',
             status='ok',
             raid_status='ready',
-            sas_address='5000C5007764F409')
+            sas_address='5000C5007764F409',
+            device_protocol=None)
 
         mock_requests.post(
             'https://1.2.3.4:443/wsman',
@@ -133,7 +134,37 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             firmware_version='LS0B',
             status='ok',
             raid_status='ready',
-            sas_address='5000C5007764F409')
+            sas_address='5000C5007764F409',
+            device_protocol=None)
+
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.RAIDEnumerations[uris.DCIM_PhysicalDiskView]['ok'])
+
+        self.assertIn(expected_physical_disk,
+                      self.drac_client.list_physical_disks())
+
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_list_physical_disks_nvme(self, mock_requests,
+                                      mock_wait_until_idrac_is_ready):
+        expected_physical_disk = raid.PhysicalDisk(
+            id='Disk.Bay.20:Enclosure.Internal.0-1:PCIeExtender.Slot.1',
+            description='PCIe SSD in Slot 20 in Bay 1',
+            controller='PCIeExtender.Slot.1',
+            manufacturer='SAMSUNG',
+            model='Dell Express Flash PM1725a 800GB SFF',
+            media_type='ssd',
+            interface_type='pcie',
+            size_mb=763097,
+            free_size_mb=None,
+            serial_number='S39YNX0JB02343',
+            firmware_version='1.0.4',
+            status='unknown',
+            raid_status=None,
+            sas_address=None,
+            device_protocol='NVMe-MI1.0')
 
         mock_requests.post(
             'https://1.2.3.4:443/wsman',

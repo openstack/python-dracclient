@@ -73,6 +73,9 @@ DCIM_MemoryView = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
 DCIM_NICView = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
                 'DCIM_NICView')
 
+DCIM_PCIeSSDView = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
+                    'DCIM_PCIeSSDView')
+
 DCIM_PhysicalDiskView = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
                          'DCIM_PhysicalDiskView')
 
