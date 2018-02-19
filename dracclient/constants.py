@@ -34,3 +34,19 @@ PRIMARY_STATUS = {
 
 # binary unit constants
 UNITS_KI = 2 ** 10
+
+
+# Reboot required indicator
+# Note: When the iDRAC returns optional for this value, this indicates that
+# either a reboot may be performed to complete the operation or a real time
+# config job may be created to complete the operation without performing a
+# reboot.  This library does not currently support creating a real time config
+# job, so a reboot must be performed when a value of "optional" is returned.
+class RebootRequired(object):
+    true = 'true'
+    optional = 'optional'
+    false = 'false'
+
+    @classmethod
+    def all(cls):
+        return [cls.true, cls.optional, cls.false]

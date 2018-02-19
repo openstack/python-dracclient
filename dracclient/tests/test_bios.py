@@ -18,6 +18,7 @@ import mock
 import requests_mock
 
 import dracclient.client
+from dracclient import constants
 from dracclient import exceptions
 from dracclient.resources import bios
 import dracclient.resources.job
@@ -347,7 +348,10 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
         result = self.drac_client.set_bios_settings(
             {'ProcVirtualization': 'Disabled'})
 
-        self.assertEqual({'commit_required': True}, result)
+        self.assertEqual({'commit_required': True,
+                          'is_commit_required': True,
+                          'is_reboot_required': constants.RebootRequired.true},
+                         result)
         mock_invoke.assert_called_once_with(
             mock.ANY, uris.DCIM_BIOSService, 'SetAttributes',
             expected_selectors, expected_properties)
@@ -394,7 +398,11 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
         result = self.drac_client.set_bios_settings(
             {'ProcVirtualization': 'Enabled'})
 
-        self.assertEqual({'commit_required': False}, result)
+        self.assertEqual({'commit_required': False,
+                          'is_commit_required': False,
+                          'is_reboot_required':
+                          constants.RebootRequired.false},
+                         result)
 
     def test_set_bios_settings_with_readonly_attr(
             self, mock_requests, mock_wait_until_idrac_is_ready):
