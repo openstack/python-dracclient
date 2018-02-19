@@ -252,35 +252,35 @@ def validate_integer_value(value, attr_name, error_msgs):
 
 def list_settings(client, namespaces, by_name=True, fqdd_filter=None,
                   name_formatter=None):
-        """List the configuration settings
+    """List the configuration settings
 
-        :param client: an instance of WSManClient.
-        :param namespaces: a list of URI/class pairs to retrieve.
-        :param by_name: controls whether returned dictionary uses
-                        attribute name or instance_id as key.
-        :param fqdd_filter: An FQDD used to filter the instances.  Note that
-                            this is only used when by_name is True.
-        :param name_formatter: a method used to format the keys in the
-                               returned dictionary.  By default,
-                               attribute.name will be used.
-        :returns: a dictionary with the settings using name or instance_id as
-                  the key.
-        :raises: WSManRequestFailure on request failures
-        :raises: WSManInvalidResponse when receiving invalid response
-        :raises: DRACOperationFailed on error reported back by the DRAC
-                 interface
-        """
+    :param client: an instance of WSManClient.
+    :param namespaces: a list of URI/class pairs to retrieve.
+    :param by_name: controls whether returned dictionary uses
+                    attribute name or instance_id as key.
+    :param fqdd_filter: An FQDD used to filter the instances.  Note that
+                        this is only used when by_name is True.
+    :param name_formatter: a method used to format the keys in the
+                           returned dictionary.  By default,
+                           attribute.name will be used.
+    :returns: a dictionary with the settings using name or instance_id as
+              the key.
+    :raises: WSManRequestFailure on request failures
+    :raises: WSManInvalidResponse when receiving invalid response
+    :raises: DRACOperationFailed on error reported back by the DRAC
+             interface
+    """
 
-        result = {}
-        for (namespace, attr_cls) in namespaces:
-            attribs = _get_config(client, namespace, attr_cls, by_name,
-                                  fqdd_filter, name_formatter)
-            if not set(result).isdisjoint(set(attribs)):
-                raise exceptions.DRACOperationFailed(
-                    drac_messages=('Colliding attributes %r' % (
-                        set(result) & set(attribs))))
-            result.update(attribs)
-        return result
+    result = {}
+    for (namespace, attr_cls) in namespaces:
+        attribs = _get_config(client, namespace, attr_cls, by_name,
+                              fqdd_filter, name_formatter)
+        if not set(result).isdisjoint(set(attribs)):
+            raise exceptions.DRACOperationFailed(
+                drac_messages=('Colliding attributes %r' % (
+                    set(result) & set(attribs))))
+        result.update(attribs)
+    return result
 
 
 def _get_config(client, resource, attr_cls, by_name, fqdd_filter,
