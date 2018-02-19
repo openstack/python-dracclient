@@ -1,0 +1,19 @@
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+            xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+            xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_iDRACCardService">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_iDRACCardService/SetAttributesResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:305ed6f4-2269-43c5-8c28-00b85e81099d</wsa:RelatesTo>
+    <wsa:MessageID>uuid:683c34bc-53c4-13c4-8064-17c1f0d9bed4</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <n1:SetAttributes_OUTPUT>
+      <n1:Message>The command was successful</n1:Message>
+      <n1:MessageID>RAC001</n1:MessageID>
+      <n1:RebootRequired>No</n1:RebootRequired>
+      <n1:ReturnValue>0</n1:ReturnValue>
+      <n1:SetResult>Set PendingValue</n1:SetResult>
+    </n1:SetAttributes_OUTPUT>
+  </s:Body>
+</s:Envelope>

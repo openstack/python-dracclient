@@ -20,6 +20,27 @@
           <n1:DefaultValue>12G/13G</n1:DefaultValue>
           <n1:Dependency xsi:nil="true"/>
           <n1:DisplayOrder>6</n1:DisplayOrder>
+          <n1:FQDD>iDRAC.Embedded.2</n1:FQDD>
+          <n1:GroupDisplayName>RAC Information</n1:GroupDisplayName>
+          <n1:GroupID>Info.1</n1:GroupID>
+          <n1:InstanceID>iDRAC.Embedded.2#Info.1#Type</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:PossibleValues>12G/13G</n1:PossibleValues>
+          <n1:PossibleValues>12G Monolithic</n1:PossibleValues>
+          <n1:PossibleValues>12G Modular</n1:PossibleValues>
+          <n1:PossibleValues>13G Monolithic</n1:PossibleValues>
+          <n1:PossibleValues>13G Modular</n1:PossibleValues>
+          <n1:PossibleValues>12G DCS</n1:PossibleValues>
+          <n1:PossibleValues>13G DCS</n1:PossibleValues>
+        </n1:DCIM_iDRACCardEnumeration>
+        <n1:DCIM_iDRACCardEnumeration>
+          <n1:AttributeDisplayName>iDRAC Type</n1:AttributeDisplayName>
+          <n1:AttributeName>Type</n1:AttributeName>
+          <n1:CurrentValue>13G Monolithic</n1:CurrentValue>
+          <n1:DefaultValue>12G/13G</n1:DefaultValue>
+          <n1:Dependency xsi:nil="true"/>
+          <n1:DisplayOrder>6</n1:DisplayOrder>
           <n1:FQDD>iDRAC.Embedded.1</n1:FQDD>
           <n1:GroupDisplayName>RAC Information</n1:GroupDisplayName>
           <n1:GroupID>Info.1</n1:GroupID>

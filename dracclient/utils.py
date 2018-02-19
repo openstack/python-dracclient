@@ -133,7 +133,8 @@ def get_all_wsman_resource_attrs(doc, resource_uri, attr_name, nullable=False):
 def build_return_dict(doc, resource_uri,
                       is_commit_required_value=None,
                       is_reboot_required_value=None,
-                      commit_required_value=None):
+                      commit_required_value=None,
+                      include_commit_required=False):
     """Builds a dictionary to be returned
 
        Build a dictionary to be returned from WSMAN operations that are not
@@ -150,6 +151,8 @@ def build_return_dict(doc, resource_uri,
     :param commit_required_value: The value to be returned for
            commit_required, or None if the value should be determined
            from the doc.
+    :parm include_commit_required: Indicates if the deprecated commit_required
+                                   should be returned in the result.
     :returns: a dictionary containing:
              - is_commit_required: indicates if a commit is required.
              - is_reboot_required: indicates if a reboot is required.
@@ -179,10 +182,11 @@ def build_return_dict(doc, resource_uri,
 
     # Include commit_required in the response for backwards compatibility
     # TBD: Remove this parameter in the future
-    if commit_required_value is None:
-        commit_required_value = is_reboot_required(doc, resource_uri)
+    if include_commit_required:
+        if commit_required_value is None:
+            commit_required_value = is_reboot_required(doc, resource_uri)
 
-    result['commit_required'] = commit_required_value
+        result['commit_required'] = commit_required_value
 
     return result
 
@@ -246,13 +250,19 @@ def validate_integer_value(value, attr_name, error_msgs):
         error_msgs.append("'%s' is not an integer value" % attr_name)
 
 
-def list_settings(client, namespaces, by_name=True):
+def list_settings(client, namespaces, by_name=True, fqdd_filter=None,
+                  name_formatter=None):
         """List the configuration settings
 
         :param client: an instance of WSManClient.
         :param namespaces: a list of URI/class pairs to retrieve.
         :param by_name: controls whether returned dictionary uses
                         attribute name or instance_id as key.
+        :param fqdd_filter: An FQDD used to filter the instances.  Note that
+                            this is only used when by_name is True.
+        :param name_formatter: a method used to format the keys in the
+                               returned dictionary.  By default,
+                               attribute.name will be used.
         :returns: a dictionary with the settings using name or instance_id as
                   the key.
         :raises: WSManRequestFailure on request failures
@@ -263,7 +273,8 @@ def list_settings(client, namespaces, by_name=True):
 
         result = {}
         for (namespace, attr_cls) in namespaces:
-            attribs = _get_config(client, namespace, attr_cls, by_name)
+            attribs = _get_config(client, namespace, attr_cls, by_name,
+                                  fqdd_filter, name_formatter)
             if not set(result).isdisjoint(set(attribs)):
                 raise exceptions.DRACOperationFailed(
                     drac_messages=('Colliding attributes %r' % (
@@ -272,7 +283,8 @@ def list_settings(client, namespaces, by_name=True):
         return result
 
 
-def _get_config(client, resource, attr_cls, by_name):
+def _get_config(client, resource, attr_cls, by_name, fqdd_filter,
+                name_formatter):
     result = {}
 
     doc = client.enumerate(resource)
@@ -281,7 +293,14 @@ def _get_config(client, resource, attr_cls, by_name):
     for item in items:
         attribute = attr_cls.parse(item)
         if by_name:
-            result[attribute.name] = attribute
+            # Filter out all instances without a matching FQDD
+            if fqdd_filter is None or fqdd_filter == attribute.fqdd:
+                if name_formatter is None:
+                    name = attribute.name
+                else:
+                    name = name_formatter(attribute)
+
+                result[name] = attribute
         else:
             result[attribute.instance_id] = attribute
 
@@ -295,7 +314,9 @@ def set_settings(settings_type,
                  resource_uri,
                  cim_creation_class_name,
                  cim_name,
-                 target):
+                 target,
+                 name_formatter=None,
+                 include_commit_required=False):
     """Generically handles setting various types of settings on the iDRAC
 
     This method pulls the current list of settings from the iDRAC then compares
@@ -313,6 +334,11 @@ def set_settings(settings_type,
     :param cim_creation_class_name: creation class name of the CIM object
     :param cim_name: name of the CIM object
     :param target: target device
+    :param name_formatter: a method used to format the keys in the
+                           returned dictionary.  By default,
+                           attribute.name will be used.
+    :parm include_commit_required: Indicates if the deprecated commit_required
+                                   should be returned in the result.
     :returns: a dictionary containing:
              - The commit_required key with a boolean value indicating
                whether a config job must be created for the values to be
@@ -334,7 +360,8 @@ def set_settings(settings_type,
     :raises: InvalidParameterValue on invalid new setting
     """
 
-    current_settings = list_settings(client, namespaces, by_name=True)
+    current_settings = list_settings(client, namespaces, by_name=True,
+                                     name_formatter=name_formatter)
 
     unknown_keys = set(new_settings) - set(current_settings)
     if unknown_keys:
@@ -383,7 +410,10 @@ def set_settings(settings_type,
 
     if not attrib_names:
         return build_return_dict(
-            None, resource_uri, is_commit_required_value=False,
+            None,
+            resource_uri,
+            include_commit_required=include_commit_required,
+            is_commit_required_value=False,
             is_reboot_required_value=constants.RebootRequired.false,
             commit_required_value=False)
 
@@ -398,4 +428,5 @@ def set_settings(settings_type,
     doc = client.invoke(resource_uri, 'SetAttributes',
                         selectors, properties)
 
-    return build_return_dict(doc, resource_uri)
+    return build_return_dict(doc, resource_uri,
+                             include_commit_required=include_commit_required)
