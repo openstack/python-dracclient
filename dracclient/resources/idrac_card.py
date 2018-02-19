@@ -13,7 +13,6 @@
 
 from dracclient.resources import uris
 from dracclient import utils
-from dracclient import wsman
 
 
 class iDRACCardConfiguration(object):
@@ -37,27 +36,11 @@ class iDRACCardConfiguration(object):
         :raises: DRACOperationFailed on error reported back by the DRAC
                  interface
         """
-        result = {}
         namespaces = [(uris.DCIM_iDRACCardEnumeration,
                        iDRACCardEnumerableAttribute),
                       (uris.DCIM_iDRACCardString, iDRACCardStringAttribute),
                       (uris.DCIM_iDRACCardInteger, iDRACCardIntegerAttribute)]
-        for (namespace, attr_cls) in namespaces:
-            attribs = self._get_config(namespace, attr_cls)
-            result.update(attribs)
-        return result
-
-    def _get_config(self, resource, attr_cls):
-        result = {}
-        doc = self.client.enumerate(resource)
-
-        items = doc.find('.//{%s}Items' % wsman.NS_WSMAN)
-
-        if items:
-            for item in items:
-                attribute = attr_cls.parse(item)
-                result[attribute.instance_id] = attribute
-        return result
+        return utils.list_settings(self.client, namespaces, by_name=False)
 
 
 class iDRACCardAttribute(object):
