@@ -2,7 +2,9 @@
             xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
             xmlns:wsen="http://schemas.xmlsoap.org/ws/2004/09/enumeration"
             xmlns:wsman="http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd"
-            xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_PhysicalDiskView">
+            xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_PhysicalDiskView"
+            xmlns:n2="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_PCIeSSDView"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <s:Header>
     <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
     <wsa:Action>http://schemas.xmlsoap.org/ws/2004/09/enumeration/EnumerateResponse</wsa:Action>
@@ -123,6 +125,33 @@
           <n1:T10PICapability>0</n1:T10PICapability>
           <n1:UsedSizeInBytes>0</n1:UsedSizeInBytes>
         </n1:DCIM_PhysicalDiskView>
+        <n2:DCIM_PCIeSSDView>
+          <n2:BusProtocol>7</n2:BusProtocol>
+          <n2:DeviceDescription>PCIe SSD in Slot 20 in Bay 1</n2:DeviceDescription>
+          <n2:DeviceProtocol>NVMe-MI1.0</n2:DeviceProtocol>
+          <n2:DriveFormFactor>2</n2:DriveFormFactor>
+          <n2:FQDD>Disk.Bay.20:Enclosure.Internal.0-1:PCIeExtender.Slot.1</n2:FQDD>
+          <n2:FailurePredicted>NO</n2:FailurePredicted>
+          <n2:FreeSizeInBytes xsi:nil="true"/>
+          <n2:HotSpareStatus xsi:nil="true"/>
+          <n2:InstanceID>Disk.Bay.20:Enclosure.Internal.0-1:PCIeExtender.Slot.1</n2:InstanceID>
+          <n2:Manufacturer>SAMSUNG</n2:Manufacturer>
+          <n2:MaximumCapableSpeed>8 GT/s</n2:MaximumCapableSpeed>
+          <n2:MediaType>1</n2:MediaType>
+          <n2:Model>Dell Express Flash PM1725a 800GB SFF    </n2:Model>
+          <n2:NegotiatedSpeed>8 GT/s</n2:NegotiatedSpeed>
+          <n2:PCIeCapableLinkWidth>x4</n2:PCIeCapableLinkWidth>
+          <n2:PCIeNegotiatedLinkWidth>x4</n2:PCIeNegotiatedLinkWidth>
+          <n2:PrimaryStatus>0</n2:PrimaryStatus>
+          <n2:ProductID>a822</n2:ProductID>
+          <n2:RAIDType>0</n2:RAIDType>
+          <n2:RaidStatus xsi:nil="true"/>
+          <n2:RemainingRatedWriteEndurance>100</n2:RemainingRatedWriteEndurance>
+          <n2:Revision>1.0.4  </n2:Revision>
+          <n2:SerialNumber>S39YNX0JB02343</n2:SerialNumber>
+          <n2:SizeInBytes>800166076416</n2:SizeInBytes>
+          <n2:State>1</n2:State>
+        </n2:DCIM_PCIeSSDView>
       </wsman:Items>
       <wsen:EnumerationContext/>
       <wsman:EndOfSequence/>
