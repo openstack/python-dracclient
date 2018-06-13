@@ -440,6 +440,24 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             physical_disks=['disk1', 'disk2'], raid_level='1', size_mb=None,
             disk_name='name', span_length=2, span_depth=3)
 
+    # This test is specifically for support of creating a RAID1 on a Dell BOSS
+    # card.  It requires that size_mb is set to 0
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke',
+                       spec_set=True, autospec=True)
+    def test_create_virtual_disk_0_size(self, mock_requests, mock_invoke):
+        mock_invoke.return_value = lxml.etree.fromstring(
+            test_utils.RAIDInvocations[uris.DCIM_RAIDService][
+                'CreateVirtualDisk']['ok'])
+
+        self.drac_client.create_virtual_disk(
+            raid_controller='controller',
+            physical_disks=['disk1', 'disk2'],
+            raid_level='1',
+            size_mb=0,
+            disk_name='name',
+            span_length=1,
+            span_depth=2)
+
     def test_create_virtual_disk_invalid_size(self, mock_requests):
         self.assertRaises(
             exceptions.InvalidParameterValue,

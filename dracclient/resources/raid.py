@@ -428,10 +428,7 @@ class RAIDManagement(object):
             error_msgs.append("'physical_disks' is not supplied")
 
         # size validation
-        if not size_mb:
-            error_msgs.append("'size_mb' is not supplied")
-        else:
-            utils.validate_integer_value(size_mb, 'size_mb', error_msgs)
+        utils.validate_integer_value(size_mb, 'size_mb', error_msgs)
 
         virtual_disk_prop_names.append('Size')
         virtual_disk_prop_values.append(str(size_mb))
