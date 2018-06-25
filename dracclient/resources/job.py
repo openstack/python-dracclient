@@ -14,6 +14,7 @@
 import collections
 import logging
 
+import dracclient.exceptions as exceptions
 from dracclient.resources import uris
 from dracclient import utils
 from dracclient import wsman
@@ -24,6 +25,12 @@ JobTuple = collections.namedtuple(
     'Job',
     ['id', 'name', 'start_time', 'until_time', 'message', 'status',
      'percent_complete'])
+
+REBOOT_TYPES = {
+    'power_cycle': '1',
+    'graceful_reboot_without_forced_shutdown': '2',
+    'graceful_reboot_with_forced_shutdown': '3',
+}
 
 
 class Job(JobTuple):
@@ -108,7 +115,8 @@ class JobManagement(object):
                           cim_name, target,
                           cim_system_creation_class_name='DCIM_ComputerSystem',
                           cim_system_name='DCIM:ComputerSystem',
-                          reboot=False):
+                          reboot=False,
+                          start_time='TIME_NOW'):
         """Creates a config job
 
         In CIM (Common Information Model), weak association is used to name an
@@ -127,6 +135,12 @@ class JobManagement(object):
         :param cim_system_name: name of the scoping system
         :param reboot: indicates whether a RebootJob should also be created or
                        not
+        :param start_time: start time for job execution in format
+                           yyyymmddhhmmss; the string 'TIME_NOW' means
+                           immediately and None means the job is registered
+                           but will not start execution until
+                           schedule_job_execution is called with the returned
+                           job id.
         :returns: id of the created job
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
@@ -140,21 +154,98 @@ class JobManagement(object):
                      'CreationClassName': cim_creation_class_name,
                      'Name': cim_name}
 
-        properties = {'Target': target,
-                      'ScheduledStartTime': 'TIME_NOW'}
+        properties = {'Target': target}
 
         if reboot:
             properties['RebootJobType'] = '3'
+
+        if start_time is not None:
+            properties['ScheduledStartTime'] = start_time
 
         doc = self.client.invoke(resource_uri, 'CreateTargetedConfigJob',
                                  selectors, properties,
                                  expected_return_value=utils.RET_CREATED)
 
-        query = ('.//{%(namespace)s}%(item)s[@%(attribute_name)s='
-                 '"%(attribute_value)s"]' %
-                 {'namespace': wsman.NS_WSMAN, 'item': 'Selector',
-                  'attribute_name': 'Name',
-                  'attribute_value': 'InstanceID'})
+        return self._get_job_id(doc)
+
+    def create_reboot_job(self,
+                          reboot_type='graceful_reboot_with_forced_shutdown'):
+        """Creates a reboot job.
+
+        :param reboot_type: type of reboot
+        :returns id of the created job
+        :raises: InvalidParameterValue on invalid reboot type
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the iDRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        """
+
+        try:
+            drac_reboot_type = REBOOT_TYPES[reboot_type]
+        except KeyError:
+            msg = ("'%(reboot_type)s' is not supported. "
+                   "Supported reboot types: %(supported_reboot_types)r") % {
+                       'reboot_type': reboot_type,
+                       'supported_reboot_types': list(REBOOT_TYPES)}
+            raise exceptions.InvalidParameterValue(reason=msg)
+
+        selectors = {'SystemCreationClassName': 'DCIM_ComputerSystem',
+                     'SystemName': 'idrac',
+                     'CreationClassName': 'DCIM_JobService',
+                     'Name': 'JobService'}
+
+        properties = {'RebootJobType': drac_reboot_type}
+
+        doc = self.client.invoke(uris.DCIM_JobService,
+                                 'CreateRebootJob',
+                                 selectors,
+                                 properties,
+                                 expected_return_value=utils.RET_CREATED)
+
+        return self._get_job_id(doc)
+
+    def schedule_job_execution(self, job_ids, start_time='TIME_NOW'):
+        """Schedules jobs for execution in a specified order.
+
+        :param job_ids: list of job identifiers
+        :param start_time: start time for job execution in format
+                           yyyymmddhhmmss; the string 'TIME_NOW' means
+                           immediately
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the iDRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        """
+
+        # If the list of job identifiers is empty, there is nothing to do.
+        if not job_ids:
+            return
+
+        selectors = {'SystemCreationClassName': 'DCIM_ComputerSystem',
+                     'SystemName': 'idrac',
+                     'CreationClassName': 'DCIM_JobService',
+                     'Name': 'JobService'}
+
+        properties = {'JobArray': job_ids,
+                      'StartTimeInterval': start_time}
+
+        self.client.invoke(uris.DCIM_JobService,
+                           'SetupJobQueue',
+                           selectors,
+                           properties,
+                           expected_return_value=utils.RET_SUCCESS)
+
+    def _get_job_id(self, doc):
+        query = (
+            './/{%(namespace)s}%(item)s[@%(attribute_name)s='
+            '"%(attribute_value)s"]' % {
+                'namespace': wsman.NS_WSMAN,
+                'item': 'Selector',
+                'attribute_name': 'Name',
+                'attribute_value': 'InstanceID'})
         job_id = doc.find(query).text
         return job_id
 

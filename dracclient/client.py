@@ -244,11 +244,17 @@ class DRACClient(object):
     def commit_pending_idrac_changes(
             self,
             idrac_fqdd=IDRAC_FQDD,
-            reboot=False):
-        """Creates a config job for applying all pending changes to an iDRAC
+            reboot=False,
+            start_time='TIME_NOW'):
+        """Create a config job for applying all pending iDRAC changes.
 
         :param idrac_fqdd: the FQDD of the iDRAC.
         :param reboot: indication of whether to also create a reboot job
+        :param start_time: start time for job execution in format
+                           yyyymmddhhmmss, the string 'TIME_NOW' which
+                           means execute immediately or None which means
+                           the job will not execute until
+                           schedule_job_execution is called
         :returns: id of the created configuration job
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
@@ -261,7 +267,8 @@ class DRACClient(object):
             cim_creation_class_name='DCIM_iDRACCardService',
             cim_name='DCIM:iDRACCardService',
             target=idrac_fqdd,
-            reboot=reboot)
+            reboot=reboot,
+            start_time=start_time)
 
     def abandon_pending_idrac_changes(self, idrac_fqdd=IDRAC_FQDD):
         """Abandon all pending changes to an iDRAC
@@ -332,12 +339,16 @@ class DRACClient(object):
         """
         return self._job_mgmt.get_job(job_id)
 
-    def create_config_job(self, resource_uri, cim_creation_class_name,
-                          cim_name, target,
+    def create_config_job(self,
+                          resource_uri,
+                          cim_creation_class_name,
+                          cim_name,
+                          target,
                           cim_system_creation_class_name='DCIM_ComputerSystem',
                           cim_system_name='DCIM:ComputerSystem',
-                          reboot=False):
-        """Creates a config job
+                          reboot=False,
+                          start_time='TIME_NOW'):
+        """Creates a configuration job.
 
         In CIM (Common Information Model), weak association is used to name an
         instance of one class in the context of an instance of another class.
@@ -353,18 +364,62 @@ class DRACClient(object):
         :param cim_system_creation_class_name: creation class name of the
                                                scoping system
         :param cim_system_name: name of the scoping system
-        :param reboot: indicates whether a RebootJob should also be
-                       created or not
+        :param reboot: indicates whether or not a RebootJob should also be
+                       created
+        :param start_time: start time for job execution in format
+                           yyyymmddhhmmss, the string 'TIME_NOW' which
+                           means execute immediately or None which means
+                           the job will not execute until
+                           schedule_job_execution is called
         :returns: id of the created job
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
-        :raises: DRACOperationFailed on error reported back by the DRAC
+        :raises: DRACOperationFailed on error reported back by the iDRAC
                  interface
         :raises: DRACUnexpectedReturnValue on return value mismatch
         """
+
         return self._job_mgmt.create_config_job(
-            resource_uri, cim_creation_class_name, cim_name, target,
-            cim_system_creation_class_name, cim_system_name, reboot)
+            resource_uri=resource_uri,
+            cim_creation_class_name=cim_creation_class_name,
+            cim_name=cim_name,
+            target=target,
+            cim_system_creation_class_name=cim_system_creation_class_name,
+            cim_system_name=cim_system_name,
+            reboot=reboot,
+            start_time=start_time)
+
+    def create_reboot_job(self,
+                          reboot_type='graceful_reboot_with_forced_shutdown'):
+        """Creates a reboot job.
+
+        :param reboot_type: type of reboot
+        :returns id of the created job
+        :raises: InvalidParameterValue on invalid reboot type
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the iDRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        """
+        return self._job_mgmt.create_reboot_job(reboot_type)
+
+    def schedule_job_execution(self, job_ids, start_time='TIME_NOW'):
+        """Schedules jobs for execution in a specified order.
+
+        :param job_ids: list of job identifiers
+        :param start_time: start time for job execution in format
+                           yyyymmddhhmmss or the string 'TIME_NOW' which
+                           means execute immediately.  None is not a
+                           valid option for this request.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the iDRAC
+                 interface, including start_time being in the past or
+                 badly formatted start_time
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        """
+        return self._job_mgmt.schedule_job_execution(job_ids, start_time)
 
     def delete_pending_config(
             self, resource_uri, cim_creation_class_name, cim_name, target,
@@ -398,23 +453,34 @@ class DRACClient(object):
             resource_uri, cim_creation_class_name, cim_name, target,
             cim_system_creation_class_name, cim_system_name)
 
-    def commit_pending_bios_changes(self, reboot=False):
+    def commit_pending_bios_changes(
+            self,
+            reboot=False,
+            start_time='TIME_NOW'):
         """Applies all pending changes on the BIOS by creating a config job
 
         :param reboot: indicates whether a RebootJob should also be
                        created or not
+        :param start_time: start time for job execution in format
+                           yyyymmddhhmmss, the string 'TIME_NOW' which
+                           means execute immediately or None which means
+                           the job will not execute until
+                           schedule_job_execution is called
         :returns: id of the created job
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
         :raises: DRACOperationFailed on error reported back by the DRAC
-                 interface
+                 interface, including start_time being in the past or
+                 badly formatted start_time
         :raises: DRACUnexpectedReturnValue on return value mismatch
         """
         return self._job_mgmt.create_config_job(
             resource_uri=uris.DCIM_BIOSService,
             cim_creation_class_name='DCIM_BIOSService',
-            cim_name='DCIM:BIOSService', target=self.BIOS_DEVICE_FQDD,
-            reboot=reboot)
+            cim_name='DCIM:BIOSService',
+            target=self.BIOS_DEVICE_FQDD,
+            reboot=reboot,
+            start_time=start_time)
 
     def abandon_pending_bios_changes(self):
         """Deletes all pending changes on the BIOS
@@ -569,7 +635,8 @@ class DRACClient(object):
         """
         return self._raid_mgmt.delete_virtual_disk(virtual_disk)
 
-    def commit_pending_raid_changes(self, raid_controller, reboot=False):
+    def commit_pending_raid_changes(self, raid_controller, reboot=False,
+                                    start_time='TIME_NOW'):
         """Applies all pending changes on a RAID controller
 
          ...by creating a config job.
@@ -577,6 +644,11 @@ class DRACClient(object):
         :param raid_controller: id of the RAID controller
         :param reboot: indicates whether a RebootJob should also be
                        created or not
+        :param start_time: start time for job execution in format
+               yyyymmddhhmmss, the string 'TIME_NOW' which
+               means execute immediately or None which means
+               the job will not execute until
+               schedule_job_execution is called
         :returns: id of the created job
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
@@ -587,7 +659,10 @@ class DRACClient(object):
         return self._job_mgmt.create_config_job(
             resource_uri=uris.DCIM_RAIDService,
             cim_creation_class_name='DCIM_RAIDService',
-            cim_name='DCIM:RAIDService', target=raid_controller, reboot=reboot)
+            cim_name='DCIM:RAIDService',
+            target=raid_controller,
+            reboot=reboot,
+            start_time=start_time)
 
     def abandon_pending_raid_changes(self, raid_controller):
         """Deletes all pending changes on a RAID controller

@@ -11,6 +11,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import datetime
 import lxml.etree
 import mock
 import requests_mock
@@ -127,6 +128,59 @@ class ClientJobManagementTestCase(base.BaseTest):
             expected_return_value=utils.RET_CREATED)
         self.assertEqual('JID_442507917525', job_id)
 
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke',
+                       spec_set=True, autospec=True)
+    def test_create_config_job_with_start_time(self, mock_invoke):
+        cim_creation_class_name = 'DCIM_BIOSService'
+        cim_name = 'DCIM:BIOSService'
+        target = 'BIOS.Setup.1-1'
+        start_time = "20140924120105"
+        expected_selectors = {'CreationClassName': cim_creation_class_name,
+                              'Name': cim_name,
+                              'SystemCreationClassName': 'DCIM_ComputerSystem',
+                              'SystemName': 'DCIM:ComputerSystem'}
+        expected_properties = {'Target': target,
+                               'ScheduledStartTime': start_time}
+        mock_invoke.return_value = lxml.etree.fromstring(
+            test_utils.JobInvocations[uris.DCIM_BIOSService][
+                'CreateTargetedConfigJob']['ok'])
+
+        job_id = self.drac_client.create_config_job(
+            uris.DCIM_BIOSService, cim_creation_class_name, cim_name, target,
+            start_time=start_time)
+
+        mock_invoke.assert_called_once_with(
+            mock.ANY, uris.DCIM_BIOSService, 'CreateTargetedConfigJob',
+            expected_selectors, expected_properties,
+            expected_return_value=utils.RET_CREATED)
+        self.assertEqual('JID_442507917525', job_id)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke',
+                       spec_set=True, autospec=True)
+    def test_create_config_job_with_no_start_time(self, mock_invoke):
+        cim_creation_class_name = 'DCIM_BIOSService'
+        cim_name = 'DCIM:BIOSService'
+        target = 'BIOS.Setup.1-1'
+        start_time = None
+        expected_selectors = {'CreationClassName': cim_creation_class_name,
+                              'Name': cim_name,
+                              'SystemCreationClassName': 'DCIM_ComputerSystem',
+                              'SystemName': 'DCIM:ComputerSystem'}
+        expected_properties = {'Target': target}
+        mock_invoke.return_value = lxml.etree.fromstring(
+            test_utils.JobInvocations[uris.DCIM_BIOSService][
+                'CreateTargetedConfigJob']['ok'])
+
+        job_id = self.drac_client.create_config_job(
+            uris.DCIM_BIOSService, cim_creation_class_name, cim_name, target,
+            start_time=start_time)
+
+        mock_invoke.assert_called_once_with(
+            mock.ANY, uris.DCIM_BIOSService, 'CreateTargetedConfigJob',
+            expected_selectors, expected_properties,
+            expected_return_value=utils.RET_CREATED)
+        self.assertEqual('JID_442507917525', job_id)
+
     @requests_mock.Mocker()
     @mock.patch.object(dracclient.client.WSManClient,
                        'wait_until_idrac_is_ready', spec_set=True,
@@ -174,6 +228,27 @@ class ClientJobManagementTestCase(base.BaseTest):
 
     @mock.patch.object(dracclient.client.WSManClient, 'invoke', spec_set=True,
                        autospec=True)
+    def test_create_reboot_job(self, mock_invoke):
+        expected_selectors = {
+            'SystemCreationClassName': 'DCIM_ComputerSystem',
+            'SystemName': 'idrac',
+            'CreationClassName': 'DCIM_JobService',
+            'Name': 'JobService'}
+        expected_properties = {'RebootJobType': '3'}
+        self.drac_client.create_reboot_job()
+
+        mock_invoke.assert_called_once_with(
+            mock.ANY, uris.DCIM_JobService, 'CreateRebootJob',
+            expected_selectors, expected_properties,
+            expected_return_value=utils.RET_CREATED)
+
+    def test_create_reboot_job_bad_type(self):
+        self.assertRaises(
+            exceptions.InvalidParameterValue,
+            self.drac_client.create_reboot_job, 'BAD REBOOT TYPE')
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke', spec_set=True,
+                       autospec=True)
     def test_delete_pending_config(self, mock_invoke):
         cim_creation_class_name = 'DCIM_BIOSService'
         cim_name = 'DCIM:BIOSService'
@@ -213,3 +288,75 @@ class ClientJobManagementTestCase(base.BaseTest):
             exceptions.DRACOperationFailed,
             self.drac_client.delete_pending_config, uris.DCIM_BIOSService,
             cim_creation_class_name, cim_name, target)
+
+
+class ClientJobScheduleTestCase(base.BaseTest):
+    def setUp(self):
+        super(ClientJobScheduleTestCase, self).setUp()
+        self.drac_client = dracclient.client.DRACClient(
+            **test_utils.FAKE_ENDPOINT)
+
+    def _test_schedule_job_execution(self,
+                                     mock_invoke,
+                                     job_ids,
+                                     start_time,
+                                     expected_properties):
+        expected_selectors = {
+            'SystemCreationClassName': 'DCIM_ComputerSystem',
+            'SystemName': 'idrac',
+            'CreationClassName': 'DCIM_JobService',
+            'Name': 'JobService'}
+
+        if start_time is None:
+            self.drac_client.schedule_job_execution(job_ids)
+        else:
+            self.drac_client.schedule_job_execution(job_ids, start_time)
+
+        mock_invoke.assert_called_once_with(
+            mock.ANY, uris.DCIM_JobService, 'SetupJobQueue',
+            expected_selectors, expected_properties,
+            expected_return_value=utils.RET_SUCCESS)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke', spec_set=True,
+                       autospec=True)
+    def test_schedule_job_execution_one_job(self, mock_invoke):
+        job_ids = ['JID_442507917525']
+        expected_properties = {'StartTimeInterval': 'TIME_NOW',
+                               'JobArray': job_ids}
+
+        self._test_schedule_job_execution(mock_invoke, job_ids, None,
+                                          expected_properties)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke', spec_set=True,
+                       autospec=True)
+    def test_schedule_job_execution_multi_job(self, mock_invoke):
+        job_ids = ['JID_442507917525', 'JID_442507917526']
+        expected_properties = {'StartTimeInterval': 'TIME_NOW',
+                               'JobArray': job_ids}
+        self._test_schedule_job_execution(mock_invoke, job_ids, None,
+                                          expected_properties)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke', spec_set=True,
+                       autospec=True)
+    def test_schedule_job_execution_one_job_with_time(self, mock_invoke):
+        job_ids = ['JID_442507917525']
+        timestamp = datetime.datetime.today().strftime('%Y%m%d%H%M%S')
+        expected_properties = {'StartTimeInterval': timestamp,
+                               'JobArray': job_ids}
+        self._test_schedule_job_execution(mock_invoke, job_ids, timestamp,
+                                          expected_properties)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke', spec_set=True,
+                       autospec=True)
+    def test_schedule_job_execution_multi_job_with_time(self, mock_invoke):
+        job_ids = ['JID_442507917525', 'JID_442507917526']
+        timestamp = datetime.datetime.today().strftime('%Y%m%d%H%M%S')
+        expected_properties = {'StartTimeInterval': timestamp,
+                               'JobArray': job_ids}
+        self._test_schedule_job_execution(mock_invoke, job_ids, timestamp,
+                                          expected_properties)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke')
+    def test_schedule_job_execution_no_jobs(self, mock_invoke):
+        self.drac_client.schedule_job_execution(job_ids=[])
+        mock_invoke.assert_not_called()
