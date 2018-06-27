@@ -34,6 +34,7 @@ class ClientRAIDManagementTestCase(base.BaseTest):
         super(ClientRAIDManagementTestCase, self).setUp()
         self.drac_client = dracclient.client.DRACClient(
             **test_utils.FAKE_ENDPOINT)
+        self.raid_controller_fqdd = "RAID.Integrated.1-1"
 
     @mock.patch.object(dracclient.client.WSManClient,
                        'wait_until_idrac_is_ready', spec_set=True,
@@ -548,3 +549,117 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             mock.ANY, resource_uri=uris.DCIM_RAIDService,
             cim_creation_class_name='DCIM_RAIDService',
             cim_name='DCIM:RAIDService', target='controller')
+
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    @mock.patch.object(dracclient.resources.raid.RAIDManagement,
+                       'convert_physical_disks',
+                       return_value={}, spec_set=True,
+                       autospec=True)
+    def test_raid_controller_jbod_capable(self, mock_requests,
+                                          mock_wait_until_idrac_is_ready,
+                                          mock_convert_physical_disks):
+
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.RAIDEnumerations[uris.DCIM_PhysicalDiskView]['ok'])
+
+        is_jbod = self.drac_client.is_jbod_capable(self.raid_controller_fqdd)
+
+        self.assertTrue(is_jbod, msg="is_jbod is true")
+
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    @mock.patch.object(dracclient.resources.raid.RAIDManagement,
+                       'convert_physical_disks',
+                       return_value={}, spec_set=True,
+                       autospec=True)
+    def test_raid_controller_jbod_non_raid(self, mock_requests,
+                                           mock_wait_until_idrac_is_ready,
+                                           mock_convert_physical_disks):
+
+        pdv = test_utils.RAIDEnumerations[uris.DCIM_PhysicalDiskView]['ok']
+        # change to non-RAID value
+        pdv = pdv.replace("<n1:RaidStatus>1</n1:RaidStatus>",
+                          "<n1:RaidStatus>8</n1:RaidStatus>")
+
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=pdv)
+
+        is_jbod = self.drac_client.is_jbod_capable(self.raid_controller_fqdd)
+
+        self.assertTrue(is_jbod, msg="is_jbod is true")
+
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    @mock.patch.object(dracclient.resources.raid.RAIDManagement,
+                       'convert_physical_disks',
+                       return_value={}, spec_set=True,
+                       autospec=True)
+    def test_raid_controller_jbod_unknown(self, mock_requests,
+                                          mock_wait_until_idrac_is_ready,
+                                          mock_convert_physical_disks):
+
+        is_jbod = False
+        pdv = test_utils.RAIDEnumerations[uris.DCIM_PhysicalDiskView]['ok']
+        # change to non-RAID value
+        pdv = pdv.replace("<n1:RaidStatus>1</n1:RaidStatus>",
+                          "<n1:RaidStatus>0</n1:RaidStatus>")
+
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=pdv)
+        self.assertRaises(exceptions.DRACRequestFailed,
+                          self.drac_client.is_jbod_capable,
+                          self.raid_controller_fqdd)
+        self.assertFalse(is_jbod, msg="is_jbod is false")
+
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    @mock.patch.object(dracclient.resources.raid.RAIDManagement,
+                       'convert_physical_disks',
+                       spec_set=True,
+                       autospec=True)
+    def test_raid_controller_jbod_not_supported(self,
+                                                mock_requests,
+                                                mock_convert_physical_disks,
+                                                mock_wait_idrac_is_ready):
+
+        msg = " operation is not supported on th"
+        exc = exceptions.DRACOperationFailed(drac_messages=msg)
+        mock_convert_physical_disks.side_effect = exc
+
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.RAIDEnumerations[uris.DCIM_PhysicalDiskView]['ok'])
+
+        is_jbod = self.drac_client.is_jbod_capable(self.raid_controller_fqdd)
+        self.assertFalse(is_jbod, msg="is_jbod is false")
+
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    @mock.patch.object(dracclient.resources.raid.RAIDManagement,
+                       'convert_physical_disks',
+                       spec_set=True,
+                       autospec=True)
+    def test_raid_controller_jbod_ex_no_match(self,
+                                              mock_requests,
+                                              mock_convert_physical_disks,
+                                              mock_wait_until_idrac_is_ready):
+
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.RAIDEnumerations[uris.DCIM_PhysicalDiskView]['ok'])
+        msg = "NON_MATCHING_MESSAGE"
+        exc = exceptions.DRACOperationFailed(drac_messages=msg)
+        mock_convert_physical_disks.side_effect = exc
+
+        self.assertRaises(
+            exceptions.DRACOperationFailed,
+            self.drac_client.is_jbod_capable, self.raid_controller_fqdd)
