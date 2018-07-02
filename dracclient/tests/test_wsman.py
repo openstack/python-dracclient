@@ -19,6 +19,7 @@ import lxml.objectify
 import mock
 import requests.exceptions
 import requests_mock
+import six
 
 from dracclient import exceptions
 from dracclient.tests import base
@@ -54,6 +55,14 @@ class ClientTestCase(base.BaseTest):
 
         self.assertRaises(exceptions.WSManInvalidResponse,
                           self.client.enumerate, 'resource')
+
+    @requests_mock.Mocker()
+    def test_enumerate_with_invalid_utf8(self, mock_requests):
+        mock_requests.post('https://1.2.3.4:443/wsman',
+                           content=six.b('<result>yay!\xC0</result>'))
+
+        resp = self.client.enumerate('resource')
+        self.assertEqual('yay!', resp.text)
 
     @requests_mock.Mocker()
     def test_enumerate_with_auto_pull(self, mock_requests):

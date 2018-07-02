@@ -12,6 +12,8 @@
 #    under the License.
 
 import logging
+import re
+import six
 import time
 import uuid
 
@@ -157,7 +159,14 @@ class Client(object):
                                     filter_query, filter_dialect)
 
         resp = self._do_request(payload)
-        resp_xml = ElementTree.fromstring(resp.content)
+        try:
+            resp_xml = ElementTree.fromstring(resp.content)
+        except ElementTree.XMLSyntaxError:
+            LOG.warning('Received invalid content from iDRAC.  Filtering out '
+                        'non-ASCII characters: ' + repr(resp.content))
+            resp_xml = ElementTree.fromstring(re.sub(six.b('[^\x00-\x7f]'),
+                                                     six.b(''),
+                                                     resp.content))
 
         if auto_pull:
             # The first response returns "<wsman:Items>"
