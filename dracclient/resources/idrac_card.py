@@ -321,6 +321,33 @@ class iDRACCardConfiguration(object):
                                   idrac_fqdd,
                                   name_formatter=_name_formatter)
 
+    def reset_idrac(self, force=False):
+        """Resets the iDRAC
+
+        :param force: does a force reset when True and a graceful reset when
+               False.
+        :returns: True on success and False on failure.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        """
+        selectors = {'CreationClassName': "DCIM_iDRACCardService",
+                     'Name': "DCIM:iDRACCardService",
+                     'SystemCreationClassName': 'DCIM_ComputerSystem',
+                     'SystemName': 'DCIM:ComputerSystem'}
+
+        properties = {'Force': "1" if force else "0"}
+
+        doc = self.client.invoke(uris.DCIM_iDRACCardService,
+                                 'iDRACReset',
+                                 selectors,
+                                 properties,
+                                 check_return_value=False)
+
+        message_id = utils.find_xml(doc,
+                                    'MessageID',
+                                    uris.DCIM_iDRACCardService).text
+        return "RAC064" == message_id
+
 
 def _name_formatter(attribute):
     return "{}#{}".format(attribute.group_id, attribute.name)

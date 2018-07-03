@@ -34,6 +34,7 @@ def load_wsman_xml(name):
 
     return xml_body
 
+
 WSManEnumerations = {
     'context': [
         load_wsman_xml('wsman-enum_context-1'),
@@ -152,7 +153,14 @@ iDracCardInvocations = {
         'SetAttributes': {
             'ok': load_wsman_xml(
                 'idrac_service-invoke-set_attributes-ok')
+        },
+        'iDRACReset': {
+            'ok': load_wsman_xml(
+                'idrac_service-reset-ok'),
+            'error': load_wsman_xml(
+                'idrac_service-reset-error')
         }
+
     }
 }
 

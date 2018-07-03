@@ -1,0 +1,22 @@
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+	xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+	xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_iDRACCardService">
+	<s:Header>
+		<wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous
+		</wsa:To>
+		<wsa:Action>http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_iDRACCardService/iDRACResetResponse
+		</wsa:Action>
+		<wsa:RelatesTo>uuid:a4a1cd1a-7c10-4dfc-98d9-d0cc2cd7c80c
+		</wsa:RelatesTo>
+		<wsa:MessageID>uuid:6f9ecf40-6fd1-1fd1-a60b-dc9c046694d0
+		</wsa:MessageID>
+	</s:Header>
+	<s:Body>
+		<n1:iDRACReset_OUTPUT>
+			<n1:Message>iDRAC was successfully reset.</n1:Message>
+			<n1:MessageID>RAC064</n1:MessageID>
+			<n1:ReturnValue>0</n1:ReturnValue>
+		</n1:iDRACReset_OUTPUT>
+	</s:Body>
+</s:Envelope>
+

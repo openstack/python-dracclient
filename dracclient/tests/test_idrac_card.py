@@ -312,3 +312,292 @@ class ClientiDRACCardChangesTestCase(base.BaseTest):
             cim_creation_class_name='DCIM_iDRACCardService',
             cim_name='DCIM:iDRACCardService',
             target=dracclient.client.DRACClient.IDRAC_FQDD)
+
+
+class ClientiDRACCardResetTestCase(base.BaseTest):
+
+    def setUp(self):
+        super(ClientiDRACCardResetTestCase, self).setUp()
+        self.drac_client = dracclient.client.DRACClient(
+            **test_utils.FAKE_ENDPOINT)
+
+    @mock.patch('dracclient.client.subprocess.call')
+    def test_ping_host(self, mock_os_system):
+        mock_os_system.return_value = 0
+        response = self.drac_client._ping_host('127.0.0.1')
+        self.assertEqual(mock_os_system.call_count, 1)
+        self.assertEqual(True, response)
+
+    @mock.patch('dracclient.client.subprocess.call')
+    def test_ping_host_not_pingable(self, mock_os_system):
+        mock_os_system.return_value = 1
+        response = self.drac_client._ping_host('127.0.0.1')
+        self.assertEqual(mock_os_system.call_count, 1)
+        self.assertEqual(False, response)
+
+    @mock.patch('dracclient.client.subprocess.call')
+    def test_ping_host_name_not_known(self, mock_os_system):
+        mock_os_system.return_value = 2
+        response = self.drac_client._ping_host('127.0.0.1')
+        self.assertEqual(mock_os_system.call_count, 1)
+        self.assertEqual(False, response)
+
+    @mock.patch('time.sleep')
+    @mock.patch('dracclient.client.DRACClient._ping_host')
+    def test_wait_for_host_alive(self, mock_ping_host, mock_sleep):
+        total_calls = 5
+        ping_count = 3
+        mock_ping_host.return_value = True
+        mock_sleep.return_value = None
+        response = self.drac_client._wait_for_host_state(
+            'hostname',
+            alive=True,
+            ping_count=ping_count,
+            retries=total_calls)
+        self.assertEqual(True, response)
+        self.assertEqual(mock_sleep.call_count, ping_count)
+        self.assertEqual(mock_ping_host.call_count, ping_count)
+
+    @mock.patch('time.sleep')
+    @mock.patch('dracclient.client.DRACClient._ping_host')
+    def test_wait_for_host_alive_fail(self, mock_ping_host, mock_sleep):
+        total_calls = 5
+        ping_count = 3
+        mock_ping_host.return_value = False
+        mock_sleep.return_value = None
+        response = self.drac_client._wait_for_host_state(
+            'hostname',
+            alive=True,
+            ping_count=ping_count,
+            retries=total_calls)
+        self.assertEqual(False, response)
+        self.assertEqual(mock_sleep.call_count, total_calls)
+        self.assertEqual(mock_ping_host.call_count, total_calls)
+
+    @mock.patch('time.sleep')
+    @mock.patch('dracclient.client.DRACClient._ping_host')
+    def test_wait_for_host_dead(self, mock_ping_host, mock_sleep):
+        total_calls = 5
+        ping_count = 3
+        mock_ping_host.return_value = False
+        mock_sleep.return_value = None
+        response = self.drac_client._wait_for_host_state(
+            'hostname',
+            alive=False,
+            ping_count=ping_count,
+            retries=total_calls)
+        self.assertEqual(True, response)
+        self.assertEqual(mock_sleep.call_count, ping_count)
+        self.assertEqual(mock_ping_host.call_count, ping_count)
+
+    @mock.patch('time.sleep')
+    @mock.patch('dracclient.client.DRACClient._ping_host')
+    def test_wait_for_host_dead_fail(self, mock_ping_host, mock_sleep):
+        total_calls = 5
+        ping_count = 3
+        mock_ping_host.return_value = True
+        mock_sleep.return_value = None
+        response = self.drac_client._wait_for_host_state(
+            'hostname',
+            alive=False,
+            ping_count=ping_count,
+            retries=total_calls)
+        self.assertEqual(False, response)
+        self.assertEqual(mock_sleep.call_count, total_calls)
+        self.assertEqual(mock_ping_host.call_count, total_calls)
+
+    @mock.patch('time.sleep')
+    @mock.patch('dracclient.client.DRACClient._ping_host')
+    def test_wait_for_host_alive_with_intermittent(
+            self, mock_ping_host, mock_sleep):
+        total_calls = 6
+        ping_count = 3
+        mock_ping_host.side_effect = [True, True, False, True, True, True]
+        mock_sleep.return_value = None
+        response = self.drac_client._wait_for_host_state(
+            'hostname',
+            alive=True,
+            ping_count=ping_count,
+            retries=total_calls)
+        self.assertEqual(True, response)
+        self.assertEqual(mock_sleep.call_count, total_calls)
+
+    @mock.patch('time.sleep')
+    @mock.patch('dracclient.client.DRACClient._ping_host')
+    def test_wait_for_host_dead_with_intermittent(
+            self, mock_ping_host, mock_sleep):
+        total_calls = 6
+        ping_count = 3
+        mock_ping_host.side_effect = [False, False, True, False, False, False]
+        mock_sleep.return_value = None
+        response = self.drac_client._wait_for_host_state(
+            'hostname',
+            alive=False,
+            ping_count=ping_count,
+            retries=total_calls)
+        self.assertEqual(True, response)
+        self.assertEqual(mock_sleep.call_count, total_calls)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke', spec_set=True,
+                       autospec=True)
+    def test_reset_idrac(self, mock_invoke):
+        expected_selectors = {
+            'CreationClassName': "DCIM_iDRACCardService",
+            'Name': "DCIM:iDRACCardService",
+            'SystemCreationClassName': 'DCIM_ComputerSystem',
+            'SystemName': 'DCIM:ComputerSystem'}
+        expected_properties = {'Force': '0'}
+        mock_invoke.return_value = lxml.etree.fromstring(
+            test_utils.iDracCardInvocations[uris.DCIM_iDRACCardService][
+                'iDRACReset']['ok'])
+
+        result = self.drac_client.reset_idrac()
+
+        mock_invoke.assert_called_once_with(
+            mock.ANY, uris.DCIM_iDRACCardService, 'iDRACReset',
+            expected_selectors, expected_properties,
+            check_return_value=False)
+        self.assertTrue(result)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke', spec_set=True,
+                       autospec=True)
+    def test_reset_idrac_force(self, mock_invoke):
+        expected_selectors = {
+            'CreationClassName': "DCIM_iDRACCardService",
+            'Name': "DCIM:iDRACCardService",
+            'SystemCreationClassName': 'DCIM_ComputerSystem',
+            'SystemName': 'DCIM:ComputerSystem'}
+        expected_properties = {'Force': '1'}
+        mock_invoke.return_value = lxml.etree.fromstring(
+            test_utils.iDracCardInvocations[uris.DCIM_iDRACCardService][
+                'iDRACReset']['ok'])
+
+        result = self.drac_client.reset_idrac(force=True)
+
+        mock_invoke.assert_called_once_with(
+            mock.ANY, uris.DCIM_iDRACCardService, 'iDRACReset',
+            expected_selectors, expected_properties,
+            check_return_value=False)
+        self.assertTrue(result)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke', spec_set=True,
+                       autospec=True)
+    def test_reset_idrac_bad_result(self, mock_invoke):
+        expected_selectors = {
+            'CreationClassName': "DCIM_iDRACCardService",
+            'Name': "DCIM:iDRACCardService",
+            'SystemCreationClassName': 'DCIM_ComputerSystem',
+            'SystemName': 'DCIM:ComputerSystem'}
+        expected_properties = {'Force': '0'}
+        expected_message = ("Failed to reset iDRAC")
+        mock_invoke.return_value = lxml.etree.fromstring(
+            test_utils.iDracCardInvocations[uris.DCIM_iDRACCardService][
+                'iDRACReset']['error'])
+
+        self.assertRaisesRegexp(
+            exceptions.DRACOperationFailed, re.escape(expected_message),
+            self.drac_client.reset_idrac)
+
+        mock_invoke.assert_called_once_with(
+            mock.ANY, uris.DCIM_iDRACCardService, 'iDRACReset',
+            expected_selectors, expected_properties,
+            check_return_value=False)
+
+    @mock.patch('time.sleep')
+    @mock.patch('dracclient.client.WSManClient.wait_until_idrac_is_ready')
+    @mock.patch('dracclient.client.DRACClient._wait_for_host_state')
+    @mock.patch(
+        'dracclient.client.idrac_card.iDRACCardConfiguration.reset_idrac')
+    def test_reset_idrac_wait(
+            self,
+            mock_reset_idrac,
+            mock_wait_for_host_state,
+            mock_wait_until_idrac_is_ready,
+            mock_sleep):
+        mock_reset_idrac.return_value = True
+        mock_wait_for_host_state.side_effect = [True, True]
+        mock_wait_until_idrac_is_ready.return_value = True
+        mock_sleep.return_value = None
+
+        self.drac_client.reset_idrac(wait=True)
+
+        mock_reset_idrac.assert_called_once()
+        self.assertEqual(mock_wait_for_host_state.call_count, 2)
+        mock_wait_until_idrac_is_ready.assert_called_once()
+
+    @mock.patch('time.sleep')
+    @mock.patch('dracclient.client.WSManClient.wait_until_idrac_is_ready')
+    @mock.patch('dracclient.client.DRACClient._wait_for_host_state')
+    @mock.patch(
+        'dracclient.client.idrac_card.iDRACCardConfiguration.reset_idrac')
+    def test_reset_idrac_wait_failed_reset(
+            self,
+            mock_reset_idrac,
+            mock_wait_for_host_state,
+            mock_wait_until_idrac_is_ready,
+            mock_sleep):
+        mock_reset_idrac.return_value = False
+        mock_wait_for_host_state.side_effect = [True, True]
+        mock_wait_until_idrac_is_ready.return_value = False
+        mock_sleep.return_value = None
+        expected_message = ("Failed to reset iDRAC")
+
+        self.assertRaisesRegexp(
+            exceptions.DRACOperationFailed, re.escape(expected_message),
+            self.drac_client.reset_idrac, wait=True)
+
+        mock_reset_idrac.assert_called_once()
+        mock_wait_for_host_state.assert_not_called()
+        mock_wait_until_idrac_is_ready.assert_not_called()
+
+    @mock.patch('time.sleep')
+    @mock.patch('dracclient.client.WSManClient.wait_until_idrac_is_ready')
+    @mock.patch('dracclient.client.DRACClient._wait_for_host_state')
+    @mock.patch(
+        'dracclient.client.idrac_card.iDRACCardConfiguration.reset_idrac')
+    def test_reset_idrac_fail_wait_not_pingable(
+            self,
+            mock_reset_idrac,
+            mock_wait_for_host_state,
+            mock_wait_until_idrac_is_ready,
+            mock_sleep):
+        mock_reset_idrac.return_value = True
+        mock_wait_for_host_state.side_effect = [False, True]
+        mock_wait_until_idrac_is_ready.return_value = True
+        mock_sleep.return_value = None
+        expected_message = (
+            "Timed out waiting for the 1.2.3.4 iDRAC to become not pingable")
+
+        self.assertRaisesRegexp(
+            exceptions.DRACOperationFailed, re.escape(expected_message),
+            self.drac_client.reset_idrac, wait=True)
+
+        mock_reset_idrac.assert_called_once()
+        mock_wait_for_host_state.assert_called_once()
+        mock_wait_until_idrac_is_ready.assert_not_called()
+
+    @mock.patch('time.sleep')
+    @mock.patch('dracclient.client.WSManClient.wait_until_idrac_is_ready')
+    @mock.patch('dracclient.client.DRACClient._wait_for_host_state')
+    @mock.patch(
+        'dracclient.client.idrac_card.iDRACCardConfiguration.reset_idrac')
+    def test_reset_idrac_fail_wait_pingable(
+            self,
+            mock_reset_idrac,
+            mock_wait_for_host_state,
+            mock_wait_until_idrac_is_ready,
+            mock_sleep):
+        mock_reset_idrac.return_value = True
+        mock_wait_for_host_state.side_effect = [True, False]
+        mock_wait_until_idrac_is_ready.return_value = True
+        mock_sleep.return_value = None
+        expected_message = (
+            "Timed out waiting for the 1.2.3.4 iDRAC to become pingable")
+
+        self.assertRaisesRegexp(
+            exceptions.DRACOperationFailed, re.escape(expected_message),
+            self.drac_client.reset_idrac, wait=True)
+
+        mock_reset_idrac.assert_called_once()
+        self.assertEqual(mock_wait_for_host_state.call_count, 2)
+        mock_wait_until_idrac_is_ready.assert_not_called()

@@ -1,0 +1,22 @@
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+	xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+	xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_iDRACCardService">
+	<s:Header>
+		<wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous
+		</wsa:To>
+		<wsa:Action>http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_iDRACCardService/iDRACResetResponse
+		</wsa:Action>
+		<wsa:RelatesTo>uuid:a65ce3df-3690-42dd-af45-5c1f2cd0793b
+		</wsa:RelatesTo>
+		<wsa:MessageID>uuid:e8f2cbe0-6fd0-1fd0-8057-dc9c046694d0
+		</wsa:MessageID>
+	</s:Header>
+	<s:Body>
+		<n1:iDRACReset_OUTPUT>
+			<n1:Message>Invalid parameter value for Force</n1:Message>
+			<n1:MessageArguments>Force</n1:MessageArguments>
+			<n1:MessageID>RAC004</n1:MessageID>
+			<n1:ReturnValue>2</n1:ReturnValue>
+		</n1:iDRACReset_OUTPUT>
+	</s:Body>
+</s:Envelope>
