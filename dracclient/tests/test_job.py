@@ -105,6 +105,129 @@ class ClientJobManagementTestCase(base.BaseTest):
 
     @mock.patch.object(dracclient.client.WSManClient, 'invoke',
                        spec_set=True, autospec=True)
+    def test_delete_jobs_all(self, mock_invoke):
+        expected_selectors = {'SystemCreationClassName': 'DCIM_ComputerSystem',
+                              'SystemName': 'idrac',
+                              'CreationClassName': 'DCIM_JobService',
+                              'Name': 'JobService'}
+        expected_properties = {'JobID': 'JID_CLEARALL'}
+
+        self.drac_client.delete_jobs()
+
+        mock_invoke.assert_called_once_with(
+            mock.ANY, uris.DCIM_JobService, 'DeleteJobQueue',
+            expected_selectors, expected_properties,
+            expected_return_value=utils.RET_SUCCESS)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke',
+                       spec_set=True, autospec=True)
+    def test_delete_jobs_force(self, mock_invoke):
+        expected_selectors = {'SystemCreationClassName': 'DCIM_ComputerSystem',
+                              'SystemName': 'idrac',
+                              'CreationClassName': 'DCIM_JobService',
+                              'Name': 'JobService'}
+        expected_properties = {'JobID': 'JID_CLEARALL_FORCE'}
+
+        self.drac_client.delete_jobs(['JID_CLEARALL_FORCE'])
+
+        mock_invoke.assert_called_once_with(
+            mock.ANY, uris.DCIM_JobService, 'DeleteJobQueue',
+            expected_selectors, expected_properties,
+            expected_return_value=utils.RET_SUCCESS)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke',
+                       spec_set=True, autospec=True)
+    def test_delete_jobs_one(self, mock_invoke):
+        expected_selectors = {'SystemCreationClassName': 'DCIM_ComputerSystem',
+                              'SystemName': 'idrac',
+                              'CreationClassName': 'DCIM_JobService',
+                              'Name': 'JobService'}
+        expected_properties = {'JobID': 'JID_442507917525'}
+
+        self.drac_client.delete_jobs(['JID_442507917525'])
+
+        mock_invoke.assert_called_once_with(
+            mock.ANY, uris.DCIM_JobService, 'DeleteJobQueue',
+            expected_selectors, expected_properties,
+            expected_return_value=utils.RET_SUCCESS)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke',
+                       spec_set=True, autospec=True)
+    def test_delete_jobs_multi(self, mock_invoke):
+        expected_selectors = {'SystemCreationClassName': 'DCIM_ComputerSystem',
+                              'SystemName': 'idrac',
+                              'CreationClassName': 'DCIM_JobService',
+                              'Name': 'JobService'}
+
+        self.drac_client.delete_jobs(['JID_442507917525',
+                                      'JID_442507917526'])
+
+        calls_expected = [
+            mock.call(mock.ANY,
+                      uris.DCIM_JobService,
+                      'DeleteJobQueue',
+                      expected_selectors,
+                      {'JobID': 'JID_442507917525'},
+                      expected_return_value=utils.RET_SUCCESS),
+            mock.call(mock.ANY,
+                      uris.DCIM_JobService,
+                      'DeleteJobQueue',
+                      expected_selectors,
+                      {'JobID': 'JID_442507917526'},
+                      expected_return_value=utils.RET_SUCCESS)]
+        mock_invoke.assert_has_calls(calls_expected)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke',
+                       spec_set=True, autospec=True)
+    def test_delete_jobs_none(self, mock_invoke):
+        self.drac_client.delete_jobs(None)
+        self.assertFalse(mock_invoke.called)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke',
+                       spec_set=True, autospec=True)
+    def test_delete_jobs_empty_list(self, mock_invoke):
+        self.drac_client.delete_jobs([])
+        self.assertFalse(mock_invoke.called)
+
+    @requests_mock.Mocker()
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_delete_job_not_found(
+            self, mock_requests,
+            mock_wait_until_idrac_is_ready):
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.JobService[uris.DCIM_JobService][
+                'DeleteJobQueue']['error'])
+        self.assertRaises(
+            exceptions.DRACOperationFailed,
+            self.drac_client.delete_jobs,
+            ['JID_1234'])
+
+    @requests_mock.Mocker()
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_delete_some_jobs_not_found(
+            self, mock_requests,
+            mock_wait_until_idrac_is_ready):
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            [{'text': test_utils.JobService[uris.DCIM_JobService][
+                'DeleteJobQueue']['error']},
+             {'text': test_utils.JobService[uris.DCIM_JobService][
+                 'DeleteJobQueue']['ok']}])
+
+        self.assertRaises(
+            exceptions.DRACOperationFailed,
+            self.drac_client.delete_jobs,
+            ['JID_1234', 'JID_442507917525'])
+
+        self.assertEqual(mock_requests.call_count, 2)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke',
+                       spec_set=True, autospec=True)
     def test_create_config_job(self, mock_invoke):
         cim_creation_class_name = 'DCIM_BIOSService'
         cim_name = 'DCIM:BIOSService'
@@ -115,6 +238,7 @@ class ClientJobManagementTestCase(base.BaseTest):
                               'SystemName': 'DCIM:ComputerSystem'}
         expected_properties = {'Target': target,
                                'ScheduledStartTime': 'TIME_NOW'}
+
         mock_invoke.return_value = lxml.etree.fromstring(
             test_utils.JobInvocations[uris.DCIM_BIOSService][
                 'CreateTargetedConfigJob']['ok'])
