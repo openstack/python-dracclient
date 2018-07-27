@@ -25,6 +25,7 @@ from dracclient.resources import idrac_card
 from dracclient.resources import inventory
 from dracclient.resources import job
 from dracclient.resources import lifecycle_controller
+from dracclient.resources import nic
 from dracclient.resources import raid
 from dracclient.resources import system
 from dracclient.resources import uris
@@ -78,6 +79,7 @@ class DRACClient(object):
         self._raid_mgmt = raid.RAIDManagement(self.client)
         self._system_cfg = system.SystemConfiguration(self.client)
         self._inventory_mgmt = inventory.InventoryManagement(self.client)
+        self._nic_cfg = nic.NICConfiguration(self.client)
 
     def get_power_state(self):
         """Returns the current power state of the node
@@ -386,6 +388,33 @@ class DRACClient(object):
             target=target,
             cim_system_creation_class_name=cim_system_creation_class_name,
             cim_system_name=cim_system_name,
+            reboot=reboot,
+            start_time=start_time)
+
+    def create_nic_config_job(
+            self,
+            nic_id,
+            reboot=False,
+            start_time='TIME_NOW'):
+        """Creates config job for applying pending changes to a NIC.
+
+        :param nic_id: id of the network interface controller (NIC)
+        :param reboot: indication of whether to also create a reboot job
+        :param start_time: start time for job execution in format
+                           yyyymmddhhmmss; the string 'TIME_NOW' means
+                           immediately and None means unspecified
+        :returns: id of the created configuration job
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the iDRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        """
+        return self._job_mgmt.create_config_job(
+            resource_uri=uris.DCIM_NICService,
+            cim_creation_class_name='DCIM_NICService',
+            cim_name='DCIM:NICService',
+            target=nic_id,
             reboot=reboot,
             start_time=start_time)
 
@@ -704,9 +733,10 @@ class DRACClient(object):
 
         return self._inventory_mgmt.list_memory()
 
-    def list_nics(self):
+    def list_nics(self, sort=False):
         """Returns a list of NICs
 
+        :param sort: indicates if the list should be sorted or not.
         :returns: a list of NIC objects
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
@@ -714,7 +744,44 @@ class DRACClient(object):
                  interface
         """
 
-        return self._inventory_mgmt.list_nics()
+        return self._inventory_mgmt.list_nics(sort=sort)
+
+    def list_nic_settings(self, nic_id):
+        """Return the list of attribute settings of a NIC.
+
+        :param nic_id: id of the network interface controller (NIC)
+        :returns: dictionary containing the NIC settings. The keys are
+                  attribute names. Each value is a
+                  NICEnumerationAttribute, NICIntegerAttribute, or
+                  NICStringAttribute object.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the iDRAC
+                 interface
+        """
+        return self._nic_cfg.list_nic_settings(nic_id)
+
+    def set_nic_settings(self, nic_id, settings):
+        """Modify one or more settings of a NIC.
+
+        If successful, the pending values of the attributes are set. For
+        the new values to be applied, a configuration job must be
+        created and the node must be rebooted.
+
+        :param nic_id: id of the network interface controller (NIC)
+        :param settings: dictionary containing the proposed values, with
+                         each key being the name of an attribute and the
+                         value being the proposed value
+        :returns: dictionary containing a 'commit_required' key with a
+                  boolean value indicating whether a configuration job
+                  must be created for the new settings to be applied
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the iDRAC
+                 interface
+        :raises: InvalidParameterValue on invalid NIC attribute
+        """
+        return self._nic_cfg.set_nic_settings(nic_id, settings)
 
     def is_idrac_ready(self):
         """Indicates if the iDRAC is ready to accept commands
