@@ -55,6 +55,9 @@ DCIM_iDRACCardService = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
 DCIM_iDRACCardString = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
                         'DCIM_iDRACCardString')
 
+DCIM_JobService = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
+                   'DCIM_JobService')
+
 DCIM_LCEnumeration = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
                       'DCIM_LCEnumeration')
 

@@ -283,7 +283,7 @@ class ClientiDRACCardChangesTestCase(base.BaseTest):
             cim_creation_class_name='DCIM_iDRACCardService',
             cim_name='DCIM:iDRACCardService',
             target=dracclient.client.DRACClient.IDRAC_FQDD,
-            reboot=False)
+            reboot=False, start_time='TIME_NOW')
 
     @mock.patch.object(job.JobManagement, 'create_config_job', spec_set=True,
                        autospec=True)
@@ -299,7 +299,41 @@ class ClientiDRACCardChangesTestCase(base.BaseTest):
             cim_creation_class_name='DCIM_iDRACCardService',
             cim_name='DCIM:iDRACCardService',
             target=dracclient.client.DRACClient.IDRAC_FQDD,
-            reboot=True)
+            reboot=True, start_time='TIME_NOW')
+
+    @mock.patch.object(job.JobManagement, 'create_config_job', spec_set=True,
+                       autospec=True)
+    def test_commit_pending_idrac_changes_with_time(
+            self, mock_create_config_job):
+        timestamp = '20140924120101'
+        self.drac_client.commit_pending_idrac_changes(
+            start_time=timestamp)
+
+        mock_create_config_job.assert_called_once_with(
+            mock.ANY,
+            resource_uri=uris.DCIM_iDRACCardService,
+            cim_creation_class_name='DCIM_iDRACCardService',
+            cim_name='DCIM:iDRACCardService',
+            target=dracclient.client.DRACClient.IDRAC_FQDD,
+            reboot=False, start_time=timestamp)
+
+    @mock.patch.object(job.JobManagement, 'create_config_job', spec_set=True,
+                       autospec=True)
+    def test_commit_pending_idrac_changes_with_reboot_and_time(
+            self, mock_create_config_job):
+
+        timestamp = '20140924120101'
+        self.drac_client.commit_pending_idrac_changes(
+            reboot=True,
+            start_time=timestamp)
+
+        mock_create_config_job.assert_called_once_with(
+            mock.ANY,
+            resource_uri=uris.DCIM_iDRACCardService,
+            cim_creation_class_name='DCIM_iDRACCardService',
+            cim_name='DCIM:iDRACCardService',
+            target=dracclient.client.DRACClient.IDRAC_FQDD,
+            reboot=True, start_time=timestamp)
 
     @mock.patch.object(job.JobManagement, 'delete_pending_config',
                        spec_set=True, autospec=True)

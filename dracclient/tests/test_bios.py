@@ -484,7 +484,8 @@ class ClientBIOSChangesTestCase(base.BaseTest):
         mock_create_config_job.assert_called_once_with(
             mock.ANY, resource_uri=uris.DCIM_BIOSService,
             cim_creation_class_name='DCIM_BIOSService',
-            cim_name='DCIM:BIOSService', target='BIOS.Setup.1-1', reboot=False)
+            cim_name='DCIM:BIOSService', target='BIOS.Setup.1-1',
+            reboot=False, start_time='TIME_NOW')
 
     @mock.patch.object(dracclient.resources.job.JobManagement,
                        'create_config_job', spec_set=True, autospec=True)
@@ -495,7 +496,38 @@ class ClientBIOSChangesTestCase(base.BaseTest):
         mock_create_config_job.assert_called_once_with(
             mock.ANY, resource_uri=uris.DCIM_BIOSService,
             cim_creation_class_name='DCIM_BIOSService',
-            cim_name='DCIM:BIOSService', target='BIOS.Setup.1-1', reboot=True)
+            cim_name='DCIM:BIOSService', target='BIOS.Setup.1-1',
+            reboot=True, start_time='TIME_NOW')
+
+    @mock.patch.object(dracclient.resources.job.JobManagement,
+                       'create_config_job', spec_set=True, autospec=True)
+    def test_commit_pending_bios_changes_with_time(
+            self, mock_create_config_job):
+        timestamp = '20140924140201'
+        self.drac_client.commit_pending_bios_changes(
+            start_time=timestamp)
+
+        mock_create_config_job.assert_called_once_with(
+            mock.ANY, resource_uri=uris.DCIM_BIOSService,
+            cim_creation_class_name='DCIM_BIOSService',
+            cim_name='DCIM:BIOSService', target='BIOS.Setup.1-1',
+            reboot=False, start_time=timestamp)
+
+    @mock.patch.object(dracclient.resources.job.JobManagement,
+                       'create_config_job', spec_set=True, autospec=True)
+    def test_commit_pending_bios_changes_with_reboot_and_time(
+            self,
+            mock_create_config_job):
+        timestamp = '20140924140201'
+        self.drac_client.commit_pending_bios_changes(
+            reboot=True,
+            start_time=timestamp)
+
+        mock_create_config_job.assert_called_once_with(
+            mock.ANY, resource_uri=uris.DCIM_BIOSService,
+            cim_creation_class_name='DCIM_BIOSService',
+            cim_name='DCIM:BIOSService', target='BIOS.Setup.1-1',
+            reboot=True, start_time=timestamp)
 
     @mock.patch.object(dracclient.resources.job.JobManagement,
                        'delete_pending_config', spec_set=True, autospec=True)

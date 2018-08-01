@@ -525,7 +525,8 @@ class ClientRAIDManagementTestCase(base.BaseTest):
         mock_create_config_job.assert_called_once_with(
             mock.ANY, resource_uri=uris.DCIM_RAIDService,
             cim_creation_class_name='DCIM_RAIDService',
-            cim_name='DCIM:RAIDService', target='controller', reboot=False)
+            cim_name='DCIM:RAIDService', target='controller', reboot=False,
+            start_time='TIME_NOW')
 
     @mock.patch.object(dracclient.resources.job.JobManagement,
                        'create_config_job', spec_set=True, autospec=True)
@@ -536,7 +537,39 @@ class ClientRAIDManagementTestCase(base.BaseTest):
         mock_create_config_job.assert_called_once_with(
             mock.ANY, resource_uri=uris.DCIM_RAIDService,
             cim_creation_class_name='DCIM_RAIDService',
-            cim_name='DCIM:RAIDService', target='controller', reboot=True)
+            cim_name='DCIM:RAIDService', target='controller', reboot=True,
+            start_time='TIME_NOW')
+
+    @mock.patch.object(dracclient.resources.job.JobManagement,
+                       'create_config_job', spec_set=True, autospec=True)
+    def test_commit_pending_raid_changes_with_start_time(
+            self, mock_requests,
+            mock_create_config_job):
+        timestamp = '20140924140201'
+        self.drac_client.commit_pending_raid_changes('controller',
+                                                     start_time=timestamp)
+
+        mock_create_config_job.assert_called_once_with(
+            mock.ANY, resource_uri=uris.DCIM_RAIDService,
+            cim_creation_class_name='DCIM_RAIDService',
+            cim_name='DCIM:RAIDService', target='controller', reboot=False,
+            start_time=timestamp)
+
+    @mock.patch.object(dracclient.resources.job.JobManagement,
+                       'create_config_job', spec_set=True, autospec=True)
+    def test_commit_pending_raid_changes_with_reboot_and_start_time(
+            self, mock_requests,
+            mock_create_config_job):
+        timestamp = '20140924140201'
+        self.drac_client.commit_pending_raid_changes('controller',
+                                                     reboot=True,
+                                                     start_time=timestamp)
+
+        mock_create_config_job.assert_called_once_with(
+            mock.ANY, resource_uri=uris.DCIM_RAIDService,
+            cim_creation_class_name='DCIM_RAIDService',
+            cim_name='DCIM:RAIDService', target='controller', reboot=True,
+            start_time=timestamp)
 
     @mock.patch.object(dracclient.resources.job.JobManagement,
                        'delete_pending_config', spec_set=True, autospec=True)
