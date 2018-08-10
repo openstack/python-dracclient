@@ -15,6 +15,8 @@
         <n1:DCIM_SystemView>
           <n1:InstanceID>System.Embedded.1</n1:InstanceID>
           <n1:LifecycleControllerVersion>2.1.0</n1:LifecycleControllerVersion>
+          <n1:Model>PowerEdge R630</n1:Model>
+          <n1:ServiceTag>A1B2C3D</n1:ServiceTag>
         </n1:DCIM_SystemView>
       </wsman:Items>
       <wsman:EndOfSequence/>

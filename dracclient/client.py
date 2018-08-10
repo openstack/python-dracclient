@@ -716,6 +716,15 @@ class DRACClient(object):
 
         return self._inventory_mgmt.list_nics()
 
+    def get_system(self):
+        """Return a Systen object.
+
+        :returns: a System object
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        """
+        return self._inventory_mgmt.get_system()
+
     def is_idrac_ready(self):
         """Indicates if the iDRAC is ready to accept commands
 

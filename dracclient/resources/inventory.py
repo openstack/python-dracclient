@@ -57,6 +57,10 @@ NIC = collections.namedtuple(
     'NIC',
     ['id', 'mac', 'model', 'speed_mbps', 'duplex', 'media_type'])
 
+System = collections.namedtuple(
+    'System',
+    ['id', 'lcc_version', 'model', 'service_tag'])
+
 
 class InventoryManagement(object):
 
@@ -169,4 +173,32 @@ class InventoryManagement(object):
 
     def _get_nic_attr(self, drac_nic, attr_name):
         return utils.get_wsman_resource_attr(drac_nic, uris.DCIM_NICView,
+                                             attr_name)
+
+    def get_system(self):
+        """Returns a System object
+
+            :returns: a System object
+            :raises: WSManRequestFailure on request failures
+            :raises: WSManInvalidRespons when receiving invalid response
+        """
+        doc = self.client.enumerate(uris.DCIM_SystemView)
+        drac_system = utils.find_xml(doc,
+                                     'DCIM_SystemView',
+                                     uris.DCIM_SystemView,
+                                     find_all=False)
+
+        return self._parse_drac_system(drac_system)
+
+    def _parse_drac_system(self, drac_system):
+        return System(
+            id=self._get_system_attr(drac_system, 'InstanceID'),
+            service_tag=self._get_system_attr(drac_system, 'ServiceTag'),
+            model=self._get_system_attr(drac_system, 'Model'),
+            lcc_version=self._get_system_attr(drac_system,
+                                              'LifecycleControllerVersion'))
+
+    def _get_system_attr(self, drac_system, attr_name):
+        return utils.get_wsman_resource_attr(drac_system,
+                                             uris.DCIM_SystemView,
                                              attr_name)

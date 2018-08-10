@@ -129,3 +129,17 @@ class ClientInventoryManagementTestCase(base.BaseTest):
         self.assertEqual(
             expected_nics,
             self.drac_client.list_nics())
+
+    def test_get_system(self, mock_requests, mock_wait_until_idrac_is_ready):
+        expected_system = inventory.System(
+            id='System.Embedded.1',
+            service_tag='A1B2C3D',
+            model='PowerEdge R630',
+            lcc_version='2.1.0')
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.LifecycleControllerEnumerations[
+                uris.DCIM_SystemView]['ok'])
+        self.assertEqual(
+            expected_system,
+            self.drac_client.get_system())
