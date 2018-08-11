@@ -190,6 +190,31 @@ LifecycleControllerInvocations = {
     }
 }
 
+NICEnumerations = {
+    uris.DCIM_NICEnumeration: {
+        'ok': load_wsman_xml('nic_enumeration-enum-ok'),
+    },
+    uris.DCIM_NICString: {
+        'ok': load_wsman_xml('nic_string-enum-ok'),
+        # this duplicates the LinkStatus from nic_enumeration-enum-ok
+        'colliding': load_wsman_xml('nic_string-enum-colliding'),
+    },
+    uris.DCIM_NICInteger: {
+        'ok': load_wsman_xml('nic_integer-enum-ok')
+    },
+}
+
+NICInvocations = {
+    uris.DCIM_NICService: {
+        'SetAttributes': {
+            'ok': load_wsman_xml(
+                'nic_service-invoke-set_attributes-ok'),
+            'error': load_wsman_xml(
+                'nic_service-invoke-set_attributes-error'),
+        }
+    },
+}
+
 RAIDEnumerations = {
     uris.DCIM_ControllerView: {
         'ok': load_wsman_xml('controller_view-enum-ok')

@@ -142,7 +142,7 @@ class InventoryManagement(object):
         return utils.get_wsman_resource_attr(memory, uris.DCIM_MemoryView,
                                              attr_name)
 
-    def list_nics(self):
+    def list_nics(self, sort=False):
         """Returns the list of NICs
 
         :returns: a list of NIC objects
@@ -155,8 +155,11 @@ class InventoryManagement(object):
         doc = self.client.enumerate(uris.DCIM_NICView)
         drac_nics = utils.find_xml(doc, 'DCIM_NICView', uris.DCIM_NICView,
                                    find_all=True)
+        nics = [self._parse_drac_nic(nic) for nic in drac_nics]
+        if sort:
+            nics.sort(key=lambda nic: nic.id)
 
-        return [self._parse_drac_nic(nic) for nic in drac_nics]
+        return nics
 
     def _parse_drac_nic(self, drac_nic):
         fqdd = self._get_nic_attr(drac_nic, 'FQDD')
