@@ -782,6 +782,20 @@ class DRACClient(object):
 
         return self.client.wait_until_idrac_is_ready(retries, retry_delay)
 
+    def is_jbod_capable(self, raid_controller_fqdd):
+        """Find out if raid controller supports jbod
+
+        :param raid_controller_fqdd: The raid controller's fqdd
+                        being being checked to see if it is jbod
+                        capable.
+        :raises: DRACRequestFailed if unable to find any disks in the Ready
+                 or non-RAID states
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 and the exception message does not contain
+                 NOT_SUPPORTED_MSG constant
+        """
+        return self._raid_mgmt.is_jbod_capable(raid_controller_fqdd)
+
 
 class WSManClient(wsman.Client):
     """Wrapper for wsman.Client that can wait until iDRAC is ready

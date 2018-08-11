@@ -151,6 +151,8 @@ class VirtualDisk(VirtualDiskTuple):
 
 class RAIDManagement(object):
 
+    NOT_SUPPORTED_MSG = " operation is not supported on th"
+
     def __init__(self, client):
         """Creates RAIDManagement object
 
@@ -517,3 +519,61 @@ class RAIDManagement(object):
         return utils.build_return_dict(doc, uris.DCIM_RAIDService,
                                        include_commit_required=True,
                                        is_commit_required_value=True)
+
+    def is_jbod_capable(self, raid_controller_fqdd):
+        """Find out if raid controller supports jbod
+
+        :param raid_controller_fqdd: The raid controller's fqdd
+                        being being checked to see if it is jbod
+                        capable.
+        :raises: DRACRequestFailed if unable to find any disks in the Ready
+                 or non-RAID states
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 and the exception message does not contain
+                 NOT_SUPPORTED_MSG constant
+        """
+        is_jbod_capable = False
+
+        # Grab all the disks associated with the RAID controller
+        all_physical_disks = self.list_physical_disks()
+        physical_disks = [physical_disk for physical_disk in all_physical_disks
+                          if physical_disk.controller == raid_controller_fqdd]
+
+        # If there is a disk in the Non-RAID state, then the controller is JBOD
+        # capable
+        ready_disk = None
+        for physical_disk in physical_disks:
+            if physical_disk.raid_status == 'non-RAID':
+                is_jbod_capable = True
+                break
+            elif not ready_disk and physical_disk.raid_status == 'ready':
+                ready_disk = physical_disk
+
+        if not is_jbod_capable:
+            if not ready_disk:
+                msg = "Unable to find a disk in the Ready state"
+                raise exceptions.DRACRequestFailed(msg)
+
+            # Try moving a disk in the Ready state to JBOD mode
+            try:
+                self.convert_physical_disks(
+                    [ready_disk.id],
+                    False)
+                is_jbod_capable = True
+
+                # Flip the disk back to the Ready state.  This results in the
+                # pending value being reset to nothing, so it effectively
+                # undoes the last command and makes the check non-destructive
+                self.convert_physical_disks(
+                    [ready_disk.id],
+                    True)
+            except exceptions.DRACOperationFailed as ex:
+                # Fix for python 3, Exception.message no longer
+                # a valid attribute, str(ex) works for both 2.7
+                # and 3.x
+                if self.NOT_SUPPORTED_MSG in str(ex):
+                    pass
+                else:
+                    raise
+
+        return is_jbod_capable
