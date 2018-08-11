@@ -339,6 +339,27 @@ class DRACClient(object):
         """
         return self._job_mgmt.get_job(job_id)
 
+    def delete_jobs(self, job_ids=['JID_CLEARALL']):
+        """Deletes the given jobs, or all jobs if none specified
+
+        :param job_ids: a list of job ids to delete. Clearing all the
+                jobs may be accomplished using the keyword JID_CLEARALL
+                as the job_id, or JID_CLEARALL_FORCE if a job is in
+                Scheduled state and there is another job for the same
+                component in Completed or Failed state,
+                (http://en.community.dell.com/techcenter/extras/m/white_papers/20444501/download)
+                Deletion of each job id will be attempted, even if there
+                are errors in deleting any in the list.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the iDRAC
+                 interface.  There will be one message for each job_id
+                 that had a failure in the exception.
+        :raises: DRACUnexpectedReturnValue on non-success
+        """
+
+        return self._job_mgmt.delete_jobs(job_ids)
+
     def create_config_job(self,
                           resource_uri,
                           cim_creation_class_name,

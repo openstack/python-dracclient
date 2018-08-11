@@ -1,0 +1,21 @@
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+	xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+	xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_JobService">
+	<s:Header>
+		<wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous
+		</wsa:To>
+		<wsa:Action>http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_JobService/DeleteJobQueueResponse
+		</wsa:Action>
+		<wsa:RelatesTo>uuid:5f1b62ee-19d4-4679-b083-477086856c79
+		</wsa:RelatesTo>
+		<wsa:MessageID>uuid:07b2e831-70ae-10ae-b56f-64b5b4da6618
+		</wsa:MessageID>
+	</s:Header>
+	<s:Body>
+		<n1:DeleteJobQueue_OUTPUT>
+			<n1:Message>The specified job was deleted</n1:Message>
+			<n1:MessageID>SUP020</n1:MessageID>
+			<n1:ReturnValue>0</n1:ReturnValue>
+		</n1:DeleteJobQueue_OUTPUT>
+	</s:Body>
+</s:Envelope>

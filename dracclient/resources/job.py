@@ -249,6 +249,43 @@ class JobManagement(object):
         job_id = doc.find(query).text
         return job_id
 
+    def delete_jobs(self, job_ids=['JID_CLEARALL']):
+        """Deletes the given jobs, or all jobs if none specified
+
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the iDRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on non-success
+        """
+
+        selectors = {'SystemCreationClassName': 'DCIM_ComputerSystem',
+                     'SystemName': 'idrac',
+                     'CreationClassName': 'DCIM_JobService',
+                     'Name': 'JobService'}
+
+        if job_ids is None:
+            return
+
+        messages = []
+
+        for job_id in job_ids:
+            properties = {'JobID': job_id}
+
+            try:
+                self.client.invoke(
+                    uris.DCIM_JobService,
+                    'DeleteJobQueue',
+                    selectors,
+                    properties,
+                    expected_return_value=utils.RET_SUCCESS)
+            except exceptions.DRACOperationFailed as dof:
+                for message in dof.args:
+                    messages.append(message + " " + job_id)
+
+        if len(messages):
+            raise exceptions.DRACOperationFailed(drac_messages=messages)
+
     def delete_pending_config(
             self, resource_uri, cim_creation_class_name, cim_name, target,
             cim_system_creation_class_name='DCIM_ComputerSystem',

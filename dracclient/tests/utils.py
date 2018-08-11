@@ -34,6 +34,7 @@ def load_wsman_xml(name):
 
     return xml_body
 
+
 WSManEnumerations = {
     'context': [
         load_wsman_xml('wsman-enum_context-1'),
@@ -132,6 +133,17 @@ JobInvocations = {
             'error': load_wsman_xml(
                 'bios_service-invoke-delete_pending_configuration-error'),
         },
+    }
+}
+
+JobService = {
+    uris.DCIM_JobService: {
+        'DeleteJobQueue': {
+            'ok': load_wsman_xml(
+                'job_service-delete-job-id-ok'),
+            'error': load_wsman_xml(
+                'job_service-delete-job-id-error'),
+        }
     }
 }
 
