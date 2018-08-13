@@ -12,7 +12,7 @@
 #    under the License.
 
 # iDRAC is ready retry constants
-DEFAULT_IDRAC_IS_READY_RETRIES = 48
+DEFAULT_IDRAC_IS_READY_RETRIES = 96
 DEFAULT_IDRAC_IS_READY_RETRY_DELAY_SEC = 10
 
 # Web Services Management (WS-Management and WS-Man) SSL retry on error
