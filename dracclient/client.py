@@ -439,8 +439,9 @@ class DRACClient(object):
             reboot=reboot,
             start_time=start_time)
 
-    def create_reboot_job(self,
-                          reboot_type='graceful_reboot_with_forced_shutdown'):
+    def create_reboot_job(
+            self,
+            reboot_type=constants.RebootJobType.reboot_forced_shutdown):
         """Creates a reboot job.
 
         :param reboot_type: type of reboot

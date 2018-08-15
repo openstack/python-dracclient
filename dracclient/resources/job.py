@@ -14,6 +14,7 @@
 import collections
 import logging
 
+from dracclient import constants
 import dracclient.exceptions as exceptions
 from dracclient.resources import uris
 from dracclient import utils
@@ -27,9 +28,9 @@ JobTuple = collections.namedtuple(
      'percent_complete'])
 
 REBOOT_TYPES = {
-    'power_cycle': '1',
-    'graceful_reboot_without_forced_shutdown': '2',
-    'graceful_reboot_with_forced_shutdown': '3',
+    constants.RebootJobType.power_cycle: '1',
+    constants.RebootJobType.graceful_reboot: '2',
+    constants.RebootJobType.reboot_forced_shutdown: '3',
 }
 
 
@@ -168,8 +169,9 @@ class JobManagement(object):
 
         return self._get_job_id(doc)
 
-    def create_reboot_job(self,
-                          reboot_type='graceful_reboot_with_forced_shutdown'):
+    def create_reboot_job(
+            self,
+            reboot_type=constants.RebootJobType.reboot_forced_shutdown):
         """Creates a reboot job.
 
         :param reboot_type: type of reboot

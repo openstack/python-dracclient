@@ -50,3 +50,24 @@ class RebootRequired(object):
     @classmethod
     def all(cls):
         return [cls.true, cls.optional, cls.false]
+
+
+class RebootJobType(object):
+    """Enumeration of different reboot job types."""
+
+    power_cycle = 'power_cycle'
+    """Hard power off, power on cycle"""
+
+    graceful_reboot = 'graceful_reboot'
+    """OS level reboot and wait for OS shutdown"""
+
+    reboot_forced_shutdown = 'reboot_forced_shutdown'
+    """OS level reboot and force power cycle if OS does not shut
+    down
+    """
+
+    @classmethod
+    def all(cls):
+        return [cls.power_cycle,
+                cls.graceful_reboot,
+                cls.reboot_forced_shutdown]
