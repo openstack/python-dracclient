@@ -47,7 +47,7 @@ NIC_MODE = {
 CPU = collections.namedtuple(
     'CPU',
     ['id', 'cores', 'speed_mhz', 'model', 'status', 'ht_enabled',
-     'turbo_enabled', 'vt_enabled', 'arch64'])
+     'cpu_count', 'turbo_enabled', 'vt_enabled', 'arch64'])
 
 Memory = collections.namedtuple(
     'Memory',
@@ -103,9 +103,19 @@ class InventoryManagement(object):
                                                allow_missing=True)),
             turbo_enabled=bool(self._get_cpu_attr(cpu, 'TurboModeEnabled',
                                                   allow_missing=True)),
+            cpu_count=self._get_cpu_count(
+                int(self._get_cpu_attr(cpu, 'NumberOfProcessorCores')),
+                bool(self._get_cpu_attr(cpu, 'HyperThreadingEnabled',
+                                        allow_missing=True))),
             vt_enabled=bool(self._get_cpu_attr(
                 cpu, 'VirtualizationTechnologyEnabled', allow_missing=True)),
             arch64=arch64)
+
+    def _get_cpu_count(self, cores, ht_enabled):
+        if ht_enabled:
+            return int(cores * 2)
+        else:
+            return int(cores)
 
     def _get_cpu_attr(self, cpu, attr_name, allow_missing=False):
         return utils.get_wsman_resource_attr(
