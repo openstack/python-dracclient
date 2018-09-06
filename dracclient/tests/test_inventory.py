@@ -40,6 +40,7 @@ class ClientInventoryManagementTestCase(base.BaseTest):
             model='Intel(R) Xeon(R) CPU E5-2620 v3 @ 2.40GHz',
             status='ok',
             ht_enabled=True,
+            cpu_count=12,
             turbo_enabled=True,
             vt_enabled=True,
             arch64=True)]
@@ -61,6 +62,7 @@ class ClientInventoryManagementTestCase(base.BaseTest):
             model='Intel(R) Xeon(R) CPU E5-2440 v2 @ 1.90GHz',
             status='ok',
             ht_enabled=False,
+            cpu_count=8,
             turbo_enabled=False,
             vt_enabled=False,
             arch64=False)]
