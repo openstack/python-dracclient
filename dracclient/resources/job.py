@@ -22,7 +22,7 @@ from dracclient import wsman
 
 LOG = logging.getLogger(__name__)
 
-JobTuple = collections.namedtuple(
+Job = collections.namedtuple(
     'Job',
     ['id', 'name', 'start_time', 'until_time', 'message', 'status',
      'percent_complete'])
@@ -32,22 +32,6 @@ REBOOT_TYPES = {
     constants.RebootJobType.graceful_reboot: '2',
     constants.RebootJobType.reboot_forced_shutdown: '3',
 }
-
-
-class Job(JobTuple):
-
-    def __new__(cls, **kwargs):
-        if 'state' in kwargs:
-            LOG.warning('Job.state is deprecated. Use Job.status instead.')
-            kwargs['status'] = kwargs['state']
-            del kwargs['state']
-
-        return super(Job, cls).__new__(cls, **kwargs)
-
-    @property
-    def state(self):
-        LOG.warning('Job.state is deprecated. Use Job.status instead.')
-        return self.status
 
 
 class JobManagement(object):

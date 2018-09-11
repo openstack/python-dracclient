@@ -71,82 +71,22 @@ PHYSICAL_DISK_BUS_PROTOCOL = {
     '8': 'nvme'
 }
 
-PhysicalDiskTuple = collections.namedtuple(
+PhysicalDisk = collections.namedtuple(
     'PhysicalDisk',
     ['id', 'description', 'controller', 'manufacturer', 'model', 'media_type',
      'interface_type', 'size_mb', 'free_size_mb', 'serial_number',
      'firmware_version', 'status', 'raid_status', 'sas_address',
      'device_protocol'])
 
-
-class PhysicalDisk(PhysicalDiskTuple):
-
-    def __new__(cls, **kwargs):
-        if 'state' in kwargs:
-            LOG.warning('PhysicalDisk.state is deprecated. '
-                        'Use PhysicalDisk.status instead.')
-            kwargs['status'] = kwargs['state']
-            del kwargs['state']
-
-        if 'raid_state' in kwargs:
-            LOG.warning('PhysicalDisk.raid_state is deprecated. '
-                        'Use PhysicalDisk.raid_status instead.')
-            kwargs['raid_status'] = kwargs['raid_state']
-            del kwargs['raid_state']
-
-        return super(PhysicalDisk, cls).__new__(cls, **kwargs)
-
-    @property
-    def state(self):
-        LOG.warning('PhysicalDisk.state is deprecated. '
-                    'Use PhysicalDisk.status instead.')
-        return self.status
-
-    @property
-    def raid_state(self):
-        LOG.warning('PhysicalDisk.raid_state is deprecated. '
-                    'Use PhysicalDisk.raid_status instead.')
-        return self.raid_status
-
 RAIDController = collections.namedtuple(
     'RAIDController', ['id', 'description', 'manufacturer', 'model',
                        'primary_status', 'firmware_version', 'bus'])
 
-VirtualDiskTuple = collections.namedtuple(
+VirtualDisk = collections.namedtuple(
     'VirtualDisk',
     ['id', 'name', 'description', 'controller', 'raid_level', 'size_mb',
      'status', 'raid_status', 'span_depth', 'span_length',
      'pending_operations', 'physical_disks'])
-
-
-class VirtualDisk(VirtualDiskTuple):
-
-    def __new__(cls, **kwargs):
-        if 'state' in kwargs:
-            LOG.warning('VirtualDisk.state is deprecated. '
-                        'Use VirtualDisk.status instead.')
-            kwargs['status'] = kwargs['state']
-            del kwargs['state']
-
-        if 'raid_state' in kwargs:
-            LOG.warning('VirtualDisk.raid_state is deprecated. '
-                        'Use VirtualDisk.raid_status instead.')
-            kwargs['raid_status'] = kwargs['raid_state']
-            del kwargs['raid_state']
-
-        return super(VirtualDisk, cls).__new__(cls, **kwargs)
-
-    @property
-    def state(self):
-        LOG.warning('VirtualDisk.state is deprecated. '
-                    'Use VirtualDisk.status instead.')
-        return self.status
-
-    @property
-    def raid_state(self):
-        LOG.warning('VirtualDisk.raid_state is deprecated. '
-                    'Use VirtualDisk.raid_status instead.')
-        return self.raid_status
 
 
 class RAIDManagement(object):
