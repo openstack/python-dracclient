@@ -717,8 +717,8 @@ class DRACClient(object):
                    value indicating whether the server must be rebooted to
                    complete disk conversion.
         """
-        return self._raid_mgmt.convert_physical_disks(
-            physical_disks, raid_enable)
+        return self._raid_mgmt.convert_physical_disks(physical_disks,
+                                                      raid_enable)
 
     def create_virtual_disk(self, raid_controller, physical_disks, raid_level,
                             size_mb, disk_name=None, span_length=None,
@@ -952,8 +952,8 @@ class DRACClient(object):
         """Find out if raid controller supports jbod
 
         :param raid_controller_fqdd: The raid controller's fqdd
-                        being being checked to see if it is jbod
-                        capable.
+                                     being checked to see if it is jbod
+                                     capable.
         :raises: DRACRequestFailed if unable to find any disks in the Ready
                  or non-RAID states
         :raises: DRACOperationFailed on error reported back by the DRAC
@@ -961,6 +961,61 @@ class DRACClient(object):
                  NOT_SUPPORTED_MSG constant
         """
         return self._raid_mgmt.is_jbod_capable(raid_controller_fqdd)
+
+    def is_raid_controller(self, raid_controller_fqdd):
+        """Find out if object's fqdd is for a raid controller or not
+
+        :param raid_controller_fqdd: The object's fqdd we are testing to see
+                                     if it is a raid controller or not.
+        :returns: boolean, True if the device is a RAID controller,
+                  False if not.
+        """
+        return self._raid_mgmt.is_raid_controller(raid_controller_fqdd)
+
+    def is_boss_controller(self, raid_controller_fqdd):
+        """Find out if a RAID controller a BOSS card or not
+
+        :param raid_controller_fqdd: The object's fqdd we are testing to see
+                                     if it is a BOSS card or not.
+        :returns: boolean, True if the device is a BOSS card, False if not.
+        """
+        return self._raid_mgmt.is_boss_controller(raid_controller_fqdd)
+
+    def change_physical_disk_state(self, mode,
+                                   controllers_to_physical_disk_ids=None):
+        """Convert disks RAID status and return a list of controller IDs
+
+        Builds a list of controller ids that have had disks converted to the
+        specified RAID status by:
+        - Examining all the disks in the system and filtering out any that are
+          not attached to a RAID/BOSS controller.
+        - Inspect the controllers' disks to see if there are any that need to
+          be converted, if so convert them. If a disk is already in the desired
+          status the disk is ignored. Also check for failed or unknown disk
+          statuses and raise an exception where appropriate.
+        - Return a list of controller IDs for controllers whom have had any of
+          their disks converted, and whether a reboot is required.
+
+        The caller typically should then create a config job for the list of
+        controllers returned to finalize the RAID configuration.
+
+        :param mode: constants.RaidStatus enumeration used to determine what
+                     raid status to check for.
+        :param controllers_to_physical_disk_ids: Dictionary of controllers and
+               corresponding disk ids we are inspecting and creating jobs for
+               when needed.
+        :returns: a dict containing the following key/values:
+                  - is_reboot_required, a boolean stating whether a reboot is
+                  required or not.
+                  - commit_required_ids, a list of controller ids that will
+                  need to commit their pending RAID changes via a config job.
+        :raises: DRACOperationFailed on error reported back by the DRAC and the
+                 exception message does not contain NOT_SUPPORTED_MSG constant.
+        :raises: Exception on unknown error.
+        """
+        return (self._raid_mgmt
+                .change_physical_disk_state(mode,
+                                            controllers_to_physical_disk_ids))
 
 
 class WSManClient(wsman.Client):
@@ -1081,8 +1136,8 @@ class WSManClient(wsman.Client):
                             message_elems]
                 raise exceptions.DRACOperationFailed(drac_messages=messages)
 
-            if (expected_return_value is not None and
-                    return_value != expected_return_value):
+            if (expected_return_value is not None
+                    and return_value != expected_return_value):
                 raise exceptions.DRACUnexpectedReturnValue(
                     expected_return_value=expected_return_value,
                     actual_return_value=return_value)

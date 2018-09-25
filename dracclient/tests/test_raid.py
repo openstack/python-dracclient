@@ -11,6 +11,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+
+import collections
 import lxml.etree
 import mock
 import random
@@ -35,6 +37,80 @@ class ClientRAIDManagementTestCase(base.BaseTest):
         self.drac_client = dracclient.client.DRACClient(
             **test_utils.FAKE_ENDPOINT)
         self.raid_controller_fqdd = "RAID.Integrated.1-1"
+        cntl_dict = {'RAID.Integrated.1-1':
+                     ['Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1',
+                      'Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1'],
+                     'AHCI.Integrated.1-1':
+                     ['Disk.Bay.0:Enclosure.Internal.0-1:AHCI.Integrated.1-1',
+                      'Disk.Bay.1:Enclosure.Internal.0-1:AHCI.Integrated.1-1']}
+        self.controllers_to_physical_disk_ids = cntl_dict
+        self.disk_1 = raid.PhysicalDisk(
+            id='Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1',
+            description='Disk 0 in Backplane 1 of Int RAID Controller 1',
+            controller='RAID.Integrated.1-1',
+            manufacturer='ATA',
+            model='ST91000640NS',
+            media_type='hdd',
+            interface_type='sata',
+            size_mb=953344,
+            free_size_mb=953344,
+            serial_number='9XG4SLGZ',
+            firmware_version='AA09',
+            status='ok',
+            raid_status='ready',
+            sas_address='500056B37789ABE3',
+            device_protocol=None)
+
+        self.disk_2 = raid.PhysicalDisk(
+            id='Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1',
+            description='Disk 1 in Backplane 1 of Int RAID Controller 1',
+            controller='RAID.Integrated.1-1',
+            manufacturer='ATA',
+            model='ST91000640NS',
+            media_type='hdd',
+            interface_type='sata',
+            size_mb=953344,
+            free_size_mb=953344,
+            serial_number='9XG4SLGZ',
+            firmware_version='AA09',
+            status='online',
+            raid_status='ready',
+            sas_address='500056B37789ABE3',
+            device_protocol=None)
+
+        self.disk_3 = raid.PhysicalDisk(
+            id='Disk.Bay.0:Enclosure.Internal.0-1:AHCI.Integrated.1-1',
+            description='Disk 1 in Backplane 1 of Int BOSS Controller 1',
+            controller='AHCI.Integrated.1-1',
+            manufacturer='ATA',
+            model='ST91000640NS',
+            media_type='hdd',
+            interface_type='sata',
+            size_mb=953344,
+            free_size_mb=953344,
+            serial_number='9XG4SLGZ',
+            firmware_version='AA09',
+            status='online',
+            raid_status='ready',
+            sas_address='500056B37789ABE3',
+            device_protocol=None)
+
+        self.disk_4 = raid.PhysicalDisk(
+            id='Disk.Bay.1:Enclosure.Internal.0-1:AHCI.Integrated.1-1',
+            description='Disk 1 in Backplane 1 of Int RAID Controller 1',
+            controller='AHCI.Integrated.1-1',
+            manufacturer='ATA',
+            model='ST91000640NS',
+            media_type='hdd',
+            interface_type='sata',
+            size_mb=953344,
+            free_size_mb=953344,
+            serial_number='9XG4SLGZ',
+            firmware_version='AA09',
+            status='online',
+            raid_status='ready',
+            sas_address='500056B37789ABE3',
+            device_protocol=None)
 
     @mock.patch.object(dracclient.client.WSManClient,
                        'wait_until_idrac_is_ready', spec_set=True,
@@ -696,3 +772,384 @@ class ClientRAIDManagementTestCase(base.BaseTest):
         self.assertRaises(
             exceptions.DRACOperationFailed,
             self.drac_client.is_jbod_capable, self.raid_controller_fqdd)
+
+    def test_is_raid_controller(self, mock_requests):
+        self.assertTrue(self.drac_client
+                        .is_raid_controller("RAID.Integrated.1-1"))
+        self.assertFalse(self.drac_client
+                         .is_raid_controller("notRAID.Integrated.1-1"))
+
+    def test_is_boss_controller(self, mock_requests):
+        self.assertTrue(self.drac_client
+                        .is_boss_controller("AHCI.Integrated.1-1"))
+        self.assertFalse(self.drac_client
+                         .is_boss_controller("notAHCI.Integrated.1-1"))
+
+    def test_check_disks_status_no_controllers(self, mock_requests):
+        physical_disks = [self.disk_1, self.disk_2, self.disk_3, self.disk_4]
+        raid_mgt = self.drac_client._raid_mgmt
+
+        cont_to_phys_disk_ids = collections.defaultdict(list)
+        mode = constants.RaidStatus.jbod
+
+        raid_mgt._check_disks_status(mode, physical_disks,
+                                     cont_to_phys_disk_ids)
+        jbod_len = len(cont_to_phys_disk_ids['RAID.Integrated.1-1'])
+        self.assertEqual(jbod_len, 0)
+
+        # Switch mode to RAID and try again
+        cont_to_phys_disk_ids = collections.defaultdict(list)
+        mode = constants.RaidStatus.raid
+        raid_mgt._check_disks_status(mode, physical_disks,
+                                     cont_to_phys_disk_ids)
+        raid_len = len(cont_to_phys_disk_ids['RAID.Integrated.1-1'])
+        self.assertEqual(raid_len, 0)
+
+    def test_check_disks_status_bad(self, mock_requests):
+        mode = constants.RaidStatus.raid
+        disk_2 = self.disk_2._replace(raid_status='FAKE_STATUS')
+        physical_disks = [self.disk_1, disk_2, self.disk_3, self.disk_4]
+        raid_mgt = self.drac_client._raid_mgmt
+
+        self.assertRaises(ValueError,
+                          raid_mgt._check_disks_status,
+                          mode,
+                          physical_disks,
+                          self.controllers_to_physical_disk_ids.copy())
+        mode = constants.RaidStatus.jbod
+        self.assertRaises(ValueError,
+                          raid_mgt._check_disks_status,
+                          mode,
+                          physical_disks,
+                          self.controllers_to_physical_disk_ids.copy())
+
+    def test_check_disks_status_fail(self, mock_requests):
+        mode = constants.RaidStatus.raid
+        disk_2_failed = self.disk_2._replace(raid_status='failed')
+        physical_disks = [self.disk_1, disk_2_failed, self.disk_3, self.disk_4]
+        raid_mgt = self.drac_client._raid_mgmt
+
+        self.assertRaises(ValueError,
+                          raid_mgt._check_disks_status,
+                          mode,
+                          physical_disks,
+                          self.controllers_to_physical_disk_ids.copy())
+        mode = constants.RaidStatus.jbod
+        self.assertRaises(ValueError,
+                          raid_mgt._check_disks_status,
+                          mode,
+                          physical_disks,
+                          self.controllers_to_physical_disk_ids.copy())
+
+    def test_check_disks_status_no_change(self, mock_requests):
+        raid_mgt = self.drac_client._raid_mgmt
+        mode = constants.RaidStatus.raid
+        physical_disks = [self.disk_1, self.disk_2,
+                          self.disk_3, self.disk_4]
+
+        raid_cntl_to_phys_disk_ids = (self.controllers_to_physical_disk_ids.
+                                      copy())
+
+        raid_mgt._check_disks_status(mode,  physical_disks,
+                                     raid_cntl_to_phys_disk_ids)
+        raid_len = len(raid_cntl_to_phys_disk_ids['RAID.Integrated.1-1'])
+        self.assertEqual(raid_len, 0)
+
+        mode = constants.RaidStatus.jbod
+        disk_1_non_raid = self.disk_1._replace(raid_status='non-RAID')
+        disk_2_non_raid = self.disk_2._replace(raid_status='non-RAID')
+        physical_disks = [disk_1_non_raid, disk_2_non_raid,
+                          self.disk_3, self.disk_4]
+
+        jbod_cntl_to_phys_disk_ids = (self.controllers_to_physical_disk_ids.
+                                      copy())
+        raid_mgt._check_disks_status(mode,  physical_disks,
+                                     jbod_cntl_to_phys_disk_ids)
+        jbod_len = len(jbod_cntl_to_phys_disk_ids['RAID.Integrated.1-1'])
+        self.assertEqual(jbod_len, 0)
+
+    def test_check_disks_status_change_state(self, mock_requests):
+        raid_mgt = self.drac_client._raid_mgmt
+        mode = constants.RaidStatus.jbod
+        physical_disks = [self.disk_1, self.disk_2, self.disk_3, self.disk_4]
+
+        jbod_cntl_to_phys_disk_ids = (self.controllers_to_physical_disk_ids.
+                                      copy())
+
+        raid_mgt._check_disks_status(mode, physical_disks,
+                                     jbod_cntl_to_phys_disk_ids)
+        jbod_len = len(jbod_cntl_to_phys_disk_ids['RAID.Integrated.1-1'])
+        self.assertEqual(jbod_len, 2)
+
+        mode = constants.RaidStatus.raid
+        disk_1_non_raid = self.disk_1._replace(raid_status='non-RAID')
+        disk_2_non_raid = self.disk_2._replace(raid_status='non-RAID')
+        physical_disks = [disk_1_non_raid, disk_2_non_raid,
+                          self.disk_3, self.disk_4]
+        raid_cntl_to_phys_disk_ids = (self.controllers_to_physical_disk_ids.
+                                      copy())
+        raid_mgt._check_disks_status(mode,  physical_disks,
+                                     raid_cntl_to_phys_disk_ids)
+        raid_len = len(raid_cntl_to_phys_disk_ids['RAID.Integrated.1-1'])
+        self.assertEqual(raid_len, 2)
+
+    def test_check_disks_status_bad_and_fail(self, mock_requests):
+        mode = constants.RaidStatus.raid
+        disk_1_bad = self.disk_1._replace(raid_status='FAKE_STATUS')
+        disk_2_failed = self.disk_2._replace(raid_status='failed')
+        physical_disks = [disk_1_bad, disk_2_failed, self.disk_3, self.disk_4]
+        raid_mgt = self.drac_client._raid_mgmt
+
+        self.assertRaises(ValueError,
+                          raid_mgt._check_disks_status,
+                          mode,
+                          physical_disks,
+                          self.controllers_to_physical_disk_ids.copy())
+        mode = constants.RaidStatus.jbod
+        self.assertRaises(ValueError,
+                          raid_mgt._check_disks_status,
+                          mode,
+                          physical_disks,
+                          self.controllers_to_physical_disk_ids.copy())
+
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    @mock.patch.object(dracclient.resources.raid.RAIDManagement,
+                       'convert_physical_disks', spec_set=True,
+                       autospec=True)
+    def test_change_physical_disk_state_jbod(
+            self, mock_requests,
+            mock_convert_physical_disks,
+            wait_until_idrac_is_ready):
+        mode = constants.RaidStatus.jbod
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.RAIDEnumerations[uris.DCIM_PhysicalDiskView]['ok'])
+        mock_convert_physical_disks.return_value = {'commit_required': True,
+                                                    'is_commit_required': True,
+                                                    'is_reboot_required':
+                                                    constants.RebootRequired
+                                                    .true}
+        cntl_to_phys_d_ids = self.controllers_to_physical_disk_ids
+        results = self.drac_client.change_physical_disk_state(
+            mode, cntl_to_phys_d_ids)
+        self.assertTrue(results["is_reboot_required"])
+        self.assertEqual(len(results["commit_required_ids"]), 2)
+
+    @mock.patch.object(dracclient.resources.raid.RAIDManagement,
+                       'list_physical_disks', spec_set=True,
+                       autospec=True)
+    @mock.patch.object(dracclient.resources.raid.RAIDManagement,
+                       'convert_physical_disks', spec_set=True,
+                       autospec=True)
+    def test_change_physical_disk_state_raid(
+            self, mock_requests,
+            mock_convert_physical_disks,
+            mock_list_physical_disks):
+        mode = constants.RaidStatus.raid
+        disk_1_non_raid = self.disk_1._replace(raid_status='non-RAID')
+        disk_2_non_raid = self.disk_2._replace(raid_status='non-RAID')
+        physical_disks = [disk_1_non_raid, disk_2_non_raid,
+                          self.disk_3, self.disk_4]
+        mock_list_physical_disks.return_value = physical_disks
+        mock_convert_physical_disks.return_value = {'commit_required': True,
+                                                    'is_commit_required': True,
+                                                    'is_reboot_required':
+                                                    constants.RebootRequired
+                                                    .true}
+        cntl_to_phys_d_ids = self.controllers_to_physical_disk_ids
+        results = self.drac_client.change_physical_disk_state(
+            mode, cntl_to_phys_d_ids)
+        self.assertTrue(results["is_reboot_required"])
+        self.assertEqual(len(results["commit_required_ids"]), 1)
+
+    @mock.patch.object(dracclient.resources.raid.RAIDManagement,
+                       'list_physical_disks', spec_set=True,
+                       autospec=True)
+    @mock.patch.object(dracclient.resources.raid.RAIDManagement,
+                       'convert_physical_disks', spec_set=True,
+                       autospec=True)
+    def test_change_physical_disk_state_none(
+            self, mock_requests,
+            mock_convert_physical_disks,
+            mock_list_physical_disks):
+        mode = constants.RaidStatus.raid
+        physical_disks = [self.disk_1, self.disk_2, self.disk_3, self.disk_4]
+        mock_convert_physical_disks.return_value = {'commit_required': True,
+                                                    'is_commit_required': True,
+                                                    'is_reboot_required':
+                                                    constants.RebootRequired
+                                                    .true}
+        mock_list_physical_disks.return_value = physical_disks
+        cntl_to_phys_d_ids = self.controllers_to_physical_disk_ids
+        results = self.drac_client.change_physical_disk_state(
+            mode, cntl_to_phys_d_ids)
+        self.assertFalse(results["is_reboot_required"])
+        self.assertEqual(len(results["commit_required_ids"]), 0)
+
+    @mock.patch.object(dracclient.resources.raid.RAIDManagement,
+                       'list_physical_disks', spec_set=True,
+                       autospec=True)
+    @mock.patch.object(dracclient.resources.raid.RAIDManagement,
+                       'convert_physical_disks', spec_set=True,
+                       autospec=True,
+                       side_effect=exceptions.DRACOperationFailed(
+                           drac_messages=constants.NOT_SUPPORTED_MSG))
+    def test_change_physical_disk_state_not_supported(
+            self, mock_requests,
+            mock_convert_physical_disks,
+            mock_list_physical_disks):
+        mode = constants.RaidStatus.raid
+        disk_1_non_raid = self.disk_1._replace(raid_status='non-RAID')
+        disk_2_non_raid = self.disk_2._replace(raid_status='non-RAID')
+        physical_disks = [disk_1_non_raid, disk_2_non_raid,
+                          self.disk_3, self.disk_4]
+        mock_list_physical_disks.return_value = physical_disks
+        cntl_to_phys_d_ids = self.controllers_to_physical_disk_ids
+        results = self.drac_client.change_physical_disk_state(
+            mode, cntl_to_phys_d_ids)
+        self.assertFalse(results["is_reboot_required"])
+        self.assertEqual(len(results["commit_required_ids"]), 0)
+
+    @mock.patch.object(dracclient.resources.raid.RAIDManagement,
+                       'list_physical_disks', spec_set=True,
+                       autospec=True)
+    @mock.patch.object(dracclient.resources.raid.RAIDManagement,
+                       'convert_physical_disks', spec_set=True,
+                       autospec=True,
+                       side_effect=exceptions.DRACOperationFailed(
+                           drac_messages="OTHER_MESSAGE"))
+    def test_change_physical_disk_state_raise_drac_operation_other(
+            self, mock_requests,
+            mock_convert_physical_disks,
+            mock_list_physical_disks):
+        mode = constants.RaidStatus.raid
+        disk_1_non_raid = self.disk_1._replace(raid_status='non-RAID')
+        disk_2_non_raid = self.disk_2._replace(raid_status='non-RAID')
+        physical_disks = [disk_1_non_raid, disk_2_non_raid,
+                          self.disk_3, self.disk_4]
+        mock_list_physical_disks.return_value = physical_disks
+        cntl_to_phys_d_ids = self.controllers_to_physical_disk_ids
+        self.assertRaisesRegexp(
+            exceptions.DRACOperationFailed,
+            "OTHER_MESSAGE",
+            self.drac_client.change_physical_disk_state,
+            mode, cntl_to_phys_d_ids)
+
+    @mock.patch.object(dracclient.resources.raid.RAIDManagement,
+                       'list_physical_disks', spec_set=True,
+                       autospec=True)
+    @mock.patch.object(dracclient.resources.raid.RAIDManagement,
+                       'convert_physical_disks', spec_set=True,
+                       autospec=True, side_effect=Exception(
+                           "SOMETHING_BAD_HAPPENED"))
+    def test_change_physical_disk_state_raise_other(
+            self, mock_requests,
+            mock_convert_physical_disks,
+            mock_list_physical_disks):
+        mode = constants.RaidStatus.raid
+        disk_1_non_raid = self.disk_1._replace(raid_status='non-RAID')
+        disk_2_non_raid = self.disk_2._replace(raid_status='non-RAID')
+        physical_disks = [disk_1_non_raid, disk_2_non_raid,
+                          self.disk_3, self.disk_4]
+        mock_list_physical_disks.return_value = physical_disks
+        cntl_to_phys_d_ids = self.controllers_to_physical_disk_ids
+        self.assertRaisesRegexp(
+            Exception, "SOMETHING_BAD_HAPPENED",
+            self.drac_client.change_physical_disk_state,
+            mode, cntl_to_phys_d_ids)
+
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    @mock.patch.object(dracclient.resources.raid.RAIDManagement,
+                       'list_physical_disks', spec_set=True,
+                       autospec=True)
+    @mock.patch.object(dracclient.resources.raid.RAIDManagement,
+                       'convert_physical_disks', spec_set=True,
+                       autospec=True)
+    def test_change_physical_disk_state_with_no_dict(
+            self, mock_requests,
+            mock_convert_physical_disks,
+            mock_list_physical_disks,
+            mock_wait_until_idrac_is_ready):
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.RAIDEnumerations[uris.DCIM_ControllerView]['ok'])
+        mode = constants.RaidStatus.jbod
+        physical_disks = [self.disk_1, self.disk_2, self.disk_3, self.disk_4]
+        mock_convert_physical_disks.return_value = {'commit_required': True,
+                                                    'is_commit_required': True,
+                                                    'is_reboot_required':
+                                                    constants.RebootRequired
+                                                    .true}
+        mock_list_physical_disks.return_value = physical_disks
+        results = self.drac_client.change_physical_disk_state(mode)
+        self.assertTrue(results["is_reboot_required"])
+        self.assertEqual(len(results["commit_required_ids"]), 2)
+
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    @mock.patch.object(dracclient.resources.raid.RAIDManagement,
+                       'list_physical_disks', spec_set=True,
+                       autospec=True)
+    def test_change_physical_disk_state_with_no_raid_or_boss_card_match(
+            self, mock_requests,
+            mock_list_physical_disks,
+            mock_wait_until_idrac_is_ready):
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.RAIDEnumerations[uris.DCIM_ControllerView]['ok'])
+        mode = constants.RaidStatus.jbod
+        _disk_1 = self.disk_1._replace(controller='NOT_RAID.Integrated.1-1')
+        _disk_2 = self.disk_2._replace(controller='NOT_RAID.Integrated.1-1')
+        _disk_3 = self.disk_3._replace(controller='NOT_AHCI.Integrated.1-1')
+        _disk_4 = self.disk_4._replace(controller='NOT_AHCI.Integrated.1-1')
+        physical_disks = [_disk_1, _disk_2, _disk_3, _disk_4]
+        mock_list_physical_disks.return_value = physical_disks
+        results = self.drac_client.change_physical_disk_state(mode)
+        self.assertFalse(results["is_reboot_required"])
+        self.assertEqual(len(results["commit_required_ids"]), 0)
+
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    @mock.patch.object(dracclient.resources.raid.RAIDManagement,
+                       'list_physical_disks', spec_set=True,
+                       autospec=True)
+    @mock.patch.object(dracclient.resources.raid.RAIDManagement,
+                       'convert_physical_disks', spec_set=True,
+                       autospec=True)
+    def test_change_physical_disk_state_conversion_return_values(
+            self, mock_requests,
+            mock_convert_physical_disks,
+            mock_list_physical_disks,
+            mock_wait_until_idrac_is_ready):
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.RAIDEnumerations[uris.DCIM_ControllerView]['ok'])
+        mode = constants.RaidStatus.jbod
+        physical_disks = [self.disk_1, self.disk_2, self.disk_3, self.disk_4]
+        '''Test all logic branches for 100% coverage, it is unlikely
+        convert_physical_disks() will return empty dict but we do check
+        for this case in change_physical_disk_state()'''
+        mock_convert_physical_disks.return_value = {}
+        mock_list_physical_disks.return_value = physical_disks
+        results = self.drac_client.change_physical_disk_state(mode)
+        self.assertFalse(results["is_reboot_required"])
+        self.assertEqual(len(results["commit_required_ids"]), 0)
+        '''Where convert_physical_disks() does not require a commit after
+        executing, unlikely case but provides 100% code coverage of all
+        logic branches.'''
+        mock_convert_physical_disks.return_value = {'commit_required':
+                                                    True,
+                                                    'is_commit_required':
+                                                    False,
+                                                    'is_reboot_required':
+                                                    constants.RebootRequired
+                                                    .false}
+        results = self.drac_client.change_physical_disk_state(mode)
+        self.assertFalse(results["is_reboot_required"])
+        self.assertEqual(len(results["commit_required_ids"]), 0)

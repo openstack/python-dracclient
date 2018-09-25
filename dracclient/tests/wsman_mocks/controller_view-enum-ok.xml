@@ -52,6 +52,45 @@
           <n1:SupportRAID10UnevenSpans>0</n1:SupportRAID10UnevenSpans>
           <n1:T10PICapability>0</n1:T10PICapability>
         </n1:DCIM_ControllerView>
+        <n1:DCIM_ControllerView>
+          <n1:Bus>2</n1:Bus>
+          <n1:CacheSizeInMB>512</n1:CacheSizeInMB>
+          <n1:CachecadeCapability>1</n1:CachecadeCapability>
+          <n1:ControllerFirmwareVersion>2.5.13.2009</n1:ControllerFirmwareVersion>
+          <n1:Device>1</n1:Device>
+          <n1:DeviceCardDataBusWidth>Unknown</n1:DeviceCardDataBusWidth>
+          <n1:DeviceCardManufacturer>DELL</n1:DeviceCardManufacturer>
+          <n1:DeviceCardSlotLength>2</n1:DeviceCardSlotLength>
+          <n1:DeviceCardSlotType>Unknown</n1:DeviceCardSlotType>
+          <n1:DeviceDescription>AHCI.Integrated.1-1</n1:DeviceDescription>
+          <n1:DriverVersion xsi:nil="true"/>
+          <n1:EncryptionCapability>1</n1:EncryptionCapability>
+          <n1:EncryptionMode>0</n1:EncryptionMode>
+          <n1:FQDD>AHCI.Integrated.1-1</n1:FQDD>
+          <n1:Function>0</n1:Function>
+          <n1:InstanceID>AHCI.Integrated.1-1</n1:InstanceID>
+          <n1:KeyID xsi:nil="true"/>
+          <n1:LastSystemInventoryTime>20150226175957.000000+000</n1:LastSystemInventoryTime>
+          <n1:LastUpdateTime>20150226175950.000000+000</n1:LastUpdateTime>
+          <n1:MaxAvailablePCILinkSpeed>Generation 2</n1:MaxAvailablePCILinkSpeed>
+          <n1:MaxPossiblePCILinkSpeed>Generation 3</n1:MaxPossiblePCILinkSpeed>
+          <n1:PCIDeviceID>5B</n1:PCIDeviceID>
+          <n1:PCISlot>1</n1:PCISlot>
+          <n1:PCISubDeviceID>1F38</n1:PCISubDeviceID>
+          <n1:PCISubVendorID>1028</n1:PCISubVendorID>
+          <n1:PCIVendorID>1000</n1:PCIVendorID>
+          <n1:PatrolReadState>0</n1:PatrolReadState>
+          <n1:PrimaryStatus>1</n1:PrimaryStatus>
+          <n1:ProductName>BOSS-S1</n1:ProductName>
+          <n1:RollupStatus>1</n1:RollupStatus>
+          <n1:SASAddress>5B083FE0D2D0F201</n1:SASAddress>
+          <n1:SecurityStatus>1</n1:SecurityStatus>
+          <n1:SlicedVDCapability>1</n1:SlicedVDCapability>
+          <n1:SupportControllerBootMode>1</n1:SupportControllerBootMode>
+          <n1:SupportEnhancedAutoForeignImport>1</n1:SupportEnhancedAutoForeignImport>
+          <n1:SupportRAID10UnevenSpans>0</n1:SupportRAID10UnevenSpans>
+          <n1:T10PICapability>0</n1:T10PICapability>
+        </n1:DCIM_ControllerView>
       </wsman:Items>
       <wsen:EnumerationContext/>
       <wsman:EndOfSequence/>

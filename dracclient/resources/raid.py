@@ -91,8 +91,6 @@ VirtualDisk = collections.namedtuple(
 
 class RAIDManagement(object):
 
-    NOT_SUPPORTED_MSG = " operation is not supported on th"
-
     def __init__(self, client):
         """Creates RAIDManagement object
 
@@ -288,10 +286,10 @@ class RAIDManagement(object):
         Disks can be enabled or disabled for RAID mode.
 
         :param physical_disks: list of FQDD ID strings of the physical disks
-               to update
+                               to update
         :param raid_enable: boolean flag, set to True if the disk is to
-               become part of the RAID.  The same flag is applied to all
-               listed disks
+                            become part of the RAID.  The same flag is applied
+                            to all listed disks
         :returns: a dictionary containing:
                  - The commit_required key with a boolean value indicating
                    whether a config job must be created for the values to be
@@ -496,24 +494,212 @@ class RAIDManagement(object):
 
             # Try moving a disk in the Ready state to JBOD mode
             try:
-                self.convert_physical_disks(
-                    [ready_disk.id],
-                    False)
+                self.convert_physical_disks([ready_disk.id], False)
                 is_jbod_capable = True
 
                 # Flip the disk back to the Ready state.  This results in the
                 # pending value being reset to nothing, so it effectively
                 # undoes the last command and makes the check non-destructive
-                self.convert_physical_disks(
-                    [ready_disk.id],
-                    True)
+                self.convert_physical_disks([ready_disk.id], True)
             except exceptions.DRACOperationFailed as ex:
                 # Fix for python 3, Exception.message no longer
                 # a valid attribute, str(ex) works for both 2.7
                 # and 3.x
-                if self.NOT_SUPPORTED_MSG in str(ex):
+                if constants.NOT_SUPPORTED_MSG in str(ex):
                     pass
                 else:
                     raise
 
         return is_jbod_capable
+
+    def is_raid_controller(self, raid_controller_fqdd):
+        """Find out if object's fqdd is for a raid controller or not
+
+        :param raid_controller_fqdd: The object's fqdd we are testing to see
+                                     if it is a raid controller or not.
+        :returns: boolean, True if the device is a RAID controller,
+                  False if not.
+        """
+        return raid_controller_fqdd.startswith('RAID.')
+
+    def is_boss_controller(self, raid_controller_fqdd):
+        """Find out if a RAID controller a BOSS card or not
+
+        :param raid_controller_fqdd: The object's fqdd we are testing to see
+                                     if it is a BOSS card or not.
+        :returns: boolean, True if the device is a BOSS card, False if not.
+        """
+        return raid_controller_fqdd.startswith('AHCI.')
+
+    def _check_disks_status(self, mode, physical_disks,
+                            controllers_to_physical_disk_ids):
+        """Find disks that failed, need to be configured, or need no change.
+
+        Inspect all the controllers drives and:
+            - See if there are any disks in a failed or unknown state and raise
+            a ValueException where appropriate.
+            - If a controller has disks that still need to be configured add
+            them to the controllers_to_physical_disk_ids dict for the
+            appropriate controller.
+            - If a disk is already in the appropriate state, do nothing, this
+            function should behave in an idempotent manner.
+
+        :param mode: constants.RaidStatus enumeration used to
+                     determine what raid status to check for.
+        :param physical_disks: all physical disks
+        :param controllers_to_physical_disk_ids: Dictionary of controllers
+                     we are inspecting and creating jobs for when needed. If
+                     needed modify this dict so that only drives that need to
+                     be changed to RAID or JBOD are in the list of disk keys
+                     for corresponding controller.
+        :raises: ValueError: Exception message will list failed drives and
+                     drives whose state cannot be changed at this time, drive
+                     state is not "ready" or "non-RAID".
+        """
+        p_disk_id_to_status = {}
+        for physical_disk in physical_disks:
+            p_disk_id_to_status[physical_disk.id] = physical_disk.raid_status
+        failed_disks = []
+        bad_disks = []
+
+        jbod = constants.RaidStatus.jbod
+        raid = constants.RaidStatus.raid
+        for controller, physical_disk_ids \
+                in controllers_to_physical_disk_ids.items():
+            final_physical_disk_ids = []
+            for physical_disk_id in physical_disk_ids:
+                raid_status = p_disk_id_to_status[physical_disk_id]
+                LOG.debug("RAID status for disk id: %s is: %s",
+                          physical_disk_id, raid_status)
+                if ((mode == jbod and raid_status == "non-RAID") or
+                        (mode == raid and raid_status == "ready")):
+                    # This means the disk is already in the desired state,
+                    # so skip it
+                    continue
+                elif ((mode == jbod and raid_status == "ready") or
+                        (mode == raid and raid_status == "non-RAID")):
+                    # This disk is moving from a state we expect to RAID or
+                    # JBOD, so keep it
+                    final_physical_disk_ids.append(physical_disk_id)
+                elif raid_status == "failed":
+                    failed_disks.append(physical_disk_id)
+                else:
+                    # This disk is in one of many states that we don't know
+                    # what to do with, so pitch it
+                    bad_disks.append("{} ({})".format(physical_disk_id,
+                                                      raid_status))
+
+            controllers_to_physical_disk_ids[controller] = (
+                final_physical_disk_ids)
+
+        if failed_disks or bad_disks:
+            error_msg = ""
+
+            if failed_disks:
+                error_msg += ("The following drives have failed: "
+                              "{failed_disks}.  Manually check the status"
+                              " of all drives and replace as necessary, then"
+                              " try again.").format(
+                                  failed_disks=" ".join(failed_disks))
+
+            if bad_disks:
+                if failed_disks:
+                    error_msg += "\n"
+                error_msg += ("Unable to change the state of the following "
+                              "drives because their status is not ready "
+                              "or non-RAID: {}. Bring up the RAID "
+                              "controller GUI on this node and change the "
+                              "drives' status to ready or non-RAID.").format(
+                                  ", ".join(bad_disks))
+
+            raise ValueError(error_msg)
+
+    def change_physical_disk_state(self, mode,
+                                   controllers_to_physical_disk_ids=None):
+        """Convert disks RAID status and return a list of controller IDs
+
+        Builds a list of controller ids that have had disks converted to the
+        specified RAID status by:
+        - Examining all the disks in the system and filtering out any that are
+          not attached to a RAID/BOSS controller.
+        - Inspect the controllers' disks to see if there are any that need to
+          be converted, if so convert them. If a disk is already in the desired
+          status the disk is ignored. Also check for failed or unknown disk
+          statuses and raise an exception where appropriate.
+        - Return a list of controller IDs for controllers whom have had any of
+          their disks converted, and whether a reboot is required.
+
+        The caller typically should then create a config job for the list of
+        controllers returned to finalize the RAID configuration.
+
+        :param mode: constants.RaidStatus enumeration used to determine what
+                     raid status to check for.
+        :param controllers_to_physical_disk_ids: Dictionary of controllers and
+               corresponding disk ids we are inspecting and creating jobs for
+               when needed.
+        :returns: a dict containing the following key/values:
+                  - is_reboot_required, a boolean stating whether a reboot is
+                  required or not.
+                  - commit_required_ids, a list of controller ids that will
+                  need to commit their pending RAID changes via a config job.
+        :raises: DRACOperationFailed on error reported back by the DRAC and the
+                 exception message does not contain NOT_SUPPORTED_MSG constant.
+        :raises: Exception on unknown error.
+        """
+        physical_disks = self.list_physical_disks()
+
+        raid = constants.RaidStatus.raid
+
+        if not controllers_to_physical_disk_ids:
+            controllers_to_physical_disk_ids = collections.defaultdict(list)
+
+            for physical_d in physical_disks:
+                # Weed out disks that are not attached to a RAID controller
+                if (self.is_raid_controller(physical_d.controller)
+                        or self.is_boss_controller(physical_d.controller)):
+                    physical_disk_ids = controllers_to_physical_disk_ids[
+                        physical_d.controller]
+
+                    physical_disk_ids.append(physical_d.id)
+
+        '''Modify controllers_to_physical_disk_ids dict by inspecting desired
+        status vs current status of each controller's disks.
+        Raise exception if there are any failed drives or
+        drives not in status 'ready' or 'non-RAID'
+        '''
+        self._check_disks_status(mode, physical_disks,
+                                 controllers_to_physical_disk_ids)
+
+        is_reboot_required = False
+        controllers = []
+        for controller, physical_disk_ids \
+                in controllers_to_physical_disk_ids.items():
+            if physical_disk_ids:
+                LOG.debug("Converting the following disks to {} on RAID "
+                          "controller {}: {}".format(
+                              mode, controller, str(physical_disk_ids)))
+                try:
+                    conversion_results = \
+                        self.convert_physical_disks(physical_disk_ids,
+                                                    mode == raid)
+                except exceptions.DRACOperationFailed as ex:
+                    if constants.NOT_SUPPORTED_MSG in str(ex):
+                        LOG.debug("Controller {} does not support "
+                                  "JBOD mode".format(controller))
+                        pass
+                    else:
+                        raise
+                else:
+                    if conversion_results:
+                        reboot_true = constants.RebootRequired.true
+                        reboot_optional = constants.RebootRequired.optional
+                        _is_reboot_required = \
+                            conversion_results["is_reboot_required"]
+                        is_reboot_required = is_reboot_required \
+                            or (_is_reboot_required
+                                in [reboot_true, reboot_optional])
+                        if conversion_results["is_commit_required"]:
+                            controllers.append(controller)
+
+        return {'is_reboot_required': is_reboot_required,
+                'commit_required_ids': controllers}

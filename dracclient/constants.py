@@ -20,6 +20,8 @@ DEFAULT_IDRAC_IS_READY_RETRY_DELAY_SEC = 10
 DEFAULT_WSMAN_SSL_ERROR_RETRIES = 3
 DEFAULT_WSMAN_SSL_ERROR_RETRY_DELAY_SEC = 0
 
+NOT_SUPPORTED_MSG = " operation is not supported on th"
+
 # power states
 POWER_ON = 'POWER_ON'
 POWER_OFF = 'POWER_OFF'
@@ -71,3 +73,18 @@ class RebootJobType(object):
         return [cls.power_cycle,
                 cls.graceful_reboot,
                 cls.reboot_forced_shutdown]
+
+
+class RaidStatus(object):
+    """Enumeration of different volume types."""
+
+    jbod = 'JBOD'
+    """Just a Bunch of Disks"""
+
+    raid = 'RAID'
+    """Redundant Array of Independent Disks"""
+
+    @classmethod
+    def all(cls):
+        return [cls.jbod,
+                cls.raid]

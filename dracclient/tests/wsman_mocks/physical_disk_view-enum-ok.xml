@@ -125,6 +125,80 @@
           <n1:T10PICapability>0</n1:T10PICapability>
           <n1:UsedSizeInBytes>0</n1:UsedSizeInBytes>
         </n1:DCIM_PhysicalDiskView>
+        <n1:DCIM_PhysicalDiskView>
+          <n1:BlockSizeInBytes>512</n1:BlockSizeInBytes>
+          <n1:BusProtocol>5</n1:BusProtocol>
+          <n1:Connector>0</n1:Connector>
+          <n1:DeviceDescription>Disk 1 on Integrated BOSS Controller 1</n1:DeviceDescription>
+          <n1:DriveFormFactor>2</n1:DriveFormFactor>
+          <n1:FQDD>Disk.Bay.0:Enclosure.Internal.0-1:AHCI.Integrated.1-1</n1:FQDD>
+          <n1:FreeSizeInBytes>599550590976</n1:FreeSizeInBytes>
+          <n1:HotSpareStatus>0</n1:HotSpareStatus>
+          <n1:InstanceID>Disk.Bay.0:Enclosure.Internal.0-1:AHCI.Integrated.1-1</n1:InstanceID>
+          <n1:LastSystemInventoryTime>20150226180025.000000+000</n1:LastSystemInventoryTime>
+          <n1:LastUpdateTime>20150226180025.000000+000</n1:LastUpdateTime>
+          <n1:Manufacturer>ATA </n1:Manufacturer>
+          <n1:ManufacturingDay>2</n1:ManufacturingDay>
+          <n1:ManufacturingWeek>33</n1:ManufacturingWeek>
+          <n1:ManufacturingYear>2014</n1:ManufacturingYear>
+          <n1:MaxCapableSpeed>3</n1:MaxCapableSpeed>
+          <n1:MediaType>1</n1:MediaType>
+          <n1:Model>ST600MM0007     </n1:Model>
+          <n1:OperationName>None</n1:OperationName>
+          <n1:OperationPercentComplete>0</n1:OperationPercentComplete>
+          <n1:PPID>CN07YX587262248G01PZA02 </n1:PPID>
+          <n1:PredictiveFailureState>0</n1:PredictiveFailureState>
+          <n1:PrimaryStatus>1</n1:PrimaryStatus>
+          <n1:RaidStatus>1</n1:RaidStatus>
+          <n1:RemainingRatedWriteEndurance>255</n1:RemainingRatedWriteEndurance>
+          <n1:Revision>LS0B</n1:Revision>
+          <n1:RollupStatus>1</n1:RollupStatus>
+          <n1:SASAddress>5000C5007764F409</n1:SASAddress>
+          <n1:SecurityState>0</n1:SecurityState>
+          <n1:SerialNumber>S0M3EY3Z            </n1:SerialNumber>
+          <n1:SizeInBytes>599550590976</n1:SizeInBytes>
+          <n1:Slot>1</n1:Slot>
+          <n1:SupportedEncryptionTypes>None</n1:SupportedEncryptionTypes>
+          <n1:T10PICapability>0</n1:T10PICapability>
+          <n1:UsedSizeInBytes>0</n1:UsedSizeInBytes>
+        </n1:DCIM_PhysicalDiskView>
+        <n1:DCIM_PhysicalDiskView>
+          <n1:BlockSizeInBytes>512</n1:BlockSizeInBytes>
+          <n1:BusProtocol>5</n1:BusProtocol>
+          <n1:Connector>0</n1:Connector>
+          <n1:DeviceDescription>Disk 2 on Integrated BOSS Controller 1</n1:DeviceDescription>
+          <n1:DriveFormFactor>2</n1:DriveFormFactor>
+          <n1:FQDD>Disk.Bay.1:Enclosure.Internal.0-1:AHCI.Integrated.1-1</n1:FQDD>
+          <n1:FreeSizeInBytes>599550590976</n1:FreeSizeInBytes>
+          <n1:HotSpareStatus>0</n1:HotSpareStatus>
+          <n1:InstanceID>Disk.Bay.1:Enclosure.Internal.0-1:AHCI.Integrated.1-1</n1:InstanceID>
+          <n1:LastSystemInventoryTime>20150226180025.000000+000</n1:LastSystemInventoryTime>
+          <n1:LastUpdateTime>20150226180025.000000+000</n1:LastUpdateTime>
+          <n1:Manufacturer>ATA </n1:Manufacturer>
+          <n1:ManufacturingDay>2</n1:ManufacturingDay>
+          <n1:ManufacturingWeek>33</n1:ManufacturingWeek>
+          <n1:ManufacturingYear>2014</n1:ManufacturingYear>
+          <n1:MaxCapableSpeed>3</n1:MaxCapableSpeed>
+          <n1:MediaType>1</n1:MediaType>
+          <n1:Model>ST600MM0007     </n1:Model>
+          <n1:OperationName>None</n1:OperationName>
+          <n1:OperationPercentComplete>0</n1:OperationPercentComplete>
+          <n1:PPID>CN07YX587262248G01PZA02 </n1:PPID>
+          <n1:PredictiveFailureState>0</n1:PredictiveFailureState>
+          <n1:PrimaryStatus>1</n1:PrimaryStatus>
+          <n1:RaidStatus>1</n1:RaidStatus>
+          <n1:RemainingRatedWriteEndurance>255</n1:RemainingRatedWriteEndurance>
+          <n1:Revision>LS0B</n1:Revision>
+          <n1:RollupStatus>1</n1:RollupStatus>
+          <n1:SASAddress>5000C5007764F409</n1:SASAddress>
+          <n1:SecurityState>0</n1:SecurityState>
+          <n1:SerialNumber>S0M3EY3Z            </n1:SerialNumber>
+          <n1:SizeInBytes>599550590976</n1:SizeInBytes>
+          <n1:Slot>2</n1:Slot>
+          <n1:SupportedEncryptionTypes>None</n1:SupportedEncryptionTypes>
+          <n1:T10PICapability>0</n1:T10PICapability>
+          <n1:UsedSizeInBytes>0</n1:UsedSizeInBytes>
+        </n1:DCIM_PhysicalDiskView>
         <n2:DCIM_PCIeSSDView>
           <n2:BusProtocol>7</n2:BusProtocol>
           <n2:DeviceDescription>PCIe SSD in Slot 20 in Bay 1</n2:DeviceDescription>
