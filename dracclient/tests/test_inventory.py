@@ -135,6 +135,7 @@ class ClientInventoryManagementTestCase(base.BaseTest):
     def test_get_system(self, mock_requests, mock_wait_until_idrac_is_ready):
         expected_system = inventory.System(
             id='System.Embedded.1',
+            uuid='ebd4edd3-dfd7-4c7d-a2c8-562b3c23b811',
             service_tag='A1B2C3D',
             model='PowerEdge R630',
             lcc_version='2.1.0')

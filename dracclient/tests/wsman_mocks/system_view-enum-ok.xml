@@ -17,6 +17,7 @@
           <n1:LifecycleControllerVersion>2.1.0</n1:LifecycleControllerVersion>
           <n1:Model>PowerEdge R630</n1:Model>
           <n1:ServiceTag>A1B2C3D</n1:ServiceTag>
+          <n1:UUID>ebd4edd3-dfd7-4c7d-a2c8-562b3c23b811</n1:UUID>
         </n1:DCIM_SystemView>
       </wsman:Items>
       <wsman:EndOfSequence/>
