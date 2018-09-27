@@ -59,7 +59,7 @@ NIC = collections.namedtuple(
 
 System = collections.namedtuple(
     'System',
-    ['id', 'lcc_version', 'model', 'service_tag'])
+    ['id', 'lcc_version', 'model', 'service_tag', 'uuid'])
 
 
 class InventoryManagement(object):
@@ -206,6 +206,7 @@ class InventoryManagement(object):
     def _parse_drac_system(self, drac_system):
         return System(
             id=self._get_system_attr(drac_system, 'InstanceID'),
+            uuid=self._get_system_attr(drac_system, 'UUID'),
             service_tag=self._get_system_attr(drac_system, 'ServiceTag'),
             model=self._get_system_attr(drac_system, 'Model'),
             lcc_version=self._get_system_attr(drac_system,
