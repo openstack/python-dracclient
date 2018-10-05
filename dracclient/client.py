@@ -16,6 +16,7 @@ Wrapper for pywsman.Client
 """
 
 import logging
+import subprocess
 import time
 
 from dracclient import constants
@@ -242,6 +243,103 @@ class DRACClient(object):
         :raises: InvalidParameterValue on invalid attribute
         """
         return self._idrac_cfg.set_idrac_settings(settings, idrac_fqdd)
+
+    def reset_idrac(self, force=False, wait=False,
+                    ready_wait_time=30):
+        """Resets the iDRAC and optionally block until reset is complete.
+
+        :param force: does a force reset when True and a graceful reset when
+               False
+        :param wait: returns immediately after reset if False, or waits
+                for the iDRAC to return to operational state if True
+        :param ready_wait_time: the amount of time in seconds to wait after
+                the reset before starting to check on the iDRAC's status
+        :returns: True on success, raises exception on failure
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on failure to reset iDRAC
+        """
+        return_value = self._idrac_cfg.reset_idrac(force)
+        if not wait and return_value:
+            return return_value
+
+        if not return_value:
+            raise exceptions.DRACOperationFailed(
+                drac_messages="Failed to reset iDRAC")
+
+        LOG.debug("iDRAC was reset, waiting for return to operational state")
+
+        state_reached = self._wait_for_host_state(
+            self.client.host,
+            alive=False,
+            ping_count=3,
+            retries=24)
+
+        if not state_reached:
+            raise exceptions.DRACOperationFailed(
+                drac_messages="Timed out waiting for the %s iDRAC to become "
+                "not pingable" % self.client.host)
+
+        LOG.info("The iDRAC has become not pingable")
+
+        state_reached = self._wait_for_host_state(
+            self.client.host,
+            alive=True,
+            ping_count=3,
+            retries=24)
+
+        if not state_reached:
+            raise exceptions.DRACOperationFailed(
+                drac_messages="Timed out waiting for the %s iDRAC to become "
+                "pingable" % self.client.host)
+
+        LOG.info("The iDRAC has become pingable")
+        LOG.info("Waiting for the iDRAC to become ready")
+        time.sleep(ready_wait_time)
+
+        self.client.wait_until_idrac_is_ready()
+
+    def _ping_host(self, host):
+        response = subprocess.call(
+            "ping -c 1 {} 2>&1 1>/dev/null".format(host), shell=True)
+        return (response == 0)
+
+    def _wait_for_host_state(self,
+                             host,
+                             alive=True,
+                             ping_count=3,
+                             retries=24):
+        if alive:
+            ping_type = "pingable"
+
+        else:
+            ping_type = "not pingable"
+
+        LOG.info("Waiting for the iDRAC to become %s", ping_type)
+
+        response_count = 0
+        state_reached = False
+
+        while retries > 0 and not state_reached:
+            response = self._ping_host(host)
+            retries -= 1
+            if response == alive:
+                response_count += 1
+                LOG.debug("The iDRAC is %s, count=%s",
+                          ping_type,
+                          response_count)
+                if response_count == ping_count:
+                    LOG.debug("Reached specified ping count")
+                    state_reached = True
+            else:
+                response_count = 0
+                if alive:
+                    LOG.debug("The iDRAC is still not pingable")
+                else:
+                    LOG.debug("The iDRAC is still pingable")
+            time.sleep(10)
+
+        return state_reached
 
     def commit_pending_idrac_changes(
             self,
