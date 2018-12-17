@@ -132,9 +132,7 @@ def get_all_wsman_resource_attrs(doc, resource_uri, attr_name, nullable=False):
 
 def build_return_dict(doc, resource_uri,
                       is_commit_required_value=None,
-                      is_reboot_required_value=None,
-                      commit_required_value=None,
-                      include_commit_required=False):
+                      is_reboot_required_value=None):
     """Builds a dictionary to be returned
 
        Build a dictionary to be returned from WSMAN operations that are not
@@ -148,17 +146,9 @@ def build_return_dict(doc, resource_uri,
     :param is_reboot_required_value: The value to be returned for
            is_reboot_required, or None if the value should be determined
            from the doc.
-    :param commit_required_value: The value to be returned for
-           commit_required, or None if the value should be determined
-           from the doc.
-    :parm include_commit_required: Indicates if the deprecated commit_required
-                                   should be returned in the result.
     :returns: a dictionary containing:
              - is_commit_required: indicates if a commit is required.
              - is_reboot_required: indicates if a reboot is required.
-             - commit_required: a deprecated key indicating if a commit is
-               required.  This key actually has a value that indicates if a
-               reboot is required.
     """
 
     if is_reboot_required_value is not None and \
@@ -179,14 +169,6 @@ def build_return_dict(doc, resource_uri,
         is_reboot_required_value = reboot_required(doc, resource_uri)
 
     result['is_reboot_required'] = is_reboot_required_value
-
-    # Include commit_required in the response for backwards compatibility
-    # TBD: Remove this parameter in the future
-    if include_commit_required:
-        if commit_required_value is None:
-            commit_required_value = is_reboot_required(doc, resource_uri)
-
-        result['commit_required'] = commit_required_value
 
     return result
 
@@ -315,8 +297,7 @@ def set_settings(settings_type,
                  cim_creation_class_name,
                  cim_name,
                  target,
-                 name_formatter=None,
-                 include_commit_required=False):
+                 name_formatter=None):
     """Generically handles setting various types of settings on the iDRAC
 
     This method pulls the current list of settings from the iDRAC then compares
@@ -337,14 +318,7 @@ def set_settings(settings_type,
     :param name_formatter: a method used to format the keys in the
                            returned dictionary.  By default,
                            attribute.name will be used.
-    :parm include_commit_required: Indicates if the deprecated commit_required
-                                   should be returned in the result.
     :returns: a dictionary containing:
-             - The commit_required key with a boolean value indicating
-               whether a config job must be created for the values to be
-               applied.  This key actually has a value that indicates if
-               a reboot is required.  This key has been deprecated and
-               will be removed in a future release.
              - The is_commit_required key with a boolean value indicating
                whether a config job must be created for the values to be
                applied.
@@ -412,10 +386,8 @@ def set_settings(settings_type,
         return build_return_dict(
             None,
             resource_uri,
-            include_commit_required=include_commit_required,
             is_commit_required_value=False,
-            is_reboot_required_value=constants.RebootRequired.false,
-            commit_required_value=False)
+            is_reboot_required_value=constants.RebootRequired.false)
 
     selectors = {'CreationClassName': cim_creation_class_name,
                  'Name': cim_name,
@@ -428,5 +400,4 @@ def set_settings(settings_type,
     doc = client.invoke(resource_uri, 'SetAttributes',
                         selectors, properties)
 
-    return build_return_dict(doc, resource_uri,
-                             include_commit_required=include_commit_required)
+    return build_return_dict(doc, resource_uri)

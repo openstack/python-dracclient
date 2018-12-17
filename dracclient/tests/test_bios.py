@@ -348,8 +348,7 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
         result = self.drac_client.set_bios_settings(
             {'ProcVirtualization': 'Disabled'})
 
-        self.assertEqual({'commit_required': True,
-                          'is_commit_required': True,
+        self.assertEqual({'is_commit_required': True,
                           'is_reboot_required': constants.RebootRequired.true},
                          result)
         mock_invoke.assert_called_once_with(
@@ -398,8 +397,7 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
         result = self.drac_client.set_bios_settings(
             {'ProcVirtualization': 'Enabled'})
 
-        self.assertEqual({'commit_required': False,
-                          'is_commit_required': False,
+        self.assertEqual({'is_commit_required': False,
                           'is_reboot_required':
                           constants.RebootRequired.false},
                          result)

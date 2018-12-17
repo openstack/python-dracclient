@@ -500,11 +500,6 @@ class BIOSConfiguration(object):
                              each key being the name of attribute and the
                              value being the proposed value.
         :returns: a dictionary containing:
-                 - The commit_required key with a boolean value indicating
-                   whether a config job must be created for the values to be
-                   applied.  This key actually has a value that indicates if
-                   a reboot is required.  This key has been deprecated and
-                   will be removed in a future release.
                  - The is_commit_required key with a boolean value indicating
                    whether a config job must be created for the values to be
                    applied.
@@ -526,5 +521,4 @@ class BIOSConfiguration(object):
                                   uris.DCIM_BIOSService,
                                   "DCIM_BIOSService",
                                   "DCIM:BIOSService",
-                                  'BIOS.Setup.1-1',
-                                  include_commit_required=True)
+                                  'BIOS.Setup.1-1')

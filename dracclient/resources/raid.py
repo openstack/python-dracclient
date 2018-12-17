@@ -291,11 +291,6 @@ class RAIDManagement(object):
                             become part of the RAID.  The same flag is applied
                             to all listed disks
         :returns: a dictionary containing:
-                 - The commit_required key with a boolean value indicating
-                   whether a config job must be created for the values to be
-                   applied.  This key actually has a value that indicates if
-                   a reboot is required.  This key has been deprecated and
-                   will be removed in a future release.
                  - The is_commit_required key with the value always set to
                    True indicating that a config job must be created to
                    complete disk conversion.
@@ -317,7 +312,6 @@ class RAIDManagement(object):
                                  expected_return_value=utils.RET_SUCCESS)
 
         return utils.build_return_dict(doc, uris.DCIM_RAIDService,
-                                       include_commit_required=True,
                                        is_commit_required_value=True)
 
     def create_virtual_disk(self, raid_controller, physical_disks, raid_level,
@@ -336,11 +330,6 @@ class RAIDManagement(object):
         :param span_length: number of disks per span (optional)
         :param span_depth: number of spans in virtual disk (optional)
         :returns: a dictionary containing:
-                 - The commit_required key with a boolean value indicating
-                   whether a config job must be created for the values to be
-                   applied.  This key actually has a value that indicates if
-                   a reboot is required.  This key has been deprecated and
-                   will be removed in a future release.
                  - The is_commit_required key with the value always set to
                    True indicating that a config job must be created to
                    complete virtual disk creation.
@@ -415,7 +404,6 @@ class RAIDManagement(object):
                                  expected_return_value=utils.RET_SUCCESS)
 
         return utils.build_return_dict(doc, uris.DCIM_RAIDService,
-                                       include_commit_required=True,
                                        is_commit_required_value=True)
 
     def delete_virtual_disk(self, virtual_disk):
@@ -426,11 +414,6 @@ class RAIDManagement(object):
 
         :param virtual_disk: id of the virtual disk
         :returns: a dictionary containing:
-                 - The commit_required key with a boolean value indicating
-                   whether a config job must be created for the values to be
-                   applied.  This key actually has a value that indicates if
-                   a reboot is required.  This key has been deprecated and
-                   will be removed in a future release.
                  - The is_commit_required key with the value always set to
                    True indicating that a config job must be created to
                    complete virtual disk deletion.
@@ -455,7 +438,6 @@ class RAIDManagement(object):
                                  expected_return_value=utils.RET_SUCCESS)
 
         return utils.build_return_dict(doc, uris.DCIM_RAIDService,
-                                       include_commit_required=True,
                                        is_commit_required_value=True)
 
     def is_jbod_capable(self, raid_controller_fqdd):

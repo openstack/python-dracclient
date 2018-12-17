@@ -283,8 +283,7 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             physical_disks=[device_fqdd],
             raid_enable=True)
 
-        self.assertEqual({'commit_required': True,
-                          'is_commit_required': True,
+        self.assertEqual({'is_commit_required': True,
                           'is_reboot_required': constants.RebootRequired.true},
                          result)
         mock_invoke.assert_called_once_with(
@@ -315,8 +314,7 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             physical_disks=device_list,
             raid_enable=True)
 
-        self.assertEqual({'commit_required': True,
-                          'is_commit_required': True,
+        self.assertEqual({'is_commit_required': True,
                           'is_reboot_required': constants.RebootRequired.true},
                          result)
         mock_invoke.assert_called_once_with(
@@ -345,8 +343,7 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             physical_disks=[device_fqdd],
             raid_enable=False)
 
-        self.assertEqual({'commit_required': True,
-                          'is_commit_required': True,
+        self.assertEqual({'is_commit_required': True,
                           'is_reboot_required': constants.RebootRequired.true},
                          result)
         mock_invoke.assert_called_once_with(
@@ -378,8 +375,7 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             physical_disks=device_list,
             raid_enable=False)
 
-        self.assertEqual({'commit_required': True,
-                          'is_commit_required': True,
+        self.assertEqual({'is_commit_required': True,
                           'is_reboot_required': constants.RebootRequired.true},
                          result)
         mock_invoke.assert_called_once_with(
@@ -424,8 +420,7 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             raid_controller='controller', physical_disks=['disk1', 'disk2'],
             raid_level='1', size_mb=42)
 
-        self.assertEqual({'commit_required': True,
-                          'is_commit_required': True,
+        self.assertEqual({'is_commit_required': True,
                           'is_reboot_required': constants.RebootRequired.true},
                          result)
         mock_invoke.assert_called_once_with(
@@ -457,8 +452,7 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             raid_level='1', size_mb=42, disk_name='name', span_length=2,
             span_depth=3)
 
-        self.assertEqual({'commit_required': True,
-                          'is_commit_required': True,
+        self.assertEqual({'is_commit_required': True,
                           'is_reboot_required': constants.RebootRequired.true},
                          result)
         mock_invoke.assert_called_once_with(
@@ -570,8 +564,7 @@ class ClientRAIDManagementTestCase(base.BaseTest):
 
         result = self.drac_client.delete_virtual_disk('disk1')
 
-        self.assertEqual({'commit_required': True,
-                          'is_commit_required': True,
+        self.assertEqual({'is_commit_required': True,
                           'is_reboot_required': constants.RebootRequired.true},
                          result)
         mock_invoke.assert_called_once_with(
@@ -926,8 +919,7 @@ class ClientRAIDManagementTestCase(base.BaseTest):
         mock_requests.post(
             'https://1.2.3.4:443/wsman',
             text=test_utils.RAIDEnumerations[uris.DCIM_PhysicalDiskView]['ok'])
-        mock_convert_physical_disks.return_value = {'commit_required': True,
-                                                    'is_commit_required': True,
+        mock_convert_physical_disks.return_value = {'is_commit_required': True,
                                                     'is_reboot_required':
                                                     constants.RebootRequired
                                                     .true}
@@ -953,8 +945,7 @@ class ClientRAIDManagementTestCase(base.BaseTest):
         physical_disks = [disk_1_non_raid, disk_2_non_raid,
                           self.disk_3, self.disk_4]
         mock_list_physical_disks.return_value = physical_disks
-        mock_convert_physical_disks.return_value = {'commit_required': True,
-                                                    'is_commit_required': True,
+        mock_convert_physical_disks.return_value = {'is_commit_required': True,
                                                     'is_reboot_required':
                                                     constants.RebootRequired
                                                     .true}
@@ -976,8 +967,7 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             mock_list_physical_disks):
         mode = constants.RaidStatus.raid
         physical_disks = [self.disk_1, self.disk_2, self.disk_3, self.disk_4]
-        mock_convert_physical_disks.return_value = {'commit_required': True,
-                                                    'is_commit_required': True,
+        mock_convert_physical_disks.return_value = {'is_commit_required': True,
                                                     'is_reboot_required':
                                                     constants.RebootRequired
                                                     .true}
@@ -1079,8 +1069,7 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             text=test_utils.RAIDEnumerations[uris.DCIM_ControllerView]['ok'])
         mode = constants.RaidStatus.jbod
         physical_disks = [self.disk_1, self.disk_2, self.disk_3, self.disk_4]
-        mock_convert_physical_disks.return_value = {'commit_required': True,
-                                                    'is_commit_required': True,
+        mock_convert_physical_disks.return_value = {'is_commit_required': True,
                                                     'is_reboot_required':
                                                     constants.RebootRequired
                                                     .true}
@@ -1143,9 +1132,7 @@ class ClientRAIDManagementTestCase(base.BaseTest):
         '''Where convert_physical_disks() does not require a commit after
         executing, unlikely case but provides 100% code coverage of all
         logic branches.'''
-        mock_convert_physical_disks.return_value = {'commit_required':
-                                                    True,
-                                                    'is_commit_required':
+        mock_convert_physical_disks.return_value = {'is_commit_required':
                                                     False,
                                                     'is_reboot_required':
                                                     constants.RebootRequired

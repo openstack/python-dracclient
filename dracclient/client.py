@@ -175,11 +175,6 @@ class DRACClient(object):
                          each key being the name of attribute and the value
                          being the proposed value.
         :returns: a dictionary containing:
-                 - The commit_required key with a boolean value indicating
-                   whether a config job must be created for the values to be
-                   applied.  This key actually has a value that indicates if
-                   a reboot is required.  This key has been deprecated and
-                   will be removed in a future release.
                  - The is_commit_required key with a boolean value indicating
                    whether a config job must be created for the values to be
                    applied.
@@ -705,11 +700,6 @@ class DRACClient(object):
                become part of the RAID.  The same flag is applied to all
                listed disks
         :returns: a dictionary containing:
-                 - The commit_required key with a boolean value indicating
-                   whether a config job must be created for the values to be
-                   applied.  This key actually has a value that indicates if
-                   a reboot is required.  This key has been deprecated and
-                   will be removed in a future release.
                  - The is_commit_required key with the value always set to
                    True indicating that a config job must be created to
                    complete disk conversion.
@@ -735,11 +725,6 @@ class DRACClient(object):
         :param span_length: number of disks per span (optional)
         :param span_depth: number of spans in virtual disk (optional)
         :returns: a dictionary containing:
-                 - The commit_required key with a boolean value indicating
-                   whether a config job must be created for the values to be
-                   applied.  This key actually has a value that indicates if
-                   a reboot is required.  This key has been deprecated and
-                   will be removed in a future release.
                  - The is_commit_required key with the value always set to
                    True indicating that a config job must be created to
                    complete virtual disk creation.
@@ -765,11 +750,6 @@ class DRACClient(object):
 
         :param virtual_disk: id of the virtual disk
         :returns: a dictionary containing:
-                 - The commit_required key with a boolean value indicating
-                   whether a config job must be created for the values to be
-                   applied.  This key actually has a value that indicates if
-                   a reboot is required.  This key has been deprecated and
-                   will be removed in a future release.
                  - The is_commit_required key with the value always set to
                    True indicating that a config job must be created to
                    complete virtual disk deletion.
@@ -892,9 +872,13 @@ class DRACClient(object):
         :param settings: dictionary containing the proposed values, with
                          each key being the name of an attribute and the
                          value being the proposed value
-        :returns: dictionary containing a 'commit_required' key with a
-                  boolean value indicating whether a configuration job
-                  must be created for the new settings to be applied
+        :returns: dictionary containing:
+                  - The is_commit_required key with a boolean value
+                    indicating whether a config job must be created for
+                    the values to be applied.
+                  - The is_reboot_required key with a RebootRequired
+                    enumerated value indicating whether the server must
+                    be rebooted for the values to be applied.
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
         :raises: DRACOperationFailed on error reported back by the iDRAC
