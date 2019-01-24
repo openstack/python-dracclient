@@ -956,14 +956,23 @@ class DRACClient(object):
         """
         return self._raid_mgmt.is_raid_controller(raid_controller_fqdd)
 
-    def is_boss_controller(self, raid_controller_fqdd):
+    def is_boss_controller(self, raid_controller_fqdd, raid_controllers=None):
         """Find out if a RAID controller a BOSS card or not
 
         :param raid_controller_fqdd: The object's fqdd we are testing to see
                                      if it is a BOSS card or not.
+        :param raid_controllers: A list of RAIDController to scan for presence
+                                 of BOSS card, if None the drac will be queried
+                                 for the list of controllers which will then be
+                                 scanned.
         :returns: boolean, True if the device is a BOSS card, False if not.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
         """
-        return self._raid_mgmt.is_boss_controller(raid_controller_fqdd)
+        return self._raid_mgmt.is_boss_controller(raid_controller_fqdd,
+                                                  raid_controllers)
 
     def change_physical_disk_state(self, mode,
                                    controllers_to_physical_disk_ids=None):

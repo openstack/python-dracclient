@@ -772,11 +772,41 @@ class ClientRAIDManagementTestCase(base.BaseTest):
         self.assertFalse(self.drac_client
                          .is_raid_controller("notRAID.Integrated.1-1"))
 
-    def test_is_boss_controller(self, mock_requests):
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_is_boss_controller(self, mock_requests,
+                                mock_wait_until_idrac_is_ready):
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.RAIDEnumerations[uris.DCIM_ControllerView]['ok'])
         self.assertTrue(self.drac_client
                         .is_boss_controller("AHCI.Integrated.1-1"))
+
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_is_not_boss_controller(self, mock_requests,
+                                    mock_wait_until_idrac_is_ready):
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.RAIDEnumerations[uris.DCIM_ControllerView]['ok'])
         self.assertFalse(self.drac_client
-                         .is_boss_controller("notAHCI.Integrated.1-1"))
+                         .is_boss_controller("notAHCI.Integrated.1-1"),
+                         None)
+
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_is_boss_controller_with_cntl_list(self, mock_requests,
+                                               mock_wait_until_idrac_is_ready):
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.RAIDEnumerations[uris.DCIM_ControllerView]['ok'])
+        controllers = self.drac_client.list_raid_controllers()
+        self.assertTrue(self.drac_client
+                        .is_boss_controller("AHCI.Integrated.1-1",
+                                            controllers))
 
     def test_check_disks_status_no_controllers(self, mock_requests):
         physical_disks = [self.disk_1, self.disk_2, self.disk_3, self.disk_4]
