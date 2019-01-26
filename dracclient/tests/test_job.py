@@ -342,7 +342,34 @@ class ClientJobManagementTestCase(base.BaseTest):
 
         job_id = self.drac_client.create_config_job(
             uris.DCIM_BIOSService, cim_creation_class_name, cim_name, target,
-            reboot=True)
+            reboot=True, realtime=False)
+
+        mock_invoke.assert_called_once_with(
+            mock.ANY, uris.DCIM_BIOSService, 'CreateTargetedConfigJob',
+            expected_selectors, expected_properties,
+            expected_return_value=utils.RET_CREATED)
+        self.assertEqual('JID_442507917525', job_id)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke', spec_set=True,
+                       autospec=True)
+    def test_create_config_job_with_realtime(self, mock_invoke):
+        cim_creation_class_name = 'DCIM_BIOSService'
+        cim_name = 'DCIM:BIOSService'
+        target = 'BIOS.Setup.1-1'
+        expected_selectors = {'CreationClassName': cim_creation_class_name,
+                              'Name': cim_name,
+                              'SystemCreationClassName': 'DCIM_ComputerSystem',
+                              'SystemName': 'DCIM:ComputerSystem'}
+        expected_properties = {'Target': target,
+                               'ScheduledStartTime': 'TIME_NOW',
+                               'RealTime': '1'}
+        mock_invoke.return_value = lxml.etree.fromstring(
+            test_utils.JobInvocations[uris.DCIM_BIOSService][
+                'CreateTargetedConfigJob']['ok'])
+
+        job_id = self.drac_client.create_config_job(
+            uris.DCIM_BIOSService, cim_creation_class_name, cim_name, target,
+            reboot=False, realtime=True)
 
         mock_invoke.assert_called_once_with(
             mock.ANY, uris.DCIM_BIOSService, 'CreateTargetedConfigJob',
