@@ -468,7 +468,8 @@ class DRACClient(object):
                           cim_system_creation_class_name='DCIM_ComputerSystem',
                           cim_system_name='DCIM:ComputerSystem',
                           reboot=False,
-                          start_time='TIME_NOW'):
+                          start_time='TIME_NOW',
+                          realtime=False):
         """Creates a configuration job.
 
         In CIM (Common Information Model), weak association is used to name an
@@ -492,6 +493,8 @@ class DRACClient(object):
                            means execute immediately or None which means
                            the job will not execute until
                            schedule_job_execution is called
+        :param realtime: Indicates if reatime mode should be used.
+               Valid values are True and False.
         :returns: id of the created job
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
@@ -508,7 +511,8 @@ class DRACClient(object):
             cim_system_creation_class_name=cim_system_creation_class_name,
             cim_system_name=cim_system_name,
             reboot=reboot,
-            start_time=start_time)
+            start_time=start_time,
+            realtime=realtime)
 
     def create_nic_config_job(
             self,
@@ -785,7 +789,7 @@ class DRACClient(object):
         return self._raid_mgmt.delete_virtual_disk(virtual_disk)
 
     def commit_pending_raid_changes(self, raid_controller, reboot=False,
-                                    start_time='TIME_NOW'):
+                                    start_time='TIME_NOW', realtime=False):
         """Applies all pending changes on a RAID controller
 
          ...by creating a config job.
@@ -798,6 +802,8 @@ class DRACClient(object):
                means execute immediately or None which means
                the job will not execute until
                schedule_job_execution is called
+        :param realtime: Indicates if reatime mode should be used.
+               Valid values are True and False.
         :returns: id of the created job
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
@@ -811,7 +817,8 @@ class DRACClient(object):
             cim_name='DCIM:RAIDService',
             target=raid_controller,
             reboot=reboot,
-            start_time=start_time)
+            start_time=start_time,
+            realtime=realtime)
 
     def abandon_pending_raid_changes(self, raid_controller):
         """Deletes all pending changes on a RAID controller
@@ -829,6 +836,14 @@ class DRACClient(object):
             resource_uri=uris.DCIM_RAIDService,
             cim_creation_class_name='DCIM_RAIDService',
             cim_name='DCIM:RAIDService', target=raid_controller)
+
+    def is_realtime_supported(self, raid_controller):
+        """Find if controller supports realtime or not
+
+        :param raid_controller: ID of RAID controller
+        :returns: True or False
+        """
+        return self._raid_mgmt.is_realtime_supported(raid_controller)
 
     def list_cpus(self):
         """Returns the list of CPUs

@@ -101,7 +101,8 @@ class JobManagement(object):
                           cim_system_creation_class_name='DCIM_ComputerSystem',
                           cim_system_name='DCIM:ComputerSystem',
                           reboot=False,
-                          start_time='TIME_NOW'):
+                          start_time='TIME_NOW',
+                          realtime=False):
         """Creates a config job
 
         In CIM (Common Information Model), weak association is used to name an
@@ -126,6 +127,8 @@ class JobManagement(object):
                            but will not start execution until
                            schedule_job_execution is called with the returned
                            job id.
+        :param realtime: Indicates if reatime mode should be used.
+               Valid values are True and False. Default value is False.
         :returns: id of the created job
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
@@ -141,7 +144,10 @@ class JobManagement(object):
 
         properties = {'Target': target}
 
-        if reboot:
+        if realtime:
+            properties['RealTime'] = '1'
+
+        if not realtime and reboot:
             properties['RebootJobType'] = '3'
 
         if start_time is not None:
