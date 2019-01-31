@@ -124,8 +124,8 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             model='PERC H710 Mini',
             primary_status='ok',
             firmware_version='21.3.0-0009',
-            bus='1')
-
+            bus='1',
+            supports_realtime=True)
         mock_requests.post(
             'https://1.2.3.4:443/wsman',
             text=test_utils.RAIDEnumerations[uris.DCIM_ControllerView]['ok'])
@@ -590,25 +590,28 @@ class ClientRAIDManagementTestCase(base.BaseTest):
                        'create_config_job', spec_set=True, autospec=True)
     def test_commit_pending_raid_changes(self, mock_requests,
                                          mock_create_config_job):
-        self.drac_client.commit_pending_raid_changes('controller')
+        self.drac_client.commit_pending_raid_changes('controller',
+                                                     realtime=False)
 
         mock_create_config_job.assert_called_once_with(
             mock.ANY, resource_uri=uris.DCIM_RAIDService,
             cim_creation_class_name='DCIM_RAIDService',
             cim_name='DCIM:RAIDService', target='controller', reboot=False,
-            start_time='TIME_NOW')
+            start_time='TIME_NOW', realtime=False)
 
     @mock.patch.object(dracclient.resources.job.JobManagement,
                        'create_config_job', spec_set=True, autospec=True)
     def test_commit_pending_raid_changes_with_reboot(self, mock_requests,
                                                      mock_create_config_job):
-        self.drac_client.commit_pending_raid_changes('controller', reboot=True)
+        self.drac_client.commit_pending_raid_changes('controller',
+                                                     reboot=True,
+                                                     realtime=False)
 
         mock_create_config_job.assert_called_once_with(
             mock.ANY, resource_uri=uris.DCIM_RAIDService,
             cim_creation_class_name='DCIM_RAIDService',
             cim_name='DCIM:RAIDService', target='controller', reboot=True,
-            start_time='TIME_NOW')
+            start_time='TIME_NOW', realtime=False)
 
     @mock.patch.object(dracclient.resources.job.JobManagement,
                        'create_config_job', spec_set=True, autospec=True)
@@ -617,13 +620,14 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             mock_create_config_job):
         timestamp = '20140924140201'
         self.drac_client.commit_pending_raid_changes('controller',
-                                                     start_time=timestamp)
+                                                     start_time=timestamp,
+                                                     realtime=False)
 
         mock_create_config_job.assert_called_once_with(
             mock.ANY, resource_uri=uris.DCIM_RAIDService,
             cim_creation_class_name='DCIM_RAIDService',
             cim_name='DCIM:RAIDService', target='controller', reboot=False,
-            start_time=timestamp)
+            start_time=timestamp, realtime=False)
 
     @mock.patch.object(dracclient.resources.job.JobManagement,
                        'create_config_job', spec_set=True, autospec=True)
@@ -633,18 +637,47 @@ class ClientRAIDManagementTestCase(base.BaseTest):
         timestamp = '20140924140201'
         self.drac_client.commit_pending_raid_changes('controller',
                                                      reboot=True,
-                                                     start_time=timestamp)
+                                                     start_time=timestamp,
+                                                     realtime=False)
 
         mock_create_config_job.assert_called_once_with(
             mock.ANY, resource_uri=uris.DCIM_RAIDService,
             cim_creation_class_name='DCIM_RAIDService',
             cim_name='DCIM:RAIDService', target='controller', reboot=True,
-            start_time=timestamp)
+            start_time=timestamp, realtime=False)
+
+    @mock.patch.object(dracclient.resources.job.JobManagement,
+                       'create_config_job', spec_set=True, autospec=True)
+    def test_commit_pending_raid_changes_with_realtime(
+            self, mock_requests,
+            mock_create_config_job):
+        timestamp = '20140924140201'
+        self.drac_client.commit_pending_raid_changes('controller',
+                                                     reboot=False,
+                                                     start_time=timestamp,
+                                                     realtime=True)
+
+        mock_create_config_job.assert_called_once_with(
+            mock.ANY, resource_uri=uris.DCIM_RAIDService,
+            cim_creation_class_name='DCIM_RAIDService',
+            cim_name='DCIM:RAIDService', target='controller', reboot=False,
+            start_time=timestamp, realtime=True)
 
     @mock.patch.object(dracclient.resources.job.JobManagement,
                        'delete_pending_config', spec_set=True, autospec=True)
     def test_abandon_pending_raid_changes(self, mock_requests,
                                           mock_delete_pending_config):
+        self.drac_client.abandon_pending_raid_changes('controller')
+
+        mock_delete_pending_config.assert_called_once_with(
+            mock.ANY, resource_uri=uris.DCIM_RAIDService,
+            cim_creation_class_name='DCIM_RAIDService',
+            cim_name='DCIM:RAIDService', target='controller')
+
+    @mock.patch.object(dracclient.resources.job.JobManagement,
+                       'delete_pending_config', spec_set=True, autospec=True)
+    def test_abandon_pending_raid_changes_realtime(self, mock_requests,
+                                                   mock_delete_pending_config):
         self.drac_client.abandon_pending_raid_changes('controller')
 
         mock_delete_pending_config.assert_called_once_with(
@@ -1170,3 +1203,37 @@ class ClientRAIDManagementTestCase(base.BaseTest):
         results = self.drac_client.change_physical_disk_state(mode)
         self.assertFalse(results["is_reboot_required"])
         self.assertEqual(len(results["commit_required_ids"]), 0)
+
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_is_realtime_supported_with_realtime_controller(
+            self,
+            mock_requests,
+            mock_wait_until_idrac_is_ready):
+        expected_raid_controller = 'RAID.Integrated.1-1'
+
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.RAIDEnumerations[uris.DCIM_ControllerView]['ok'])
+
+        self.assertTrue(
+                self.drac_client.is_realtime_supported(
+                    expected_raid_controller))
+
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_is_realtime_supported_with_non_realtime_controller(
+            self,
+            mock_requests,
+            mock_wait_until_idrac_is_ready):
+        expected_raid_controller = 'AHCI.Integrated.1-1'
+
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.RAIDEnumerations[uris.DCIM_ControllerView]['ok'])
+
+        self.assertFalse(
+                self.drac_client.is_realtime_supported(
+                    expected_raid_controller))
