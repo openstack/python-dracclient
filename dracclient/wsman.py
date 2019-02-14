@@ -163,8 +163,11 @@ class Client(object):
             resp_xml = ElementTree.fromstring(resp.content)
         except ElementTree.XMLSyntaxError:
             LOG.warning('Received invalid content from iDRAC.  Filtering out '
-                        'non-ASCII characters: ' + repr(resp.content))
-            resp_xml = ElementTree.fromstring(re.sub(six.b('[^\x00-\x7f]'),
+                        'unprintable characters: ' + repr(resp.content))
+
+            # Filter out everything except for printable ASCII characters and
+            # tab
+            resp_xml = ElementTree.fromstring(re.sub(six.b('[^\x20-\x7e\t]'),
                                                      six.b(''),
                                                      resp.content))
 
