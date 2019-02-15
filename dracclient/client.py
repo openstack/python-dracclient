@@ -267,7 +267,7 @@ class DRACClient(object):
         state_reached = self._wait_for_host_state(
             self.client.host,
             alive=False,
-            ping_count=3,
+            ping_count=2,
             retries=24)
 
         if not state_reached:
