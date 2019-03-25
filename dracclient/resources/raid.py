@@ -582,14 +582,26 @@ class RAIDManagement(object):
         """
         return raid_controller_fqdd.startswith('RAID.')
 
-    def is_boss_controller(self, raid_controller_fqdd):
+    def is_boss_controller(self, raid_controller_fqdd, raid_controllers=None):
         """Find out if a RAID controller a BOSS card or not
 
         :param raid_controller_fqdd: The object's fqdd we are testing to see
                                      if it is a BOSS card or not.
+        :param raid_controllers: A list of RAIDController to scan for presence
+                                 of BOSS card, if None the drac will be queried
+                                 for the list of controllers which will then be
+                                 scanned.
         :returns: boolean, True if the device is a BOSS card, False if not.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
         """
-        return raid_controller_fqdd.startswith('AHCI.')
+        if raid_controllers is None:
+            raid_controllers = self.list_raid_controllers()
+        boss_raid_controllers = [
+            c.id for c in raid_controllers if c.model.startswith('BOSS')]
+        return raid_controller_fqdd in boss_raid_controllers
 
     def _check_disks_status(self, mode, physical_disks,
                             controllers_to_physical_disk_ids):
