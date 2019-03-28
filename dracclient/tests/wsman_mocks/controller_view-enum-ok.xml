@@ -43,6 +43,7 @@
           <n1:PatrolReadState>0</n1:PatrolReadState>
           <n1:PrimaryStatus>1</n1:PrimaryStatus>
           <n1:ProductName>PERC H710 Mini</n1:ProductName>
+	  <n1:RealtimeCapability>1</n1:RealtimeCapability>
           <n1:RollupStatus>1</n1:RollupStatus>
           <n1:SASAddress>5B083FE0D2D0F200</n1:SASAddress>
           <n1:SecurityStatus>1</n1:SecurityStatus>
@@ -82,6 +83,7 @@
           <n1:PatrolReadState>0</n1:PatrolReadState>
           <n1:PrimaryStatus>1</n1:PrimaryStatus>
           <n1:ProductName>BOSS-S1</n1:ProductName>
+	  <n1:RealtimeCapability>0</n1:RealtimeCapability>
           <n1:RollupStatus>1</n1:RollupStatus>
           <n1:SASAddress>5B083FE0D2D0F201</n1:SASAddress>
           <n1:SecurityStatus>1</n1:SecurityStatus>

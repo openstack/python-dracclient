@@ -34,6 +34,11 @@ RAID_LEVELS = {
 
 REVERSE_RAID_LEVELS = dict((v, k) for (k, v) in RAID_LEVELS.items())
 
+RAID_CONTROLLER_IS_REALTIME = {
+    '1': True,
+    '0': False
+}
+
 DISK_RAID_STATUS = {
     '0': 'unknown',
     '1': 'ready',
@@ -110,7 +115,8 @@ class PhysicalDisk(PhysicalDiskTuple):
 
 RAIDController = collections.namedtuple(
     'RAIDController', ['id', 'description', 'manufacturer', 'model',
-                       'primary_status', 'firmware_version', 'bus'])
+                       'primary_status', 'firmware_version', 'bus',
+                       'supports_realtime'])
 
 VirtualDiskTuple = collections.namedtuple(
     'VirtualDisk',
@@ -191,7 +197,10 @@ class RAIDManagement(object):
                                                'PrimaryStatus')],
             firmware_version=self._get_raid_controller_attr(
                 drac_controller, 'ControllerFirmwareVersion'),
-            bus=self._get_raid_controller_attr(drac_controller, 'Bus'))
+            bus=self._get_raid_controller_attr(drac_controller, 'Bus'),
+            supports_realtime=RAID_CONTROLLER_IS_REALTIME[
+                self._get_raid_controller_attr(
+                    drac_controller, 'RealtimeCapability')])
 
     def _get_raid_controller_attr(self, drac_controller, attr_name):
         return utils.get_wsman_resource_attr(
@@ -775,3 +784,18 @@ class RAIDManagement(object):
 
         return {'is_reboot_required': is_reboot_required,
                 'commit_required_ids': controllers}
+
+    def is_realtime_supported(self, raid_controller_fqdd):
+        """Find if controller supports realtime or not
+
+        :param raid_controller_fqdd: ID of RAID controller
+        :returns: True or False
+        """
+        drac_raid_controllers = self.list_raid_controllers()
+        realtime_controller = [cnt.id for cnt in drac_raid_controllers
+                               if cnt.supports_realtime]
+
+        if raid_controller_fqdd in realtime_controller:
+            return True
+
+        return False
