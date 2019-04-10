@@ -253,6 +253,18 @@ RAIDInvocations = {
                 'raid_service-invoke-convert_physical_disks-ok'),
             'error': load_wsman_xml(
                 'raid_service-invoke-convert_physical_disks-error'),
+        },
+        'ResetConfig': {
+            'ok': load_wsman_xml(
+                'raid_service-invoke-reset_raid_config-ok'),
+            'error': load_wsman_xml(
+                'raid_service-invoke-reset_raid_config-error'),
+        },
+        'ClearForeignConfig': {
+            'ok': load_wsman_xml(
+                'raid_service-invoke-clear_foreign_config-ok'),
+            'error': load_wsman_xml(
+                'raid_service-invoke-clear_foreign_config-error'),
         }
     }
 }
