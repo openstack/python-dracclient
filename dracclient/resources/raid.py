@@ -721,3 +721,71 @@ class RAIDManagement(object):
             return True
 
         return False
+
+    def reset_raid_config(self, raid_controller):
+        """Delete all virtual disk and unassign all hotspares
+
+        The job to reset the RAID controller config will be in pending state.
+        For the changes to be applied, a config job must be created.
+
+        :param raid_controller: id of the RAID controller
+        :returns: a dictionary containing:
+                 - The is_commit_required key with the value always set to
+                   True indicating that a config job must be created to
+                   reset configuration.
+                 - The is_reboot_required key with a RebootRequired enumerated
+                   value indicating whether the server must be rebooted to
+                   reset configuration.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        """
+
+        selectors = {'SystemCreationClassName': 'DCIM_ComputerSystem',
+                     'CreationClassName': 'DCIM_RAIDService',
+                     'SystemName': 'DCIM:ComputerSystem',
+                     'Name': 'DCIM:RAIDService'}
+        properties = {'Target': raid_controller}
+
+        doc = self.client.invoke(uris.DCIM_RAIDService, 'ResetConfig',
+                                 selectors, properties,
+                                 expected_return_value=utils.RET_SUCCESS)
+
+        return utils.build_return_dict(doc, uris.DCIM_RAIDService,
+                                       is_commit_required_value=True)
+
+    def clear_foreign_config(self, raid_controller):
+        """Free up foreign drives
+
+        The job to clear foreign config will be in pending state.
+        For the changes to be applied, a config job must be created.
+
+        :param raid_controller: id of the RAID controller
+        :returns: a dictionary containing:
+                 - The is_commit_required key with the value always set to
+                   True indicating that a config job must be created to
+                   clear foreign configuration.
+                 - The is_reboot_required key with a RebootRequired enumerated
+                   value indicating whether the server must be rebooted to
+                   clear foreign configuration.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        """
+
+        selectors = {'SystemCreationClassName': 'DCIM_ComputerSystem',
+                     'CreationClassName': 'DCIM_RAIDService',
+                     'SystemName': 'DCIM:ComputerSystem',
+                     'Name': 'DCIM:RAIDService'}
+        properties = {'Target': raid_controller}
+
+        doc = self.client.invoke(uris.DCIM_RAIDService, 'ClearForeignConfig',
+                                 selectors, properties,
+                                 expected_return_value=utils.RET_SUCCESS)
+
+        return utils.build_return_dict(doc, uris.DCIM_RAIDService,
+                                       is_commit_required_value=True)

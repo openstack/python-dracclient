@@ -586,6 +586,77 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             exceptions.DRACOperationFailed,
             self.drac_client.delete_virtual_disk, 'disk1')
 
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke',
+                       spec_set=True, autospec=True)
+    def test_reset_raid_config(self, mock_requests, mock_invoke):
+        expected_selectors = {'SystemCreationClassName': 'DCIM_ComputerSystem',
+                              'CreationClassName': 'DCIM_RAIDService',
+                              'SystemName': 'DCIM:ComputerSystem',
+                              'Name': 'DCIM:RAIDService'}
+        expected_properties = {'Target': self.raid_controller_fqdd}
+        mock_invoke.return_value = lxml.etree.fromstring(
+            test_utils.RAIDInvocations[uris.DCIM_RAIDService][
+                'ResetConfig']['ok'])
+        result = self.drac_client.reset_raid_config(self.raid_controller_fqdd)
+        self.assertEqual({'is_commit_required': True,
+                          'is_reboot_required':
+                          constants.RebootRequired.optional},
+                         result)
+        mock_invoke.assert_called_once_with(
+            mock.ANY, uris.DCIM_RAIDService, 'ResetConfig',
+            expected_selectors, expected_properties,
+            expected_return_value=utils.RET_SUCCESS)
+
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_reset_raid_config_fail(self, mock_requests,
+                                    mock_wait_until_idrac_is_ready):
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.RAIDInvocations[
+                uris.DCIM_RAIDService]['ResetConfig']['error'])
+
+        self.assertRaises(
+            exceptions.DRACOperationFailed,
+            self.drac_client.reset_raid_config, self.raid_controller_fqdd)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke',
+                       spec_set=True, autospec=True)
+    def test_clear_foreign_config(self, mock_requests, mock_invoke):
+        expected_selectors = {'SystemCreationClassName': 'DCIM_ComputerSystem',
+                              'CreationClassName': 'DCIM_RAIDService',
+                              'SystemName': 'DCIM:ComputerSystem',
+                              'Name': 'DCIM:RAIDService'}
+        expected_properties = {'Target': self.raid_controller_fqdd}
+        mock_invoke.return_value = lxml.etree.fromstring(
+            test_utils.RAIDInvocations[uris.DCIM_RAIDService][
+                'ClearForeignConfig']['ok'])
+        result = self.drac_client.clear_foreign_config(
+                self.raid_controller_fqdd)
+        self.assertEqual({'is_commit_required': True,
+                          'is_reboot_required':
+                          constants.RebootRequired.optional},
+                         result)
+        mock_invoke.assert_called_once_with(
+            mock.ANY, uris.DCIM_RAIDService, 'ClearForeignConfig',
+            expected_selectors, expected_properties,
+            expected_return_value=utils.RET_SUCCESS)
+
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_clear_foreign_config_fail(self, mock_requests,
+                                       mock_wait_until_idrac_is_ready):
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.RAIDInvocations[
+                uris.DCIM_RAIDService]['ClearForeignConfig']['error'])
+
+        self.assertRaises(
+            exceptions.DRACOperationFailed,
+            self.drac_client.clear_foreign_config, self.raid_controller_fqdd)
+
     @mock.patch.object(dracclient.resources.job.JobManagement,
                        'create_config_job', spec_set=True, autospec=True)
     def test_commit_pending_raid_changes(self, mock_requests,

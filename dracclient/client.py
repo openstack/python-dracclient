@@ -768,6 +768,50 @@ class DRACClient(object):
         """
         return self._raid_mgmt.delete_virtual_disk(virtual_disk)
 
+    def reset_raid_config(self, raid_controller):
+        """Delete all the virtual disks and unassign all hot spare physical disks
+
+        The job to reset the RAID controller config will be in pending state.
+        For the changes to be applied, a config job must be created.
+
+        :param raid_controller: id of the RAID controller
+        :returns: a dictionary containing:
+                 - The is_commit_required key with the value always set to
+                   True indicating that a config job must be created to
+                   reset configuration.
+                 - The is_reboot_required key with a RebootRequired enumerated
+                   value indicating whether the server must be rebooted to
+                   reset configuration.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        """
+        return self._raid_mgmt.reset_raid_config(raid_controller)
+
+    def clear_foreign_config(self, raid_controller):
+        """Free up foreign drives
+
+        The job to clear foreign config will be in pending state.
+        For the changes to be applied, a config job must be created.
+
+        :param raid_controller: id of the RAID controller
+        :returns: a dictionary containing:
+                 - The is_commit_required key with the value always set to
+                   True indicating that a config job must be created to
+                   clear foreign configuration.
+                 - The is_reboot_required key with a RebootRequired enumerated
+                   value indicating whether the server must be rebooted to
+                   clear foreign configuration.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        """
+        return self._raid_mgmt.clear_foreign_config(raid_controller)
+
     def commit_pending_raid_changes(self, raid_controller, reboot=False,
                                     start_time='TIME_NOW', realtime=False):
         """Applies all pending changes on a RAID controller
