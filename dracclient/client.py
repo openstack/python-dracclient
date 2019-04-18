@@ -977,15 +977,23 @@ class DRACClient(object):
         """
         return self._raid_mgmt.is_jbod_capable(raid_controller_fqdd)
 
-    def is_raid_controller(self, raid_controller_fqdd):
-        """Find out if object's fqdd is for a raid controller or not
+    def is_raid_controller(self, raid_controller_fqdd, raid_controllers=None):
+        """Determine if the given controller is a RAID controller
+
+        Since a BOSS controller is a type of RAID controller, this method will
+        return True for both BOSS and RAID controllers.
 
         :param raid_controller_fqdd: The object's fqdd we are testing to see
                                      if it is a raid controller or not.
+        :param raid_controllers: A list of RAIDControllers used to check for
+                                 the presence of BOSS cards.  If None, the
+                                 iDRAC will be queried for the list of
+                                 controllers.
         :returns: boolean, True if the device is a RAID controller,
                   False if not.
         """
-        return self._raid_mgmt.is_raid_controller(raid_controller_fqdd)
+        return self._raid_mgmt.is_raid_controller(raid_controller_fqdd,
+                                                  raid_controllers)
 
     def is_boss_controller(self, raid_controller_fqdd, raid_controllers=None):
         """Find out if a RAID controller a BOSS card or not

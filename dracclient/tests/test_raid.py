@@ -806,9 +806,29 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             exceptions.DRACOperationFailed,
             self.drac_client.is_jbod_capable, self.raid_controller_fqdd)
 
-    def test_is_raid_controller(self, mock_requests):
+    def test_is_raid_controller_raid(self, mock_requests):
         self.assertTrue(self.drac_client
                         .is_raid_controller("RAID.Integrated.1-1"))
+
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_is_raid_controller_boss(self, mock_requests,
+                                     mock_wait_until_idrac_is_ready):
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.RAIDEnumerations[uris.DCIM_ControllerView]['ok'])
+        self.assertTrue(self.drac_client
+                        .is_raid_controller("AHCI.Integrated.1-1"))
+
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_is_raid_controller_fail(self, mock_requests,
+                                     mock_wait_until_idrac_is_ready):
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.RAIDEnumerations[uris.DCIM_ControllerView]['ok'])
         self.assertFalse(self.drac_client
                          .is_raid_controller("notRAID.Integrated.1-1"))
 

@@ -581,15 +581,20 @@ class RAIDManagement(object):
 
         return is_jbod_capable
 
-    def is_raid_controller(self, raid_controller_fqdd):
+    def is_raid_controller(self, raid_controller_fqdd, raid_controllers=None):
         """Find out if object's fqdd is for a raid controller or not
 
         :param raid_controller_fqdd: The object's fqdd we are testing to see
                                      if it is a raid controller or not.
+        :param raid_controllers: A list of RAIDControllers used to check for
+                                 the presence of BOSS cards.  If None, the
+                                 iDRAC will be queried for the list of
+                                 controllers.
         :returns: boolean, True if the device is a RAID controller,
                   False if not.
         """
-        return raid_controller_fqdd.startswith('RAID.')
+        return raid_controller_fqdd.startswith('RAID.') or \
+            self.is_boss_controller(raid_controller_fqdd, raid_controllers)
 
     def is_boss_controller(self, raid_controller_fqdd, raid_controllers=None):
         """Find out if a RAID controller a BOSS card or not
@@ -734,10 +739,11 @@ class RAIDManagement(object):
         if not controllers_to_physical_disk_ids:
             controllers_to_physical_disk_ids = collections.defaultdict(list)
 
+            all_controllers = self.list_raid_controllers()
             for physical_d in physical_disks:
                 # Weed out disks that are not attached to a RAID controller
-                if (self.is_raid_controller(physical_d.controller)
-                        or self.is_boss_controller(physical_d.controller)):
+                if self.is_raid_controller(physical_d.controller,
+                                           all_controllers):
                     physical_disk_ids = controllers_to_physical_disk_ids[
                         physical_d.controller]
 
