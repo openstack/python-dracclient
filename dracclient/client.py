@@ -1035,32 +1035,33 @@ class DRACClient(object):
 
     def change_physical_disk_state(self, mode,
                                    controllers_to_physical_disk_ids=None):
-        """Convert disks RAID status and return a list of controller IDs
+        """Convert disks RAID status
 
-        Builds a list of controller ids that have had disks converted to the
-        specified RAID status by:
-        - Examining all the disks in the system and filtering out any that are
-          not attached to a RAID/BOSS controller.
-        - Inspect the controllers' disks to see if there are any that need to
-          be converted, if so convert them. If a disk is already in the desired
-          status the disk is ignored. Also check for failed or unknown disk
-          statuses and raise an exception where appropriate.
-        - Return a list of controller IDs for controllers whom have had any of
-          their disks converted, and whether a reboot is required.
+        This method intelligently converts the requested physical disks from
+        RAID to JBOD or vice versa.  It does this by only converting the
+        disks that are not already in the correct state.
 
-        The caller typically should then create a config job for the list of
-        controllers returned to finalize the RAID configuration.
-
-        :param mode: constants.RaidStatus enumeration used to determine what
-                     raid status to check for.
+        :param mode: constants.RaidStatus enumeration that indicates the mode
+                     to change the disks to.
         :param controllers_to_physical_disk_ids: Dictionary of controllers and
-               corresponding disk ids we are inspecting and creating jobs for
-               when needed.
-        :returns: a dict containing the following key/values:
+               corresponding disk ids to convert to the requested mode.
+        :returns: a dictionary containing:
+                  - conversion_results, a dictionary that maps controller ids
+                    to the conversion results for that controller.  The
+                    conversion results are a dict that contains:
+                    - The is_commit_required key with the value always set to
+                      True indicating that a config job must be created to
+                      complete disk conversion.
+                    - The is_reboot_required key with a RebootRequired
+                      enumerated value indicating whether the server must be
+                      rebooted to complete disk conversion.
+                  Also contained in the main dict are the following key/values,
+                  which are deprecated, should not be used, and will be removed
+                  in a future release:
                   - is_reboot_required, a boolean stating whether a reboot is
-                  required or not.
+                    required or not.
                   - commit_required_ids, a list of controller ids that will
-                  need to commit their pending RAID changes via a config job.
+                    need to commit their pending RAID changes via a config job.
         :raises: DRACOperationFailed on error reported back by the DRAC and the
                  exception message does not contain NOT_SUPPORTED_MSG constant.
         :raises: Exception on unknown error.
