@@ -9,7 +9,7 @@
   </s:Header>
   <s:Body>
     <n1:ClearForeignConfig_OUTPUT>
-      <n1:Message>>No foreign drives detected</n1:Message>
+      <n1:Message>No foreign drives detected</n1:Message>
       <n1:MessageID>STOR018</n1:MessageID>
       <n1:ReturnValue>2</n1:ReturnValue>
     </n1:ClearForeignConfig_OUTPUT>
