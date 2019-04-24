@@ -94,6 +94,8 @@ VirtualDisk = collections.namedtuple(
      'status', 'raid_status', 'span_depth', 'span_length',
      'pending_operations', 'physical_disks'])
 
+NO_FOREIGN_DRIVE = "STOR018"
+
 
 class RAIDManagement(object):
 
@@ -809,7 +811,34 @@ class RAIDManagement(object):
 
         doc = self.client.invoke(uris.DCIM_RAIDService, 'ClearForeignConfig',
                                  selectors, properties,
-                                 expected_return_value=utils.RET_SUCCESS)
+                                 check_return_value=False)
 
-        return utils.build_return_dict(doc, uris.DCIM_RAIDService,
-                                       is_commit_required_value=True)
+        is_commit_required_value = True
+        is_reboot_required_value = None
+
+        ret_value = utils.find_xml(doc,
+                                   'ReturnValue',
+                                   uris.DCIM_RAIDService).text
+
+        if ret_value == utils.RET_ERROR:
+            message_id = utils.find_xml(doc,
+                                        'MessageID',
+                                        uris.DCIM_RAIDService).text
+
+            # A MessageID 'STOR018' indicates no foreign drive was
+            # detected. Return a value which informs the caller nothing
+            # further needs to be done.
+            if message_id == NO_FOREIGN_DRIVE:
+                is_commit_required_value = False
+                is_reboot_required_value = constants.RebootRequired.false
+            else:
+                message = utils.find_xml(doc,
+                                         'Message',
+                                         uris.DCIM_RAIDService).text
+                raise exceptions.DRACOperationFailed(
+                    drac_messages=message)
+
+        return utils.build_return_dict(
+            doc, uris.DCIM_RAIDService,
+            is_commit_required_value=is_commit_required_value,
+            is_reboot_required_value=is_reboot_required_value)
