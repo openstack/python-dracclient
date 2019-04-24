@@ -263,8 +263,10 @@ RAIDInvocations = {
         'ClearForeignConfig': {
             'ok': load_wsman_xml(
                 'raid_service-invoke-clear_foreign_config-ok'),
-            'error': load_wsman_xml(
-                'raid_service-invoke-clear_foreign_config-error'),
+            'no_foreign_drive': load_wsman_xml(
+                'raid_service-invoke-clear_foreign_config-no_foreign_drive'),
+            'invalid_controller_id': load_wsman_xml(
+                'raid_service-invoke-clear_foreign_config-invalid_controller'),
         }
     }
 }
