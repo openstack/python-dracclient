@@ -33,7 +33,7 @@ from dracclient.resources import uris
 from dracclient import utils
 from dracclient import wsman
 
-IDRAC_IS_READY = "LC061"
+IDRAC_IS_READY = "0"
 
 LOG = logging.getLogger(__name__)
 
@@ -1231,11 +1231,11 @@ class WSManClient(wsman.Client):
                              expected_return_value=utils.RET_SUCCESS,
                              wait_for_idrac=False)
 
-        message_id = utils.find_xml(result,
-                                    'MessageID',
-                                    uris.DCIM_LCService).text
+        lc_status = utils.find_xml(result,
+                                   'LCStatus',
+                                   uris.DCIM_LCService).text
 
-        return message_id == IDRAC_IS_READY
+        return lc_status == IDRAC_IS_READY
 
     def wait_until_idrac_is_ready(self, retries=None, retry_delay=None):
         """Waits until the iDRAC is in a ready state
