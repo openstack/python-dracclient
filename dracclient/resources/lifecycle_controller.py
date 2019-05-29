@@ -11,9 +11,9 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from dracclient import constants
 from dracclient.resources import uris
 from dracclient import utils
-from dracclient import wsman
 
 
 class LifecycleControllerManagement(object):
@@ -40,47 +40,6 @@ class LifecycleControllerManagement(object):
                                         uris.DCIM_SystemView).text
 
         return tuple(map(int, (lc_version_str.split('.'))))
-
-
-class LCConfiguration(object):
-
-    def __init__(self, client):
-        """Creates LifecycleControllerManagement object
-
-        :param client: an instance of WSManClient
-        """
-        self.client = client
-
-    def list_lifecycle_settings(self):
-        """List the LC configuration settings
-
-        :returns: a dictionary with the LC settings using InstanceID as the
-                  key. The attributes are either LCEnumerableAttribute,
-                  LCStringAttribute or LCIntegerAttribute objects.
-        :raises: WSManRequestFailure on request failures
-        :raises: WSManInvalidResponse when receiving invalid response
-        :raises: DRACOperationFailed on error reported back by the DRAC
-                 interface
-        """
-        result = {}
-        namespaces = [(uris.DCIM_LCEnumeration, LCEnumerableAttribute),
-                      (uris.DCIM_LCString, LCStringAttribute)]
-        for (namespace, attr_cls) in namespaces:
-            attribs = self._get_config(namespace, attr_cls)
-            result.update(attribs)
-        return result
-
-    def _get_config(self, resource, attr_cls):
-        result = {}
-
-        doc = self.client.enumerate(resource)
-
-        items = doc.find('.//{%s}Items' % wsman.NS_WSMAN)
-        for item in items:
-            attribute = attr_cls.parse(item)
-            result[attribute.instance_id] = attribute
-
-        return result
 
 
 class LCAttribute(object):
@@ -161,6 +120,17 @@ class LCEnumerableAttribute(LCAttribute):
                    lifecycle_attr.current_value, lifecycle_attr.pending_value,
                    lifecycle_attr.read_only, possible_values)
 
+    def validate(self, new_value):
+        """Validates new value"""
+
+        if str(new_value) not in self.possible_values:
+            msg = ("Attribute '%(attr)s' cannot be set to value '%(val)s'."
+                   " It must be in %(possible_values)r.") % {
+                       'attr': self.name,
+                       'val': new_value,
+                       'possible_values': self.possible_values}
+            return msg
+
 
 class LCStringAttribute(LCAttribute):
     """String LC attribute class"""
@@ -199,3 +169,96 @@ class LCStringAttribute(LCAttribute):
         return cls(lifecycle_attr.name, lifecycle_attr.instance_id,
                    lifecycle_attr.current_value, lifecycle_attr.pending_value,
                    lifecycle_attr.read_only, min_length, max_length)
+
+
+class LCConfiguration(object):
+
+    NAMESPACES = [(uris.DCIM_LCEnumeration, LCEnumerableAttribute),
+                  (uris.DCIM_LCString, LCStringAttribute)]
+
+    def __init__(self, client):
+        """Creates LifecycleControllerManagement object
+
+        :param client: an instance of WSManClient
+        """
+        self.client = client
+
+    def list_lifecycle_settings(self, by_name=False):
+        """List the LC configuration settings
+
+        :param by_name: Controls whether returned dictionary uses Lifecycle
+                        attribute name or instance_id as key.
+        :returns: a dictionary with the LC settings using InstanceID as the
+                  key. The attributes are either LCEnumerableAttribute,
+                  LCStringAttribute or LCIntegerAttribute objects.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        """
+        return utils.list_settings(self.client, self.NAMESPACES, by_name)
+
+    def is_lifecycle_in_recovery(self):
+        """Check if Lifecycle Controller in recovery mode or not
+
+        This method checks the LCStatus value to determine if lifecycle
+        controller is in recovery mode by invoking GetRemoteServicesAPIStatus
+        from iDRAC.
+
+        :returns: a boolean indicating if lifecycle controller is in recovery
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        """
+
+        selectors = {'SystemCreationClassName': 'DCIM_ComputerSystem',
+                     'SystemName': 'DCIM:ComputerSystem',
+                     'CreationClassName': 'DCIM_LCService',
+                     'Name': 'DCIM:LCService'}
+
+        doc = self.client.invoke(uris.DCIM_LCService,
+                                 'GetRemoteServicesAPIStatus',
+                                 selectors,
+                                 {},
+                                 expected_return_value=utils.RET_SUCCESS,
+                                 wait_for_idrac=False)
+
+        lc_status = utils.find_xml(doc,
+                                   'LCStatus',
+                                   uris.DCIM_LCService).text
+
+        return lc_status == constants.LC_IN_RECOVERY
+
+    def set_lifecycle_settings(self, settings):
+        """Sets the Lifecycle Controller configuration
+
+        It sets the pending_value parameter for each of the attributes
+        passed in. For the values to be applied, a config job must
+        be created.
+
+        :param settings: a dictionary containing the proposed values, with
+                         each key being the name of attribute and the value
+                         being the proposed value.
+        :returns: a dictionary containing:
+                 - The is_commit_required key with a boolean value indicating
+                   whether a config job must be created for the values to be
+                   applied.
+                 - The is_reboot_required key with a RebootRequired enumerated
+                   value indicating whether the server must be rebooted for the
+                   values to be applied.  Possible values are true and false.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        """
+
+        return utils.set_settings('Lifecycle',
+                                  self.client,
+                                  self.NAMESPACES,
+                                  settings,
+                                  uris.DCIM_LCService,
+                                  "DCIM_LCService",
+                                  "DCIM:LCService",
+                                  '',
+                                  wait_for_idrac=False)

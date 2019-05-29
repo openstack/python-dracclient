@@ -214,7 +214,8 @@ class ClientNICTestCase(base.BaseTest):
 
         mock_invoke.assert_called_once_with(
             mock.ANY, uris.DCIM_NICService, 'SetAttributes',
-            expected_selectors, expected_properties)
+            expected_selectors, expected_properties,
+            wait_for_idrac=True)
 
     @mock.patch.object(dracclient.client.WSManClient, 'invoke', spec_set=True,
                        autospec=True)
@@ -250,7 +251,8 @@ class ClientNICTestCase(base.BaseTest):
 
         mock_invoke.assert_called_once_with(
             mock.ANY, uris.DCIM_NICService, 'SetAttributes',
-            expected_selectors, expected_properties)
+            expected_selectors, expected_properties,
+            wait_for_idrac=True)
 
     @mock.patch.object(dracclient.client.WSManClient, 'invoke', spec_set=True,
                        autospec=True)
@@ -286,7 +288,8 @@ class ClientNICTestCase(base.BaseTest):
 
         mock_invoke.assert_called_once_with(
             mock.ANY, uris.DCIM_NICService, 'SetAttributes',
-            expected_selectors, expected_properties)
+            expected_selectors, expected_properties,
+            wait_for_idrac=True)
 
     def test_set_nic_settings_error(self, mock_requests,
                                     mock_wait_until_idrac_is_ready):

@@ -133,6 +133,14 @@ JobInvocations = {
             'error': load_wsman_xml(
                 'bios_service-invoke-delete_pending_configuration-error'),
         },
+    },
+    uris.DCIM_LCService: {
+        'CreateConfigJob': {
+            'ok': load_wsman_xml(
+                'lc_service-invoke-create_config_job-ok'),
+            'error': load_wsman_xml(
+                'lc_service-invoke-create_config_job-error'),
+        },
     }
 }
 
@@ -192,7 +200,15 @@ LifecycleControllerInvocations = {
         'GetRemoteServicesAPIStatus': {
             'is_ready': load_wsman_xml('lc_getremoteservicesapistatus_ready'),
             'is_not_ready': load_wsman_xml(
-                'lc_getremoteservicesapistatus_not_ready')
+                'lc_getremoteservicesapistatus_not_ready'),
+            'is_recovery': load_wsman_xml(
+                'lc_getremoteservicesapistatus_recovery'),
+        },
+        'SetAttributes': {
+            'ok': load_wsman_xml(
+                'lc_service-invoke-set_attributes-ok'),
+            'error': load_wsman_xml(
+                'lc_service-invoke-set_attributes-error'),
         }
     }
 }

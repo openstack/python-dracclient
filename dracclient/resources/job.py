@@ -118,7 +118,9 @@ class JobManagement(object):
                           cim_system_name='DCIM:ComputerSystem',
                           reboot=False,
                           start_time='TIME_NOW',
-                          realtime=False):
+                          realtime=False,
+                          wait_for_idrac=True,
+                          method_name='CreateTargetedConfigJob'):
         """Creates a config job
 
         In CIM (Common Information Model), weak association is used to name an
@@ -145,6 +147,10 @@ class JobManagement(object):
                            job id.
         :param realtime: Indicates if reatime mode should be used.
                Valid values are True and False. Default value is False.
+        :param wait_for_idrac: indicates whether or not to wait for the
+                               iDRAC to be ready to accept commands before
+                               issuing the command.
+        :param method_name: method of CIM object to invoke
         :returns: id of the created job
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
@@ -169,10 +175,10 @@ class JobManagement(object):
         if start_time is not None:
             properties['ScheduledStartTime'] = start_time
 
-        doc = self.client.invoke(resource_uri, 'CreateTargetedConfigJob',
+        doc = self.client.invoke(resource_uri, method_name,
                                  selectors, properties,
-                                 expected_return_value=utils.RET_CREATED)
-
+                                 expected_return_value=utils.RET_CREATED,
+                                 wait_for_idrac=wait_for_idrac)
         return self._get_job_id(doc)
 
     def create_reboot_job(
