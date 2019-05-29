@@ -354,7 +354,8 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
                          result)
         mock_invoke.assert_called_once_with(
             mock.ANY, uris.DCIM_BIOSService, 'SetAttributes',
-            expected_selectors, expected_properties)
+            expected_selectors, expected_properties,
+            wait_for_idrac=True)
 
     def test_set_bios_settings_error(self, mock_requests,
                                      mock_wait_until_idrac_is_ready):

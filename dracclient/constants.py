@@ -37,6 +37,9 @@ PRIMARY_STATUS = {
 # binary unit constants
 UNITS_KI = 2 ** 10
 
+# Lifecycle Controller status constant
+LC_IN_RECOVERY = '4'
+
 
 # Reboot required indicator
 # Note: When the iDRAC returns optional for this value, this indicates that

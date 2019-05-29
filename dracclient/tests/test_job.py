@@ -228,10 +228,41 @@ class ClientJobManagementTestCase(base.BaseTest):
 
     @mock.patch.object(dracclient.client.WSManClient, 'invoke',
                        spec_set=True, autospec=True)
+    def test_create_config_job_for_lifecycle(self, mock_invoke):
+        cim_creation_class_name = 'DCIM_LCService'
+        cim_name = 'DCIM:LCService'
+        target = ''
+
+        expected_selectors = {'CreationClassName': cim_creation_class_name,
+                              'Name': cim_name,
+                              'SystemCreationClassName': 'DCIM_ComputerSystem',
+                              'SystemName': 'DCIM:ComputerSystem'}
+        expected_properties = {'Target': target,
+                               'ScheduledStartTime': 'TIME_NOW'}
+
+        mock_invoke.return_value = lxml.etree.fromstring(
+            test_utils.JobInvocations[uris.DCIM_LCService][
+                'CreateConfigJob']['ok'])
+
+        job_id = self.drac_client.create_config_job(
+            uris.DCIM_LCService, cim_creation_class_name, cim_name, target,
+            start_time='TIME_NOW',
+            wait_for_idrac=False, method_name='CreateConfigJob')
+
+        mock_invoke.assert_called_once_with(
+            mock.ANY, uris.DCIM_LCService, 'CreateConfigJob',
+            expected_selectors, expected_properties,
+            expected_return_value=utils.RET_CREATED,
+            wait_for_idrac=False)
+        self.assertEqual('JID_442507917525', job_id)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke',
+                       spec_set=True, autospec=True)
     def test_create_config_job(self, mock_invoke):
         cim_creation_class_name = 'DCIM_BIOSService'
         cim_name = 'DCIM:BIOSService'
         target = 'BIOS.Setup.1-1'
+        wait_for_idrac = True
         expected_selectors = {'CreationClassName': cim_creation_class_name,
                               'Name': cim_name,
                               'SystemCreationClassName': 'DCIM_ComputerSystem',
@@ -249,7 +280,8 @@ class ClientJobManagementTestCase(base.BaseTest):
         mock_invoke.assert_called_once_with(
             mock.ANY, uris.DCIM_BIOSService, 'CreateTargetedConfigJob',
             expected_selectors, expected_properties,
-            expected_return_value=utils.RET_CREATED)
+            expected_return_value=utils.RET_CREATED,
+            wait_for_idrac=wait_for_idrac)
         self.assertEqual('JID_442507917525', job_id)
 
     @mock.patch.object(dracclient.client.WSManClient, 'invoke',
@@ -259,6 +291,7 @@ class ClientJobManagementTestCase(base.BaseTest):
         cim_name = 'DCIM:BIOSService'
         target = 'BIOS.Setup.1-1'
         start_time = "20140924120105"
+        wait_for_idrac = True
         expected_selectors = {'CreationClassName': cim_creation_class_name,
                               'Name': cim_name,
                               'SystemCreationClassName': 'DCIM_ComputerSystem',
@@ -276,7 +309,8 @@ class ClientJobManagementTestCase(base.BaseTest):
         mock_invoke.assert_called_once_with(
             mock.ANY, uris.DCIM_BIOSService, 'CreateTargetedConfigJob',
             expected_selectors, expected_properties,
-            expected_return_value=utils.RET_CREATED)
+            expected_return_value=utils.RET_CREATED,
+            wait_for_idrac=wait_for_idrac)
         self.assertEqual('JID_442507917525', job_id)
 
     @mock.patch.object(dracclient.client.WSManClient, 'invoke',
@@ -286,6 +320,7 @@ class ClientJobManagementTestCase(base.BaseTest):
         cim_name = 'DCIM:BIOSService'
         target = 'BIOS.Setup.1-1'
         start_time = None
+        wait_for_idrac = True
         expected_selectors = {'CreationClassName': cim_creation_class_name,
                               'Name': cim_name,
                               'SystemCreationClassName': 'DCIM_ComputerSystem',
@@ -302,7 +337,8 @@ class ClientJobManagementTestCase(base.BaseTest):
         mock_invoke.assert_called_once_with(
             mock.ANY, uris.DCIM_BIOSService, 'CreateTargetedConfigJob',
             expected_selectors, expected_properties,
-            expected_return_value=utils.RET_CREATED)
+            expected_return_value=utils.RET_CREATED,
+            wait_for_idrac=wait_for_idrac)
         self.assertEqual('JID_442507917525', job_id)
 
     @requests_mock.Mocker()
@@ -323,12 +359,32 @@ class ClientJobManagementTestCase(base.BaseTest):
             exceptions.DRACOperationFailed, self.drac_client.create_config_job,
             uris.DCIM_BIOSService, cim_creation_class_name, cim_name, target)
 
+    @requests_mock.Mocker()
+    @mock.patch.object(dracclient.client.WSManClient,
+                       'wait_until_idrac_is_ready', spec_set=True,
+                       autospec=True)
+    def test_create_config_job_for_lifecycle_failed(
+            self, mock_requests,
+            mock_wait_until_idrac_is_ready):
+        cim_creation_class_name = 'DCIM_LCService'
+        cim_name = 'DCIM:LCService'
+        target = ''
+        mock_requests.post(
+            'https://1.2.3.4:443/wsman',
+            text=test_utils.JobInvocations[uris.DCIM_LCService][
+                'CreateConfigJob']['error'])
+
+        self.assertRaises(
+            exceptions.DRACOperationFailed, self.drac_client.create_config_job,
+            uris.DCIM_LCService, cim_creation_class_name, cim_name, target)
+
     @mock.patch.object(dracclient.client.WSManClient, 'invoke', spec_set=True,
                        autospec=True)
     def test_create_config_job_with_reboot(self, mock_invoke):
         cim_creation_class_name = 'DCIM_BIOSService'
         cim_name = 'DCIM:BIOSService'
         target = 'BIOS.Setup.1-1'
+        wait_for_idrac = True
         expected_selectors = {'CreationClassName': cim_creation_class_name,
                               'Name': cim_name,
                               'SystemCreationClassName': 'DCIM_ComputerSystem',
@@ -347,7 +403,8 @@ class ClientJobManagementTestCase(base.BaseTest):
         mock_invoke.assert_called_once_with(
             mock.ANY, uris.DCIM_BIOSService, 'CreateTargetedConfigJob',
             expected_selectors, expected_properties,
-            expected_return_value=utils.RET_CREATED)
+            expected_return_value=utils.RET_CREATED,
+            wait_for_idrac=wait_for_idrac)
         self.assertEqual('JID_442507917525', job_id)
 
     @mock.patch.object(dracclient.client.WSManClient, 'invoke', spec_set=True,
@@ -356,6 +413,7 @@ class ClientJobManagementTestCase(base.BaseTest):
         cim_creation_class_name = 'DCIM_BIOSService'
         cim_name = 'DCIM:BIOSService'
         target = 'BIOS.Setup.1-1'
+        wait_for_idrac = True
         expected_selectors = {'CreationClassName': cim_creation_class_name,
                               'Name': cim_name,
                               'SystemCreationClassName': 'DCIM_ComputerSystem',
@@ -374,7 +432,8 @@ class ClientJobManagementTestCase(base.BaseTest):
         mock_invoke.assert_called_once_with(
             mock.ANY, uris.DCIM_BIOSService, 'CreateTargetedConfigJob',
             expected_selectors, expected_properties,
-            expected_return_value=utils.RET_CREATED)
+            expected_return_value=utils.RET_CREATED,
+            wait_for_idrac=wait_for_idrac)
         self.assertEqual('JID_442507917525', job_id)
 
     @mock.patch.object(dracclient.client.WSManClient, 'invoke', spec_set=True,
