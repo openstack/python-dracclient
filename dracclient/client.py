@@ -383,9 +383,12 @@ class DRACClient(object):
             cim_name='DCIM:iDRACCardService',
             target=idrac_fqdd)
 
-    def list_lifecycle_settings(self):
+    def list_lifecycle_settings(self, by_name=False):
         """List the Lifecycle Controller configuration settings
 
+        :param by_name: Controls whether returned dictionary uses Lifecycle
+                        attribute name as key. If set to False, instance_id
+                        will be used.
         :returns: a dictionary with the Lifecycle Controller settings using its
                   InstanceID as the key. The attributes are either
                   LCEnumerableAttribute or LCStringAttribute objects.
@@ -394,7 +397,49 @@ class DRACClient(object):
         :raises: DRACOperationFailed on error reported back by the DRAC
                  interface
         """
-        return self._lifecycle_cfg.list_lifecycle_settings()
+        return self._lifecycle_cfg.list_lifecycle_settings(by_name)
+
+    def is_lifecycle_in_recovery(self):
+        """Checks if Lifecycle Controller in recovery mode or not
+
+        This method checks the LCStatus value to determine if lifecycle
+        controller is in recovery mode by invoking GetRemoteServicesAPIStatus
+        from iDRAC.
+
+        :returns: a boolean indicating if lifecycle controller is in recovery
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        """
+
+        return self._lifecycle_cfg.is_lifecycle_in_recovery()
+
+    def set_lifecycle_settings(self, settings):
+        """Sets lifecycle controller configuration
+
+        It sets the pending_value parameter for each of the attributes
+        passed in. For the values to be applied, a config job must
+        be created.
+
+        :param settings: a dictionary containing the proposed values, with
+                         each key being the name of attribute and the value
+                         being the proposed value.
+        :returns: a dictionary containing:
+                 - The is_commit_required key with a boolean value indicating
+                   whether a config job must be created for the values to be
+                   applied.
+                 - The is_reboot_required key with a RebootRequired enumerated
+                   value indicating whether the server must be rebooted for the
+                   values to be applied. Possible values are true and false.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        :raises: InvalidParameterValue on invalid Lifecycle attribute
+        """
+        return self._lifecycle_cfg.set_lifecycle_settings(settings)
 
     def list_system_settings(self):
         """List the System configuration settings
@@ -464,7 +509,9 @@ class DRACClient(object):
                           cim_system_name='DCIM:ComputerSystem',
                           reboot=False,
                           start_time='TIME_NOW',
-                          realtime=False):
+                          realtime=False,
+                          wait_for_idrac=True,
+                          method_name='CreateTargetedConfigJob'):
         """Creates a configuration job.
 
         In CIM (Common Information Model), weak association is used to name an
@@ -490,6 +537,10 @@ class DRACClient(object):
                            schedule_job_execution is called
         :param realtime: Indicates if reatime mode should be used.
                Valid values are True and False.
+        :param wait_for_idrac: indicates whether or not to wait for the
+                               iDRAC to be ready to accept commands before
+                               issuing the command.
+        :param method_name: method of CIM object to invoke
         :returns: id of the created job
         :raises: WSManRequestFailure on request failures
         :raises: WSManInvalidResponse when receiving invalid response
@@ -507,7 +558,9 @@ class DRACClient(object):
             cim_system_name=cim_system_name,
             reboot=reboot,
             start_time=start_time,
-            realtime=realtime)
+            realtime=realtime,
+            wait_for_idrac=wait_for_idrac,
+            method_name=method_name)
 
     def create_nic_config_job(
             self,
@@ -645,6 +698,37 @@ class DRACClient(object):
             resource_uri=uris.DCIM_BIOSService,
             cim_creation_class_name='DCIM_BIOSService',
             cim_name='DCIM:BIOSService', target=self.BIOS_DEVICE_FQDD)
+
+    def commit_pending_lifecycle_changes(
+            self,
+            reboot=False,
+            start_time='TIME_NOW'):
+        """Applies all pending changes on Lifecycle by creating a config job
+
+        :param reboot: indicates whether a RebootJob should also be
+                       created or not
+        :param start_time: start time for job execution in format
+                           yyyymmddhhmmss, the string 'TIME_NOW' which
+                           means execute immediately or None which means
+                           the job will not execute until
+                           schedule_job_execution is called
+        :returns: id of the created job
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface, including start_time being in the past or
+                 badly formatted start_time
+        :raises: DRACUnexpectedReturnValue on return value mismatch
+        """
+        return self._job_mgmt.create_config_job(
+            resource_uri=uris.DCIM_LCService,
+            cim_creation_class_name='DCIM_LCService',
+            cim_name='DCIM:LCService',
+            target='',
+            reboot=reboot,
+            start_time=start_time,
+            wait_for_idrac=False,
+            method_name='CreateConfigJob')
 
     def get_lifecycle_controller_version(self):
         """Returns the Lifecycle controller version

@@ -214,7 +214,8 @@ class ClientiDRACCardConfigurationTestCase(base.BaseTest):
                          result)
         mock_invoke.assert_called_once_with(
             mock.ANY, uris.DCIM_iDRACCardService, 'SetAttributes',
-            expected_selectors, expected_properties)
+            expected_selectors, expected_properties,
+            wait_for_idrac=True)
 
     @mock.patch.object(dracclient.client.WSManClient, 'invoke',
                        spec_set=True, autospec=True)
@@ -245,7 +246,8 @@ class ClientiDRACCardConfigurationTestCase(base.BaseTest):
                          result)
         mock_invoke.assert_called_once_with(
             mock.ANY, uris.DCIM_iDRACCardService, 'SetAttributes',
-            expected_selectors, expected_properties)
+            expected_selectors, expected_properties,
+            wait_for_idrac=True)
 
     def test_set_idrac_settings_with_too_long_string(
             self, mock_requests, mock_wait_until_idrac_is_ready):

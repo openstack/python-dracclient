@@ -233,7 +233,7 @@ def validate_integer_value(value, attr_name, error_msgs):
 
 
 def list_settings(client, namespaces, by_name=True, fqdd_filter=None,
-                  name_formatter=None):
+                  name_formatter=None, wait_for_idrac=True):
     """List the configuration settings
 
     :param client: an instance of WSManClient.
@@ -245,6 +245,9 @@ def list_settings(client, namespaces, by_name=True, fqdd_filter=None,
     :param name_formatter: a method used to format the keys in the
                            returned dictionary.  By default,
                            attribute.name will be used.
+    :param wait_for_idrac: indicates whether or not to wait for the
+                           iDRAC to be ready to accept commands before
+                           issuing the command.
     :returns: a dictionary with the settings using name or instance_id as
               the key.
     :raises: WSManRequestFailure on request failures
@@ -256,7 +259,7 @@ def list_settings(client, namespaces, by_name=True, fqdd_filter=None,
     result = {}
     for (namespace, attr_cls) in namespaces:
         attribs = _get_config(client, namespace, attr_cls, by_name,
-                              fqdd_filter, name_formatter)
+                              fqdd_filter, name_formatter, wait_for_idrac)
         if not set(result).isdisjoint(set(attribs)):
             raise exceptions.DRACOperationFailed(
                 drac_messages=('Colliding attributes %r' % (
@@ -266,10 +269,10 @@ def list_settings(client, namespaces, by_name=True, fqdd_filter=None,
 
 
 def _get_config(client, resource, attr_cls, by_name, fqdd_filter,
-                name_formatter):
+                name_formatter, wait_for_idrac):
     result = {}
 
-    doc = client.enumerate(resource)
+    doc = client.enumerate(resource, wait_for_idrac=wait_for_idrac)
     items = doc.find('.//{%s}Items' % wsman.NS_WSMAN)
 
     for item in items:
@@ -297,7 +300,8 @@ def set_settings(settings_type,
                  cim_creation_class_name,
                  cim_name,
                  target,
-                 name_formatter=None):
+                 name_formatter=None,
+                 wait_for_idrac=True):
     """Generically handles setting various types of settings on the iDRAC
 
     This method pulls the current list of settings from the iDRAC then compares
@@ -318,6 +322,9 @@ def set_settings(settings_type,
     :param name_formatter: a method used to format the keys in the
                            returned dictionary.  By default,
                            attribute.name will be used.
+    :param wait_for_idrac: indicates whether or not to wait for the
+                           iDRAC to be ready to accept commands before issuing
+                           the command
     :returns: a dictionary containing:
              - The is_commit_required key with a boolean value indicating
                whether a config job must be created for the values to be
@@ -335,12 +342,15 @@ def set_settings(settings_type,
     """
 
     current_settings = list_settings(client, namespaces, by_name=True,
-                                     name_formatter=name_formatter)
+                                     name_formatter=name_formatter,
+                                     wait_for_idrac=wait_for_idrac)
 
     unknown_keys = set(new_settings) - set(current_settings)
     if unknown_keys:
-        msg = ('Unknown %(settings_type)s attributes found: %(unknown_keys)r' %
-               {'settings_type': settings_type, 'unknown_keys': unknown_keys})
+        msg = ('Unknown %(settings_type)s attributes found: '
+               '%(unknown_keys)r' %
+               {'settings_type': settings_type,
+                'unknown_keys': unknown_keys})
         raise exceptions.InvalidParameterValue(reason=msg)
 
     read_only_keys = []
@@ -393,11 +403,14 @@ def set_settings(settings_type,
                  'Name': cim_name,
                  'SystemCreationClassName': 'DCIM_ComputerSystem',
                  'SystemName': 'DCIM:ComputerSystem'}
+
     properties = {'Target': target,
                   'AttributeName': attrib_names,
                   'AttributeValue': [new_settings[attr] for attr
                                      in attrib_names]}
+
     doc = client.invoke(resource_uri, 'SetAttributes',
-                        selectors, properties)
+                        selectors, properties,
+                        wait_for_idrac=wait_for_idrac)
 
     return build_return_dict(doc, resource_uri)
