@@ -283,6 +283,8 @@ RAIDInvocations = {
                 'raid_service-invoke-clear_foreign_config-no_foreign_drive'),
             'invalid_controller_id': load_wsman_xml(
                 'raid_service-invoke-clear_foreign_config-invalid_controller'),
+            'foreign_drive_operation_not_supported': load_wsman_xml(
+                'raid_service-invoke-clear_foreign_config-not_supported'),
         }
     }
 }
