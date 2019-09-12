@@ -95,7 +95,8 @@ VirtualDisk = collections.namedtuple(
      'status', 'raid_status', 'span_depth', 'span_length',
      'pending_operations', 'physical_disks'])
 
-NO_FOREIGN_DRIVE = "STOR018"
+
+NO_FOREIGN_DRIVES = ["STOR058", "STOR018"]
 
 
 class RAIDManagement(object):
@@ -849,10 +850,12 @@ class RAIDManagement(object):
                                         'MessageID',
                                         uris.DCIM_RAIDService).text
 
-            # A MessageID 'STOR018' indicates no foreign drive was
+            # A MessageID 'STOR018'/'STOR058' indicates no foreign drive was
             # detected. Return a value which informs the caller nothing
             # further needs to be done.
-            if message_id == NO_FOREIGN_DRIVE:
+            no_foreign_drives_detected = any(
+                stor_id == message_id for stor_id in NO_FOREIGN_DRIVES)
+            if no_foreign_drives_detected:
                 is_commit_required_value = False
                 is_reboot_required_value = constants.RebootRequired.false
             else:

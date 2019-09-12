@@ -37,6 +37,7 @@ class ClientRAIDManagementTestCase(base.BaseTest):
         self.drac_client = dracclient.client.DRACClient(
             **test_utils.FAKE_ENDPOINT)
         self.raid_controller_fqdd = "RAID.Integrated.1-1"
+        self.boss_controller_fqdd = "AHCI.Slot.3-1"
         cntl_dict = {'RAID.Integrated.1-1':
                      ['Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1',
                       'Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1'],
@@ -667,6 +668,31 @@ class ClientRAIDManagementTestCase(base.BaseTest):
 
         result = self.drac_client.clear_foreign_config(
             self.raid_controller_fqdd)
+        self.assertEqual({'is_commit_required': False,
+                          'is_reboot_required':
+                          constants.RebootRequired.false},
+                         result)
+        mock_invoke.assert_called_once_with(
+            mock.ANY, uris.DCIM_RAIDService, 'ClearForeignConfig',
+            expected_selectors, expected_properties,
+            check_return_value=False)
+
+    @mock.patch.object(dracclient.client.WSManClient, 'invoke',
+                       spec_set=True, autospec=True)
+    def test_clear_foreign_config_with_operation_not_supported(self,
+                                                               mock_requests,
+                                                               mock_invoke):
+        expected_selectors = {'SystemCreationClassName': 'DCIM_ComputerSystem',
+                              'CreationClassName': 'DCIM_RAIDService',
+                              'SystemName': 'DCIM:ComputerSystem',
+                              'Name': 'DCIM:RAIDService'}
+        expected_properties = {'Target': self.boss_controller_fqdd}
+        mock_invoke.return_value = lxml.etree.fromstring(
+            test_utils.RAIDInvocations[uris.DCIM_RAIDService][
+                'ClearForeignConfig']['foreign_drive_operation_not_supported'])
+
+        result = self.drac_client.clear_foreign_config(
+            self.boss_controller_fqdd)
         self.assertEqual({'is_commit_required': False,
                           'is_reboot_required':
                           constants.RebootRequired.false},

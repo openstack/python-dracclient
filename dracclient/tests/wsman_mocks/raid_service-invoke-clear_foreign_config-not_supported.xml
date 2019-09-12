@@ -1,0 +1,18 @@
+<s:Envelope   xmlns:s="http://www.w3.org/2003/05/soap-envelope" 
+              xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_RAIDService"
+              xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing">
+   <s:Header>
+      <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+      <wsa:Action>http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_RAIDService/ClearForeignConfigResponse</wsa:Action>
+      <wsa:RelatesTo>uuid:473f8ede-9a1a-441a-aaf6-699c1476aa97</wsa:RelatesTo>
+      <wsa:MessageID>uuid:55d91de0-90a1-10a1-8147-8c0c498fd94c</wsa:MessageID>
+   </s:Header>
+   <s:Body>
+      <n1:ClearForeignConfig_OUTPUT>
+         <n1:Message>The operation cannot be completed either because the operation is not supported on the target device, 
+ or the RAIDType of "MD Software RAID" does not allow the operation.</n1:Message>
+         <n1:MessageID>STOR058</n1:MessageID>
+         <n1:ReturnValue>2</n1:ReturnValue>
+      </n1:ClearForeignConfig_OUTPUT>
+   </s:Body>
+</s:Envelope>
