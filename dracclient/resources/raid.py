@@ -175,7 +175,12 @@ class RAIDManagement(object):
         drac_raid_level = self._get_virtual_disk_attr(drac_disk, 'RAIDTypes')
         size_b = self._get_virtual_disk_attr(drac_disk, 'SizeInBytes')
         drac_status = self._get_virtual_disk_attr(drac_disk, 'PrimaryStatus')
-        drac_raid_status = self._get_virtual_disk_attr(drac_disk, 'RAIDStatus')
+        drac_raid_status = self._get_virtual_disk_attr(
+            drac_disk, 'RAIDStatus', allow_missing=True)
+        if drac_raid_status is None:
+            drac_raid_status = self._get_virtual_disk_attr(
+                drac_disk, 'RaidStatus')
+
         drac_pending_operations = self._get_virtual_disk_attr(
             drac_disk, 'PendingOperations')
 
@@ -200,10 +205,11 @@ class RAIDManagement(object):
             physical_disks=self._get_virtual_disk_attrs(drac_disk,
                                                         'PhysicalDiskIDs'))
 
-    def _get_virtual_disk_attr(self, drac_disk, attr_name, nullable=False):
+    def _get_virtual_disk_attr(
+            self, drac_disk, attr_name, nullable=False, allow_missing=False):
         return utils.get_wsman_resource_attr(
             drac_disk, uris.DCIM_VirtualDiskView, attr_name,
-            nullable=nullable)
+            nullable=nullable, allow_missing=allow_missing)
 
     def _get_virtual_disk_attrs(self, drac_disk, attr_name):
         return utils.get_all_wsman_resource_attrs(
