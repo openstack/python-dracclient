@@ -2,8 +2,6 @@
 # of appearance. Changing the order has an impact on the overall integration
 # process, which may cause wedges in the gate later.
 
-coverage>=3.6
-doc8
-hacking>=0.11.0,<0.12
-mock>=2.0
-requests-mock>=1.0
+sphinx!=1.6.6,!=1.6.7,<2.0.0;python_version=='2.7'  # BSD
+sphinx!=1.6.6,!=1.6.7,!=2.1.0;python_version>='3.4'  # BSD
+openstackdocstheme  # Apache-2.0
