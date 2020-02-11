@@ -201,6 +201,7 @@
         </n1:DCIM_PhysicalDiskView>
         <n2:DCIM_PCIeSSDView>
           <n2:BusProtocol>7</n2:BusProtocol>
+          <n2:Bus>3E</n2:Bus>
           <n2:DeviceDescription>PCIe SSD in Slot 20 in Bay 1</n2:DeviceDescription>
           <n2:DeviceProtocol>NVMe-MI1.0</n2:DeviceProtocol>
           <n2:DriveFormFactor>2</n2:DriveFormFactor>
