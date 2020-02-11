@@ -82,7 +82,7 @@ PhysicalDisk = collections.namedtuple(
     ['id', 'description', 'controller', 'manufacturer', 'model', 'media_type',
      'interface_type', 'size_mb', 'free_size_mb', 'serial_number',
      'firmware_version', 'status', 'raid_status', 'sas_address',
-     'device_protocol'])
+     'device_protocol', 'bus'])
 
 RAIDController = collections.namedtuple(
     'RAIDController', ['id', 'description', 'manufacturer', 'model',
@@ -141,7 +141,7 @@ class RAIDManagement(object):
                                                'PrimaryStatus')],
             firmware_version=self._get_raid_controller_attr(
                 drac_controller, 'ControllerFirmwareVersion'),
-            bus=self._get_raid_controller_attr(drac_controller, 'Bus'),
+            bus=self._get_raid_controller_attr(drac_controller, 'Bus').upper(),
             supports_realtime=RAID_CONTROLLER_IS_REALTIME[
                 self._get_raid_controller_attr(
                     drac_controller, 'RealtimeCapability')])
@@ -266,6 +266,11 @@ class RAIDManagement(object):
                                                        uri)
         drac_bus_protocol = self._get_physical_disk_attr(drac_disk,
                                                          'BusProtocol', uri)
+        bus = self._get_physical_disk_attr(drac_disk,
+                                           'Bus', uri,  allow_missing=True)
+
+        if bus is not None:
+            bus = bus.upper()
 
         return PhysicalDisk(
             id=fqdd,
@@ -291,7 +296,8 @@ class RAIDManagement(object):
             device_protocol=self._get_physical_disk_attr(drac_disk,
                                                          'DeviceProtocol',
                                                          uri,
-                                                         allow_missing=True))
+                                                         allow_missing=True),
+            bus=bus)
 
     def _get_physical_disk_attr(self, drac_disk, attr_name, uri,
                                 allow_missing=False):

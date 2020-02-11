@@ -60,7 +60,8 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             status='ok',
             raid_status='ready',
             sas_address='500056B37789ABE3',
-            device_protocol=None)
+            device_protocol=None,
+            bus=None)
 
         self.disk_2 = raid.PhysicalDisk(
             id='Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1',
@@ -77,7 +78,8 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             status='online',
             raid_status='ready',
             sas_address='500056B37789ABE3',
-            device_protocol=None)
+            device_protocol=None,
+            bus=None)
 
         self.disk_3 = raid.PhysicalDisk(
             id='Disk.Bay.0:Enclosure.Internal.0-1:AHCI.Integrated.1-1',
@@ -94,7 +96,8 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             status='online',
             raid_status='ready',
             sas_address='500056B37789ABE3',
-            device_protocol=None)
+            device_protocol=None,
+            bus=None)
 
         self.disk_4 = raid.PhysicalDisk(
             id='Disk.Bay.1:Enclosure.Internal.0-1:AHCI.Integrated.1-1',
@@ -111,7 +114,8 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             status='online',
             raid_status='ready',
             sas_address='500056B37789ABE3',
-            device_protocol=None)
+            device_protocol=None,
+            bus=None)
 
     @mock.patch.object(dracclient.client.WSManClient,
                        'wait_until_idrac_is_ready', spec_set=True,
@@ -214,7 +218,8 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             status='ok',
             raid_status='ready',
             sas_address='5000C5007764F409',
-            device_protocol=None)
+            device_protocol=None,
+            bus=None)
 
         mock_requests.post(
             'https://1.2.3.4:443/wsman',
@@ -244,7 +249,8 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             status='ok',
             raid_status='ready',
             sas_address='5000C5007764F409',
-            device_protocol=None)
+            device_protocol=None,
+            bus=None)
 
         mock_requests.post(
             'https://1.2.3.4:443/wsman',
@@ -273,7 +279,8 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             status='unknown',
             raid_status=None,
             sas_address=None,
-            device_protocol='NVMe-MI1.0')
+            device_protocol='NVMe-MI1.0',
+            bus='3E')
 
         mock_requests.post(
             'https://1.2.3.4:443/wsman',
