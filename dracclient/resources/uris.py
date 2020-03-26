@@ -94,20 +94,30 @@ DCIM_PCIeSSDView = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
 DCIM_PhysicalDiskView = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
                          'DCIM_PhysicalDiskView')
 
+DCIM_RAIDEnumeration = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
+                        'DCIM_RAIDEnumeration')
+
+DCIM_RAIDInteger = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
+                    'DCIM_RAIDInteger')
+
 DCIM_RAIDService = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
                     'DCIM_RAIDService')
 
-DCIM_SystemView = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
-                   'DCIM_SystemView')
+
+DCIM_RAIDString = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
+                   'DCIM_RAIDString')
 
 DCIM_SystemEnumeration = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
                           'DCIM_SystemEnumeration')
 
+DCIM_SystemInteger = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
+                      'DCIM_SystemInteger')
+
 DCIM_SystemString = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
                      'DCIM_SystemString')
 
-DCIM_SystemInteger = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
-                      'DCIM_SystemInteger')
+DCIM_SystemView = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
+                   'DCIM_SystemView')
 
 DCIM_VirtualDiskView = ('http://schemas.dell.com/wbem/wscim/1/cim-schema/2/'
                         'DCIM_VirtualDiskView')

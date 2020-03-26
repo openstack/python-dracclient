@@ -1,0 +1,49 @@
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+    xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+    xmlns:wsen="http://schemas.xmlsoap.org/ws/2004/09/enumeration"
+    xmlns:wsman="http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd"
+    xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_RAIDString"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <s:Header>
+        <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+        <wsa:Action>http://schemas.xmlsoap.org/ws/2004/09/enumeration/EnumerateResponse</wsa:Action>
+        <wsa:RelatesTo>uuid:6f1e7eae-511a-4268-9913-c1ce1bb414be</wsa:RelatesTo>
+        <wsa:MessageID>uuid:6da65cf0-9cbb-1cbb-9773-deda878fd94c</wsa:MessageID>
+    </s:Header>
+    <s:Body>
+        <wsen:EnumerateResponse>
+            <wsman:Items>
+                <n1:DCIM_RAIDString>
+                  <n1:AttributeName>Name</n1:AttributeName>
+                  <n1:CurrentValue>Virtual Disk 0</n1:CurrentValue>
+                  <n1:FQDD>Disk.Virtual.0:RAID.Integrated.1-1</n1:FQDD>
+                  <n1:InstanceID>Disk.Virtual.0:RAID.Integrated.1-1:Name</n1:InstanceID>
+                  <n1:IsReadOnly>true</n1:IsReadOnly>
+                  <n1:MaxLength>129</n1:MaxLength>
+                  <n1:MinLength>0</n1:MinLength>
+                  <n1:PendingValue xsi:nil="true"/>
+                </n1:DCIM_RAIDString>
+                <n1:DCIM_RAIDString>
+                  <n1:AttributeName>Name</n1:AttributeName>
+                  <n1:CurrentValue>Virtual Disk 1</n1:CurrentValue>
+                  <n1:FQDD>Disk.Virtual.1:RAID.Integrated.1-1</n1:FQDD>
+                  <n1:InstanceID>Disk.Virtual.1:RAID.Integrated.1-1:Name</n1:InstanceID>
+                  <n1:IsReadOnly>true</n1:IsReadOnly>
+                  <n1:MaxLength>129</n1:MaxLength>
+                  <n1:MinLength>0</n1:MinLength>
+                  <n1:PendingValue xsi:nil="true"/>
+                </n1:DCIM_RAIDString>
+                <n1:DCIM_RAIDString>
+                  <n1:AttributeName>RAIDEffectiveSASAddress</n1:AttributeName>
+                  <n1:CurrentValue>500056B3239C1AFD</n1:CurrentValue>
+                  <n1:FQDD>Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                  <n1:InstanceID>Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDEffectiveSASAddress</n1:InstanceID>
+                  <n1:IsReadOnly>true</n1:IsReadOnly>
+                  <n1:MaxLength>16</n1:MaxLength>
+                  <n1:MinLength>16</n1:MinLength>
+                  <n1:PendingValue xsi:nil="true"/>
+                </n1:DCIM_RAIDString>
+            </wsman:Items>
+        </wsen:EnumerateResponse>
+    </s:Body>
+</s:Envelope>

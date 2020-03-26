@@ -758,6 +758,43 @@ class DRACClient(object):
         """
         return self._raid_mgmt.list_raid_controllers()
 
+    def list_raid_settings(self):
+        """List the RAID configuration settings
+
+        :returns: a dictionary with the RAID settings using InstanceID as the
+                  key. The attributes are either RAIDEnumerableAttribute,
+                  RAIDStringAttribute objects.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        """
+        return self._raid_mgmt.list_raid_settings()
+
+    def set_raid_settings(self, raid_fqdd, settings):
+        """Sets the RAID configuration
+
+        It sets the pending_value parameter for each of the attributes
+        passed in. For the values to be applied, a config job must
+        be created.
+        :param raid_fqdd: the FQDD of the RAID setting.
+        :param settings: a dictionary containing the proposed values, with
+                         each key being the name of attribute and the value
+                         being the proposed value.
+        :returns: a dictionary containing:
+                 - The is_commit_required key with a boolean value indicating
+                   whether a config job must be created for the values to be
+                   applied.
+                 - The is_reboot_required key with a RebootRequired enumerated
+                   value indicating whether the server must be rebooted for the
+                   values to be applied. Possible values are true and false.
+        :raises: WSManRequestFailure on request failures
+        :raises: WSManInvalidResponse when receiving invalid response
+        :raises: DRACOperationFailed on error reported back by the DRAC
+                 interface
+        """
+        return self._raid_mgmt.set_raid_settings(raid_fqdd, settings)
+
     def list_virtual_disks(self):
         """Returns the list of RAID arrays
 
