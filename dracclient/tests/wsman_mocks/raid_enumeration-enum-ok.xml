@@ -1,0 +1,2347 @@
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope"
+    xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+    xmlns:wsen="http://schemas.xmlsoap.org/ws/2004/09/enumeration"
+    xmlns:wsman="http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd"
+    xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_RAIDEnumeration"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <s:Header>
+        <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+        <wsa:Action>http://schemas.xmlsoap.org/ws/2004/09/enumeration/EnumerateResponse</wsa:Action>
+        <wsa:RelatesTo>uuid:41a4f623-7f99-43b9-b240-4a773aa39860</wsa:RelatesTo>
+        <wsa:MessageID>uuid:3b204fe0-9caa-1caa-a2f1-614a498fd94c</wsa:MessageID>
+    </s:Header>
+    <s:Body>
+        <wsen:EnumerateResponse>
+            <wsman:Items>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDSupportedRAIDLevels</n1:AttributeName>
+                    <n1:CurrentValue>2(RAID-0)</n1:CurrentValue>
+                    <n1:CurrentValue>4(RAID-1)</n1:CurrentValue>
+                    <n1:CurrentValue>64(RAID-5)</n1:CurrentValue>
+                    <n1:CurrentValue>128(RAID-6)</n1:CurrentValue>
+                    <n1:CurrentValue>2048(RAID-10)</n1:CurrentValue>
+                    <n1:CurrentValue>8192(RAID-50)</n1:CurrentValue>
+                    <n1:CurrentValue>16384(RAID-60)</n1:CurrentValue>
+                    <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>RAID.Integrated.1-1:RAIDSupportedRAIDLevels</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>2(RAID-0)</n1:PossibleValues>
+                    <n1:PossibleValues>4(RAID-1)</n1:PossibleValues>
+                    <n1:PossibleValues>64(RAID-5)</n1:PossibleValues>
+                    <n1:PossibleValues>128(RAID-6)</n1:PossibleValues>
+                    <n1:PossibleValues>2048(RAID-10)</n1:PossibleValues>
+                    <n1:PossibleValues>8192(RAID-50)</n1:PossibleValues>
+                    <n1:PossibleValues>16384(RAID-60)</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDSupportedDiskProt</n1:AttributeName>
+                    <n1:CurrentValue>SAS</n1:CurrentValue>
+                    <n1:CurrentValue>SATA</n1:CurrentValue>
+                    <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>RAID.Integrated.1-1:RAIDSupportedDiskProt</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>SAS</n1:PossibleValues>
+                    <n1:PossibleValues>SATA</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDSupportedInitTypes</n1:AttributeName>
+                    <n1:CurrentValue>Fast</n1:CurrentValue>
+                    <n1:CurrentValue>Full</n1:CurrentValue>
+                    <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>RAID.Integrated.1-1:RAIDSupportedInitTypes</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Fast</n1:PossibleValues>
+                    <n1:PossibleValues>Full</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDloadBalancedMode</n1:AttributeName>
+                    <n1:CurrentValue>Automatic</n1:CurrentValue>
+                    <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>RAID.Integrated.1-1:RAIDloadBalancedMode</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Automatic</n1:PossibleValues>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDccMode</n1:AttributeName>
+                    <n1:CurrentValue>Normal</n1:CurrentValue>
+                    <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>RAID.Integrated.1-1:RAIDccMode</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Normal</n1:PossibleValues>
+                    <n1:PossibleValues>Stop on Error</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDprMode</n1:AttributeName>
+                    <n1:CurrentValue>Automatic</n1:CurrentValue>
+                    <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>RAID.Integrated.1-1:RAIDprMode</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Automatic</n1:PossibleValues>
+                    <n1:PossibleValues>Manual</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDPatrolReadUnconfiguredArea</n1:AttributeName>
+                    <n1:CurrentValue>Enabled</n1:CurrentValue>
+                    <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>RAID.Integrated.1-1:RAIDPatrolReadUnconfiguredArea</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDcopybackMode</n1:AttributeName>
+                    <n1:CurrentValue>On</n1:CurrentValue>
+                    <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>RAID.Integrated.1-1:RAIDcopybackMode</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>On</n1:PossibleValues>
+                    <n1:PossibleValues>On with SMART</n1:PossibleValues>
+                    <n1:PossibleValues>Off</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDEnhancedAutoImportForeignConfig</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>RAID.Integrated.1-1:RAIDEnhancedAutoImportForeignConfig</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDControllerBootMode</n1:AttributeName>
+                    <n1:CurrentValue>Headless Mode Continue On Error</n1:CurrentValue>
+                    <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>RAID.Integrated.1-1:RAIDControllerBootMode</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>User Mode</n1:PossibleValues>
+                    <n1:PossibleValues>Continue Boot On Error</n1:PossibleValues>
+                    <n1:PossibleValues>Headless Mode Continue On Error</n1:PossibleValues>
+                    <n1:PossibleValues>Headless Safe Mode</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDCurrentControllerMode</n1:AttributeName>
+                    <n1:CurrentValue>RAID</n1:CurrentValue>
+                    <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>RAID.Integrated.1-1:RAIDCurrentControllerMode</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>RAID</n1:PossibleValues>
+                    <n1:PossibleValues>Enhanced HBA</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDRequestedControllerMode</n1:AttributeName>
+                    <n1:CurrentValue>None</n1:CurrentValue>
+                    <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>RAID.Integrated.1-1:RAIDRequestedControllerMode</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>RAID</n1:PossibleValues>
+                    <n1:PossibleValues>Enhanced HBA</n1:PossibleValues>
+                    <n1:PossibleValues>None</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDMode</n1:AttributeName>
+                    <n1:CurrentValue>None</n1:CurrentValue>
+                    <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>RAID.Integrated.1-1:RAIDMode</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>None</n1:PossibleValues>
+                    <n1:PossibleValues>Linux</n1:PossibleValues>
+                    <n1:PossibleValues>Windows</n1:PossibleValues>
+                    <n1:PossibleValues>Mixed</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDpersistentHotspare</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>RAID.Integrated.1-1:RAIDpersistentHotspare</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDMaxCapableSpeed</n1:AttributeName>
+                    <n1:CurrentValue>12_GBS</n1:CurrentValue>
+                    <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>RAID.Integrated.1-1:RAIDMaxCapableSpeed</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>1_5_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>3_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>6_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>12_GBS</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDSupportedInitTypes</n1:AttributeName>
+                    <n1:CurrentValue>None</n1:CurrentValue>
+                    <n1:FQDD>AHCI.Embedded.1-1</n1:FQDD>
+                    <n1:InstanceID>AHCI.Embedded.1-1:RAIDSupportedInitTypes</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>None</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDMode</n1:AttributeName>
+                    <n1:CurrentValue>None</n1:CurrentValue>
+                    <n1:FQDD>AHCI.Embedded.1-1</n1:FQDD>
+                    <n1:InstanceID>AHCI.Embedded.1-1:RAIDMode</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>None</n1:PossibleValues>
+                    <n1:PossibleValues>Linux</n1:PossibleValues>
+                    <n1:PossibleValues>Windows</n1:PossibleValues>
+                    <n1:PossibleValues>Mixed</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDSupportedInitTypes</n1:AttributeName>
+                    <n1:CurrentValue>None</n1:CurrentValue>
+                    <n1:FQDD>AHCI.Embedded.2-1</n1:FQDD>
+                    <n1:InstanceID>AHCI.Embedded.2-1:RAIDSupportedInitTypes</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>None</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDMode</n1:AttributeName>
+                    <n1:CurrentValue>None</n1:CurrentValue>
+                    <n1:FQDD>AHCI.Embedded.2-1</n1:FQDD>
+                    <n1:InstanceID>AHCI.Embedded.2-1:RAIDMode</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>None</n1:PossibleValues>
+                    <n1:PossibleValues>Linux</n1:PossibleValues>
+                    <n1:PossibleValues>Windows</n1:PossibleValues>
+                    <n1:PossibleValues>Mixed</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultWritePolicy</n1:AttributeName>
+                    <n1:CurrentValue>WriteBack</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.0:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.0:RAID.Integrated.1-1:RAIDdefaultWritePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>WriteThrough</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBack</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBackForce</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultReadPolicy</n1:AttributeName>
+                    <n1:CurrentValue>ReadAhead</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.0:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.0:RAID.Integrated.1-1:RAIDdefaultReadPolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>NoReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>ReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>AdaptiveReadAhead</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>DiskCachePolicy</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.0:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.0:RAID.Integrated.1-1:DiskCachePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Default</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                  <n1:PossibleValues>Disabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>T10PIStatus</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.0:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.0:RAID.Integrated.1-1:T10PIStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDStripeSize</n1:AttributeName>
+                    <n1:CurrentValue>512(256 KB)</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.0:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.0:RAID.Integrated.1-1:RAIDStripeSize</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>0</n1:PossibleValues>
+                    <n1:PossibleValues>1(512 Bytes)</n1:PossibleValues>
+                    <n1:PossibleValues>2(1 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4(2 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8(4 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16(8 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32(16 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>64(32 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>128(64 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>256(128 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>512(256 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>1024(512 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>2048(1024 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4096(2048 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8192(4096 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16384(8192 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32768(16384 KB)</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultWritePolicy</n1:AttributeName>
+                    <n1:CurrentValue>WriteBack</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.1:RAID.Integrated.1-1:RAIDdefaultWritePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>WriteThrough</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBack</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBackForce</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultReadPolicy</n1:AttributeName>
+                    <n1:CurrentValue>ReadAhead</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.1:RAID.Integrated.1-1:RAIDdefaultReadPolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>NoReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>ReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>AdaptiveReadAhead</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>DiskCachePolicy</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.1:RAID.Integrated.1-1:DiskCachePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Default</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>T10PIStatus</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.1:RAID.Integrated.1-1:T10PIStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDStripeSize</n1:AttributeName>
+                    <n1:CurrentValue>512(256 KB)</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.1:RAID.Integrated.1-1:RAIDStripeSize</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>0</n1:PossibleValues>
+                    <n1:PossibleValues>1(512 Bytes)</n1:PossibleValues>
+                    <n1:PossibleValues>2(1 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4(2 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8(4 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16(8 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32(16 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>64(32 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>128(64 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>256(128 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>512(256 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>1024(512 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>2048(1024 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4096(2048 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8192(4096 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16384(8192 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32768(16384 KB)</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultWritePolicy</n1:AttributeName>
+                    <n1:CurrentValue>WriteBack</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.2:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.2:RAID.Integrated.1-1:RAIDdefaultWritePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>WriteThrough</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBack</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBackForce</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultReadPolicy</n1:AttributeName>
+                    <n1:CurrentValue>ReadAhead</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.2:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.2:RAID.Integrated.1-1:RAIDdefaultReadPolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>NoReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>ReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>AdaptiveReadAhead</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>DiskCachePolicy</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.2:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.2:RAID.Integrated.1-1:DiskCachePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Default</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>T10PIStatus</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.2:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.2:RAID.Integrated.1-1:T10PIStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDStripeSize</n1:AttributeName>
+                    <n1:CurrentValue>512(256 KB)</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.2:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.2:RAID.Integrated.1-1:RAIDStripeSize</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>0</n1:PossibleValues>
+                    <n1:PossibleValues>1(512 Bytes)</n1:PossibleValues>
+                    <n1:PossibleValues>2(1 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4(2 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8(4 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16(8 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32(16 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>64(32 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>128(64 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>256(128 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>512(256 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>1024(512 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>2048(1024 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4096(2048 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8192(4096 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16384(8192 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32768(16384 KB)</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultWritePolicy</n1:AttributeName>
+                    <n1:CurrentValue>WriteBack</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.3:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.3:RAID.Integrated.1-1:RAIDdefaultWritePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>WriteThrough</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBack</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBackForce</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultReadPolicy</n1:AttributeName>
+                    <n1:CurrentValue>ReadAhead</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.3:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.3:RAID.Integrated.1-1:RAIDdefaultReadPolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>NoReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>ReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>AdaptiveReadAhead</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>DiskCachePolicy</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.3:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.3:RAID.Integrated.1-1:DiskCachePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Default</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>T10PIStatus</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.3:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.3:RAID.Integrated.1-1:T10PIStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDStripeSize</n1:AttributeName>
+                    <n1:CurrentValue>512(256 KB)</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.3:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.3:RAID.Integrated.1-1:RAIDStripeSize</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>0</n1:PossibleValues>
+                    <n1:PossibleValues>1(512 Bytes)</n1:PossibleValues>
+                    <n1:PossibleValues>2(1 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4(2 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8(4 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16(8 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32(16 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>64(32 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>128(64 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>256(128 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>512(256 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>1024(512 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>2048(1024 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4096(2048 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8192(4096 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16384(8192 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32768(16384 KB)</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultWritePolicy</n1:AttributeName>
+                    <n1:CurrentValue>WriteBack</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.4:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.4:RAID.Integrated.1-1:RAIDdefaultWritePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>WriteThrough</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBack</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBackForce</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultReadPolicy</n1:AttributeName>
+                    <n1:CurrentValue>ReadAhead</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.4:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.4:RAID.Integrated.1-1:RAIDdefaultReadPolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>NoReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>ReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>AdaptiveReadAhead</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>DiskCachePolicy</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.4:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.4:RAID.Integrated.1-1:DiskCachePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Default</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>T10PIStatus</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.4:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.4:RAID.Integrated.1-1:T10PIStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDStripeSize</n1:AttributeName>
+                    <n1:CurrentValue>512(256 KB)</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.4:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.4:RAID.Integrated.1-1:RAIDStripeSize</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>0</n1:PossibleValues>
+                    <n1:PossibleValues>1(512 Bytes)</n1:PossibleValues>
+                    <n1:PossibleValues>2(1 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4(2 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8(4 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16(8 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32(16 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>64(32 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>128(64 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>256(128 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>512(256 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>1024(512 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>2048(1024 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4096(2048 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8192(4096 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16384(8192 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32768(16384 KB)</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultWritePolicy</n1:AttributeName>
+                    <n1:CurrentValue>WriteBack</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.5:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.5:RAID.Integrated.1-1:RAIDdefaultWritePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>WriteThrough</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBack</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBackForce</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultReadPolicy</n1:AttributeName>
+                    <n1:CurrentValue>ReadAhead</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.5:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.5:RAID.Integrated.1-1:RAIDdefaultReadPolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>NoReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>ReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>AdaptiveReadAhead</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>DiskCachePolicy</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.5:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.5:RAID.Integrated.1-1:DiskCachePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Default</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>T10PIStatus</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.5:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.5:RAID.Integrated.1-1:T10PIStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDStripeSize</n1:AttributeName>
+                    <n1:CurrentValue>512(256 KB)</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.5:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.5:RAID.Integrated.1-1:RAIDStripeSize</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>0</n1:PossibleValues>
+                    <n1:PossibleValues>1(512 Bytes)</n1:PossibleValues>
+                    <n1:PossibleValues>2(1 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4(2 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8(4 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16(8 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32(16 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>64(32 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>128(64 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>256(128 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>512(256 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>1024(512 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>2048(1024 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4096(2048 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8192(4096 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16384(8192 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32768(16384 KB)</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultWritePolicy</n1:AttributeName>
+                    <n1:CurrentValue>WriteBack</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.6:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.6:RAID.Integrated.1-1:RAIDdefaultWritePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>WriteThrough</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBack</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBackForce</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultReadPolicy</n1:AttributeName>
+                    <n1:CurrentValue>ReadAhead</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.6:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.6:RAID.Integrated.1-1:RAIDdefaultReadPolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>NoReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>ReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>AdaptiveReadAhead</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>DiskCachePolicy</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.6:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.6:RAID.Integrated.1-1:DiskCachePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Default</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>T10PIStatus</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.6:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.6:RAID.Integrated.1-1:T10PIStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDStripeSize</n1:AttributeName>
+                    <n1:CurrentValue>512(256 KB)</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.6:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.6:RAID.Integrated.1-1:RAIDStripeSize</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>0</n1:PossibleValues>
+                    <n1:PossibleValues>1(512 Bytes)</n1:PossibleValues>
+                    <n1:PossibleValues>2(1 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4(2 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8(4 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16(8 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32(16 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>64(32 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>128(64 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>256(128 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>512(256 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>1024(512 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>2048(1024 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4096(2048 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8192(4096 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16384(8192 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32768(16384 KB)</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultWritePolicy</n1:AttributeName>
+                    <n1:CurrentValue>WriteBack</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.7:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.7:RAID.Integrated.1-1:RAIDdefaultWritePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>WriteThrough</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBack</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBackForce</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultReadPolicy</n1:AttributeName>
+                    <n1:CurrentValue>ReadAhead</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.7:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.7:RAID.Integrated.1-1:RAIDdefaultReadPolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>NoReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>ReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>AdaptiveReadAhead</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>DiskCachePolicy</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.7:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.7:RAID.Integrated.1-1:DiskCachePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Default</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>T10PIStatus</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.7:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.7:RAID.Integrated.1-1:T10PIStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDStripeSize</n1:AttributeName>
+                    <n1:CurrentValue>512(256 KB)</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.7:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.7:RAID.Integrated.1-1:RAIDStripeSize</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>0</n1:PossibleValues>
+                    <n1:PossibleValues>1(512 Bytes)</n1:PossibleValues>
+                    <n1:PossibleValues>2(1 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4(2 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8(4 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16(8 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32(16 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>64(32 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>128(64 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>256(128 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>512(256 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>1024(512 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>2048(1024 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4096(2048 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8192(4096 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16384(8192 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32768(16384 KB)</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultWritePolicy</n1:AttributeName>
+                    <n1:CurrentValue>WriteBack</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.8:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.8:RAID.Integrated.1-1:RAIDdefaultWritePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>WriteThrough</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBack</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBackForce</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultReadPolicy</n1:AttributeName>
+                    <n1:CurrentValue>ReadAhead</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.8:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.8:RAID.Integrated.1-1:RAIDdefaultReadPolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>NoReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>ReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>AdaptiveReadAhead</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>DiskCachePolicy</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.8:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.8:RAID.Integrated.1-1:DiskCachePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Default</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>T10PIStatus</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.8:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.8:RAID.Integrated.1-1:T10PIStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDStripeSize</n1:AttributeName>
+                    <n1:CurrentValue>512(256 KB)</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.8:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.8:RAID.Integrated.1-1:RAIDStripeSize</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>0</n1:PossibleValues>
+                    <n1:PossibleValues>1(512 Bytes)</n1:PossibleValues>
+                    <n1:PossibleValues>2(1 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4(2 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8(4 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16(8 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32(16 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>64(32 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>128(64 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>256(128 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>512(256 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>1024(512 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>2048(1024 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4096(2048 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8192(4096 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16384(8192 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32768(16384 KB)</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultWritePolicy</n1:AttributeName>
+                    <n1:CurrentValue>WriteBack</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.9:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.9:RAID.Integrated.1-1:RAIDdefaultWritePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>WriteThrough</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBack</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBackForce</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultReadPolicy</n1:AttributeName>
+                    <n1:CurrentValue>ReadAhead</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.9:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.9:RAID.Integrated.1-1:RAIDdefaultReadPolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>NoReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>ReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>AdaptiveReadAhead</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>DiskCachePolicy</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.9:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.9:RAID.Integrated.1-1:DiskCachePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Default</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>T10PIStatus</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.9:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.9:RAID.Integrated.1-1:T10PIStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDStripeSize</n1:AttributeName>
+                    <n1:CurrentValue>512(256 KB)</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.9:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.9:RAID.Integrated.1-1:RAIDStripeSize</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>0</n1:PossibleValues>
+                    <n1:PossibleValues>1(512 Bytes)</n1:PossibleValues>
+                    <n1:PossibleValues>2(1 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4(2 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8(4 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16(8 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32(16 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>64(32 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>128(64 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>256(128 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>512(256 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>1024(512 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>2048(1024 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4096(2048 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8192(4096 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16384(8192 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32768(16384 KB)</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultWritePolicy</n1:AttributeName>
+                    <n1:CurrentValue>WriteBack</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.10:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.10:RAID.Integrated.1-1:RAIDdefaultWritePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>WriteThrough</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBack</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBackForce</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultReadPolicy</n1:AttributeName>
+                    <n1:CurrentValue>ReadAhead</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.10:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.10:RAID.Integrated.1-1:RAIDdefaultReadPolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>NoReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>ReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>AdaptiveReadAhead</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>DiskCachePolicy</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.10:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.10:RAID.Integrated.1-1:DiskCachePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Default</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>T10PIStatus</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.10:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.10:RAID.Integrated.1-1:T10PIStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDStripeSize</n1:AttributeName>
+                    <n1:CurrentValue>512(256 KB)</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.10:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.10:RAID.Integrated.1-1:RAIDStripeSize</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>0</n1:PossibleValues>
+                    <n1:PossibleValues>1(512 Bytes)</n1:PossibleValues>
+                    <n1:PossibleValues>2(1 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4(2 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8(4 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16(8 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32(16 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>64(32 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>128(64 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>256(128 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>512(256 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>1024(512 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>2048(1024 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4096(2048 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8192(4096 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16384(8192 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32768(16384 KB)</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultWritePolicy</n1:AttributeName>
+                    <n1:CurrentValue>WriteBack</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.11:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.11:RAID.Integrated.1-1:RAIDdefaultWritePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>WriteThrough</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBack</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBackForce</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultReadPolicy</n1:AttributeName>
+                    <n1:CurrentValue>ReadAhead</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.11:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.11:RAID.Integrated.1-1:RAIDdefaultReadPolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>NoReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>ReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>AdaptiveReadAhead</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>DiskCachePolicy</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.11:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.11:RAID.Integrated.1-1:DiskCachePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Default</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>T10PIStatus</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.11:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.11:RAID.Integrated.1-1:T10PIStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDStripeSize</n1:AttributeName>
+                    <n1:CurrentValue>512(256 KB)</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.11:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.11:RAID.Integrated.1-1:RAIDStripeSize</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>0</n1:PossibleValues>
+                    <n1:PossibleValues>1(512 Bytes)</n1:PossibleValues>
+                    <n1:PossibleValues>2(1 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4(2 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8(4 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16(8 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32(16 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>64(32 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>128(64 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>256(128 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>512(256 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>1024(512 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>2048(1024 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4096(2048 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8192(4096 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16384(8192 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32768(16384 KB)</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultWritePolicy</n1:AttributeName>
+                    <n1:CurrentValue>WriteBack</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.12:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.12:RAID.Integrated.1-1:RAIDdefaultWritePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>WriteThrough</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBack</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBackForce</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultReadPolicy</n1:AttributeName>
+                    <n1:CurrentValue>ReadAhead</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.12:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.12:RAID.Integrated.1-1:RAIDdefaultReadPolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>NoReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>ReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>AdaptiveReadAhead</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>DiskCachePolicy</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.12:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.12:RAID.Integrated.1-1:DiskCachePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Default</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>T10PIStatus</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.12:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.12:RAID.Integrated.1-1:T10PIStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDStripeSize</n1:AttributeName>
+                    <n1:CurrentValue>512(256 KB)</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.12:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.12:RAID.Integrated.1-1:RAIDStripeSize</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>0</n1:PossibleValues>
+                    <n1:PossibleValues>1(512 Bytes)</n1:PossibleValues>
+                    <n1:PossibleValues>2(1 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4(2 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8(4 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16(8 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32(16 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>64(32 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>128(64 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>256(128 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>512(256 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>1024(512 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>2048(1024 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4096(2048 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8192(4096 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16384(8192 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32768(16384 KB)</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultWritePolicy</n1:AttributeName>
+                    <n1:CurrentValue>WriteBack</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.13:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.13:RAID.Integrated.1-1:RAIDdefaultWritePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>WriteThrough</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBack</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBackForce</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultReadPolicy</n1:AttributeName>
+                    <n1:CurrentValue>ReadAhead</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.13:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.13:RAID.Integrated.1-1:RAIDdefaultReadPolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>NoReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>ReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>AdaptiveReadAhead</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>DiskCachePolicy</n1:AttributeName>
+                    <n1:CurrentValue>Enabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.13:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.13:RAID.Integrated.1-1:DiskCachePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Default</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>T10PIStatus</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.13:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.13:RAID.Integrated.1-1:T10PIStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDStripeSize</n1:AttributeName>
+                    <n1:CurrentValue>512(256 KB)</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.13:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.13:RAID.Integrated.1-1:RAIDStripeSize</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>0</n1:PossibleValues>
+                    <n1:PossibleValues>1(512 Bytes)</n1:PossibleValues>
+                    <n1:PossibleValues>2(1 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4(2 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8(4 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16(8 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32(16 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>64(32 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>128(64 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>256(128 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>512(256 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>1024(512 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>2048(1024 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4096(2048 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8192(4096 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16384(8192 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32768(16384 KB)</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultWritePolicy</n1:AttributeName>
+                    <n1:CurrentValue>WriteBack</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.14:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.14:RAID.Integrated.1-1:RAIDdefaultWritePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>WriteThrough</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBack</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBackForce</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultReadPolicy</n1:AttributeName>
+                    <n1:CurrentValue>ReadAhead</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.14:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.14:RAID.Integrated.1-1:RAIDdefaultReadPolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>NoReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>ReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>AdaptiveReadAhead</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>DiskCachePolicy</n1:AttributeName>
+                    <n1:CurrentValue>Enabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.14:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.14:RAID.Integrated.1-1:DiskCachePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Default</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>T10PIStatus</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.14:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.14:RAID.Integrated.1-1:T10PIStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDStripeSize</n1:AttributeName>
+                    <n1:CurrentValue>512(256 KB)</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.14:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.14:RAID.Integrated.1-1:RAIDStripeSize</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>0</n1:PossibleValues>
+                    <n1:PossibleValues>1(512 Bytes)</n1:PossibleValues>
+                    <n1:PossibleValues>2(1 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4(2 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8(4 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16(8 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32(16 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>64(32 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>128(64 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>256(128 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>512(256 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>1024(512 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>2048(1024 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4096(2048 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8192(4096 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16384(8192 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32768(16384 KB)</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultWritePolicy</n1:AttributeName>
+                    <n1:CurrentValue>WriteBack</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.15:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.15:RAID.Integrated.1-1:RAIDdefaultWritePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>WriteThrough</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBack</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBackForce</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultReadPolicy</n1:AttributeName>
+                    <n1:CurrentValue>ReadAhead</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.15:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.15:RAID.Integrated.1-1:RAIDdefaultReadPolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>NoReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>ReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>AdaptiveReadAhead</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>DiskCachePolicy</n1:AttributeName>
+                    <n1:CurrentValue>Enabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.15:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.15:RAID.Integrated.1-1:DiskCachePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Default</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>T10PIStatus</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.15:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.15:RAID.Integrated.1-1:T10PIStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDStripeSize</n1:AttributeName>
+                    <n1:CurrentValue>512(256 KB)</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.15:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.15:RAID.Integrated.1-1:RAIDStripeSize</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>0</n1:PossibleValues>
+                    <n1:PossibleValues>1(512 Bytes)</n1:PossibleValues>
+                    <n1:PossibleValues>2(1 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4(2 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8(4 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16(8 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32(16 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>64(32 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>128(64 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>256(128 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>512(256 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>1024(512 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>2048(1024 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4096(2048 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8192(4096 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16384(8192 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32768(16384 KB)</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultWritePolicy</n1:AttributeName>
+                    <n1:CurrentValue>WriteBack</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.16:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.16:RAID.Integrated.1-1:RAIDdefaultWritePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>WriteThrough</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBack</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBackForce</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultReadPolicy</n1:AttributeName>
+                    <n1:CurrentValue>ReadAhead</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.16:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.16:RAID.Integrated.1-1:RAIDdefaultReadPolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>NoReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>ReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>AdaptiveReadAhead</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>DiskCachePolicy</n1:AttributeName>
+                    <n1:CurrentValue>Enabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.16:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.16:RAID.Integrated.1-1:DiskCachePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Default</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>T10PIStatus</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.16:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.16:RAID.Integrated.1-1:T10PIStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDStripeSize</n1:AttributeName>
+                    <n1:CurrentValue>512(256 KB)</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.16:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.16:RAID.Integrated.1-1:RAIDStripeSize</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>0</n1:PossibleValues>
+                    <n1:PossibleValues>1(512 Bytes)</n1:PossibleValues>
+                    <n1:PossibleValues>2(1 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4(2 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8(4 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16(8 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32(16 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>64(32 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>128(64 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>256(128 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>512(256 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>1024(512 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>2048(1024 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4096(2048 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8192(4096 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16384(8192 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32768(16384 KB)</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultWritePolicy</n1:AttributeName>
+                    <n1:CurrentValue>WriteBack</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.17:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.17:RAID.Integrated.1-1:RAIDdefaultWritePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>WriteThrough</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBack</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBackForce</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultReadPolicy</n1:AttributeName>
+                    <n1:CurrentValue>ReadAhead</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.17:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.17:RAID.Integrated.1-1:RAIDdefaultReadPolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>NoReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>ReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>AdaptiveReadAhead</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>DiskCachePolicy</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.17:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.17:RAID.Integrated.1-1:DiskCachePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Default</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>T10PIStatus</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.17:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.17:RAID.Integrated.1-1:T10PIStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDStripeSize</n1:AttributeName>
+                    <n1:CurrentValue>512(256 KB)</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.17:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.17:RAID.Integrated.1-1:RAIDStripeSize</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>0</n1:PossibleValues>
+                    <n1:PossibleValues>1(512 Bytes)</n1:PossibleValues>
+                    <n1:PossibleValues>2(1 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4(2 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8(4 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16(8 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32(16 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>64(32 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>128(64 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>256(128 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>512(256 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>1024(512 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>2048(1024 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4096(2048 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8192(4096 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16384(8192 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32768(16384 KB)</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultWritePolicy</n1:AttributeName>
+                    <n1:CurrentValue>WriteBack</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.18:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.18:RAID.Integrated.1-1:RAIDdefaultWritePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>WriteThrough</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBack</n1:PossibleValues>
+                    <n1:PossibleValues>WriteBackForce</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDdefaultReadPolicy</n1:AttributeName>
+                    <n1:CurrentValue>ReadAhead</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.18:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.18:RAID.Integrated.1-1:RAIDdefaultReadPolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>NoReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>ReadAhead</n1:PossibleValues>
+                    <n1:PossibleValues>AdaptiveReadAhead</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>DiskCachePolicy</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.18:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.18:RAID.Integrated.1-1:DiskCachePolicy</n1:InstanceID>
+                    <n1:IsReadOnly>false</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Default</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>T10PIStatus</n1:AttributeName>
+                    <n1:CurrentValue>Disabled</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.18:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.18:RAID.Integrated.1-1:T10PIStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Disabled</n1:PossibleValues>
+                    <n1:PossibleValues>Enabled</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDStripeSize</n1:AttributeName>
+                    <n1:CurrentValue>512(256 KB)</n1:CurrentValue>
+                    <n1:FQDD>Disk.Virtual.18:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Virtual.18:RAID.Integrated.1-1:RAIDStripeSize</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>0</n1:PossibleValues>
+                    <n1:PossibleValues>1(512 Bytes)</n1:PossibleValues>
+                    <n1:PossibleValues>2(1 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4(2 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8(4 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16(8 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32(16 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>64(32 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>128(64 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>256(128 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>512(256 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>1024(512 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>2048(1024 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>4096(2048 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>8192(4096 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>16384(8192 KB)</n1:PossibleValues>
+                    <n1:PossibleValues>32768(16384 KB)</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDMultipath</n1:AttributeName>
+                    <n1:CurrentValue>Off</n1:CurrentValue>
+                    <n1:FQDD>Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDMultipath</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Off</n1:PossibleValues>
+                    <n1:PossibleValues>On</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>BackplaneType</n1:AttributeName>
+                    <n1:CurrentValue>Not Shared</n1:CurrentValue>
+                    <n1:FQDD>Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Enclosure.Internal.0-1:RAID.Integrated.1-1:BackplaneType</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Not Shared</n1:PossibleValues>
+                    <n1:PossibleValues>Shared</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDPDState</n1:AttributeName>
+                    <n1:CurrentValue>Online</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDPDState</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Unknown</n1:PossibleValues>
+                    <n1:PossibleValues>Ready</n1:PossibleValues>
+                    <n1:PossibleValues>Online</n1:PossibleValues>
+                    <n1:PossibleValues>Foreign</n1:PossibleValues>
+                    <n1:PossibleValues>Blocked</n1:PossibleValues>
+                    <n1:PossibleValues>Failed</n1:PossibleValues>
+                    <n1:PossibleValues>Non-RAID</n1:PossibleValues>
+                    <n1:PossibleValues>Missing</n1:PossibleValues>
+                    <n1:PossibleValues>Offline</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDHotSpareStatus</n1:AttributeName>
+                    <n1:CurrentValue>No</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDHotSpareStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>No</n1:PossibleValues>
+                    <n1:PossibleValues>Dedicated</n1:PossibleValues>
+                    <n1:PossibleValues>Global</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDNegotiatedSpeed</n1:AttributeName>
+                    <n1:CurrentValue>12_GBS</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNegotiatedSpeed</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>1_5_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>3_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>6_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>12_GBS</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDPDState</n1:AttributeName>
+                    <n1:CurrentValue>Online</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDPDState</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Unknown</n1:PossibleValues>
+                    <n1:PossibleValues>Ready</n1:PossibleValues>
+                    <n1:PossibleValues>Online</n1:PossibleValues>
+                    <n1:PossibleValues>Foreign</n1:PossibleValues>
+                    <n1:PossibleValues>Blocked</n1:PossibleValues>
+                    <n1:PossibleValues>Failed</n1:PossibleValues>
+                    <n1:PossibleValues>Non-RAID</n1:PossibleValues>
+                    <n1:PossibleValues>Missing</n1:PossibleValues>
+                    <n1:PossibleValues>Offline</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDHotSpareStatus</n1:AttributeName>
+                    <n1:CurrentValue>No</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDHotSpareStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>No</n1:PossibleValues>
+                    <n1:PossibleValues>Dedicated</n1:PossibleValues>
+                    <n1:PossibleValues>Global</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDNegotiatedSpeed</n1:AttributeName>
+                    <n1:CurrentValue>12_GBS</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNegotiatedSpeed</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>1_5_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>3_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>6_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>12_GBS</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDPDState</n1:AttributeName>
+                    <n1:CurrentValue>Online</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.2:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.2:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDPDState</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Unknown</n1:PossibleValues>
+                    <n1:PossibleValues>Ready</n1:PossibleValues>
+                    <n1:PossibleValues>Online</n1:PossibleValues>
+                    <n1:PossibleValues>Foreign</n1:PossibleValues>
+                    <n1:PossibleValues>Blocked</n1:PossibleValues>
+                    <n1:PossibleValues>Failed</n1:PossibleValues>
+                    <n1:PossibleValues>Non-RAID</n1:PossibleValues>
+                    <n1:PossibleValues>Missing</n1:PossibleValues>
+                    <n1:PossibleValues>Offline</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDHotSpareStatus</n1:AttributeName>
+                    <n1:CurrentValue>No</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.2:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.2:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDHotSpareStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>No</n1:PossibleValues>
+                    <n1:PossibleValues>Dedicated</n1:PossibleValues>
+                    <n1:PossibleValues>Global</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDNegotiatedSpeed</n1:AttributeName>
+                    <n1:CurrentValue>12_GBS</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.2:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.2:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNegotiatedSpeed</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>1_5_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>3_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>6_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>12_GBS</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDPDState</n1:AttributeName>
+                    <n1:CurrentValue>Online</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.3:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.3:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDPDState</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Unknown</n1:PossibleValues>
+                    <n1:PossibleValues>Ready</n1:PossibleValues>
+                    <n1:PossibleValues>Online</n1:PossibleValues>
+                    <n1:PossibleValues>Foreign</n1:PossibleValues>
+                    <n1:PossibleValues>Blocked</n1:PossibleValues>
+                    <n1:PossibleValues>Failed</n1:PossibleValues>
+                    <n1:PossibleValues>Non-RAID</n1:PossibleValues>
+                    <n1:PossibleValues>Missing</n1:PossibleValues>
+                    <n1:PossibleValues>Offline</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDHotSpareStatus</n1:AttributeName>
+                    <n1:CurrentValue>No</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.3:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.3:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDHotSpareStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>No</n1:PossibleValues>
+                    <n1:PossibleValues>Dedicated</n1:PossibleValues>
+                    <n1:PossibleValues>Global</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDNegotiatedSpeed</n1:AttributeName>
+                    <n1:CurrentValue>12_GBS</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.3:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.3:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNegotiatedSpeed</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>1_5_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>3_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>6_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>12_GBS</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDPDState</n1:AttributeName>
+                    <n1:CurrentValue>Online</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.4:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.4:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDPDState</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Unknown</n1:PossibleValues>
+                    <n1:PossibleValues>Ready</n1:PossibleValues>
+                    <n1:PossibleValues>Online</n1:PossibleValues>
+                    <n1:PossibleValues>Foreign</n1:PossibleValues>
+                    <n1:PossibleValues>Blocked</n1:PossibleValues>
+                    <n1:PossibleValues>Failed</n1:PossibleValues>
+                    <n1:PossibleValues>Non-RAID</n1:PossibleValues>
+                    <n1:PossibleValues>Missing</n1:PossibleValues>
+                    <n1:PossibleValues>Offline</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDHotSpareStatus</n1:AttributeName>
+                    <n1:CurrentValue>No</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.4:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.4:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDHotSpareStatus
+                    </n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>No</n1:PossibleValues>
+                    <n1:PossibleValues>Dedicated</n1:PossibleValues>
+                    <n1:PossibleValues>Global</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDNegotiatedSpeed</n1:AttributeName>
+                    <n1:CurrentValue>12_GBS</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.4:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.4:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNegotiatedSpeed</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>1_5_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>3_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>6_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>12_GBS</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDPDState</n1:AttributeName>
+                    <n1:CurrentValue>Online</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.5:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.5:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDPDState</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Unknown</n1:PossibleValues>
+                    <n1:PossibleValues>Ready</n1:PossibleValues>
+                    <n1:PossibleValues>Online</n1:PossibleValues>
+                    <n1:PossibleValues>Foreign</n1:PossibleValues>
+                    <n1:PossibleValues>Blocked</n1:PossibleValues>
+                    <n1:PossibleValues>Failed</n1:PossibleValues>
+                    <n1:PossibleValues>Non-RAID</n1:PossibleValues>
+                    <n1:PossibleValues>Missing</n1:PossibleValues>
+                    <n1:PossibleValues>Offline</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDHotSpareStatus</n1:AttributeName>
+                    <n1:CurrentValue>No</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.5:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.5:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDHotSpareStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>No</n1:PossibleValues>
+                    <n1:PossibleValues>Dedicated</n1:PossibleValues>
+                    <n1:PossibleValues>Global</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDNegotiatedSpeed</n1:AttributeName>
+                    <n1:CurrentValue>12_GBS</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.5:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.5:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNegotiatedSpeed</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>1_5_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>3_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>6_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>12_GBS</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDPDState</n1:AttributeName>
+                    <n1:CurrentValue>Online</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.6:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.6:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDPDState</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Unknown</n1:PossibleValues>
+                    <n1:PossibleValues>Ready</n1:PossibleValues>
+                    <n1:PossibleValues>Online</n1:PossibleValues>
+                    <n1:PossibleValues>Foreign</n1:PossibleValues>
+                    <n1:PossibleValues>Blocked</n1:PossibleValues>
+                    <n1:PossibleValues>Failed</n1:PossibleValues>
+                    <n1:PossibleValues>Non-RAID</n1:PossibleValues>
+                    <n1:PossibleValues>Missing</n1:PossibleValues>
+                    <n1:PossibleValues>Offline</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDHotSpareStatus</n1:AttributeName>
+                    <n1:CurrentValue>No</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.6:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.6:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDHotSpareStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>No</n1:PossibleValues>
+                    <n1:PossibleValues>Dedicated</n1:PossibleValues>
+                    <n1:PossibleValues>Global</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDNegotiatedSpeed</n1:AttributeName>
+                    <n1:CurrentValue>12_GBS</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.6:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.6:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNegotiatedSpeed</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>1_5_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>3_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>6_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>12_GBS</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDPDState</n1:AttributeName>
+                    <n1:CurrentValue>Online</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.7:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.7:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDPDState</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Unknown</n1:PossibleValues>
+                    <n1:PossibleValues>Ready</n1:PossibleValues>
+                    <n1:PossibleValues>Online</n1:PossibleValues>
+                    <n1:PossibleValues>Foreign</n1:PossibleValues>
+                    <n1:PossibleValues>Blocked</n1:PossibleValues>
+                    <n1:PossibleValues>Failed</n1:PossibleValues>
+                    <n1:PossibleValues>Non-RAID</n1:PossibleValues>
+                    <n1:PossibleValues>Missing</n1:PossibleValues>
+                    <n1:PossibleValues>Offline</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDHotSpareStatus</n1:AttributeName>
+                    <n1:CurrentValue>No</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.7:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.7:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDHotSpareStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>No</n1:PossibleValues>
+                    <n1:PossibleValues>Dedicated</n1:PossibleValues>
+                    <n1:PossibleValues>Global</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDNegotiatedSpeed</n1:AttributeName>
+                    <n1:CurrentValue>12_GBS</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.7:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.7:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNegotiatedSpeed</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>1_5_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>3_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>6_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>12_GBS</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDPDState</n1:AttributeName>
+                    <n1:CurrentValue>Online</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.8:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.8:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDPDState</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Unknown</n1:PossibleValues>
+                    <n1:PossibleValues>Ready</n1:PossibleValues>
+                    <n1:PossibleValues>Online</n1:PossibleValues>
+                    <n1:PossibleValues>Foreign</n1:PossibleValues>
+                    <n1:PossibleValues>Blocked</n1:PossibleValues>
+                    <n1:PossibleValues>Failed</n1:PossibleValues>
+                    <n1:PossibleValues>Non-RAID</n1:PossibleValues>
+                    <n1:PossibleValues>Missing</n1:PossibleValues>
+                    <n1:PossibleValues>Offline</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDHotSpareStatus</n1:AttributeName>
+                    <n1:CurrentValue>No</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.8:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.8:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDHotSpareStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>No</n1:PossibleValues>
+                    <n1:PossibleValues>Dedicated</n1:PossibleValues>
+                    <n1:PossibleValues>Global</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDNegotiatedSpeed</n1:AttributeName>
+                    <n1:CurrentValue>12_GBS</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.8:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.8:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNegotiatedSpeed</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>1_5_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>3_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>6_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>12_GBS</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDPDState</n1:AttributeName>
+                    <n1:CurrentValue>Online</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.9:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.9:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDPDState</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Unknown</n1:PossibleValues>
+                    <n1:PossibleValues>Ready</n1:PossibleValues>
+                    <n1:PossibleValues>Online</n1:PossibleValues>
+                    <n1:PossibleValues>Foreign</n1:PossibleValues>
+                    <n1:PossibleValues>Blocked</n1:PossibleValues>
+                    <n1:PossibleValues>Failed</n1:PossibleValues>
+                    <n1:PossibleValues>Non-RAID</n1:PossibleValues>
+                    <n1:PossibleValues>Missing</n1:PossibleValues>
+                    <n1:PossibleValues>Offline</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDHotSpareStatus</n1:AttributeName>
+                    <n1:CurrentValue>No</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.9:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.9:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDHotSpareStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>No</n1:PossibleValues>
+                    <n1:PossibleValues>Dedicated</n1:PossibleValues>
+                    <n1:PossibleValues>Global</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDNegotiatedSpeed</n1:AttributeName>
+                    <n1:CurrentValue>12_GBS</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.9:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.9:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNegotiatedSpeed</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>1_5_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>3_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>6_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>12_GBS</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDPDState</n1:AttributeName>
+                    <n1:CurrentValue>Online</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.10:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.10:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDPDState</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Unknown</n1:PossibleValues>
+                    <n1:PossibleValues>Ready</n1:PossibleValues>
+                    <n1:PossibleValues>Online</n1:PossibleValues>
+                    <n1:PossibleValues>Foreign</n1:PossibleValues>
+                    <n1:PossibleValues>Blocked</n1:PossibleValues>
+                    <n1:PossibleValues>Failed</n1:PossibleValues>
+                    <n1:PossibleValues>Non-RAID</n1:PossibleValues>
+                    <n1:PossibleValues>Missing</n1:PossibleValues>
+                    <n1:PossibleValues>Offline</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDHotSpareStatus</n1:AttributeName>
+                    <n1:CurrentValue>No</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.10:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.10:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDHotSpareStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>No</n1:PossibleValues>
+                    <n1:PossibleValues>Dedicated</n1:PossibleValues>
+                    <n1:PossibleValues>Global</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDNegotiatedSpeed</n1:AttributeName>
+                    <n1:CurrentValue>12_GBS</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.10:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.10:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNegotiatedSpeed</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>1_5_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>3_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>6_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>12_GBS</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDPDState</n1:AttributeName>
+                    <n1:CurrentValue>Online</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.11:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.11:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDPDState</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Unknown</n1:PossibleValues>
+                    <n1:PossibleValues>Ready</n1:PossibleValues>
+                    <n1:PossibleValues>Online</n1:PossibleValues>
+                    <n1:PossibleValues>Foreign</n1:PossibleValues>
+                    <n1:PossibleValues>Blocked</n1:PossibleValues>
+                    <n1:PossibleValues>Failed</n1:PossibleValues>
+                    <n1:PossibleValues>Non-RAID</n1:PossibleValues>
+                    <n1:PossibleValues>Missing</n1:PossibleValues>
+                    <n1:PossibleValues>Offline</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDHotSpareStatus</n1:AttributeName>
+                    <n1:CurrentValue>No</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.11:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.11:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDHotSpareStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>No</n1:PossibleValues>
+                    <n1:PossibleValues>Dedicated</n1:PossibleValues>
+                    <n1:PossibleValues>Global</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDNegotiatedSpeed</n1:AttributeName>
+                    <n1:CurrentValue>12_GBS</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.11:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.11:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNegotiatedSpeed</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>1_5_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>3_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>6_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>12_GBS</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDPDState</n1:AttributeName>
+                    <n1:CurrentValue>Online</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.12:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.12:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDPDState</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Unknown</n1:PossibleValues>
+                    <n1:PossibleValues>Ready</n1:PossibleValues>
+                    <n1:PossibleValues>Online</n1:PossibleValues>
+                    <n1:PossibleValues>Foreign</n1:PossibleValues>
+                    <n1:PossibleValues>Blocked</n1:PossibleValues>
+                    <n1:PossibleValues>Failed</n1:PossibleValues>
+                    <n1:PossibleValues>Non-RAID</n1:PossibleValues>
+                    <n1:PossibleValues>Missing</n1:PossibleValues>
+                    <n1:PossibleValues>Offline</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDHotSpareStatus</n1:AttributeName>
+                    <n1:CurrentValue>No</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.12:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.12:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDHotSpareStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>No</n1:PossibleValues>
+                    <n1:PossibleValues>Dedicated</n1:PossibleValues>
+                    <n1:PossibleValues>Global</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDNegotiatedSpeed</n1:AttributeName>
+                    <n1:CurrentValue>6_GBS</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.12:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.12:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNegotiatedSpeed</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>1_5_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>3_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>6_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>12_GBS</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDPDState</n1:AttributeName>
+                    <n1:CurrentValue>Online</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.13:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.13:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDPDState</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Unknown</n1:PossibleValues>
+                    <n1:PossibleValues>Ready</n1:PossibleValues>
+                    <n1:PossibleValues>Online</n1:PossibleValues>
+                    <n1:PossibleValues>Foreign</n1:PossibleValues>
+                    <n1:PossibleValues>Blocked</n1:PossibleValues>
+                    <n1:PossibleValues>Failed</n1:PossibleValues>
+                    <n1:PossibleValues>Non-RAID</n1:PossibleValues>
+                    <n1:PossibleValues>Missing</n1:PossibleValues>
+                    <n1:PossibleValues>Offline</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDHotSpareStatus</n1:AttributeName>
+                    <n1:CurrentValue>No</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.13:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.13:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDHotSpareStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>No</n1:PossibleValues>
+                    <n1:PossibleValues>Dedicated</n1:PossibleValues>
+                    <n1:PossibleValues>Global</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDNegotiatedSpeed</n1:AttributeName>
+                    <n1:CurrentValue>6_GBS</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.13:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.13:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNegotiatedSpeed</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>1_5_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>3_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>6_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>12_GBS</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDPDState</n1:AttributeName>
+                    <n1:CurrentValue>Online</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.14:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.14:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDPDState</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Unknown</n1:PossibleValues>
+                    <n1:PossibleValues>Ready</n1:PossibleValues>
+                    <n1:PossibleValues>Online</n1:PossibleValues>
+                    <n1:PossibleValues>Foreign</n1:PossibleValues>
+                    <n1:PossibleValues>Blocked</n1:PossibleValues>
+                    <n1:PossibleValues>Failed</n1:PossibleValues>
+                    <n1:PossibleValues>Non-RAID</n1:PossibleValues>
+                    <n1:PossibleValues>Missing</n1:PossibleValues>
+                    <n1:PossibleValues>Offline</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDHotSpareStatus</n1:AttributeName>
+                    <n1:CurrentValue>No</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.14:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.14:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDHotSpareStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>No</n1:PossibleValues>
+                    <n1:PossibleValues>Dedicated</n1:PossibleValues>
+                    <n1:PossibleValues>Global</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDNegotiatedSpeed</n1:AttributeName>
+                    <n1:CurrentValue>6_GBS</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.14:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.14:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNegotiatedSpeed</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>1_5_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>3_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>6_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>12_GBS</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDPDState</n1:AttributeName>
+                    <n1:CurrentValue>Online</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.15:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.15:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDPDState</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Unknown</n1:PossibleValues>
+                    <n1:PossibleValues>Ready</n1:PossibleValues>
+                    <n1:PossibleValues>Online</n1:PossibleValues>
+                    <n1:PossibleValues>Foreign</n1:PossibleValues>
+                    <n1:PossibleValues>Blocked</n1:PossibleValues>
+                    <n1:PossibleValues>Failed</n1:PossibleValues>
+                    <n1:PossibleValues>Non-RAID</n1:PossibleValues>
+                    <n1:PossibleValues>Missing</n1:PossibleValues>
+                    <n1:PossibleValues>Offline</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDHotSpareStatus</n1:AttributeName>
+                    <n1:CurrentValue>No</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.15:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.15:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDHotSpareStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>No</n1:PossibleValues>
+                    <n1:PossibleValues>Dedicated</n1:PossibleValues>
+                    <n1:PossibleValues>Global</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDNegotiatedSpeed</n1:AttributeName>
+                    <n1:CurrentValue>6_GBS</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.15:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.15:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNegotiatedSpeed</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>1_5_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>3_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>6_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>12_GBS</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDPDState</n1:AttributeName>
+                    <n1:CurrentValue>Online</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.16:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.16:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDPDState</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Unknown</n1:PossibleValues>
+                    <n1:PossibleValues>Ready</n1:PossibleValues>
+                    <n1:PossibleValues>Online</n1:PossibleValues>
+                    <n1:PossibleValues>Foreign</n1:PossibleValues>
+                    <n1:PossibleValues>Blocked</n1:PossibleValues>
+                    <n1:PossibleValues>Failed</n1:PossibleValues>
+                    <n1:PossibleValues>Non-RAID</n1:PossibleValues>
+                    <n1:PossibleValues>Missing</n1:PossibleValues>
+                    <n1:PossibleValues>Offline</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDHotSpareStatus</n1:AttributeName>
+                    <n1:CurrentValue>No</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.16:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.16:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDHotSpareStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>No</n1:PossibleValues>
+                    <n1:PossibleValues>Dedicated</n1:PossibleValues>
+                    <n1:PossibleValues>Global</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDNegotiatedSpeed</n1:AttributeName>
+                    <n1:CurrentValue>12_GBS</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.16:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.16:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNegotiatedSpeed</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>1_5_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>3_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>6_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>12_GBS</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDPDState</n1:AttributeName>
+                    <n1:CurrentValue>Online</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.17:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.17:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDPDState</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Unknown</n1:PossibleValues>
+                    <n1:PossibleValues>Ready</n1:PossibleValues>
+                    <n1:PossibleValues>Online</n1:PossibleValues>
+                    <n1:PossibleValues>Foreign</n1:PossibleValues>
+                    <n1:PossibleValues>Blocked</n1:PossibleValues>
+                    <n1:PossibleValues>Failed</n1:PossibleValues>
+                    <n1:PossibleValues>Non-RAID</n1:PossibleValues>
+                    <n1:PossibleValues>Missing</n1:PossibleValues>
+                    <n1:PossibleValues>Offline</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDHotSpareStatus</n1:AttributeName>
+                    <n1:CurrentValue>No</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.17:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.17:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDHotSpareStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>No</n1:PossibleValues>
+                    <n1:PossibleValues>Dedicated</n1:PossibleValues>
+                    <n1:PossibleValues>Global</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDNegotiatedSpeed</n1:AttributeName>
+                    <n1:CurrentValue>12_GBS</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.17:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.17:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNegotiatedSpeed</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>1_5_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>3_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>6_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>12_GBS</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDPDState</n1:AttributeName>
+                    <n1:CurrentValue>Online</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.18:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.18:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDPDState</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Unknown</n1:PossibleValues>
+                    <n1:PossibleValues>Ready</n1:PossibleValues>
+                    <n1:PossibleValues>Online</n1:PossibleValues>
+                    <n1:PossibleValues>Foreign</n1:PossibleValues>
+                    <n1:PossibleValues>Blocked</n1:PossibleValues>
+                    <n1:PossibleValues>Failed</n1:PossibleValues>
+                    <n1:PossibleValues>Non-RAID</n1:PossibleValues>
+                    <n1:PossibleValues>Missing</n1:PossibleValues>
+                    <n1:PossibleValues>Offline</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDHotSpareStatus</n1:AttributeName>
+                    <n1:CurrentValue>No</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.18:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.18:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDHotSpareStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>No</n1:PossibleValues>
+                    <n1:PossibleValues>Dedicated</n1:PossibleValues>
+                    <n1:PossibleValues>Global</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDNegotiatedSpeed</n1:AttributeName>
+                    <n1:CurrentValue>12_GBS</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.18:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.18:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNegotiatedSpeed</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>1_5_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>3_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>6_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>12_GBS</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDPDState</n1:AttributeName>
+                    <n1:CurrentValue>Online</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.19:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.19:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDPDState</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>Unknown</n1:PossibleValues>
+                    <n1:PossibleValues>Ready</n1:PossibleValues>
+                    <n1:PossibleValues>Online</n1:PossibleValues>
+                    <n1:PossibleValues>Foreign</n1:PossibleValues>
+                    <n1:PossibleValues>Blocked</n1:PossibleValues>
+                    <n1:PossibleValues>Failed</n1:PossibleValues>
+                    <n1:PossibleValues>Non-RAID</n1:PossibleValues>
+                    <n1:PossibleValues>Missing</n1:PossibleValues>
+                    <n1:PossibleValues>Offline</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDHotSpareStatus</n1:AttributeName>
+                    <n1:CurrentValue>No</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.19:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.19:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDHotSpareStatus</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>No</n1:PossibleValues>
+                    <n1:PossibleValues>Dedicated</n1:PossibleValues>
+                    <n1:PossibleValues>Global</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                <n1:DCIM_RAIDEnumeration>
+                    <n1:AttributeName>RAIDNegotiatedSpeed</n1:AttributeName>
+                    <n1:CurrentValue>12_GBS</n1:CurrentValue>
+                    <n1:FQDD>Disk.Bay.19:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+                    <n1:InstanceID>Disk.Bay.19:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNegotiatedSpeed</n1:InstanceID>
+                    <n1:IsReadOnly>true</n1:IsReadOnly>
+                    <n1:PendingValue xsi:nil="true"/>
+                    <n1:PossibleValues>1_5_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>3_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>6_GBS</n1:PossibleValues>
+                    <n1:PossibleValues>12_GBS</n1:PossibleValues>
+                </n1:DCIM_RAIDEnumeration>
+                </wsman:Items>
+        </wsen:EnumerateResponse>
+    </s:Body>
+</s:Envelope>
+

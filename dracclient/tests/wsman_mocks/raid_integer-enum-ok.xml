@@ -1,0 +1,416 @@
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsen="http://schemas.xmlsoap.org/ws/2004/09/enumeration" xmlns:wsman="http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd" xmlns:n1="http://schemas.dell.com/wbem/wscim/1/cim-schema/2/DCIM_RAIDInteger" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <s:Header>
+    <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+    <wsa:Action>http://schemas.xmlsoap.org/ws/2004/09/enumeration/EnumerateResponse</wsa:Action>
+    <wsa:RelatesTo>uuid:40206465-1566-46e3-bf05-9952ba57ec3c</wsa:RelatesTo>
+    <wsa:MessageID>uuid:6af777f7-9ef1-1ef1-b067-84d3878fd94c</wsa:MessageID>
+  </s:Header>
+  <s:Body>
+    <wsen:EnumerateResponse>
+      <wsman:Items>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDmaxSupportedVD</n1:AttributeName>
+          <n1:CurrentValue>240</n1:CurrentValue>
+          <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+          <n1:InstanceID>RAID.Integrated.1-1:RAIDmaxSupportedVD</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>0</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDmaxPDsInSpan</n1:AttributeName>
+          <n1:CurrentValue>32</n1:CurrentValue>
+          <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+          <n1:InstanceID>RAID.Integrated.1-1:RAIDmaxPDsInSpan</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>0</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDmaxSpansInVD</n1:AttributeName>
+          <n1:CurrentValue>8</n1:CurrentValue>
+          <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+          <n1:InstanceID>RAID.Integrated.1-1:RAIDmaxSpansInVD</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>0</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDrebuildRate</n1:AttributeName>
+          <n1:CurrentValue>30</n1:CurrentValue>
+          <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+          <n1:InstanceID>RAID.Integrated.1-1:RAIDrebuildRate</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>100</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDccRate</n1:AttributeName>
+          <n1:CurrentValue>30</n1:CurrentValue>
+          <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+          <n1:InstanceID>RAID.Integrated.1-1:RAIDccRate</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>100</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDreconstructRate</n1:AttributeName>
+          <n1:CurrentValue>30</n1:CurrentValue>
+          <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+          <n1:InstanceID>RAID.Integrated.1-1:RAIDreconstructRate</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>100</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDbgiRate</n1:AttributeName>
+          <n1:CurrentValue>30</n1:CurrentValue>
+          <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+          <n1:InstanceID>RAID.Integrated.1-1:RAIDbgiRate</n1:InstanceID>
+          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>100</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDprRate</n1:AttributeName>
+          <n1:CurrentValue>30</n1:CurrentValue>
+          <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+          <n1:InstanceID>RAID.Integrated.1-1:RAIDprRate</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>100</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDspinDownIdleTime</n1:AttributeName>
+          <n1:CurrentValue>30</n1:CurrentValue>
+          <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+          <n1:InstanceID>RAID.Integrated.1-1:RAIDspinDownIdleTime</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>65535</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDprIterations</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:FQDD>RAID.Integrated.1-1</n1:FQDD>
+          <n1:InstanceID>RAID.Integrated.1-1:RAIDprIterations</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>4294967295</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDmaxSupportedVD</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:FQDD>AHCI.Embedded.2-1</n1:FQDD>
+          <n1:InstanceID>AHCI.Embedded.2-1:RAIDmaxSupportedVD</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>0</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDmaxPDsInSpan</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:FQDD>AHCI.Embedded.2-1</n1:FQDD>
+          <n1:InstanceID>AHCI.Embedded.2-1:RAIDmaxPDsInSpan</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>0</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDmaxSpansInVD</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:FQDD>AHCI.Embedded.2-1</n1:FQDD>
+          <n1:InstanceID>AHCI.Embedded.2-1:RAIDmaxSpansInVD</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>0</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDrebuildRate</n1:AttributeName>
+          <n1:CurrentValue>255</n1:CurrentValue>
+          <n1:FQDD>AHCI.Embedded.2-1</n1:FQDD>
+          <n1:InstanceID>AHCI.Embedded.2-1:RAIDrebuildRate</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>100</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDccRate</n1:AttributeName>
+          <n1:CurrentValue>255</n1:CurrentValue>
+          <n1:FQDD>AHCI.Embedded.2-1</n1:FQDD>
+          <n1:InstanceID>AHCI.Embedded.2-1:RAIDccRate</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>100</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDreconstructRate</n1:AttributeName>
+          <n1:CurrentValue>255</n1:CurrentValue>
+          <n1:FQDD>AHCI.Embedded.2-1</n1:FQDD>
+          <n1:InstanceID>AHCI.Embedded.2-1:RAIDreconstructRate</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>100</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDbgiRate</n1:AttributeName>
+          <n1:CurrentValue>255</n1:CurrentValue>
+          <n1:FQDD>AHCI.Embedded.2-1</n1:FQDD>
+          <n1:InstanceID>AHCI.Embedded.2-1:RAIDbgiRate</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>100</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDprRate</n1:AttributeName>
+          <n1:CurrentValue>255</n1:CurrentValue>
+          <n1:FQDD>AHCI.Embedded.2-1</n1:FQDD>
+          <n1:InstanceID>AHCI.Embedded.2-1:RAIDprRate</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>100</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDspinDownIdleTime</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:FQDD>AHCI.Embedded.2-1</n1:FQDD>
+          <n1:InstanceID>AHCI.Embedded.2-1:RAIDspinDownIdleTime</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>65535</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDprIterations</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:FQDD>AHCI.Embedded.2-1</n1:FQDD>
+          <n1:InstanceID>AHCI.Embedded.2-1:RAIDprIterations</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>4294967295</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDmaxSupportedVD</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:FQDD>AHCI.Embedded.1-1</n1:FQDD>
+          <n1:InstanceID>AHCI.Embedded.1-1:RAIDmaxSupportedVD</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>0</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDmaxPDsInSpan</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:FQDD>AHCI.Embedded.1-1</n1:FQDD>
+          <n1:InstanceID>AHCI.Embedded.1-1:RAIDmaxPDsInSpan</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>0</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDmaxSpansInVD</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:FQDD>AHCI.Embedded.1-1</n1:FQDD>
+          <n1:InstanceID>AHCI.Embedded.1-1:RAIDmaxSpansInVD</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>0</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDrebuildRate</n1:AttributeName>
+          <n1:CurrentValue>255</n1:CurrentValue>
+          <n1:FQDD>AHCI.Embedded.1-1</n1:FQDD>
+          <n1:InstanceID>AHCI.Embedded.1-1:RAIDrebuildRate</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>100</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDccRate</n1:AttributeName>
+          <n1:CurrentValue>255</n1:CurrentValue>
+          <n1:FQDD>AHCI.Embedded.1-1</n1:FQDD>
+          <n1:InstanceID>AHCI.Embedded.1-1:RAIDccRate</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>100</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDreconstructRate</n1:AttributeName>
+          <n1:CurrentValue>255</n1:CurrentValue>
+          <n1:FQDD>AHCI.Embedded.1-1</n1:FQDD>
+          <n1:InstanceID>AHCI.Embedded.1-1:RAIDreconstructRate</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>100</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDbgiRate</n1:AttributeName>
+          <n1:CurrentValue>255</n1:CurrentValue>
+          <n1:FQDD>AHCI.Embedded.1-1</n1:FQDD>
+          <n1:InstanceID>AHCI.Embedded.1-1:RAIDbgiRate</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>100</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDprRate</n1:AttributeName>
+          <n1:CurrentValue>255</n1:CurrentValue>
+          <n1:FQDD>AHCI.Embedded.1-1</n1:FQDD>
+          <n1:InstanceID>AHCI.Embedded.1-1:RAIDprRate</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>100</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDspinDownIdleTime</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:FQDD>AHCI.Embedded.1-1</n1:FQDD>
+          <n1:InstanceID>AHCI.Embedded.1-1:RAIDspinDownIdleTime</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>0</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>65535</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDprIterations</n1:AttributeName>
+          <n1:CurrentValue>0</n1:CurrentValue>
+          <n1:FQDD>AHCI.Embedded.1-1</n1:FQDD>
+          <n1:InstanceID>AHCI.Embedded.1-1:RAIDprIterations</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>1</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>4294967295</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDNominalMediumRotationRate</n1:AttributeName>
+          <n1:CurrentValue>10000</n1:CurrentValue>
+          <n1:FQDD>Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+          <n1:InstanceID>Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNominalMediumRotationRate</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>2</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>4294967295</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDNominalMediumRotationRate</n1:AttributeName>
+          <n1:CurrentValue>10000</n1:CurrentValue>
+          <n1:FQDD>Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+          <n1:InstanceID>Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNominalMediumRotationRate</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>2</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>4294967295</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDNominalMediumRotationRate</n1:AttributeName>
+          <n1:CurrentValue>10000</n1:CurrentValue>
+          <n1:FQDD>Disk.Bay.2:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+          <n1:InstanceID>Disk.Bay.2:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNominalMediumRotationRate</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>2</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>4294967295</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDNominalMediumRotationRate</n1:AttributeName>
+          <n1:CurrentValue>10000</n1:CurrentValue>
+          <n1:FQDD>Disk.Bay.3:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+          <n1:InstanceID>Disk.Bay.3:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNominalMediumRotationRate</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>2</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>4294967295</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDNominalMediumRotationRate</n1:AttributeName>
+          <n1:CurrentValue>10000</n1:CurrentValue>
+          <n1:FQDD>Disk.Bay.4:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+          <n1:InstanceID>Disk.Bay.4:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNominalMediumRotationRate</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>2</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>4294967295</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDNominalMediumRotationRate</n1:AttributeName>
+          <n1:CurrentValue>10000</n1:CurrentValue>
+          <n1:FQDD>Disk.Bay.5:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+          <n1:InstanceID>Disk.Bay.5:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNominalMediumRotationRate</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>2</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>4294967295</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDNominalMediumRotationRate</n1:AttributeName>
+          <n1:CurrentValue>10000</n1:CurrentValue>
+          <n1:FQDD>Disk.Bay.6:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+          <n1:InstanceID>Disk.Bay.6:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNominalMediumRotationRate</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>2</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>4294967295</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDNominalMediumRotationRate</n1:AttributeName>
+          <n1:CurrentValue>10000</n1:CurrentValue>
+          <n1:FQDD>Disk.Bay.7:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+          <n1:InstanceID>Disk.Bay.7:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNominalMediumRotationRate</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>2</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>4294967295</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDNominalMediumRotationRate</n1:AttributeName>
+          <n1:CurrentValue>10000</n1:CurrentValue>
+          <n1:FQDD>Disk.Bay.8:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+          <n1:InstanceID>Disk.Bay.8:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNominalMediumRotationRate</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>2</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>4294967295</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+        <n1:DCIM_RAIDInteger>
+          <n1:AttributeName>RAIDNominalMediumRotationRate</n1:AttributeName>
+          <n1:CurrentValue>10000</n1:CurrentValue>
+          <n1:FQDD>Disk.Bay.9:Enclosure.Internal.0-1:RAID.Integrated.1-1</n1:FQDD>
+          <n1:InstanceID>Disk.Bay.9:Enclosure.Internal.0-1:RAID.Integrated.1-1:RAIDNominalMediumRotationRate</n1:InstanceID>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
+          <n1:LowerBound>2</n1:LowerBound>
+          <n1:PendingValue xsi:nil="true"/>
+          <n1:UpperBound>4294967295</n1:UpperBound>
+        </n1:DCIM_RAIDInteger>
+      </wsman:Items>
+      <wsman:EndOfSequence/>
+    </wsen:EnumerateResponse>
+  </s:Body>
+</s:Envelope>
+
