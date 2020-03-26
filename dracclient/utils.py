@@ -320,7 +320,8 @@ def set_settings(settings_type,
                  target,
                  name_formatter=None,
                  include_commit_required=False,
-                 wait_for_idrac=True):
+                 wait_for_idrac=True,
+                 by_name=True):
     """Generically handles setting various types of settings on the iDRAC
 
     This method pulls the current list of settings from the iDRAC then compares
@@ -346,6 +347,8 @@ def set_settings(settings_type,
     :param wait_for_idrac: indicates whether or not to wait for the
                            iDRAC to be ready to accept commands before issuing
                            the command
+    :param by_name: Controls whether returned dictionary uses RAID
+                    attribute name or instance_id as key.
     :returns: a dictionary containing:
              - The commit_required key with a boolean value indicating
                whether a config job must be created for the values to be
@@ -366,17 +369,14 @@ def set_settings(settings_type,
     :raises: DRACUnexpectedReturnValue on return value mismatch
     :raises: InvalidParameterValue on invalid new setting
     """
-
-    current_settings = list_settings(client, namespaces, by_name=True,
+    current_settings = list_settings(client, namespaces, by_name=by_name,
                                      name_formatter=name_formatter,
                                      wait_for_idrac=wait_for_idrac)
 
     unknown_keys = set(new_settings) - set(current_settings)
     if unknown_keys:
-        msg = ('Unknown %(settings_type)s attributes found: '
-               '%(unknown_keys)r' %
-               {'settings_type': settings_type,
-                'unknown_keys': unknown_keys})
+        msg = ('Unknown %(settings_type)s attributes found: %(unknown_keys)r' %
+               {'settings_type': settings_type, 'unknown_keys': unknown_keys})
         raise exceptions.InvalidParameterValue(reason=msg)
 
     read_only_keys = []
@@ -386,11 +386,18 @@ def set_settings(settings_type,
     candidates = set(new_settings)
 
     for attr in candidates:
-        if str(new_settings[attr]) == str(
-                current_settings[attr].current_value):
-            unchanged_attribs.append(attr)
-        elif current_settings[attr].read_only:
+        # There are RAID settings that can have multiple values,
+        # however these are all read-only attributes.
+        # Filter out all read-only attributes first so that we exclude
+        # these settings from further consideration
+        current_setting_value = current_settings[attr].current_value
+        if type(current_setting_value) is list:
+            current_setting_value = current_setting_value[0]
+
+        if current_settings[attr].read_only:
             read_only_keys.append(attr)
+        elif str(new_settings[attr]) == str(current_setting_value):
+            unchanged_attribs.append(attr)
         else:
             validation_msg = current_settings[attr].validate(
                 new_settings[attr])
@@ -433,10 +440,20 @@ def set_settings(settings_type,
                  'SystemName': 'DCIM:ComputerSystem'}
 
     properties = {'Target': target,
-                  'AttributeName': attrib_names,
                   'AttributeValue': [new_settings[attr] for attr
                                      in attrib_names]}
-
+    # To set RAID settings, above we fetched list raid settings using
+    # instance_id to retrieve attribute values. When we pass instance_id in
+    # setattribute method for setting any new RAID settings, wsman raises
+    # an error. So another approach to set those settings is to list raid
+    # settings using instance_id and for settings new settings, pass the
+    # attribute names in list to SetAttributes method along with the target.
+    # That's the reason, we need to handle RAID specific settings like below
+    if settings_type == 'RAID':
+        properties['AttributeName'] = [current_settings[attr].name for
+                                       attr in attrib_names]
+    else:
+        properties['AttributeName'] = attrib_names
     doc = client.invoke(resource_uri, 'SetAttributes',
                         selectors, properties,
                         wait_for_idrac=wait_for_idrac)
