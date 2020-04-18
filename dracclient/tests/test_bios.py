@@ -12,9 +12,9 @@
 #    under the License.
 
 import re
+from unittest import mock
 
 import lxml.etree
-import mock
 import requests_mock
 
 import dracclient.client

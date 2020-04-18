@@ -12,11 +12,11 @@
 #    under the License.
 
 import collections
+from unittest import mock
 import uuid
 
 import lxml.etree
 import lxml.objectify
-import mock
 import requests.exceptions
 import requests_mock
 import six

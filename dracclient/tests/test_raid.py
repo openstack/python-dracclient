@@ -14,9 +14,10 @@
 
 import collections
 import lxml.etree
-import mock
 import random
 import re
+from unittest import mock
+
 import requests_mock
 
 import dracclient.client

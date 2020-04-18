@@ -13,8 +13,9 @@
 
 import datetime
 import lxml.etree
-import mock
 import re
+from unittest import mock
+
 import requests_mock
 
 import dracclient.client
