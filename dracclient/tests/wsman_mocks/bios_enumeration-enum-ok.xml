@@ -202,13 +202,13 @@
           <n1:AttributeDisplayName>Logical Processor Idling</n1:AttributeDisplayName>
           <n1:AttributeName>DynamicCoreAllocation</n1:AttributeName>
           <n1:CurrentValue>Disabled</n1:CurrentValue>
-          <n1:Dependency xsi:nil="true"/>
-          <n1:DisplayOrder>421</n1:DisplayOrder>
+          <n1:Dependency>&lt;Dep&gt;&lt;AttrLev Op="OR"&gt;&lt;ROIf Name="ProcPwrPerf"&gt;MaxPerf&lt;/ROIf&gt;&lt;/AttrLev&gt;&lt;/Dep&gt;</n1:Dependency>
+          <n1:DisplayOrder>5817</n1:DisplayOrder>
           <n1:FQDD>BIOS.Setup.1-1</n1:FQDD>
           <n1:GroupDisplayName>Processor Settings</n1:GroupDisplayName>
           <n1:GroupID>ProcSettings</n1:GroupID>
           <n1:InstanceID>BIOS.Setup.1-1:DynamicCoreAllocation</n1:InstanceID>
-          <n1:IsReadOnly>false</n1:IsReadOnly>
+          <n1:IsReadOnly>true</n1:IsReadOnly>
           <n1:PendingValue xsi:nil="true"/>
           <n1:PossibleValues>Enabled</n1:PossibleValues>
           <n1:PossibleValues>Disabled</n1:PossibleValues>

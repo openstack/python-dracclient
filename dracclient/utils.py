@@ -368,9 +368,14 @@ def set_settings(settings_type,
         if type(current_setting_value) is list:
             current_setting_value = current_setting_value[0]
 
-        if current_settings[attr].read_only:
+        unchanged_attribute = str(new_settings[attr]) == str(
+            current_setting_value)
+
+        # check if read-only attribute is unchanged
+        if current_settings[attr].read_only and not unchanged_attribute:
             read_only_keys.append(attr)
-        elif str(new_settings[attr]) == str(current_setting_value):
+
+        if unchanged_attribute:
             unchanged_attribs.append(attr)
         else:
             validation_msg = current_settings[attr].validate(

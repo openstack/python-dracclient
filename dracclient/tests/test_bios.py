@@ -346,7 +346,8 @@ class ClientBIOSConfigurationTestCase(base.BaseTest):
                 'SetAttributes']['ok'])
 
         result = self.drac_client.set_bios_settings(
-            {'ProcVirtualization': 'Disabled'})
+            {'ProcVirtualization': 'Disabled',
+             'DynamicCoreAllocation': 'Disabled'})
 
         self.assertEqual({'is_commit_required': True,
                           'is_reboot_required': constants.RebootRequired.true},
