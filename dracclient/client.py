@@ -1184,13 +1184,6 @@ class DRACClient(object):
                     - The is_reboot_required key with a RebootRequired
                       enumerated value indicating whether the server must be
                       rebooted to complete disk conversion.
-                  Also contained in the main dict are the following key/values,
-                  which are deprecated, should not be used, and will be removed
-                  in a future release:
-                  - is_reboot_required, a boolean stating whether a reboot is
-                    required or not.
-                  - commit_required_ids, a list of controller ids that will
-                    need to commit their pending RAID changes via a config job.
         :raises: DRACOperationFailed on error reported back by the DRAC and the
                  exception message does not contain NOT_SUPPORTED_MSG constant.
         :raises: Exception on unknown error.

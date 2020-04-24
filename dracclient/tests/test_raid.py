@@ -1344,8 +1344,6 @@ class ClientRAIDManagementTestCase(base.BaseTest):
                                  cvt_phys_disks_return_value}
         results = self.drac_client.change_physical_disk_state(
             mode, self.controllers_to_physical_disk_ids)
-        self.assertTrue(results["is_reboot_required"])
-        self.assertEqual(len(results["commit_required_ids"]), 2)
         self.assertEqual(results['conversion_results'],
                          expected_return_value)
 
@@ -1375,8 +1373,6 @@ class ClientRAIDManagementTestCase(base.BaseTest):
 
         results = self.drac_client.change_physical_disk_state(
             mode, self.controllers_to_physical_disk_ids)
-        self.assertTrue(results["is_reboot_required"])
-        self.assertEqual(len(results["commit_required_ids"]), 1)
         self.assertEqual(len(results['conversion_results']), 2)
         self.assertEqual(results['conversion_results']['AHCI.Integrated.1-1'],
                          boss_return_value)
@@ -1397,8 +1393,6 @@ class ClientRAIDManagementTestCase(base.BaseTest):
                                  constants.RebootRequired.false}
         results = self.drac_client.change_physical_disk_state(
             mode, self.controllers_to_physical_disk_ids)
-        self.assertFalse(results["is_reboot_required"])
-        self.assertEqual(len(results["commit_required_ids"]), 0)
         self.assertEqual(results['conversion_results']['RAID.Integrated.1-1'],
                          expected_return_value)
         self.assertEqual(results['conversion_results']['AHCI.Integrated.1-1'],
@@ -1427,8 +1421,6 @@ class ClientRAIDManagementTestCase(base.BaseTest):
                                  constants.RebootRequired.false}
         results = self.drac_client.change_physical_disk_state(
             mode, self.controllers_to_physical_disk_ids)
-        self.assertFalse(results["is_reboot_required"])
-        self.assertEqual(len(results["commit_required_ids"]), 0)
         self.assertEqual(results['conversion_results']['RAID.Integrated.1-1'],
                          expected_return_value)
         self.assertEqual(results['conversion_results']['AHCI.Integrated.1-1'],
@@ -1502,14 +1494,18 @@ class ClientRAIDManagementTestCase(base.BaseTest):
             text=test_utils.RAIDEnumerations[uris.DCIM_ControllerView]['ok'])
         mode = constants.RaidStatus.jbod
         physical_disks = [self.disk_1, self.disk_2, self.disk_3, self.disk_4]
-        mock_convert_physical_disks.return_value = {'is_commit_required': True,
-                                                    'is_reboot_required':
-                                                    constants.RebootRequired
-                                                    .true}
         mock_list_physical_disks.return_value = physical_disks
+        cvt_phys_disks_return_value = {'is_commit_required': True,
+                                       'is_reboot_required': constants.
+                                       RebootRequired.true}
+        mock_convert_physical_disks.return_value = cvt_phys_disks_return_value
+        expected_return_value = {'RAID.Integrated.1-1':
+                                 cvt_phys_disks_return_value,
+                                 'AHCI.Integrated.1-1':
+                                 cvt_phys_disks_return_value}
         results = self.drac_client.change_physical_disk_state(mode)
-        self.assertTrue(results["is_reboot_required"])
-        self.assertEqual(len(results["commit_required_ids"]), 2)
+        self.assertDictEqual(results['conversion_results'],
+                             expected_return_value)
 
     @mock.patch.object(dracclient.client.WSManClient,
                        'wait_until_idrac_is_ready', spec_set=True,
@@ -1532,8 +1528,7 @@ class ClientRAIDManagementTestCase(base.BaseTest):
         physical_disks = [_disk_1, _disk_2, _disk_3, _disk_4]
         mock_list_physical_disks.return_value = physical_disks
         results = self.drac_client.change_physical_disk_state(mode)
-        self.assertFalse(results["is_reboot_required"])
-        self.assertEqual(len(results["commit_required_ids"]), 0)
+        self.assertDictEqual(results['conversion_results'], {})
 
     @mock.patch.object(dracclient.client.WSManClient,
                        'wait_until_idrac_is_ready', spec_set=True,

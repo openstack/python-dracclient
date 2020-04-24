@@ -925,13 +925,6 @@ class RAIDManagement(object):
                     - The is_reboot_required key with a RebootRequired
                       enumerated value indicating whether the server must be
                       rebooted to complete disk conversion.
-                  Also contained in the main dict are the following key/values,
-                  which are deprecated, should not be used, and will be removed
-                  in a future release:
-                  - is_reboot_required, a boolean stating whether a reboot is
-                    required or not.
-                  - commit_required_ids, a list of controller ids that will
-                    need to commit their pending RAID changes via a config job.
         :raises: DRACOperationFailed on error reported back by the DRAC and the
                  exception message does not contain NOT_SUPPORTED_MSG constant.
         :raises: Exception on unknown error.
@@ -961,8 +954,6 @@ class RAIDManagement(object):
         final_ctls_to_phys_disk_ids = self._check_disks_status(
                 mode, physical_disks, controllers_to_physical_disk_ids)
 
-        is_reboot_required = False
-        controllers = []
         controllers_to_results = {}
         for controller, physical_disk_ids \
                 in final_ctls_to_phys_disk_ids.items():
@@ -989,17 +980,6 @@ class RAIDManagement(object):
                         raise
                 else:
                     controllers_to_results[controller] = conversion_results
-
-                    # Remove the code below when is_reboot_required and
-                    # commit_required_ids are deprecated
-                    reboot_true = constants.RebootRequired.true
-                    reboot_optional = constants.RebootRequired.optional
-                    _is_reboot_required = \
-                        conversion_results["is_reboot_required"]
-                    is_reboot_required = is_reboot_required \
-                        or (_is_reboot_required
-                            in [reboot_true, reboot_optional])
-                    controllers.append(controller)
             else:
                 controllers_to_results[controller] = \
                     utils.build_return_dict(
@@ -1009,9 +989,7 @@ class RAIDManagement(object):
                         is_reboot_required_value=constants.
                         RebootRequired.false)
 
-        return {'conversion_results': controllers_to_results,
-                'is_reboot_required': is_reboot_required,
-                'commit_required_ids': controllers}
+        return {'conversion_results': controllers_to_results}
 
     def is_realtime_supported(self, raid_controller_fqdd):
         """Find if controller supports realtime or not
