@@ -1,4 +1,3 @@
 - project:
     templates:
-      - openstack-python-jobs
       - openstack-python3-ussuri-jobs
